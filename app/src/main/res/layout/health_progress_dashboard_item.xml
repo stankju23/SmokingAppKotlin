@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="viewModel" type="com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.HealthList.HealthProgressListViewModel"></variable>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.timqi.sectorprogressview.ColorfulRingProgressView
+            android:id="@+id/health_progress_1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:padding="5dp"
+            app:bgColor="@color/unselectedColor"
+            app:fgColorEnd="@color/selectedColor"
+            app:fgColorStart="@color/selectedColor"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/health_progress_2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/health_progress_title"
+            app:strokeWidth="12dp"
+            app:percent="@{viewModel.dashboardHealthProgressViewList.get(0).date.progress}" />
+
+        <com.timqi.sectorprogressview.ColorfulRingProgressView
+            android:id="@+id/health_progress_2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="5dp"
+            app:bgColor="@color/unselectedColor"
+            app:fgColorEnd="@color/selectedColor"
+            app:fgColorStart="@color/selectedColor"
+            app:layout_constraintBottom_toBottomOf="@+id/health_progress_1"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/health_progress_3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/health_progress_1"
+            app:layout_constraintTop_toTopOf="@+id/health_progress_1"
+            app:layout_constraintVertical_bias="0.0"
+            app:percent="@{viewModel.dashboardHealthProgressViewList.get(1).date.progress}"
+            app:strokeWidth="12dp" />
+
+        <com.timqi.sectorprogressview.ColorfulRingProgressView
+            android:id="@+id/health_progress_3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:padding="5dp"
+            app:bgColor="@color/unselectedColor"
+            app:fgColorEnd="@color/selectedColor"
+            app:fgColorStart="@color/selectedColor"
+            app:layout_constraintBottom_toBottomOf="@+id/health_progress_2"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/health_progress_2"
+            app:layout_constraintTop_toTopOf="@+id/health_progress_2"
+            app:strokeWidth="12dp"
+            app:percent="@{viewModel.dashboardHealthProgressViewList.get(2).date.progress}" />
+
+        <TextView
+            android:id="@+id/text_progress_2"
+            android:layout_width="0dp"
+            android:layout_height="18dp"
+            android:text="@{viewModel.dashboardHealthProgressViewList.get(0).title}"
+            android:textAlignment="center"
+            android:textColor="@color/unselectedColor"
+            app:layout_constraintBottom_toBottomOf="@+id/text_progress_1"
+            app:layout_constraintEnd_toStartOf="@+id/text_progress_3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/text_progress_1"
+            app:layout_constraintTop_toTopOf="@+id/text_progress_1" />
+
+        <TextView
+            android:id="@+id/text_progress_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.dashboardHealthProgressViewList.get(1).title}"
+            android:textAlignment="center"
+            android:textColor="@color/unselectedColor"
+            app:layout_constraintBottom_toBottomOf="@+id/text_progress_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/text_progress_2"
+            app:layout_constraintTop_toTopOf="@+id/text_progress_2" />
+
+        <TextView
+            android:id="@+id/text_progress_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@{viewModel.dashboardHealthProgressViewList.get(2).title}"
+            android:textAlignment="center"
+            android:textColor="@color/unselectedColor"
+            app:layout_constraintEnd_toStartOf="@+id/text_progress_2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/health_progress_1" />
+
+        <TextView
+            android:id="@+id/health_progress_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Health Progress"
+            android:textColor="@color/unselectedColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/find_more_btn_bg"
+            android:paddingBottom="5dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="5dp"
+            android:text="@string/more_btn"
+            android:textAppearance="@android:style/TextAppearance.Small"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_progress_1"
+            android:onClick="@{viewModel.findMore}"
+            android:clickable="true"/>
+    </android.support.constraint.ConstraintLayout>
+</layout>

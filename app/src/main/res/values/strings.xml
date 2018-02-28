@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">BakalarkaSmokingApp</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="more_btn">Find more ...</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    // titles
+    <string name="health_progress_title">Health progress</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_mission">Missions</string>
+    <string name="title_cravings">Cravings</string>
+    <string name="title_infoarea">InfoArea</string>
+
+    <string name="days">Days</string>
+    <string name="hours">Hours</string>
+    <string name="minutes">Minutes</string>
+    <string name="seconds">Seconds</string>
+
+</resources>
