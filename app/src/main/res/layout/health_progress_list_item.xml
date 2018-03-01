@@ -51,7 +51,6 @@
                     android:layout_marginTop="10dp"
                     android:text="@{viewModel.title}"
                     android:textColor="@{viewModel.date.progress == 100 ? @color/selectedColor : @color/unselectedColor}"
-                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/colorfulRingProgressView"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -66,7 +65,6 @@
                     android:lines="2"
                     android:text="@{viewModel.desc}"
                     android:textColor="@{viewModel.date.progress == 100 ? @color/selectedColor : @color/unselectedColor}"
-                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/colorfulRingProgressView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/colorfulRingProgressView"
@@ -82,7 +80,6 @@
                     android:layout_marginTop="8dp"
                     android:text="@{String.valueOf((int)viewModel.date.progress) + '%'}"
                     android:textColor="@{viewModel.date.progress == 100 ? @color/selectedColor : @color/unselectedColor}"
-                    android:textStyle="bold"
                     card_view:layout_constraintBottom_toBottomOf="@+id/colorfulRingProgressView"
                     card_view:layout_constraintEnd_toEndOf="@+id/colorfulRingProgressView"
                     card_view:layout_constraintStart_toStartOf="@+id/colorfulRingProgressView"

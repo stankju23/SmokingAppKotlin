@@ -4,7 +4,6 @@ import android.databinding.BaseObservable
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableField
 import com.example.stanislavcavajda.bakalarkasmokingapp.BR
-import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.HealthList.MainProgressItemViewModel
 import com.example.stanislavcavajda.bakalarkasmokingapp.Model.Date
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import me.tatarka.bindingcollectionadapter2.ItemBinding

@@ -165,7 +165,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:text="Time progress"
+            android:text="@string/time_progress"
             android:textColor="@color/selectedColor"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"

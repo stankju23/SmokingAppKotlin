@@ -22,33 +22,30 @@
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title="sadasdas"
             app:titleTextColor="@color/white">
-
             <!--<TextView-->
-                <!--android:id="@+id/toolbar_title"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:text="@{toolbar.title}"-->
-                <!--android:textColor="@color/unselectedColor"-->
-                <!--android:textSize="20sp" />-->
-
+            <!--android:id="@+id/toolbar_title"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:text="@{toolbar.title}"-->
+            <!--android:textColor="@color/unselectedColor"-->
+            <!--android:textSize="20sp" />-->
             <!--<ImageButton-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="left"-->
-                <!--android:background="@{toolbar.leftImage}"-->
-                <!--android:backgroundTint="@color/unselectedColor" />-->
-
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="left"-->
+            <!--android:background="@{toolbar.leftImage}"-->
+            <!--android:backgroundTint="@color/unselectedColor" />-->
             <!--<ImageButton-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="right"-->
-                <!--android:layout_marginRight="15dp"-->
-                <!--android:background="@{toolbar.rightImage}"-->
-                <!--android:backgroundTint="@color/unselectedColor"-->
-                <!--android:onClick="@{toolbar.openSettings}" />-->
-
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="right"-->
+            <!--android:layout_marginRight="15dp"-->
+            <!--android:background="@{toolbar.rightImage}"-->
+            <!--android:backgroundTint="@color/unselectedColor"-->
+            <!--android:onClick="@{toolbar.openSettings}" />-->
         </android.support.v7.widget.Toolbar>
 
 

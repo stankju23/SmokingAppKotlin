@@ -1,4 +1,4 @@
-package com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.HealthList
+package com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard
 
 import android.databinding.BaseObservable
 import android.databinding.ObservableBoolean

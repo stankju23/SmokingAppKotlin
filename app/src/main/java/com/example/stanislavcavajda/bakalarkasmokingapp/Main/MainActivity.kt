@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.abc_ic_ab_back_material)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
         supportActionBar?.title = resources.getString(R.string.title_dashboard)
 
 //        var leftImage = resources.getDrawable(R.drawable.hamburger)
@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                     // set tooblar
                     supportActionBar?.setDisplayHomeAsUpEnabled(true)
                     supportActionBar?.setDisplayShowHomeEnabled(true)
-                    supportActionBar?.setHomeAsUpIndicator(R.drawable.abc_ic_ab_back_material)
+                    supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
                     supportActionBar?.title = resources.getString(R.string.title_dashboard)
 //                    toolbarViewModel.setLeftImage(leftImage)
 //                    toolbarViewModel.setRightImage(rightImage)

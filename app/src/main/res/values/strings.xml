@@ -19,4 +19,6 @@
     <string name="minutes">\ min</string>
     <string name="seconds">\ sec</string>
 
+    <string name="time_progress">Time progress</string>
+    <string name="health_improvements">Health improvements</string>
 </resources>
