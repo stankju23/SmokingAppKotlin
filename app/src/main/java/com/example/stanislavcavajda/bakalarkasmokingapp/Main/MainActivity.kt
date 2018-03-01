@@ -2,12 +2,14 @@ package com.example.stanislavcavajda.bakalarkasmokingapp.Main
 
 //import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DateConverter
 import android.content.Context
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
+import android.view.MenuItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.DashboardFragment
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.BottomNavigationViewHelper
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
@@ -120,6 +122,18 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.action_bar_menu,menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                var intent = Intent(this,SettingsActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }

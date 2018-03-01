@@ -12,11 +12,11 @@
 
         <android.support.v7.widget.CardView
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="1dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="@color/mainColor"
-            card_view:cardElevation="4dp"
+            card_view:cardElevation="1dp"
             android:onClick="@{viewModel.showDetail}"
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true">
@@ -27,27 +27,28 @@
 
                 <com.timqi.sectorprogressview.ColorfulRingProgressView
                     android:id="@+id/colorfulRingProgressView"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginBottom="6dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:padding="5dp"
-                    app:bgColor="@color/unselectedColor"
+                    android:layout_marginTop="6dp"
+                    android:padding="2dp"
                     app:fgColorEnd="@color/selectedColor"
                     app:fgColorStart="@color/selectedColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:percent="@{viewModel.date.progress}"
-                    app:strokeWidth="10dp" />
+                    app:strokeWidth="8dp"
+                    card_view:bgColor="@color/unselectedBarColor" />
 
                 <TextView
                     android:id="@+id/title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="10dp"
                     android:text="@{viewModel.title}"
                     android:textColor="@{viewModel.date.progress == 100 ? @color/selectedColor : @color/unselectedColor}"
                     android:textStyle="bold"
@@ -59,10 +60,10 @@
                     android:id="@+id/description"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginBottom="8dp"
                     android:layout_marginEnd="8dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:lines="3"
+                    android:lines="2"
                     android:text="@{viewModel.desc}"
                     android:textColor="@{viewModel.date.progress == 100 ? @color/selectedColor : @color/unselectedColor}"
                     android:textStyle="bold"

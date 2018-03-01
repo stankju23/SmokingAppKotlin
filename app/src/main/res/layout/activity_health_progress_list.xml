@@ -22,11 +22,11 @@
             android:id="@+id/products_toolbar"
             android:layout_width="0dp"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/darker_main"
+            android:background="@color/selectedColor"
             app:layout_collapseMode="pin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:titleTextColor="@color/unselectedColor"
+            app:titleTextColor="@color/white"
             android:elevation="4dp">
 
         </android.support.v7.widget.Toolbar>

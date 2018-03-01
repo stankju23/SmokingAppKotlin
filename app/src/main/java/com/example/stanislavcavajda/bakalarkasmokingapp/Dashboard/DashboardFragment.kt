@@ -31,10 +31,12 @@ class DashboardFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         var binding:FragmentDashboardBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_dashboard, container, false)
+
+
         var view = binding.root
 
         date = Date(dateConverter.getCurrentTimestamp() - dateConverter.convertDateToTimestamp(Data.date),Constants.timeConst.twentyOneDays)
-        var mainProgress = MainProgressViewModel(21f / (date.days) * 100, date)
+        var mainProgress = MainProgressViewModel(date)
 
         if(Data.healthProgressViewList.isEmpty()) {
             prepareHealthProgressList()
@@ -51,7 +53,7 @@ class DashboardFragment : Fragment() {
         Timer().scheduleAtFixedRate(timerTask{
             date = Date(dateConverter.getCurrentTimestamp() - dateConverter.convertDateToTimestamp(Data.date),Constants.timeConst.twentyOneDays)
             progress = (dateConverter.getCurrentTimestamp() - dateConverter.convertDateToTimestamp(Data.date)).toFloat()/(Constants.timeConst.twentyOneDays).toFloat() * 100f
-            (dashboardList.list.get(0) as MainProgressViewModel).setProgress(progress, date)
+            (dashboardList.list.get(0) as MainProgressViewModel).setProgress(date)
             updateHealthProgress()
             (dashboardList.list.get(1) as HealthProgressListViewModel).updateAll(Data.healthProgressViewList)
         },0,1000)

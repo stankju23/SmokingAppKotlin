@@ -20,14 +20,14 @@
             android:id="@+id/health_progress_detail_toolbar"
             android:layout_width="0dp"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/darker_main"
+            android:background="@color/selectedColor"
             android:elevation="4dp"
             app:layout_collapseMode="pin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:title="@{viewModel.title}"
-            app:titleTextColor="@color/unselectedColor"></android.support.v7.widget.Toolbar>
+            app:titleTextColor="@color/white"></android.support.v7.widget.Toolbar>
 
         <com.timqi.sectorprogressview.ColorfulRingProgressView
             android:id="@+id/colorfulRingProgressView2"
@@ -37,7 +37,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:padding="10dp"
-            app:bgColor="@color/unselectedColor"
+            app:bgColor="@color/unselectedBarColor"
             app:fgColorEnd="@color/selectedColor"
             app:fgColorStart="@color/selectedColor"
             app:layout_constraintEnd_toEndOf="parent"

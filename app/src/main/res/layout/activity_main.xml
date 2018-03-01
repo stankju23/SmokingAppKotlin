@@ -18,11 +18,11 @@
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/darker_main"
+            android:background="@color/selectedColor"
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:titleTextColor="@color/unselectedColor">
+            app:titleTextColor="@color/white">
 
             <!--<TextView-->
                 <!--android:id="@+id/toolbar_title"-->
