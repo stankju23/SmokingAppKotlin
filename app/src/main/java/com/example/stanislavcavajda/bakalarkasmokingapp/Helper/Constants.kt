@@ -8,6 +8,7 @@ object Constants {
     object viewTypes {
         const val MAIN_PROGRESS_VIEW_TYPE = 0
         const val HEALTH_PROGRESS_VIEW_TYPE = 1
+        const val WISHES_MANAGER_VIEW_TYPE = 2
     }
 
     object timeConst {

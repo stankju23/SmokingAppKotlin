@@ -23,7 +23,8 @@ class DashboardListViewModel :BaseObservable {
                 when(position) {
                     Constants.viewTypes.MAIN_PROGRESS_VIEW_TYPE -> R.layout.main_progress
                     Constants.viewTypes.HEALTH_PROGRESS_VIEW_TYPE -> R.layout.health_progress_dashboard_item
-                    else -> R.layout.dashboard_main_progress
+                    Constants.viewTypes.WISHES_MANAGER_VIEW_TYPE -> R.layout.wish_manager_dashboard_item
+                    else -> R.layout.wish_manager_dashboard_item
                 }
 
         )}

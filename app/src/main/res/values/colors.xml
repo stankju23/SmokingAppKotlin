@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#558D96</color>
     <color name="colorAccent">#ffffff</color>
     <color name="mainColor">#FFFFFF</color>
-    <color name="selectedColor">#558D96</color>
+    <color name="selectedColor">#558d96</color>
     <color name="unselectedBarColor">#e8e8e8</color>
     <color name="unselectedColor">#7F7766</color>
     <color name="darker_main">#FFFFFF</color>

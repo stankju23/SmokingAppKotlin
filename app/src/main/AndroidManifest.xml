@@ -16,7 +16,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".Main.SettingsActivity" />
-        <activity android:name="com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.HealthList.HealthProgressListActivity" />
-        <activity android:name="com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.HealthList.HealthProgressDetailActivity"></activity>
+        <activity android:name=".Dashboard.HealthList.HealthProgressListActivity" />
+        <activity android:name=".Dashboard.HealthList.HealthProgressDetailActivity" />
+        <activity android:name=".Dashboard.MainProgressDetailActivity" />
+        <activity android:name=".Dashboard.WishManager.WishesActivity"></activity>
     </application>
 </manifest>

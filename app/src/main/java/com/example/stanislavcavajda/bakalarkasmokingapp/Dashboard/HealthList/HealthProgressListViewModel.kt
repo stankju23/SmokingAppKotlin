@@ -33,9 +33,7 @@ class HealthProgressListViewModel : BaseObservable {
         }
     }
 
-    fun updateAll(healthProgressViewList: ArrayList<HealthProgressViewModel>) {
-        this.healthProgressViewList.clear()
-        this.healthProgressViewList.addAll(healthProgressViewList)
+    fun updateAll() {
         var index = 0
         for (item in this.healthProgressViewList) {
             if (item.date.get().progress < 100 && index < 3) {
@@ -49,11 +47,6 @@ class HealthProgressListViewModel : BaseObservable {
 
     fun findMore(v: View) {
         var healthProgressList = Intent(context, HealthProgressListActivity::class.java)
-//        SwipeBackActivityHelper.activityBuilder(context as Activity)
-//            .intent(healthProgressViewList)
-//            .needParallax(true)
-//            .needBackgroundShadow(true)
-//            .startActivity();
         healthProgressList.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         (context as Activity).startActivity(healthProgressList)
 //        var fragmentManager = (this.context as Activity).fragmentManager

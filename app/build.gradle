@@ -50,4 +50,5 @@ dependencies {
     compile 'com.github.bluzwong:swipeback:0.2.0@aar'
     compile 'com.android.support:cardview-v7:23.3.+'
     compile 'com.chauthai.overscroll:overscroll-bouncy:0.1.1'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
 }

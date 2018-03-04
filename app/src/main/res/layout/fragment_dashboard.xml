@@ -11,7 +11,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Dashboard.DashboardFragment"
-    android:background="@color/mainColor">
+    android:background="@color/unselectedBarColor">
 
 
     <android.support.v7.widget.RecyclerView

@@ -1,7 +1,6 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Main
 
 //import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DateConverter
-import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -12,8 +11,6 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.DashboardFragment
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.BottomNavigationViewHelper
-import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
-import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DateConverter
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.databinding.ActivityMainBinding
@@ -30,8 +27,8 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
 
-        var preferences = getSharedPreferences("date", Context.MODE_PRIVATE)
-        Data.date = preferences.getString(Constants.preferences.DATE_PREFERENCES,"03-02-2018")
+       // var preferences = getSharedPreferences("date", Context.MODE_PRIVATE)
+        //Data.date = preferences.getString(Constants.preferences.DATE_PREFERENCES,"03-02-2018")
 
         var binding: ActivityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main)
 
@@ -135,5 +132,7 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    fun nieco() {}
 
 }

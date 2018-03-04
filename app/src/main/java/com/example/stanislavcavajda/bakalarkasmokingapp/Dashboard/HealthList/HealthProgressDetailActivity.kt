@@ -8,9 +8,12 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.databinding.ActivityHealthProgressDetailBinding
+import com.github.bluzwong.swipeback.SwipeBackActivityHelper
 import kotlinx.android.synthetic.main.activity_health_progress_detail.*
 
 class HealthProgressDetailActivity : AppCompatActivity() {
+
+    var helper = SwipeBackActivityHelper()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,5 +1,6 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard
 
+import android.content.Context
 import android.databinding.BaseObservable
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableField
@@ -16,13 +17,14 @@ class MainProgressViewModel: BaseObservable {
     var date: ObservableField<Date> = ObservableField()
     var progressList: ObservableArrayList<MainProgressItemViewModel> = ObservableArrayList()
     var itemBinding : ItemBinding<MainProgressItemViewModel> = ItemBinding.of(BR.viewModel, R.layout.main_progress_item)
+    var context: Context
 
-
-    constructor(date: Date) {
+    constructor(date: Date, context: Context) {
         for (i in 0..20){
             progressList.add(MainProgressItemViewModel(false))
         }
         setProgress(date)
+        this.context = context
     }
 
     fun setProgress(date: Date) {
@@ -35,5 +37,6 @@ class MainProgressViewModel: BaseObservable {
             }
         }
     }
+
 
 }
