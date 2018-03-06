@@ -9,6 +9,7 @@ object Constants {
         const val MAIN_PROGRESS_VIEW_TYPE = 0
         const val HEALTH_PROGRESS_VIEW_TYPE = 1
         const val WISHES_MANAGER_VIEW_TYPE = 2
+        const val MONEY_SAVED_VIEW_TYPE = 3
     }
 
     object timeConst {

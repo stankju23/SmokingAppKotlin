@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.HealthList.HealthProgressListViewModel
+import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MoneySaved.MoneySavedViewModel
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.Wish
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.WishListViewModel
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
@@ -21,6 +22,8 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.JSONParser
 import com.example.stanislavcavajda.bakalarkasmokingapp.Model.Date
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.databinding.FragmentDashboardBinding
+import java.text.NumberFormat
+import java.util.Locale
 import java.util.Timer
 import kotlin.concurrent.timerTask
 
@@ -79,13 +82,16 @@ class DashboardFragment : Fragment() {
 
 
         var wishesManager = WishListViewModel(Data.wishList,activity)
+        var moneySaved = MoneySavedViewModel(Data.MoneyDashboard.moneySaved,Data.MoneyDashboard.moneySpend)
 
 
         dashboardList.list.add(mainProgress as Object)
         dashboardList.list.add(healthProgress as Object)
         dashboardList.list.add(wishesManager as Object)
+        dashboardList.list.add(moneySaved as Object)
 
-
+        var result = ""
+        val nf = NumberFormat.getInstance(Locale.US) // Looks like a US format
 
         Timer().scheduleAtFixedRate(timerTask{
             currentTimestamp = dateConverter.getCurrentTimestamp()
@@ -94,9 +100,13 @@ class DashboardFragment : Fragment() {
 
             progress = (dateConverter.getCurrentTimestamp() - dateConverter.convertDateToTimestamp(Data.date)).toFloat()/(Constants.timeConst.twentyOneDays).toFloat() * 100f
 
-            (dashboardList.list.get(0) as MainProgressViewModel).setProgress(date)
+            (dashboardList.list.get(Constants.viewTypes.MAIN_PROGRESS_VIEW_TYPE) as MainProgressViewModel).setProgress(date)
             updateHealthProgress(currentTimestamp,dateTimestamp)
-            (dashboardList.list.get(1) as HealthProgressListViewModel).updateAll()
+            (dashboardList.list.get(Constants.viewTypes.HEALTH_PROGRESS_VIEW_TYPE) as HealthProgressListViewModel).updateAll()
+            result = "%.2f".format(actualSaved(currentTimestamp - dateTimestamp,Data.MoneyDashboard.cigarretesPerDay,Data.MoneyDashboard.packagePrice, Data.MoneyDashboard.cigarretesInPackage))
+
+            (dashboardList.list.get(Constants.viewTypes.MONEY_SAVED_VIEW_TYPE) as MoneySavedViewModel).updateMoney(
+                nf.parse(result).toFloat()/100,0.0)
 
         },0,1000)
 
@@ -105,6 +115,12 @@ class DashboardFragment : Fragment() {
         return view
     }
 
+    fun actualSaved(actualTimestamp:Long, cigarretesPerDay: Int, packagePrice:Double,inPackage:Int):Float {
+        var result = 0.0f
+        var day = 86400
+        result = (((packagePrice.toFloat()/ inPackage.toFloat()) * cigarretesPerDay)/ day.toFloat()) * actualTimestamp
+        return result
+    }
 
 
     fun prepareHealthProgressList() {

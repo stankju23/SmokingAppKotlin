@@ -24,6 +24,7 @@ class DashboardListViewModel :BaseObservable {
                     Constants.viewTypes.MAIN_PROGRESS_VIEW_TYPE -> R.layout.main_progress
                     Constants.viewTypes.HEALTH_PROGRESS_VIEW_TYPE -> R.layout.health_progress_dashboard_item
                     Constants.viewTypes.WISHES_MANAGER_VIEW_TYPE -> R.layout.wish_manager_dashboard_item
+                    Constants.viewTypes.MONEY_SAVED_VIEW_TYPE -> R.layout.money_saved_dashboard_item
                     else -> R.layout.wish_manager_dashboard_item
                 }
 

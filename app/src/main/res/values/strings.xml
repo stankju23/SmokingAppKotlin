@@ -18,4 +18,6 @@
     <string name="health_improvements">Health improvements</string>
     <string name="wishes_manager_title">Wishes Manager</string>
     <string name="show_wishes">Show wishes</string>
+    <string name="money_saved_title">Money saved</string>
+    <string name="money_button">Show money stats</string>
 </resources>
