@@ -105,7 +105,7 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginStart="8dp"
                     android:gravity="left |center"
-                    android:text="TextView"
+                    android:text="@{@string/can_buy_it + ' ' + viewModel.actualWish.get().endDate}"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView2"

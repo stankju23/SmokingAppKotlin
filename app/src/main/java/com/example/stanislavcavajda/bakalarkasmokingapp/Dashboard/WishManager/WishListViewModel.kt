@@ -30,7 +30,7 @@ class WishListViewModel: BaseObservable {
     fun updateWishList(newWishList: ArrayList<Wish>) {
 
         if (wishList.size == newWishList.size) {
-            for (i in 0..wishList.size) {
+            for (i in 0..wishList.size-1) {
                 wishList.set(i,newWishList.get(i))
             }
         }
@@ -44,6 +44,8 @@ class WishListViewModel: BaseObservable {
                 }
             }
         }
+
+        updateWish()
 
     }
 

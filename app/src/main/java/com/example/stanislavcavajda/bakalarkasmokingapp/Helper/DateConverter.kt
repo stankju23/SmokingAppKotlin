@@ -1,9 +1,11 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Helper
 
+import android.annotation.SuppressLint
+import android.icu.util.Calendar
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
-
-
+import java.util.Locale
+import java.util.TimeZone
 
 public class DateConverter () {
 
@@ -31,6 +33,19 @@ public class DateConverter () {
         dateList.add(date.substring(6,10).toInt())
         return dateList
     }
+
+
+    @SuppressLint("NewApi")
+    fun getDate(time: Long): String {
+        val calendar = Calendar.getInstance()
+        val tz = TimeZone.getDefault()
+        calendar.add(Calendar.MILLISECOND, tz.getOffset(calendar.timeInMillis))
+        val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        val currenTimeZone = java.util.Date(time * 1000)
+        return sdf.format(currenTimeZone)
+    }
+
+
 
 //    fun updateMainProgressDetail(context: Context,timestamp: Long) : ArrayList<TimeFormat> {
 //        var timeList = ArrayList<TimeFormat>()

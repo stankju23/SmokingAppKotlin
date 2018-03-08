@@ -65,20 +65,29 @@ class DashboardFragment : Fragment() {
 
         var wish = Wish(1,"Auto",
             "daskjdvadvaksdvaksdvaskdvkassad bduasd asjdbjashdjashdvajsdvjasvdjhasvdjhavdsjhavsdjhavdjadvja",
-            1000,BitmapDrawable(resources,image),false,false)
+            10,BitmapDrawable(resources,image),false)
+
+        var wish1 = Wish(1,"Auto",
+            "daskjdvadvaksdvaksdvaskdvkassad bduasd asjdbjashdjashdvajsdvjasvdjhasvdjhavdsjhavsdjhavdjadvja",
+            12,BitmapDrawable(resources,image),false)
+        var wish2 = Wish(1,"Auto",
+            "daskjdvadvaksdvaksdvaskdvkassad bduasd asjdbjashdjashdvajsdvjasvdjhasvdjhavdsjhavsdjhavdjadvja",
+            13,BitmapDrawable(resources,image),false)
+        var wish3 = Wish(1,"Auto4",
+            "daskjdvadvaksdvaksdvaskdvkassad bduasd asjdbjashdjashdvajsdvjasvdjhasvdjhavdsjhavsdjhavdjadvja",
+            18,BitmapDrawable(resources,image),false)
+
+        var wish4 = Wish(1,"Auto5",
+            "daskjdvadvaksdvaksdvaskdvkassad bduasd asjdbjashdjashdvajsdvjasvdjhasvdjhavdsjhavsdjhavdjadvja",
+            15,BitmapDrawable(resources,image),false)
+
 
         Data.wishList.add(wish)
-        Data.wishList.add(wish)
-        Data.wishList.add(wish)
-        Data.wishList.add(wish)
-        Data.wishList.add(wish)
-        Data.wishList.add(wish)
-        Data.wishList.add(wish)
-        Data.wishList.add(wish)
-        Data.wishList.add(wish)
-        Data.wishList.add(wish)
-        Data.wishList.add(wish)
-        Data.wishList.add(wish)
+        Data.wishList.add(wish1)
+        Data.wishList.add(wish2)
+        Data.wishList.add(wish3)
+        Data.wishList.add(wish4)
+
 
 
         var wishesManager = WishListViewModel(Data.wishList,activity)
@@ -93,6 +102,8 @@ class DashboardFragment : Fragment() {
         var result = ""
         val nf = NumberFormat.getInstance(Locale.US) // Looks like a US format
 
+        updateWishList()
+
         Timer().scheduleAtFixedRate(timerTask{
             currentTimestamp = dateConverter.getCurrentTimestamp()
             dateTimestamp = dateConverter.convertDateToTimestamp(Data.date)
@@ -102,11 +113,22 @@ class DashboardFragment : Fragment() {
 
             (dashboardList.list.get(Constants.viewTypes.MAIN_PROGRESS_VIEW_TYPE) as MainProgressViewModel).setProgress(date)
             updateHealthProgress(currentTimestamp,dateTimestamp)
+
+
             (dashboardList.list.get(Constants.viewTypes.HEALTH_PROGRESS_VIEW_TYPE) as HealthProgressListViewModel).updateAll()
             result = "%.2f".format(actualSaved(currentTimestamp - dateTimestamp,Data.MoneyDashboard.cigarretesPerDay,Data.MoneyDashboard.packagePrice, Data.MoneyDashboard.cigarretesInPackage))
 
+            Data.MoneyDashboard.moneySaved = nf.parse(result).toFloat()/100
+
             (dashboardList.list.get(Constants.viewTypes.MONEY_SAVED_VIEW_TYPE) as MoneySavedViewModel).updateMoney(
-                nf.parse(result).toFloat()/100,0.0)
+                Data.MoneyDashboard.moneySaved,0.0)
+
+            updateWishList()
+
+            val list = Data.wishList.sortedWith(compareBy(Wish::price))
+            Data.wishList = ArrayList(list)
+            (dashboardList.list.get(Constants.viewTypes.WISHES_MANAGER_VIEW_TYPE) as WishListViewModel).updateWishList(Data.wishList)
+
 
         },0,1000)
 
@@ -120,6 +142,12 @@ class DashboardFragment : Fragment() {
         var day = 86400
         result = (((packagePrice.toFloat()/ inPackage.toFloat()) * cigarretesPerDay)/ day.toFloat()) * actualTimestamp
         return result
+    }
+
+    fun updateWishList() {
+        for (i in Data.wishList) {
+            i.setWish(i.id,i.title,i.desc,i.price,i.image!!,i.isBought)
+        }
     }
 
 
@@ -175,5 +203,7 @@ class DashboardFragment : Fragment() {
 
         return inSampleSize
     }
+
+
 
 }
