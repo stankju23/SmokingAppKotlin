@@ -9,4 +9,5 @@
     <color name="unselectedColor">#7F7766</color>
     <color name="darker_main">#FFFFFF</color>
     <color name="white">#ffffff</color>
+    <color name="light_grey">#d3d3d3</color>
 </resources>

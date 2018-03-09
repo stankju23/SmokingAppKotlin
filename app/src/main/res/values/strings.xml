@@ -20,8 +20,8 @@
     <string name="show_wishes">Show wishes</string>
     <string name="money_saved_title">Money saved</string>
     <string name="money_button">Show money stats</string>
-
     <string name="can_buy_it">I can buy it</string>
-
     <string name="price">Price : </string>
+    <string name="add_wish">Add wish</string>
+    <string name="main_progress_show_detail">Show detail</string>
 </resources>

@@ -20,6 +20,7 @@
         <activity android:name=".Dashboard.HealthList.HealthProgressDetailActivity" />
         <activity android:name=".Dashboard.MainProgressDetailActivity" />
         <activity android:name=".Dashboard.WishManager.WishesActivity" />
-        <activity android:name=".Dashboard.MoneySaved.MoneySavedActivity"></activity>
+        <activity android:name=".Dashboard.MoneySaved.MoneySavedActivity" />
+        <activity android:name=".Dashboard.MainProgress.MainProgressDetailActivity"></activity>
     </application>
 </manifest>

@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MainProgressViewModel"></variable>
+            type="com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MainProgress.MainProgressViewModel"></variable>
     </data>
 
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

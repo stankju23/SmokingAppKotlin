@@ -1,9 +1,12 @@
-package com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard
+package com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MainProgress
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.databinding.BaseObservable
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableField
+import android.view.View
 import com.example.stanislavcavajda.bakalarkasmokingapp.BR
 import com.example.stanislavcavajda.bakalarkasmokingapp.Model.Date
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
@@ -18,12 +21,16 @@ class MainProgressViewModel: BaseObservable {
     var progressList: ObservableArrayList<MainProgressItemViewModel> = ObservableArrayList()
     var itemBinding : ItemBinding<MainProgressItemViewModel> = ItemBinding.of(BR.viewModel, R.layout.main_progress_item)
     var context: Context
+    var timeList: ObservableArrayList<MainProgressDetailTime> = ObservableArrayList()
+    var detailItemBinding : ItemBinding<MainProgressDetailTime> = ItemBinding.of(BR.time, R.layout.main_progress_detail_item)
 
-    constructor(date: Date, context: Context) {
+
+    constructor(date: Date, context: Context,list: ArrayList<MainProgressDetailTime>) {
         for (i in 0..20){
             progressList.add(MainProgressItemViewModel(false))
         }
         setProgress(date)
+        updateDetail(list)
         this.context = context
     }
 
@@ -36,6 +43,16 @@ class MainProgressViewModel: BaseObservable {
                 progressList.get(i).full.set(false)
             }
         }
+    }
+
+    fun updateDetail(list: ArrayList<MainProgressDetailTime>) {
+        timeList.clear()
+        timeList.addAll(list)
+    }
+
+    fun showDetail(v:View) {
+        var detailActivity = Intent(context,MainProgressDetailActivity::class.java)
+        (context as Activity).startActivity(detailActivity)
     }
 
 

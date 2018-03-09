@@ -3,6 +3,7 @@ package com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.RecyclerView
 import android.view.MenuItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
@@ -27,6 +28,21 @@ class WishesActivity : AppCompatActivity() {
         supportActionBar?.title = resources.getString(R.string.wishes_manager_title)
 
         wishes_recycler_view.setHasFixedSize(true)
+
+        wishes_recycler_view.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                if (dy > 0 || dy<0 && add_wish.isShown()) {
+                    add_wish.hide()
+                }
+            }
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE){
+                    add_wish.show()
+                }
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

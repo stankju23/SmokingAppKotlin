@@ -1,4 +1,4 @@
-package com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard
+package com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MainProgress
 
 import android.databinding.BaseObservable
 import android.databinding.ObservableBoolean

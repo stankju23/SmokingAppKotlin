@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.HealthList.HealthProgressListViewModel
+import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MainProgress.MainProgressViewModel
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MoneySaved.MoneySavedViewModel
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.Wish
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.WishListViewModel
@@ -36,7 +37,7 @@ class DashboardFragment : Fragment() {
 
     var dateConverter = DateConverter()
     var progress = 0f
-    lateinit var dashboardList:DashboardListViewModel
+    lateinit var dashboardList: DashboardListViewModel
     lateinit var date: Date
     var currentTimestamp: Long = 0L
     var dateTimestamp: Long = 0L
@@ -58,30 +59,40 @@ class DashboardFragment : Fragment() {
         dashboardList = DashboardListViewModel(ArrayList(), activity.applicationContext)
 
         var healthProgress = HealthProgressListViewModel(Data.healthProgressViewList, activity)
-        var mainProgress = MainProgressViewModel(date,activity)
+        var mainProgress = MainProgressViewModel(date, activity,Data.timeList)
 
 
         var image = decodeSampledBitmapFromResource(resources,R.drawable.car,100,70)
 
         var wish = Wish(1,"Auto",
             "daskjdvadvaksdvaksdvaskdvkassad bduasd asjdbjashdjashdvajsdvjasvdjhasvdjhavdsjhavsdjhavdjadvja",
-            10,BitmapDrawable(resources,image),false)
+            10,BitmapDrawable(resources,image),false,activity)
 
         var wish1 = Wish(1,"Auto",
             "daskjdvadvaksdvaksdvaskdvkassad bduasd asjdbjashdjashdvajsdvjasvdjhasvdjhavdsjhavsdjhavdjadvja",
-            12,BitmapDrawable(resources,image),false)
+            12,BitmapDrawable(resources,image),false,activity)
         var wish2 = Wish(1,"Auto",
             "daskjdvadvaksdvaksdvaskdvkassad bduasd asjdbjashdjashdvajsdvjasvdjhasvdjhavdsjhavsdjhavdjadvja",
-            13,BitmapDrawable(resources,image),false)
+            13,BitmapDrawable(resources,image),false,activity)
         var wish3 = Wish(1,"Auto4",
             "daskjdvadvaksdvaksdvaskdvkassad bduasd asjdbjashdjashdvajsdvjasvdjhasvdjhavdsjhavsdjhavdjadvja",
-            18,BitmapDrawable(resources,image),false)
+            19,BitmapDrawable(resources,image),false,activity)
 
         var wish4 = Wish(1,"Auto5",
             "daskjdvadvaksdvaksdvaskdvkassad bduasd asjdbjashdjashdvajsdvjasvdjhasvdjhavdsjhavsdjhavdjadvja",
-            15,BitmapDrawable(resources,image),false)
+            15,BitmapDrawable(resources,image),false,activity)
 
 
+        Data.wishList.add(wish)
+        Data.wishList.add(wish1)
+        Data.wishList.add(wish2)
+        Data.wishList.add(wish3)
+        Data.wishList.add(wish4)
+        Data.wishList.add(wish)
+        Data.wishList.add(wish1)
+        Data.wishList.add(wish2)
+        Data.wishList.add(wish3)
+        Data.wishList.add(wish4)
         Data.wishList.add(wish)
         Data.wishList.add(wish1)
         Data.wishList.add(wish2)
@@ -112,6 +123,12 @@ class DashboardFragment : Fragment() {
             progress = (dateConverter.getCurrentTimestamp() - dateConverter.convertDateToTimestamp(Data.date)).toFloat()/(Constants.timeConst.twentyOneDays).toFloat() * 100f
 
             (dashboardList.list.get(Constants.viewTypes.MAIN_PROGRESS_VIEW_TYPE) as MainProgressViewModel).setProgress(date)
+
+            Data.timeList.clear()
+            Data.timeList.addAll(dateConverter.updateMainProgressDetail(activity,currentTimestamp - dateTimestamp))
+
+            (dashboardList.list.get(Constants.viewTypes.MAIN_PROGRESS_VIEW_TYPE) as MainProgressViewModel).updateDetail(Data.timeList)
+
             updateHealthProgress(currentTimestamp,dateTimestamp)
 
 

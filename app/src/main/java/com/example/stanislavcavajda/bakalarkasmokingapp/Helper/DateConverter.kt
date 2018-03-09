@@ -1,7 +1,10 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Helper
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.icu.util.Calendar
+import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MainProgress.MainProgressDetailTime
+import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -47,22 +50,22 @@ public class DateConverter () {
 
 
 
-//    fun updateMainProgressDetail(context: Context,timestamp: Long) : ArrayList<TimeFormat> {
-//        var timeList = ArrayList<TimeFormat>()
-//
-//        if (timestamp/60/60/24 > 0) {
-//            timeList.add(TimeFormat((timestamp/60/60/24).toInt(), context.resources.getString(R.string.days)))
-//        }
-//
-//        if (timestamp/60/60 > 0) {
-//            timeList.add(TimeFormat((timestamp/60/60).toInt(), context.resources.getString(R.string.hours)))
-//        }
-//
-//        if (timestamp/60 > 0) {
-//            timeList.add(TimeFormat((timestamp/60).toInt(), context.resources.getString(R.string.minutes)))
-//        }
-//        timeList.add(TimeFormat(timestamp.toInt(), context.resources.getString(R.string.seconds)))
-//
-//        return timeList
-//    }
+    fun updateMainProgressDetail(context: Context, timestamp: Long) : ArrayList<MainProgressDetailTime> {
+        var timeList = ArrayList<MainProgressDetailTime>()
+
+        if (timestamp/60/60/24 > 0) {
+            timeList.add(MainProgressDetailTime((timestamp/60/60/24).toInt(), context.resources.getString(R.string.days)))
+        }
+
+        if (timestamp/60/60 > 0) {
+            timeList.add(MainProgressDetailTime((timestamp/60/60).toInt(), context.resources.getString(R.string.hours)))
+        }
+
+        if (timestamp/60 > 0) {
+            timeList.add(MainProgressDetailTime((timestamp/60).toInt(), context.resources.getString(R.string.minutes)))
+        }
+        timeList.add(MainProgressDetailTime(timestamp.toInt(), context.resources.getString(R.string.seconds)))
+
+        return timeList
+    }
 }

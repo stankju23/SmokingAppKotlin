@@ -1,5 +1,6 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager
 
+import android.content.Context
 import android.graphics.drawable.Drawable
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DateConverter
@@ -19,9 +20,11 @@ class Wish {
     var isBought: Boolean = false
     var endDate: String = ""
     var progress: Float = 0.0f
+    var context:Context
 
-    constructor(id: Int,title: String, desc: String, price: Int, image: Drawable, bought: Boolean) {
+    constructor(id: Int,title: String, desc: String, price: Int, image: Drawable, bought: Boolean,context: Context) {
         setWish(id,title,desc,price,image,bought)
+        this.context = context
     }
 
     fun setWish(id:Int,title: String, desc: String, price: Int, image: Drawable, bought: Boolean) {
@@ -47,6 +50,7 @@ class Wish {
             this.progress = (1 - ((price.toFloat() - Data.MoneyDashboard.moneySaved) / price.toFloat()))*100
             this.canBuy = false
         }
+
 
     }
 
