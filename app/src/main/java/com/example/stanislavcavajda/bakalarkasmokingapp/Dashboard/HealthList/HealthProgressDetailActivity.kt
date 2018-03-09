@@ -32,11 +32,16 @@ class HealthProgressDetailActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                super.onBackPressed()
+                onBackPressed()
                 return true
             }
 
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        this.finish()
+        super.onBackPressed()
     }
 }

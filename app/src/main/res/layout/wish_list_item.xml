@@ -18,7 +18,8 @@
         <ru.rambler.libs.swipe_layout.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/wish_item_swipe_layout">
 
         <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -40,7 +41,9 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:strokeWidth="2.5dp"
-                    app:percent="@{viewModel.progress}"/>
+                    app:percent="@{viewModel.progress}"
+                    app:startAngle="0"
+                    />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/circleImageView"
@@ -118,13 +121,14 @@
                 app:clamp="self"
                 app:sticky="70dp"
                 android:background="@drawable/edit_wish_swipe_bg"
-                android:gravity="center">
+                android:gravity="center"
+                android:onClick="@{viewModel.setBought}">
 
                 <ImageView
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:src="@drawable/edit_icon"
-                    android:layout_gravity="center"/>
+                    android:src="@{viewModel.isBought ? @drawable/sell_icon : @drawable/buy_icon}"
+                    android:layout_gravity="center" />
 
             </LinearLayout>
 

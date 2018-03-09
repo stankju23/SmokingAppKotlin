@@ -13,7 +13,7 @@ import kotlin.concurrent.timerTask
 
 class MainProgressDetailActivity : AppCompatActivity() {
 
-
+    var timer = Timer()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +23,7 @@ class MainProgressDetailActivity : AppCompatActivity() {
 
         main_progress_detail_recycler_view.itemAnimator = null
 
-        Timer().scheduleAtFixedRate(timerTask {
+        timer.scheduleAtFixedRate(timerTask {
 
             runOnUiThread {
                 if (Data.timeList.size != 0) {
@@ -35,6 +35,17 @@ class MainProgressDetailActivity : AppCompatActivity() {
 
         binding.viewModel = viewModel
 
+    }
+
+    override fun onPause() {
+        timer.cancel()
+        timer.purge()
+        super.onPause()
+    }
+
+    override fun onBackPressed() {
+        this.finish()
+        super.onBackPressed()
     }
 
 }

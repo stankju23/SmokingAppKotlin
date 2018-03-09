@@ -8,6 +8,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -88,17 +89,6 @@ class DashboardFragment : Fragment() {
         Data.wishList.add(wish2)
         Data.wishList.add(wish3)
         Data.wishList.add(wish4)
-        Data.wishList.add(wish)
-        Data.wishList.add(wish1)
-        Data.wishList.add(wish2)
-        Data.wishList.add(wish3)
-        Data.wishList.add(wish4)
-        Data.wishList.add(wish)
-        Data.wishList.add(wish1)
-        Data.wishList.add(wish2)
-        Data.wishList.add(wish3)
-        Data.wishList.add(wish4)
-
 
 
         var wishesManager = WishListViewModel(Data.wishList,activity)
@@ -113,6 +103,12 @@ class DashboardFragment : Fragment() {
         var result = ""
         val nf = NumberFormat.getInstance(Locale.US) // Looks like a US format
 
+
+        currentTimestamp = dateConverter.getCurrentTimestamp()
+        dateTimestamp = dateConverter.convertDateToTimestamp(Data.date)
+        result = "%.2f".format(actualSaved(currentTimestamp - dateTimestamp,Data.MoneyDashboard.cigarretesPerDay,Data.MoneyDashboard.packagePrice, Data.MoneyDashboard.cigarretesInPackage))
+        Data.MoneyDashboard.moneySaved = nf.parse(result).toFloat()/100
+        Data.MoneyDashboard.actualMoneyState = Data.MoneyDashboard.moneySaved - Data.MoneyDashboard.moneySpend
         updateWishList()
 
         Timer().scheduleAtFixedRate(timerTask{
@@ -138,16 +134,19 @@ class DashboardFragment : Fragment() {
             Data.MoneyDashboard.moneySaved = nf.parse(result).toFloat()/100
 
             (dashboardList.list.get(Constants.viewTypes.MONEY_SAVED_VIEW_TYPE) as MoneySavedViewModel).updateMoney(
-                Data.MoneyDashboard.moneySaved,0.0)
+                Data.MoneyDashboard.moneySaved,0.0f)
 
             updateWishList()
 
             val list = Data.wishList.sortedWith(compareBy(Wish::price))
             Data.wishList = ArrayList(list)
+
+            Log.i("Last wish" , Data.wishList[Data.wishList.size - 1].endDate.get())
             (dashboardList.list.get(Constants.viewTypes.WISHES_MANAGER_VIEW_TYPE) as WishListViewModel).updateWishList(Data.wishList)
 
+            Data.MoneyDashboard.actualMoneyState =  Data.MoneyDashboard.moneySaved -  Data.MoneyDashboard.moneySpend
 
-        },0,1000)
+        },0,200)
 
         binding.viewModel = dashboardList
 
@@ -163,7 +162,7 @@ class DashboardFragment : Fragment() {
 
     fun updateWishList() {
         for (i in Data.wishList) {
-            i.setWish(i.id,i.title,i.desc,i.price,i.image!!,i.isBought)
+            i.setWish(i.id,i.title,i.desc,i.price,i.image!!)
         }
     }
 

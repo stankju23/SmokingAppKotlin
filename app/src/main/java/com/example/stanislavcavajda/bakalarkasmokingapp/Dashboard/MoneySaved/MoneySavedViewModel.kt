@@ -1,7 +1,6 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MoneySaved
 
 import android.databinding.BaseObservable
-import android.databinding.ObservableDouble
 import android.databinding.ObservableFloat
 
 /**
@@ -10,17 +9,15 @@ import android.databinding.ObservableFloat
 class MoneySavedViewModel: BaseObservable {
 
     var moneySaved: ObservableFloat = ObservableFloat()
-    var moneySpend: ObservableDouble = ObservableDouble()
-    var actualMoney: ObservableDouble = ObservableDouble()
+    var moneySpend: ObservableFloat = ObservableFloat()
 
 
-    constructor(moneySaved:Float, moneySpend: Double) {
+    constructor(moneySaved:Float, moneySpend: Float) {
         updateMoney(moneySaved,moneySpend)
     }
 
-    fun updateMoney(moneySaved:Float, moneySpend: Double) {
+    fun updateMoney(moneySaved:Float, moneySpend: Float) {
         this.moneySaved.set(moneySaved)
         this.moneySpend.set(moneySpend)
-        this.actualMoney.set(moneySaved - moneySpend)
     }
 }

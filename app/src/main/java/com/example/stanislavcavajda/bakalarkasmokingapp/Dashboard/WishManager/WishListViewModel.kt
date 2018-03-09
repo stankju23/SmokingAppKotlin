@@ -29,21 +29,23 @@ class WishListViewModel: BaseObservable {
 
     fun updateWishList(newWishList: ArrayList<Wish>) {
 
-        if (wishList.size == newWishList.size) {
-            for (i in 0..wishList.size-1) {
-                wishList.set(i,newWishList.get(i))
-            }
-        }
-
-        if (wishList.size < newWishList.size) {
-            for (i in 0..newWishList.size) {
-                if (i <= wishList.size) {
-                    wishList.set(i,newWishList.get(i))
-                } else {
-                    wishList.add(newWishList.get(i))
-                }
-            }
-        }
+//        if (wishList.size == newWishList.size) {
+//            for (i in 0..wishList.size-1) {
+//                wishList.set(i,newWishList.get(i))
+//            }
+//        }
+//
+//        if (wishList.size < newWishList.size) {
+//            for (i in 0..newWishList.size) {
+//                if (i <= wishList.size) {
+//                    wishList.set(i,newWishList.get(i))
+//                } else {
+//                    wishList.add(newWishList.get(i))
+//                }
+//            }
+//        }
+        this.wishList.clear()
+        this.wishList.addAll(newWishList)
 
         updateWish()
 
@@ -52,7 +54,7 @@ class WishListViewModel: BaseObservable {
     fun updateWish() {
         var actualWish: Wish? = null
         for (item in wishList) {
-            if (!item.canBuy && !item.isBought) {
+            if (!item.canBuy.get() && !item.isBought.get()) {
                 actualWish = item
                 break
             }

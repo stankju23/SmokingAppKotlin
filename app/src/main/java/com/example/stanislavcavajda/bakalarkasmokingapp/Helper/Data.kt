@@ -17,9 +17,10 @@ object Data {
 
     object MoneyDashboard {
         var moneySaved:Float = 0.0f
-        var moneySpend:Double = 0.0
+        var moneySpend:Float = 0.0f
         var cigarretesPerDay: Int = 15
         var cigarretesInPackage:Int = 20
         var packagePrice:Double = 3.40
+        var actualMoneyState:Float = 0.0f
     }
 }
