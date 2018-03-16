@@ -9,8 +9,10 @@ import android.databinding.ObservableBoolean
 class MainProgressItemViewModel: BaseObservable {
 
     var full: ObservableBoolean = ObservableBoolean()
+    var last: ObservableBoolean = ObservableBoolean()
 
-    constructor(full: Boolean) {
+    constructor(full: Boolean,last:Boolean) {
         this.full.set(full)
+        this.last.set(last)
     }
 }

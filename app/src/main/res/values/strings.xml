@@ -24,4 +24,8 @@
     <string name="price">Price : </string>
     <string name="add_wish">Add wish</string>
     <string name="main_progress_show_detail">Show detail</string>
+    <string name="edit_wish">Edit Wish</string>
+    <string name="main_progress_detail_title">No smoking time detail</string>
+    <string name="time_detail">Time details of smoking</string>
+    <string name="detail_text_title">Time from when i stop smoking</string>
 </resources>

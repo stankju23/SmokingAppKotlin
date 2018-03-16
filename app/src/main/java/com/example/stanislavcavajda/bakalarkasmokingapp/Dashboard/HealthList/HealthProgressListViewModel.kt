@@ -18,7 +18,10 @@ class HealthProgressListViewModel : BaseObservable {
     var healthProgressViewList: ObservableArrayList<HealthProgressViewModel> = ObservableArrayList<HealthProgressViewModel>()
     var context: Context? = null
     var dashboardHealthProgressViewList: ObservableArrayList<HealthProgressViewModel> = ObservableArrayList<HealthProgressViewModel>()
+
     var itemBinding : ItemBinding<HealthProgressViewModel> = ItemBinding.of(BR.viewModel, R.layout.health_progress_list_item)
+
+
 
     constructor(healthProgressViewList: ArrayList<HealthProgressViewModel>, context: Context) {
         this.healthProgressViewList.clear()
@@ -45,7 +48,7 @@ class HealthProgressListViewModel : BaseObservable {
     }
 
 
-    fun findMore(v: View) {
+    fun findMore(v:View) {
         var healthProgressList = Intent(context, HealthProgressListActivity::class.java)
         healthProgressList.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         (context as Activity).startActivity(healthProgressList)

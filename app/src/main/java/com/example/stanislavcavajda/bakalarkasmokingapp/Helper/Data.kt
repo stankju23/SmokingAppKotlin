@@ -11,9 +11,11 @@ object Data {
 
     var healthProgressViewList: ArrayList<HealthProgressViewModel> = ArrayList()
     var date = "02-03-2018 15:02"
+    //var date = "15-03-2018 15:48"
     var healthProgressTimes: ArrayList<Long> = ArrayList()
     var wishList: ArrayList<Wish> = ArrayList()
     var timeList: ArrayList<MainProgressDetailTime> = ArrayList()
+    var swipeCanClick: Boolean = true
 
     object MoneyDashboard {
         var moneySaved:Float = 0.0f

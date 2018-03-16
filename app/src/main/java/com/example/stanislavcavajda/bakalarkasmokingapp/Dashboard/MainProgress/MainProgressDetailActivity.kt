@@ -3,6 +3,7 @@ package com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MainProgress
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.MenuItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Model.Date
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
@@ -23,6 +24,12 @@ class MainProgressDetailActivity : AppCompatActivity() {
 
         main_progress_detail_recycler_view.itemAnimator = null
 
+        setSupportActionBar(main_progress_detail_toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.abc_ic_ab_back_material)
+        supportActionBar?.title = getString(R.string.main_progress_detail_title)
+
         timer.scheduleAtFixedRate(timerTask {
 
             runOnUiThread {
@@ -35,6 +42,18 @@ class MainProgressDetailActivity : AppCompatActivity() {
 
         binding.viewModel = viewModel
 
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onPause() {

@@ -5,6 +5,7 @@ import android.content.Context
 import android.util.Log
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.HealthList.HealthProgressViewModel
 import com.example.stanislavcavajda.bakalarkasmokingapp.Model.Date
+import com.google.gson.Gson
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
@@ -13,6 +14,8 @@ import java.io.IOException
  * Created by stanislavcavajda on 02/03/2018.
  */
 object JSONParser {
+
+    var gson: Gson = Gson()
 
 
     fun loadJsonFromAssets(name:String, context:Context): String{
@@ -68,5 +71,11 @@ object JSONParser {
 
         return healthList
 
+    }
+
+    fun healthImprovementsData(data:String):ArrayList<HealthProgressViewModel> {
+        var list: ArrayList<HealthProgressViewModel> = ArrayList()
+        //list = gson.fromJson(data,ArrayList<HealthProgressViewModel>()::class)
+        return list
     }
 }

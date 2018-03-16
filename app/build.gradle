@@ -1,17 +1,31 @@
+buildscript {
+    ext.kotlin_version = '1.1.51'
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
-
 apply plugin: 'kotlin-kapt'
+apply plugin: 'realm-android'
+
+
+
+
 
 android {
-    compileSdkVersion 26
+
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.example.stanislavcavajda.bakalarkasmokingapp"
         minSdkVersion 21
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -32,7 +46,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support:design:27.0.0'
     implementation 'com.android.support:support-vector-drawable:26.1.0'
     implementation 'com.android.support:support-v4:26.1.0'
     kapt "com.android.databinding:compiler:3.0.0-beta6"
@@ -52,5 +66,11 @@ dependencies {
     compile 'com.chauthai.overscroll:overscroll-bouncy:0.1.1'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.github.clans:fab:1.6.2'
-    compile 'ru.rambler.android:swipe-layout:1.0.14'
+    compile "com.daimajia.swipelayout:library:1.2.0@aar"
+    compile 'com.google.code.gson:gson:2.8.2'
+    annotationProcessor 'com.contentful.vault:compiler:2.1.0'
+    annotationProcessor 'com.contentful.vault:core:3.0.1'
+    implementation ("com.github.bumptech.glide:glide:4.6.1")
 }
+
+

@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.stanislavcavajda.bakalarkasmokingapp">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,6 +22,8 @@
         <activity android:name=".Dashboard.MainProgressDetailActivity" />
         <activity android:name=".Dashboard.WishManager.WishesActivity" />
         <activity android:name=".Dashboard.MoneySaved.MoneySavedActivity" />
-        <activity android:name=".Dashboard.MainProgress.MainProgressDetailActivity"></activity>
+        <activity android:name=".Dashboard.MainProgress.MainProgressDetailActivity" />
+        <activity android:name=".Dashboard.WishManager.AddWishActivity" />
+        <activity android:name=".Dashboard.WishManager.EditWishActivity"></activity>
     </application>
 </manifest>

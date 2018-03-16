@@ -14,13 +14,19 @@ import me.tatarka.bindingcollectionadapter2.OnItemBind
 class DashboardListViewModel :BaseObservable {
 
     var list: ObservableArrayList<Object> = ObservableArrayList<Object>()
-    lateinit var itemBinding: OnItemBind<Object>
 
-    constructor(list: ArrayList<Object>, context: Context){
+    lateinit var context: Context
+
+    var itemBinding: OnItemBind<Object>
+
+
+    constructor(list: ArrayList<Object>, context: Context) {
         this.list.addAll(list)
-        itemBinding = OnItemBind { itemBinding, position, item -> itemBinding.set(BR.viewModel,
 
-                when(position) {
+        itemBinding = OnItemBind { itemBinding, position, item ->
+            itemBinding.set(BR.viewModel,
+
+                when (position) {
                     Constants.viewTypes.MAIN_PROGRESS_VIEW_TYPE -> R.layout.main_progress
                     Constants.viewTypes.HEALTH_PROGRESS_VIEW_TYPE -> R.layout.health_progress_dashboard_item
                     Constants.viewTypes.WISHES_MANAGER_VIEW_TYPE -> R.layout.wish_manager_dashboard_item
@@ -28,6 +34,7 @@ class DashboardListViewModel :BaseObservable {
                     else -> R.layout.wish_manager_dashboard_item
                 }
 
-        )}
+            )
+        }
     }
 }

@@ -2,13 +2,9 @@ package com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard
 
 
 import android.app.Fragment
-import android.content.res.Resources
 import android.databinding.DataBindingUtil
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
-import android.util.Log
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,6 +29,7 @@ import kotlin.concurrent.timerTask
 
 
 
+
 class DashboardFragment : Fragment() {
 
 
@@ -42,6 +39,7 @@ class DashboardFragment : Fragment() {
     lateinit var date: Date
     var currentTimestamp: Long = 0L
     var dateTimestamp: Long = 0L
+    lateinit var recycler: RecyclerView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -50,6 +48,9 @@ class DashboardFragment : Fragment() {
 
 
         var view = binding.root
+
+        recycler = view.findViewById<RecyclerView>(R.id.dashboard_recycler_view)
+
 
         date = Date(dateConverter.getCurrentTimestamp() - dateConverter.convertDateToTimestamp(Data.date),Constants.timeConst.twentyOneDays)
 
@@ -61,36 +62,6 @@ class DashboardFragment : Fragment() {
 
         var healthProgress = HealthProgressListViewModel(Data.healthProgressViewList, activity)
         var mainProgress = MainProgressViewModel(date, activity,Data.timeList)
-
-
-        var image = decodeSampledBitmapFromResource(resources,R.drawable.car,100,70)
-
-        var wish = Wish(1,"Auto",
-            "daskjdvadvaksdvaksdvaskdvkassad bduasd asjdbjashdjashdvajsdvjasvdjhasvdjhavdsjhavsdjhavdjadvja",
-            10,BitmapDrawable(resources,image),false,activity)
-
-        var wish1 = Wish(1,"Auto",
-            "daskjdvadvaksdvaksdvaskdvkassad bduasd asjdbjashdjashdvajsdvjasvdjhasvdjhavdsjhavsdjhavdjadvja",
-            12,BitmapDrawable(resources,image),false,activity)
-        var wish2 = Wish(1,"Auto",
-            "daskjdvadvaksdvaksdvaskdvkassad bduasd asjdbjashdjashdvajsdvjasvdjhasvdjhavdsjhavsdjhavdjadvja",
-            13,BitmapDrawable(resources,image),false,activity)
-        var wish3 = Wish(1,"Auto4",
-            "daskjdvadvaksdvaksdvaskdvkassad bduasd asjdbjashdjashdvajsdvjasvdjhasvdjhavdsjhavsdjhavdjadvja",
-            19,BitmapDrawable(resources,image),false,activity)
-
-        var wish4 = Wish(1,"Auto5",
-            "daskjdvadvaksdvaksdvaskdvkassad bduasd asjdbjashdjashdvajsdvjasvdjhasvdjhavdsjhavsdjhavdjadvja",
-            15,BitmapDrawable(resources,image),false,activity)
-
-
-        Data.wishList.add(wish)
-        Data.wishList.add(wish1)
-        Data.wishList.add(wish2)
-        Data.wishList.add(wish3)
-        Data.wishList.add(wish4)
-
-
         var wishesManager = WishListViewModel(Data.wishList,activity)
         var moneySaved = MoneySavedViewModel(Data.MoneyDashboard.moneySaved,Data.MoneyDashboard.moneySpend)
 
@@ -100,8 +71,11 @@ class DashboardFragment : Fragment() {
         dashboardList.list.add(wishesManager as Object)
         dashboardList.list.add(moneySaved as Object)
 
+
         var result = ""
-        val nf = NumberFormat.getInstance(Locale.US) // Looks like a US format
+        val nf = NumberFormat.getInstance(Locale.US)
+
+
 
 
         currentTimestamp = dateConverter.getCurrentTimestamp()
@@ -111,7 +85,10 @@ class DashboardFragment : Fragment() {
         Data.MoneyDashboard.actualMoneyState = Data.MoneyDashboard.moneySaved - Data.MoneyDashboard.moneySpend
         updateWishList()
 
+
         Timer().scheduleAtFixedRate(timerTask{
+
+
             currentTimestamp = dateConverter.getCurrentTimestamp()
             dateTimestamp = dateConverter.convertDateToTimestamp(Data.date)
             date = Date(currentTimestamp - dateTimestamp,Constants.timeConst.twentyOneDays)
@@ -141,14 +118,18 @@ class DashboardFragment : Fragment() {
             val list = Data.wishList.sortedWith(compareBy(Wish::price))
             Data.wishList = ArrayList(list)
 
-            Log.i("Last wish" , Data.wishList[Data.wishList.size - 1].endDate.get())
             (dashboardList.list.get(Constants.viewTypes.WISHES_MANAGER_VIEW_TYPE) as WishListViewModel).updateWishList(Data.wishList)
 
             Data.MoneyDashboard.actualMoneyState =  Data.MoneyDashboard.moneySaved -  Data.MoneyDashboard.moneySpend
 
+
         },0,200)
 
+
+
         binding.viewModel = dashboardList
+
+
 
         return view
     }
@@ -162,7 +143,7 @@ class DashboardFragment : Fragment() {
 
     fun updateWishList() {
         for (i in Data.wishList) {
-            i.setWish(i.id,i.title,i.desc,i.price,i.image!!)
+            i.setWish(i.title,i.desc,i.price,i.image!!)
         }
     }
 
@@ -181,44 +162,6 @@ class DashboardFragment : Fragment() {
         }
     }
 
-
-    fun decodeSampledBitmapFromResource(res: Resources, resId: Int,
-                                        reqWidth: Int, reqHeight: Int): Bitmap {
-
-        // First decode with inJustDecodeBounds=true to check dimensions
-        val options = BitmapFactory.Options()
-        options.inJustDecodeBounds = true
-        BitmapFactory.decodeResource(res, resId, options)
-
-        // Calculate inSampleSize
-        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight)
-
-        // Decode bitmap with inSampleSize set
-        options.inJustDecodeBounds = false
-        return BitmapFactory.decodeResource(res, resId, options)
-    }
-
-    fun calculateInSampleSize(
-        options: BitmapFactory.Options, reqWidth: Int, reqHeight: Int): Int {
-        // Raw height and width of image
-        val height = options.outHeight
-        val width = options.outWidth
-        var inSampleSize = 1
-
-        if (height > reqHeight || width > reqWidth) {
-
-            val halfHeight = height / 2
-            val halfWidth = width / 2
-
-            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
-            // height and width larger than the requested height and width.
-            while (halfHeight / inSampleSize > reqHeight && halfWidth / inSampleSize > reqWidth) {
-                inSampleSize *= 2
-            }
-        }
-
-        return inSampleSize
-    }
 
 
 

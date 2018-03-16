@@ -28,8 +28,8 @@ class HealthProgressViewModel {
     }
 
     fun showDetail(v: View) {
-        var healthProgressDetail = Intent((context as Activity),HealthProgressDetailActivity::class.java)
-        healthProgressDetail.putExtra(Constants.extras.EXTRA_ITEM_ID, this.id)
-        (context as Activity).startActivity(healthProgressDetail)
+         var healthProgressDetail = Intent((context as Activity),HealthProgressDetailActivity::class.java)
+         healthProgressDetail.putExtra(Constants.extras.EXTRA_ITEM_ID,this.id)
+         (context as Activity).startActivity(healthProgressDetail)
     }
 }

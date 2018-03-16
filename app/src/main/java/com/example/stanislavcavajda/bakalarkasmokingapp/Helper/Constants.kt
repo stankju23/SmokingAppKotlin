@@ -45,4 +45,11 @@ object Constants {
     object preferences {
         const val DATE_PREFERENCES = "date"
     }
+
+    object Wish {
+        const val TITLE = "wish_title"
+        const val PRICE = "wish_price"
+        const val IMAGE = "wish_image"
+        const val DESC = "wish_desc"
+    }
 }

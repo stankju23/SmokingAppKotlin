@@ -25,6 +25,8 @@
             app:layout_constraintTop_toTopOf="parent"
             android:background="@{viewModel.full == true ? @drawable/main_progress_item_bg_full : @drawable/main_progress_item_bg}">
 
+            <!--app:blink="@{viewModel.last.get()? true : false}"-->
+
         </FrameLayout>
     </android.support.constraint.ConstraintLayout>
 </layout>

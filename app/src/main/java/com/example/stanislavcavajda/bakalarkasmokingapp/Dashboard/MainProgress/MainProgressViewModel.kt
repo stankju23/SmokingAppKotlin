@@ -27,7 +27,7 @@ class MainProgressViewModel: BaseObservable {
 
     constructor(date: Date, context: Context,list: ArrayList<MainProgressDetailTime>) {
         for (i in 0..20){
-            progressList.add(MainProgressItemViewModel(false))
+            progressList.add(MainProgressItemViewModel(false,false))
         }
         setProgress(date)
         updateDetail(list)
@@ -39,6 +39,14 @@ class MainProgressViewModel: BaseObservable {
         for (i in 0..20) {
             if (i < date.days) {
                 progressList.get(i).full.set(true)
+                if (i.toLong() == date.days - 1) {
+                    if (progressList.get(i).last.get() != true) {
+                        progressList.get(i).last.set(true)
+                        //Log.i("Blinking", "yes")
+                    }
+                } else {
+                    progressList.get(i).last.set(false)
+                }
             } else {
                 progressList.get(i).full.set(false)
             }

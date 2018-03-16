@@ -33,14 +33,14 @@
         </android.support.v7.widget.Toolbar>
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/wishes_recycler_view"
+            android:id="@+id/wishes_recycler"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@color/white"
             android:nestedScrollingEnabled="false"
-            app:itemBinding="@{viewModel.itemBinding}"
-            app:items="@{viewModel.wishList}"
             app:layoutManager="@{LayoutManagers.linear()}"
+            app:items="@{viewModel.wishList}"
+            app:itemBinding="@{viewModel.itemBinding}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -60,7 +60,8 @@
             android:shadowDx="1"
             android:shadowDy="1"
             app:elevation="4dp"
-            app:layout_behavior="com.valdio.valdioveliu.floatingactionbuttonproject.Scrolling_Floating_Action_Button.FAB_Hide_on_Scroll"/>
+            app:layout_behavior="com.valdio.valdioveliu.floatingactionbuttonproject.Scrolling_Floating_Action_Button.FAB_Hide_on_Scroll"
+            android:onClick="@{viewModel.addWish}"/>
 
     </android.support.constraint.ConstraintLayout>
 </layout>

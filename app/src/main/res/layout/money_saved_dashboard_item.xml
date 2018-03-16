@@ -65,7 +65,7 @@
                 android:paddingTop="5dp"
                 android:text="@string/money_button"
                 android:textAppearance="@android:style/TextAppearance.Small"
-                android:textColor="@color/white"
+                android:textColor="@color/selectedColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

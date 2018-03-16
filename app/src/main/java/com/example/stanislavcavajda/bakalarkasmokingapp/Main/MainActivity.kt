@@ -12,10 +12,11 @@ import android.view.MenuItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.DashboardFragment
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.BottomNavigationViewHelper
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DateConverter
+import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.RealmDB
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.databinding.ActivityMainBinding
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,8 +28,13 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
 
+
        // var preferences = getSharedPreferences("date", Context.MODE_PRIVATE)
         //Data.date = preferences.getString(Constants.preferences.DATE_PREFERENCES,"03-02-2018")
+
+        Realm.init(this)
+        //Realm.deleteRealm(Realm.getDefaultConfiguration())
+        RealmDB.getWishes(this)
 
         var binding: ActivityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main)
 
@@ -39,12 +45,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
         supportActionBar?.title = resources.getString(R.string.title_dashboard)
 
-//        var leftImage = resources.getDrawable(R.drawable.hamburger)
-//        var rightImage = resources.getDrawable(R.drawable.settings_button)
 
-        //var toolbarViewModel = ToolbarViewModel(leftImage, rightImage, "Dashboard", this)
-
-        //binding.toolbar = toolbarViewModel
 
         navigation.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener {
             when (it.itemId) {
@@ -55,9 +56,6 @@ class MainActivity : AppCompatActivity() {
                     supportActionBar?.setDisplayShowHomeEnabled(true)
                     supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
                     supportActionBar?.title = resources.getString(R.string.title_dashboard)
-//                    toolbarViewModel.setLeftImage(leftImage)
-//                    toolbarViewModel.setRightImage(rightImage)
-//                    toolbarViewModel.setTitle(resources.getString(R.string.title_dashboard))
 
                     return@OnNavigationItemSelectedListener true
                 }
@@ -65,11 +63,6 @@ class MainActivity : AppCompatActivity() {
                     supportActionBar?.setDisplayHomeAsUpEnabled(false)
                     supportActionBar?.setDisplayShowHomeEnabled(false)
                     supportActionBar?.title = resources.getString(R.string.title_mission)
-//                    var leftImage = resources.getDrawable(R.drawable.hamburger)
-//                    var rightImage = resources.getDrawable(R.drawable.settings_button)
-//                    toolbarViewModel.setLeftImage(null)
-//                    toolbarViewModel.setRightImage(null)
-//                    toolbarViewModel.setTitle(resources.getString(R.string.title_mission))
 
                     return@OnNavigationItemSelectedListener true
                 }
@@ -77,22 +70,14 @@ class MainActivity : AppCompatActivity() {
                     supportActionBar?.setDisplayHomeAsUpEnabled(false)
                     supportActionBar?.setDisplayShowHomeEnabled(false)
                     supportActionBar?.title = resources.getString(R.string.title_cravings)
-//                    var leftImage = resources.getDrawable(R.drawable.hamburger)
-//                    var rightImage = resources.getDrawable(R.drawable.settings_button)
-//                    toolbarViewModel.setLeftImage(null)
-//                    toolbarViewModel.setRightImage(null)
-//                    toolbarViewModel.setTitle(resources.getString(R.string.title_cravings))
+
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.navigation_infoarea -> {
                     supportActionBar?.setDisplayHomeAsUpEnabled(false)
                     supportActionBar?.setDisplayShowHomeEnabled(false)
                     supportActionBar?.title = resources.getString(R.string.title_infoarea)
-//                    var leftImage = resources.getDrawable(R.drawable.hamburger)
-//                    var rightImage = resources.getDrawable(R.drawable.settings_button)
-//                    toolbarViewModel.setLeftImage(null)
-//                    toolbarViewModel.setRightImage(null)
-//                    toolbarViewModel.setTitle(resources.getString(R.string.title_infoarea))
+
                     return@OnNavigationItemSelectedListener true
                 }
 
@@ -106,6 +91,7 @@ class MainActivity : AppCompatActivity() {
         fragmenttransaction.replace(R.id.fragment_container, DashboardFragment()).addToBackStack("dashboard").commit()
 
         BottomNavigationViewHelper.disableShiftMode(navigation)
+
 
     }
 
@@ -133,6 +119,5 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    fun nieco() {}
 
 }

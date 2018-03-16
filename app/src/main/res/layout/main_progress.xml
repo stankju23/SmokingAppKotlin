@@ -116,7 +116,7 @@
                 android:paddingTop="5dp"
                 android:text="@string/main_progress_show_detail"
                 android:textAppearance="@android:style/TextAppearance.Small"
-                android:textColor="@color/white"
+                android:textColor="@color/selectedColor"
                 card_view:layout_constraintBottom_toBottomOf="parent"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintStart_toStartOf="parent"
