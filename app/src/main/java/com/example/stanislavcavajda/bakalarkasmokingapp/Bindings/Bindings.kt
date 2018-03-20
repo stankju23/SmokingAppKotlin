@@ -26,10 +26,14 @@ fun setBlink(frameLayout: FrameLayout, bool:Boolean) {
 }
 
 @BindingAdapter("imageUri")
-fun setImageUrl(imageView: ImageView, uri: Uri) {
+fun setImageUrl(imageView: ImageView, uri: Uri?) {
     val context = imageView.getContext()
-    Glide.with(context)
-        .load(uri)
-        .apply(RequestOptions().override(300,200))
-        .into(imageView)
+    if (uri != null) {
+        Glide.with(context)
+            .load(uri)
+            .apply(RequestOptions().override(300, 200))
+            .into(imageView)
+    } else {
+        Glide.with(context).clear(imageView)
+    }
 }

@@ -101,6 +101,8 @@ class Wish {
         this.price = price
         this.image = imageUri
 
+
+
         if (!isBought.get()) {
             if (price <= Data.MoneyDashboard.actualMoneyState) {
                 this.canBuy.set(true)

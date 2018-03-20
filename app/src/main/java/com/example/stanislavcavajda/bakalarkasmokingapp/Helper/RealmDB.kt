@@ -65,4 +65,13 @@ object RealmDB {
 
 
     }
+
+    fun deleteWish(wish: Wish) {
+        val realm = Realm.getDefaultInstance()
+        var deletedWish = wish
+        var deleteWish = realm.where(WishRealm::class.java).equalTo("id",deletedWish.id).findAll()
+        realm.beginTransaction()
+        deleteWish.deleteAllFromRealm()
+        realm.commitTransaction()
+    }
 }

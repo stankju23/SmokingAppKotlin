@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -56,6 +57,11 @@ class EditWishActivity : AppCompatActivity() {
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.edit_wish_menu,menu)
+        return true
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
@@ -63,6 +69,12 @@ class EditWishActivity : AppCompatActivity() {
                 onBackPressed()
                 return true
             }
+            R.id.delete -> {
+                RealmDB.deleteWish(Data.wishList[position])
+                Data.wishList.removeAt(position)
+                onBackPressed()
+            }
+
 
         }
         return super.onOptionsItemSelected(item)

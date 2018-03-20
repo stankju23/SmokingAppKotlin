@@ -41,7 +41,7 @@ class AddWishActivity : AppCompatActivity() {
             }
 
             if (add_wish_image.resources == null) {
-                Log.i("nevybarl si ", "obrazok")
+                Log.i("nevybarl si ", "obrazok ")
             }
 
             if( title_text.text.length != 0 && desc.text.length != 0 && price_text.text.length != 0 ) {

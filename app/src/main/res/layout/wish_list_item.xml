@@ -16,9 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="@{(v) -> listener.onWishClick(v)}"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:layout_marginBottom="1dp"
-            android:elevation="1dp">
+            android:foreground="?android:attr/selectableItemBackground">
 
             <android.support.constraint.ConstraintLayout
                 android:background="@drawable/edit_wish_swipe_bg"
