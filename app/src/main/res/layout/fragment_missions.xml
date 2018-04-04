@@ -1,0 +1,31 @@
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="com.example.stanislavcavajda.bakalarkasmokingapp.R" />
+        <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
+        <variable name="viewModel" type="com.example.stanislavcavajda.bakalarkasmokingapp.Missions.MissionListViewModel"></variable>
+
+    </data>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.stanislavcavajda.bakalarkasmokingapp.Missions.MissionsFragment"
+        android:background="@color/white">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/missions_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            app:itemBinding="@{viewModel.itemBinding}"
+            app:items="@{viewModel.missionList}"
+            app:layoutManager="@{LayoutManagers.linear()}"
+            app:layout_constraintBottom_toTopOf="@+id/navigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </FrameLayout>
+
+</layout>

@@ -45,8 +45,6 @@ class WishListViewModel: BaseObservable {
 
     constructor(wishList: ArrayList<Wish>, context: Context) {
 
-
-
         itemBinding.bindExtra(BR.listener,listener)
         this.wishList.addAll(wishList)
         updateWish()
@@ -59,7 +57,6 @@ class WishListViewModel: BaseObservable {
         this.wishList.clear()
         this.wishList.addAll(newWishList)
         updateWish()
-
     }
 
     fun updateWish() {

@@ -14,6 +14,21 @@ class MainProgressDetailTime {
     }
 
     fun fullText() :String {
-        return "$number $numberInfo"
+        var formatNumber = this.number.toString()
+        var newNumber = formatNumber
+        if (this.number > 1000000) {
+            newNumber = ""
+            newNumber += formatNumber.substring(0,formatNumber.length - 6)
+            newNumber += " "
+            newNumber += formatNumber.substring(formatNumber.length - 6,formatNumber.length - 3)
+            newNumber += " "
+            newNumber += formatNumber.substring(formatNumber.length - 3,formatNumber.length)
+        } else if (this.number < 1000000 && this.number > 1000){
+            newNumber = ""
+            newNumber += formatNumber.substring(0,formatNumber.length - 3)
+            newNumber += " "
+            newNumber += formatNumber.substring(formatNumber.length - 3,formatNumber.length)
+        }
+        return "$newNumber $numberInfo"
     }
 }

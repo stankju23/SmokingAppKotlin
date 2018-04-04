@@ -21,8 +21,8 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.R
 class Wish {
 
     var id:String = ""
-    var title: String = ""
-    var desc: String = ""
+    var title: ObservableField<String> = ObservableField()
+    var desc: ObservableField<String> = ObservableField()
     var price: Int = 0
     var image: Uri? = null
     var canBuy: ObservableBoolean = ObservableBoolean()
@@ -96,8 +96,8 @@ class Wish {
     }
 
     fun setWish(title: String, desc: String, price: Int, imageUri: Uri) {
-        this.title = title
-        this.desc = desc
+        this.title.set(title)
+        this.desc.set(desc)
         this.price = price
         this.image = imageUri
 

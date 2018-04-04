@@ -28,4 +28,10 @@
     <string name="main_progress_detail_title">No smoking time detail</string>
     <string name="time_detail">Time details of smoking</string>
     <string name="detail_text_title">Time from when i stop smoking</string>
+    <string name="empty"></string>
+    <string name="mission">0/5</string>
+    <string name="go_to_objectives">Go to the objectives</string>
+    <string name="going_doing">Going doing something good</string>
+    <string name="mark_as_done">Mark as done</string>
+    <string name="mark_as_undone">Mark as undone</string>
 </resources>

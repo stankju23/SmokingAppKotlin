@@ -1,10 +1,10 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager
 
+import android.Manifest
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.MenuItem
@@ -14,10 +14,12 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.RealmDB
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
+import io.vrinda.kotlinpermissions.PermissionCallBack
+import io.vrinda.kotlinpermissions.PermissionsActivity
 import kotlinx.android.synthetic.main.activity_add_wish.*
 import java.util.UUID
 
-class AddWishActivity : AppCompatActivity() {
+class AddWishActivity : PermissionsActivity() {
 
     val RESULT_LOAD_IMAGE = 1
     var pickedImage:Bitmap? = null
@@ -62,7 +64,6 @@ class AddWishActivity : AppCompatActivity() {
 
         }
 
-
         var toolbar = findViewById<Toolbar>(R.id.add_wish_toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -70,6 +71,19 @@ class AddWishActivity : AppCompatActivity() {
         supportActionBar?.setHomeAsUpIndicator(R.drawable.abc_ic_ab_back_material)
 
         add_wish_image.setOnClickListener {
+
+            requestPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, object : PermissionCallBack {
+                override fun permissionGranted() {
+                    super.permissionGranted()
+                    Log.v("Call permissions", "Granted")
+                }
+
+                override fun permissionDenied() {
+                    super.permissionDenied()
+                    Log.v("Call permissions", "Denied")
+                }
+            })
+
             try {
                 if (pickedImage == null) {
                     val i = Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)

@@ -18,8 +18,8 @@ object RealmDB {
         realm.beginTransaction()
         var wishReal = realm.createObject(WishRealm::class.java)
         wishReal.id = wish.id
-        wishReal.title = wish.title
-        wishReal.desc = wish.desc
+        wishReal.title = wish.title.get()
+        wishReal.desc = wish.desc.get()
         wishReal.price = wish.price
         wishReal.canBuy = wish.canBuy.get()
         wishReal.isBought = wish.isBought.get()
@@ -57,8 +57,8 @@ object RealmDB {
         realm.beginTransaction()
         var bought = updatedWish.isBought.get()
         wish?.isBought = bought
-        wish?.title = updatedWish.title
-        wish?.desc = updatedWish.desc
+        wish?.title = updatedWish.title.get()
+        wish?.desc = updatedWish.desc.get()
         wish?.price = updatedWish.price
         realm.insertOrUpdate(wish)
         realm.commitTransaction()

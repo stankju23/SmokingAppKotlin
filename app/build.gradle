@@ -70,7 +70,11 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.2'
     annotationProcessor 'com.contentful.vault:compiler:2.1.0'
     annotationProcessor 'com.contentful.vault:core:3.0.1'
-    implementation ("com.github.bumptech.glide:glide:4.6.1")
+    implementation("com.github.bumptech.glide:glide:4.6.1")
+    compile 'io.vrinda.kotlinpermissions:kotlinpermissions:1.1'
+    compile 'me.relex:circleindicator:1.2.2@aar'
+    compile 'com.github.florent37:viewanimator:1.0.5'
+
 }
 
 

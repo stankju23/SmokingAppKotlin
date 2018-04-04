@@ -3,6 +3,7 @@ package com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MainProgress
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.MenuItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Model.Date
@@ -36,6 +37,7 @@ class MainProgressDetailActivity : AppCompatActivity() {
                 if (Data.timeList.size != 0) {
                     viewModel.updateDetail(Data.timeList)
                 }
+                Log.i("Detail", "updated")
             }
 
         },0,1000)
@@ -56,9 +58,13 @@ class MainProgressDetailActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onPause() {
+    override fun onDestroy() {
         timer.cancel()
         timer.purge()
+        super.onDestroy()
+    }
+    override fun onPause() {
+
         super.onPause()
     }
 

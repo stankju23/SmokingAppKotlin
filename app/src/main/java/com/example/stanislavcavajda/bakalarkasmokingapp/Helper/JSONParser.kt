@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.util.Log
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.HealthList.HealthProgressViewModel
+import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Objective
 import com.example.stanislavcavajda.bakalarkasmokingapp.Model.Date
 import com.google.gson.Gson
 import org.json.JSONException
@@ -73,9 +74,26 @@ object JSONParser {
 
     }
 
-    fun healthImprovementsData(data:String):ArrayList<HealthProgressViewModel> {
-        var list: ArrayList<HealthProgressViewModel> = ArrayList()
-        //list = gson.fromJson(data,ArrayList<HealthProgressViewModel>()::class)
-        return list
+
+    fun parseObjectives(data: String,context: Context): ArrayList<Objective> {
+        var objectiveList = ArrayList<Objective>()
+
+        try {
+            var obj = JSONObject(data)
+            var objArray = obj.getJSONArray("objectives")
+
+            for (i in 0..objArray.length()) {
+                var arrayItem = objArray.getJSONObject(i)
+                var id = arrayItem.getInt("id")
+                var title = arrayItem.getString("title")
+                var desc = arrayItem.getString("desc")
+                objectiveList.add(Objective(id,title,desc))
+            }
+
+        } catch (e:Exception) {
+
+        }
+
+        return objectiveList
     }
 }

@@ -3,6 +3,8 @@ package com.example.stanislavcavajda.bakalarkasmokingapp.Helper
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.HealthList.HealthProgressViewModel
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MainProgress.MainProgressDetailTime
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.Wish
+import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Mission
+import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Objective
 
 /**
  * Created by stanislavcavajda on 07/02/2018.
@@ -10,12 +12,15 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.Wi
 object Data {
 
     var healthProgressViewList: ArrayList<HealthProgressViewModel> = ArrayList()
-    var date = "02-03-2018 15:02"
-    //var date = "15-03-2018 15:48"
+    //var date = "02-03-2018 15:00"
+    var date = "22-03-2018 15:48"
     var healthProgressTimes: ArrayList<Long> = ArrayList()
     var wishList: ArrayList<Wish> = ArrayList()
     var timeList: ArrayList<MainProgressDetailTime> = ArrayList()
     var swipeCanClick: Boolean = true
+    var objectives: ArrayList<Objective> = ArrayList()
+    var missionList: ArrayList<Mission> = ArrayList()
+
 
     object MoneyDashboard {
         var moneySaved:Float = 0.0f

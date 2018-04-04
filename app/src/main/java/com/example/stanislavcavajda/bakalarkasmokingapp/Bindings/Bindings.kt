@@ -2,6 +2,7 @@ package com.example.stanislavcavajda.bakalarkasmokingapp.Bindings
 
 import android.databinding.BindingAdapter
 import android.net.Uri
+import android.support.constraint.ConstraintLayout
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
@@ -9,6 +10,8 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+
+
 
 /**
  * Created by stanislavcavajda on 10/03/2018.
@@ -37,3 +40,37 @@ fun setImageUrl(imageView: ImageView, uri: Uri?) {
         Glide.with(context).clear(imageView)
     }
 }
+
+
+@BindingAdapter("first_done")
+fun setFirstDone(layout:ConstraintLayout, done:Boolean) {
+    val density = layout.context.getResources().getDisplayMetrics().density
+    var dp = 56 * density
+    if (done) {
+        layout.translationY = layout.translationY + dp
+    }
+}
+
+
+@BindingAdapter("done")
+fun setDone(layout:ConstraintLayout, done:Boolean) {
+    val density = layout.context.getResources().getDisplayMetrics().density
+    var dp = 56 * density
+    if (!done){
+        if (layout.y != 0f) {
+            layout.translationY = dp
+            layout.animate().translationYBy(-dp).duration = 200
+        }
+    }
+    if (done) {
+        if (layout.y == 0f) {
+            layout.translationY = 0f
+            layout.animate().translationYBy(dp).duration = 200
+        } else {
+            layout.translationY = layout.translationY + dp
+        }
+    }
+
+
+}
+

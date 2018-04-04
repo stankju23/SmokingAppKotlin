@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <variable name="time" type="com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MainProgress.MainProgressDetailTime"></variable>
+        <variable name="activity" type="com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Activity"></variable>
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -12,23 +12,18 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/textView29"
+            android:id="@+id/textView36"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:inputType="number"
-            android:text="@{time.fullText()}"
-            android:textAlignment="textEnd"
-            android:textColor="@color/selectedColor"
-            android:textSize="36sp"
+            android:layout_marginTop="16dp"
+            android:text="@{activity.objective.title}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="145 days" />
+            app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
 </layout>

@@ -34,8 +34,9 @@ class EditWishActivity : AppCompatActivity() {
 
         var wish = Data.wishList[position]
 
-        title_text.setText(wish.title.toString())
+        title_text.setText(wish.title.get().toString())
         price_text.setText(wish.price.toString())
+        desc.setText(wish.desc.get())
 
         Glide.with(edit_wish_image.context)
             .load(wish.image)

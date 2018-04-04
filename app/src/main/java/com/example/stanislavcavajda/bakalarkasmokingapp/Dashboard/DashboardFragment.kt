@@ -22,13 +22,6 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.databinding.FragmentDashboardBinding
 import java.text.NumberFormat
 import java.util.Locale
-import java.util.Timer
-import kotlin.concurrent.timerTask
-
-
-
-
-
 
 class DashboardFragment : Fragment() {
 
@@ -40,6 +33,7 @@ class DashboardFragment : Fragment() {
     var currentTimestamp: Long = 0L
     var dateTimestamp: Long = 0L
     lateinit var recycler: RecyclerView
+    lateinit var thread:Thread
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -57,6 +51,7 @@ class DashboardFragment : Fragment() {
         if(Data.healthProgressViewList.isEmpty()) {
             prepareHealthProgressList()
         }
+
 
         dashboardList = DashboardListViewModel(ArrayList(), activity.applicationContext)
 
@@ -86,44 +81,48 @@ class DashboardFragment : Fragment() {
         updateWishList()
 
 
-        Timer().scheduleAtFixedRate(timerTask{
+        thread = object : Thread() {
+            override fun run() {
+                while (1>0) {
+                    currentTimestamp = dateConverter.getCurrentTimestamp()
+                    dateTimestamp = dateConverter.convertDateToTimestamp(Data.date)
+                    date = Date(currentTimestamp - dateTimestamp, Constants.timeConst.twentyOneDays)
+
+                    progress = (dateConverter.getCurrentTimestamp() - dateConverter.convertDateToTimestamp(Data.date)).toFloat() / (Constants.timeConst.twentyOneDays).toFloat() * 100f
+
+                    (dashboardList.list.get(Constants.viewTypes.MAIN_PROGRESS_VIEW_TYPE) as MainProgressViewModel).setProgress(date)
+
+                    Data.timeList.clear()
+                    Data.timeList.addAll(dateConverter.updateMainProgressDetail(activity, currentTimestamp - dateTimestamp))
+
+                    (dashboardList.list.get(Constants.viewTypes.MAIN_PROGRESS_VIEW_TYPE) as MainProgressViewModel).updateDetail(Data.timeList)
+
+                    updateHealthProgress(currentTimestamp, dateTimestamp)
 
 
-            currentTimestamp = dateConverter.getCurrentTimestamp()
-            dateTimestamp = dateConverter.convertDateToTimestamp(Data.date)
-            date = Date(currentTimestamp - dateTimestamp,Constants.timeConst.twentyOneDays)
+                    (dashboardList.list.get(Constants.viewTypes.HEALTH_PROGRESS_VIEW_TYPE) as HealthProgressListViewModel).updateAll()
+                    result = "%.2f".format(actualSaved(currentTimestamp - dateTimestamp, Data.MoneyDashboard.cigarretesPerDay, Data.MoneyDashboard.packagePrice, Data.MoneyDashboard.cigarretesInPackage))
 
-            progress = (dateConverter.getCurrentTimestamp() - dateConverter.convertDateToTimestamp(Data.date)).toFloat()/(Constants.timeConst.twentyOneDays).toFloat() * 100f
+                    Data.MoneyDashboard.moneySaved = nf.parse(result).toFloat() / 100
 
-            (dashboardList.list.get(Constants.viewTypes.MAIN_PROGRESS_VIEW_TYPE) as MainProgressViewModel).setProgress(date)
+                    (dashboardList.list.get(Constants.viewTypes.MONEY_SAVED_VIEW_TYPE) as MoneySavedViewModel).updateMoney(
+                        Data.MoneyDashboard.moneySaved, 0.0f)
 
-            Data.timeList.clear()
-            Data.timeList.addAll(dateConverter.updateMainProgressDetail(activity,currentTimestamp - dateTimestamp))
+                    updateWishList()
 
-            (dashboardList.list.get(Constants.viewTypes.MAIN_PROGRESS_VIEW_TYPE) as MainProgressViewModel).updateDetail(Data.timeList)
+                    val list = Data.wishList.sortedWith(compareBy(Wish::price))
+                    Data.wishList = ArrayList(list)
 
-            updateHealthProgress(currentTimestamp,dateTimestamp)
+                    (dashboardList.list.get(Constants.viewTypes.WISHES_MANAGER_VIEW_TYPE) as WishListViewModel).updateWishList(Data.wishList)
 
+                    Data.MoneyDashboard.actualMoneyState = Data.MoneyDashboard.moneySaved - Data.MoneyDashboard.moneySpend
 
-            (dashboardList.list.get(Constants.viewTypes.HEALTH_PROGRESS_VIEW_TYPE) as HealthProgressListViewModel).updateAll()
-            result = "%.2f".format(actualSaved(currentTimestamp - dateTimestamp,Data.MoneyDashboard.cigarretesPerDay,Data.MoneyDashboard.packagePrice, Data.MoneyDashboard.cigarretesInPackage))
+                    Thread.sleep(200)
+                }
+            }
+        }
 
-            Data.MoneyDashboard.moneySaved = nf.parse(result).toFloat()/100
-
-            (dashboardList.list.get(Constants.viewTypes.MONEY_SAVED_VIEW_TYPE) as MoneySavedViewModel).updateMoney(
-                Data.MoneyDashboard.moneySaved,0.0f)
-
-            updateWishList()
-
-            val list = Data.wishList.sortedWith(compareBy(Wish::price))
-            Data.wishList = ArrayList(list)
-
-            (dashboardList.list.get(Constants.viewTypes.WISHES_MANAGER_VIEW_TYPE) as WishListViewModel).updateWishList(Data.wishList)
-
-            Data.MoneyDashboard.actualMoneyState =  Data.MoneyDashboard.moneySaved -  Data.MoneyDashboard.moneySpend
-
-
-        },0,200)
+        thread.start()
 
 
 
@@ -143,7 +142,7 @@ class DashboardFragment : Fragment() {
 
     fun updateWishList() {
         for (i in Data.wishList) {
-            i.setWish(i.title,i.desc,i.price,i.image!!)
+            i.setWish(i.title.get(),i.desc.get(),i.price,i.image!!)
         }
     }
 
@@ -162,7 +161,14 @@ class DashboardFragment : Fragment() {
         }
     }
 
+    override fun onDestroy() {
+        thread.interrupt()
+        super.onDestroy()
+    }
 
+    override fun onPause() {
+        super.onPause()
+    }
 
 
 }
