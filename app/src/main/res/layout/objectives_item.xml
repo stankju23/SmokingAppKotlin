@@ -19,7 +19,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@{activity.done ? @color/selectedColor : @color/light_grey}"
         done="@{activity.done}">
 
         <ImageView
@@ -69,7 +68,7 @@
         android:id="@+id/button6"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:background="@color/selectedColor"
+        android:background="?colorPrimary"
         android:text="@{activity.isDone() ? @string/mark_as_undone: @string/mark_as_done}"
         android:textAppearance="@android:style/TextAppearance.Small"
         android:textColor="@color/white"

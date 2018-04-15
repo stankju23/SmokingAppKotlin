@@ -3,6 +3,7 @@ package com.example.stanislavcavajda.bakalarkasmokingapp.Bindings
 import android.databinding.BindingAdapter
 import android.net.Uri
 import android.support.constraint.ConstraintLayout
+import android.util.TypedValue
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
@@ -10,8 +11,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-
-
+import com.example.stanislavcavajda.bakalarkasmokingapp.R
 
 /**
  * Created by stanislavcavajda on 10/03/2018.
@@ -54,15 +54,23 @@ fun setFirstDone(layout:ConstraintLayout, done:Boolean) {
 
 @BindingAdapter("done")
 fun setDone(layout:ConstraintLayout, done:Boolean) {
+
+    val typedValue = TypedValue()
+    val theme = layout.context.getTheme()
+    theme.resolveAttribute(R.attr.colorPrimary, typedValue, true)
+    var color = typedValue.data
+
     val density = layout.context.getResources().getDisplayMetrics().density
     var dp = 56 * density
     if (!done){
+        layout.setBackgroundColor(layout.context.resources.getColor(R.color.light_grey))
         if (layout.y != 0f) {
             layout.translationY = dp
             layout.animate().translationYBy(-dp).duration = 200
         }
     }
     if (done) {
+        layout.setBackgroundColor(color)
         if (layout.y == 0f) {
             layout.translationY = 0f
             layout.animate().translationYBy(dp).duration = 200

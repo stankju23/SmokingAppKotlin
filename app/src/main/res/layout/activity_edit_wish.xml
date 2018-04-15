@@ -12,12 +12,12 @@
         android:id="@+id/edit_wish_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/selectedColor"
+        android:background="?colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title="@string/edit_wish"
-        app:titleTextColor="@color/white">
+        app:titleTextColor="?colorAccent">
     </android.support.v7.widget.Toolbar>
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -78,8 +78,8 @@
         android:id="@+id/save_wish"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/selectedColor"
-        android:backgroundTint="@color/selectedColor"
+        android:background="?colorPrimary"
+        android:backgroundTint="?colorPrimary"
         android:text="Save"
         android:textAppearance="@android:style/TextAppearance.Small"
         android:textColor="@color/white"

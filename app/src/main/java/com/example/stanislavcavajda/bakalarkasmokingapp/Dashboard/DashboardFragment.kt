@@ -5,6 +5,7 @@ import android.app.Fragment
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,7 +34,8 @@ class DashboardFragment : Fragment() {
     var currentTimestamp: Long = 0L
     var dateTimestamp: Long = 0L
     lateinit var recycler: RecyclerView
-    lateinit var thread:Thread
+    var thread:Thread? = null
+    var runThread = true
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -66,6 +68,11 @@ class DashboardFragment : Fragment() {
         dashboardList.list.add(wishesManager as Object)
         dashboardList.list.add(moneySaved as Object)
 
+        var wordList = ArrayList<String>()
+        wordList.add(resources.getString(R.string.days))
+        wordList.add(resources.getString(R.string.hours))
+        wordList.add(resources.getString(R.string.minutes))
+        wordList.add(resources.getString(R.string.seconds))
 
         var result = ""
         val nf = NumberFormat.getInstance(Locale.US)
@@ -81,48 +88,60 @@ class DashboardFragment : Fragment() {
         updateWishList()
 
 
-        thread = object : Thread() {
-            override fun run() {
-                while (1>0) {
-                    currentTimestamp = dateConverter.getCurrentTimestamp()
-                    dateTimestamp = dateConverter.convertDateToTimestamp(Data.date)
-                    date = Date(currentTimestamp - dateTimestamp, Constants.timeConst.twentyOneDays)
+            thread = object : Thread() {
+                override fun run() {
+                    Log.i("New", "Thread")
+                    while (1 > 0) {
+                        if (runThread) {
+                            if (activity != null) {
+                                currentTimestamp = dateConverter.getCurrentTimestamp()
+                                dateTimestamp = dateConverter.convertDateToTimestamp(Data.date)
+                                date = Date(currentTimestamp - dateTimestamp, Constants.timeConst.twentyOneDays)
 
-                    progress = (dateConverter.getCurrentTimestamp() - dateConverter.convertDateToTimestamp(Data.date)).toFloat() / (Constants.timeConst.twentyOneDays).toFloat() * 100f
+                                progress = (dateConverter.getCurrentTimestamp() - dateConverter.convertDateToTimestamp(Data.date)).toFloat() / (Constants.timeConst.twentyOneDays).toFloat() * 100f
 
-                    (dashboardList.list.get(Constants.viewTypes.MAIN_PROGRESS_VIEW_TYPE) as MainProgressViewModel).setProgress(date)
+                                (dashboardList.list.get(Constants.viewTypes.MAIN_PROGRESS_VIEW_TYPE) as MainProgressViewModel).setProgress(date)
 
-                    Data.timeList.clear()
-                    Data.timeList.addAll(dateConverter.updateMainProgressDetail(activity, currentTimestamp - dateTimestamp))
+                                Data.timeList.clear()
+                                Data.timeList.addAll(dateConverter.updateMainProgressDetail(currentTimestamp-dateTimestamp,wordList))
 
-                    (dashboardList.list.get(Constants.viewTypes.MAIN_PROGRESS_VIEW_TYPE) as MainProgressViewModel).updateDetail(Data.timeList)
+                                (dashboardList.list.get(Constants.viewTypes.MAIN_PROGRESS_VIEW_TYPE) as MainProgressViewModel).updateDetail(Data.timeList)
 
-                    updateHealthProgress(currentTimestamp, dateTimestamp)
+                                updateHealthProgress(currentTimestamp, dateTimestamp)
 
 
-                    (dashboardList.list.get(Constants.viewTypes.HEALTH_PROGRESS_VIEW_TYPE) as HealthProgressListViewModel).updateAll()
-                    result = "%.2f".format(actualSaved(currentTimestamp - dateTimestamp, Data.MoneyDashboard.cigarretesPerDay, Data.MoneyDashboard.packagePrice, Data.MoneyDashboard.cigarretesInPackage))
+                                (dashboardList.list.get(Constants.viewTypes.HEALTH_PROGRESS_VIEW_TYPE) as HealthProgressListViewModel).updateAll()
+                                result = "%.2f".format(actualSaved(currentTimestamp - dateTimestamp, Data.MoneyDashboard.cigarretesPerDay, Data.MoneyDashboard.packagePrice, Data.MoneyDashboard.cigarretesInPackage))
 
-                    Data.MoneyDashboard.moneySaved = nf.parse(result).toFloat() / 100
+                                Data.MoneyDashboard.moneySaved = nf.parse(result).toFloat() / 100
 
-                    (dashboardList.list.get(Constants.viewTypes.MONEY_SAVED_VIEW_TYPE) as MoneySavedViewModel).updateMoney(
-                        Data.MoneyDashboard.moneySaved, 0.0f)
+                                (dashboardList.list.get(Constants.viewTypes.MONEY_SAVED_VIEW_TYPE) as MoneySavedViewModel).updateMoney(
+                                    Data.MoneyDashboard.moneySaved, 0.0f)
 
-                    updateWishList()
+                                updateWishList()
 
-                    val list = Data.wishList.sortedWith(compareBy(Wish::price))
-                    Data.wishList = ArrayList(list)
+                                val list = Data.wishList.sortedWith(compareBy(Wish::price))
+                                Data.wishList = ArrayList(list)
 
-                    (dashboardList.list.get(Constants.viewTypes.WISHES_MANAGER_VIEW_TYPE) as WishListViewModel).updateWishList(Data.wishList)
+                                (dashboardList.list.get(Constants.viewTypes.WISHES_MANAGER_VIEW_TYPE) as WishListViewModel).updateWishList(Data.wishList)
 
-                    Data.MoneyDashboard.actualMoneyState = Data.MoneyDashboard.moneySaved - Data.MoneyDashboard.moneySpend
+                                Data.MoneyDashboard.actualMoneyState = Data.MoneyDashboard.moneySaved - Data.MoneyDashboard.moneySpend
 
-                    Thread.sleep(200)
+                                Thread.sleep(200)
+
+                                 //Log.i("Thread", Thread.currentThread().name.toString())
+
+                            }
+                        } else {
+                            break
+                        }
+
+                    }
                 }
             }
-        }
 
-        thread.start()
+        thread?.start()
+        Data.dashboardThreadStared = true
 
 
 
@@ -162,12 +181,20 @@ class DashboardFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        thread.interrupt()
+        Log.i("fragment","destroyed")
+        runThread = false
+        thread = null
         super.onDestroy()
     }
 
+
     override fun onPause() {
         super.onPause()
+    }
+
+    override fun onResume() {
+        Log.i("Thread", "resumed")
+        super.onResume()
     }
 
 

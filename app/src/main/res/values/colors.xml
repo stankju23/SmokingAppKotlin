@@ -3,6 +3,12 @@
     <color name="colorPrimary">#558D96</color>
     <color name="colorPrimaryDark">#558D96</color>
     <color name="colorAccent">#ffffff</color>
+
+    <color name="colorPrimary1">#54FF53</color>
+    <color name="colorPrimaryDark1">#54FF53</color>
+    <color name="colorAccent1">#54FF53</color>
+
+
     <color name="mainColor">#FFFFFF</color>
     <color name="selectedColor">#558d96</color>
     <color name="unselectedBarColor">#e8e8e8</color>

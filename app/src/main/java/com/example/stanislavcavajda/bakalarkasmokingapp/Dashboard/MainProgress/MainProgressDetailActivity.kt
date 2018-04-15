@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.MenuItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
+import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.ThemeManager
 import com.example.stanislavcavajda.bakalarkasmokingapp.Model.Date
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.databinding.ActivityMainProgressDetailBinding
@@ -19,6 +20,8 @@ class MainProgressDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        ThemeManager.setTheme(this,Data.actualTheme)
 
         var binding: ActivityMainProgressDetailBinding = DataBindingUtil.setContentView(this,R.layout.activity_main_progress_detail)
         var viewModel = MainProgressViewModel(Date(0,0),this, Data.timeList)
@@ -40,7 +43,7 @@ class MainProgressDetailActivity : AppCompatActivity() {
                 Log.i("Detail", "updated")
             }
 
-        },0,1000)
+        },0,800)
 
         binding.viewModel = viewModel
 

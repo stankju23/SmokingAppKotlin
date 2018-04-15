@@ -52,4 +52,9 @@ object Constants {
         const val IMAGE = "wish_image"
         const val DESC = "wish_desc"
     }
+
+    object Themes {
+        const val theme1 = 0
+        const val theme2 = 1
+    }
 }

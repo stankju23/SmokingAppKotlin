@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
+import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.ThemeManager
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.databinding.ActivityHealthProgressDetailBinding
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper
@@ -17,6 +18,9 @@ class HealthProgressDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        ThemeManager.setTheme(this,Data.actualTheme)
+
         var binding: ActivityHealthProgressDetailBinding = DataBindingUtil.setContentView(this, R.layout.activity_health_progress_detail)
         var itemId = intent.getIntExtra(Constants.extras.EXTRA_ITEM_ID,0)
         var healthProgres = Data.healthProgressViewList[itemId]

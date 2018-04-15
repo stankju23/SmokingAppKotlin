@@ -13,13 +13,23 @@ object Data {
 
     var healthProgressViewList: ArrayList<HealthProgressViewModel> = ArrayList()
     //var date = "02-03-2018 15:00"
-    var date = "22-03-2018 15:48"
+    var date = "04-04-2018 15:48"
     var healthProgressTimes: ArrayList<Long> = ArrayList()
     var wishList: ArrayList<Wish> = ArrayList()
     var timeList: ArrayList<MainProgressDetailTime> = ArrayList()
     var swipeCanClick: Boolean = true
     var objectives: ArrayList<Objective> = ArrayList()
     var missionList: ArrayList<Mission> = ArrayList()
+    var actualTheme = 1
+
+    var dashboardThreadStared = false
+    var themeChanged = false
+
+
+
+    object Theme {
+        var mainSelectedColor = "#558d96"
+    }
 
 
     object MoneyDashboard {

@@ -18,7 +18,7 @@
             android:id="@+id/health_progress_detail_toolbar"
             android:layout_width="0dp"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/selectedColor"
+            android:background="?colorPrimary"
             android:elevation="4dp"
             app:layout_collapseMode="pin"
             app:layout_constraintEnd_toEndOf="parent"
@@ -66,8 +66,8 @@
                     android:layout_marginTop="8dp"
                     android:padding="10dp"
                     app:bgColor="@color/unselectedBarColor"
-                    app:fgColorEnd="@color/selectedColor"
-                    app:fgColorStart="@color/selectedColor"
+                    app:fgColorEnd="?colorPrimary"
+                    app:fgColorStart="?colorPrimary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -79,7 +79,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:background="@color/selectedColor"
+                    android:background="?colorPrimary"
                     app:layout_constraintTop_toBottomOf="@id/colorfulRingProgressView2">
 
                     <TextView

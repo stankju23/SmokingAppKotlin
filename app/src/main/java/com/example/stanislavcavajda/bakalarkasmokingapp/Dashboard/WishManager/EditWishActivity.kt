@@ -11,6 +11,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.RealmDB
+import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.ThemeManager
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import kotlinx.android.synthetic.main.activity_edit_wish.*
 
@@ -21,6 +22,9 @@ class EditWishActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        ThemeManager.setTheme(this,Data.actualTheme)
+
         setContentView(R.layout.activity_edit_wish)
 
         var toolbar = findViewById<Toolbar>(R.id.edit_wish_toolbar)

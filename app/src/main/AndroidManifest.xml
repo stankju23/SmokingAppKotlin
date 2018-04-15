@@ -26,6 +26,7 @@
         <activity android:name=".Dashboard.WishManager.AddWishActivity" />
         <activity android:name=".Dashboard.WishManager.EditWishActivity" />
         <activity android:name=".Missions.MissionInfoActivity" />
-        <activity android:name=".Missions.ObjectivesActivity"></activity>
+        <activity android:name=".Missions.ObjectivesActivity" />
+        <activity android:name=".Main.ChangeColor"></activity>
     </application>
 </manifest>
