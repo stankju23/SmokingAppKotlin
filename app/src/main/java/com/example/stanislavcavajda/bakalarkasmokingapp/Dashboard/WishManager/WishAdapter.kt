@@ -1,10 +1,10 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager
 
+import android.content.Intent
 import android.databinding.ViewDataBinding
-import android.util.Log
-import android.widget.ImageView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
+import com.daimajia.swipe.SwipeLayout
+import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
+import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter
 
@@ -14,14 +14,18 @@ import me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter
 
 class WishAdapter<T> : BindingRecyclerViewAdapter<T>() {
 
+
     override fun onBindBinding(binding: ViewDataBinding?, variableId: Int, layoutRes: Int, position: Int, item: T) {
         super.onBindBinding(binding, variableId, layoutRes, position, item)
-        var image = binding?.root?.findViewById<ImageView>(R.id.circleImageView)
-        Glide.with(image!!.context)
-            .load((item as Wish).image)
-            .apply(RequestOptions().override(300,200))
-            .into(image!!)
-        Log.i("Image", (item as Wish).image.toString())
+        var swipeLayout = binding?.root?.findViewById<SwipeLayout>(R.id.wish_item_swipe_layout)
+        swipeLayout?.surfaceView?.setOnClickListener {
+            if (!Data.wishList[position].isBought.get()) {
+                var editWish = Intent(swipeLayout?.context, EditWishActivity::class.java)
+                editWish.putExtra(Constants.extras.EXTRA_ITEM_ID, position)
+                swipeLayout?.context.startActivity(editWish)
+            }
+        }
+
     }
 
 

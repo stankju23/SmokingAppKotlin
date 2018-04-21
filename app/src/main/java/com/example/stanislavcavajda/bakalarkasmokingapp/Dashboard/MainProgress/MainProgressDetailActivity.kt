@@ -43,7 +43,7 @@ class MainProgressDetailActivity : AppCompatActivity() {
                 Log.i("Detail", "updated")
             }
 
-        },0,800)
+        },0,1000)
 
         binding.viewModel = viewModel
 

@@ -1,6 +1,5 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager
 
-import android.Manifest
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -15,7 +14,6 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.RealmDB
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.ThemeManager
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
-import io.vrinda.kotlinpermissions.PermissionCallBack
 import io.vrinda.kotlinpermissions.PermissionsActivity
 import kotlinx.android.synthetic.main.activity_add_wish.*
 import java.util.UUID
@@ -75,18 +73,6 @@ class AddWishActivity : PermissionsActivity() {
         supportActionBar?.setHomeAsUpIndicator(R.drawable.abc_ic_ab_back_material)
 
         add_wish_image.setOnClickListener {
-
-            requestPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, object : PermissionCallBack {
-                override fun permissionGranted() {
-                    super.permissionGranted()
-                    Log.v("Call permissions", "Granted")
-                }
-
-                override fun permissionDenied() {
-                    super.permissionDenied()
-                    Log.v("Call permissions", "Denied")
-                }
-            })
 
             try {
                 if (pickedImage == null) {

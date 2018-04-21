@@ -215,4 +215,5 @@ class MainActivity : AppCompatActivity() {
         Data.themeChanged = ThemeManager.recreateActivity(this,Data.themeChanged,Data.actualTheme)
         super.onRestart()
     }
+
 }

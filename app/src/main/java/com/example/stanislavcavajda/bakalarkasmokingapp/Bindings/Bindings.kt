@@ -11,6 +11,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.daimajia.swipe.SwipeLayout
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 
 /**
@@ -80,5 +81,17 @@ fun setDone(layout:ConstraintLayout, done:Boolean) {
     }
 
 
+}
+
+
+
+
+@BindingAdapter("swiping")
+fun disableSwiping(layout: SwipeLayout,canBuy:Boolean) {
+    if (canBuy) {
+        layout.isSwipeEnabled = true
+    } else {
+        layout.isSwipeEnabled = false
+    }
 }
 

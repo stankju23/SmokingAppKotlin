@@ -35,6 +35,7 @@ class DashboardFragment : Fragment() {
     var dateTimestamp: Long = 0L
     lateinit var recycler: RecyclerView
     var thread:Thread? = null
+    var wishThread:Thread? = null
     var runThread = true
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -42,11 +43,12 @@ class DashboardFragment : Fragment() {
 
         var binding:FragmentDashboardBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_dashboard, container, false)
 
-
         var view = binding.root
 
         recycler = view.findViewById<RecyclerView>(R.id.dashboard_recycler_view)
-
+        recycler.setItemViewCacheSize(20);
+        recycler.setDrawingCacheEnabled(true);
+        recycler.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
         date = Date(dateConverter.getCurrentTimestamp() - dateConverter.convertDateToTimestamp(Data.date),Constants.timeConst.twentyOneDays)
 
@@ -77,70 +79,88 @@ class DashboardFragment : Fragment() {
         var result = ""
         val nf = NumberFormat.getInstance(Locale.US)
 
-
-
-
         currentTimestamp = dateConverter.getCurrentTimestamp()
         dateTimestamp = dateConverter.convertDateToTimestamp(Data.date)
-        result = "%.2f".format(actualSaved(currentTimestamp - dateTimestamp,Data.MoneyDashboard.cigarretesPerDay,Data.MoneyDashboard.packagePrice, Data.MoneyDashboard.cigarretesInPackage))
-        Data.MoneyDashboard.moneySaved = nf.parse(result).toFloat()/100
+        //result = "%.2f".format(actualSaved(currentTimestamp - dateTimestamp,Data.MoneyDashboard.cigarretesPerDay,Data.MoneyDashboard.packagePrice, Data.MoneyDashboard.cigarretesInPackage))
+
         Data.MoneyDashboard.actualMoneyState = Data.MoneyDashboard.moneySaved - Data.MoneyDashboard.moneySpend
         updateWishList()
 
 
-            thread = object : Thread() {
-                override fun run() {
-                    Log.i("New", "Thread")
-                    while (1 > 0) {
-                        if (runThread) {
-                            if (activity != null) {
-                                currentTimestamp = dateConverter.getCurrentTimestamp()
-                                dateTimestamp = dateConverter.convertDateToTimestamp(Data.date)
-                                date = Date(currentTimestamp - dateTimestamp, Constants.timeConst.twentyOneDays)
+            thread = Thread(Runnable {
+                Log.i("thread","created")
+                while (1 > 0) {
 
-                                progress = (dateConverter.getCurrentTimestamp() - dateConverter.convertDateToTimestamp(Data.date)).toFloat() / (Constants.timeConst.twentyOneDays).toFloat() * 100f
+                    if (runThread) {
+                        if (activity != null) {
+                            currentTimestamp = dateConverter.getCurrentTimestamp()
+                            dateTimestamp = dateConverter.convertDateToTimestamp(Data.date)
+                            date = Date(currentTimestamp - dateTimestamp, Constants.timeConst.twentyOneDays)
 
-                                (dashboardList.list.get(Constants.viewTypes.MAIN_PROGRESS_VIEW_TYPE) as MainProgressViewModel).setProgress(date)
+                            progress = (dateConverter.getCurrentTimestamp() - dateConverter.convertDateToTimestamp(Data.date)).toFloat() / (Constants.timeConst.twentyOneDays).toFloat() * 100f
 
-                                Data.timeList.clear()
-                                Data.timeList.addAll(dateConverter.updateMainProgressDetail(currentTimestamp-dateTimestamp,wordList))
+                            (dashboardList.list.get(Constants.viewTypes.MAIN_PROGRESS_VIEW_TYPE) as MainProgressViewModel).setProgress(date)
 
-                                (dashboardList.list.get(Constants.viewTypes.MAIN_PROGRESS_VIEW_TYPE) as MainProgressViewModel).updateDetail(Data.timeList)
+                            Data.timeList.clear()
+                            Data.timeList.addAll(dateConverter.updateMainProgressDetail(currentTimestamp-dateTimestamp,wordList))
 
-                                updateHealthProgress(currentTimestamp, dateTimestamp)
+                            (dashboardList.list.get(Constants.viewTypes.MAIN_PROGRESS_VIEW_TYPE) as MainProgressViewModel).updateDetail(Data.timeList)
+
+                            updateHealthProgress(currentTimestamp, dateTimestamp)
 
 
-                                (dashboardList.list.get(Constants.viewTypes.HEALTH_PROGRESS_VIEW_TYPE) as HealthProgressListViewModel).updateAll()
-                                result = "%.2f".format(actualSaved(currentTimestamp - dateTimestamp, Data.MoneyDashboard.cigarretesPerDay, Data.MoneyDashboard.packagePrice, Data.MoneyDashboard.cigarretesInPackage))
+                            (dashboardList.list.get(Constants.viewTypes.HEALTH_PROGRESS_VIEW_TYPE) as HealthProgressListViewModel).updateAll()
+                            //result = "%.2f".format(actualSaved(currentTimestamp - dateTimestamp, Data.MoneyDashboard.cigarretesPerDay, Data.MoneyDashboard.packagePrice, Data.MoneyDashboard.cigarretesInPackage))
 
-                                Data.MoneyDashboard.moneySaved = nf.parse(result).toFloat() / 100
-
-                                (dashboardList.list.get(Constants.viewTypes.MONEY_SAVED_VIEW_TYPE) as MoneySavedViewModel).updateMoney(
-                                    Data.MoneyDashboard.moneySaved, 0.0f)
-
-                                updateWishList()
-
-                                val list = Data.wishList.sortedWith(compareBy(Wish::price))
-                                Data.wishList = ArrayList(list)
-
-                                (dashboardList.list.get(Constants.viewTypes.WISHES_MANAGER_VIEW_TYPE) as WishListViewModel).updateWishList(Data.wishList)
-
-                                Data.MoneyDashboard.actualMoneyState = Data.MoneyDashboard.moneySaved - Data.MoneyDashboard.moneySpend
-
-                                Thread.sleep(200)
-
-                                 //Log.i("Thread", Thread.currentThread().name.toString())
-
-                            }
-                        } else {
-                            break
+                            Thread.sleep(1000)
                         }
-
                     }
                 }
-            }
+            })
+
+            wishThread = Thread(Runnable {
+                while (runThread) {
+                    result = actualSaved(currentTimestamp - dateTimestamp,Data.MoneyDashboard.cigarretesPerDay,Data.MoneyDashboard.packagePrice, Data.MoneyDashboard.cigarretesInPackage).toString()
+
+                    //Data.MoneyDashboard.moneySaved = nf.parse(result).toFloat() / 100
+                    Data.MoneyDashboard.moneySaved = (result).toFloat()
+
+                    (dashboardList.list.get(Constants.viewTypes.MONEY_SAVED_VIEW_TYPE) as MoneySavedViewModel).updateMoney(
+                        Data.MoneyDashboard.moneySaved, 0.0f)
+
+                    updateWishList()
+
+                    val list = Data.wishList.sortedWith(compareBy(Wish::price))
+                    Data.wishList = ArrayList(list)
+
+                    (dashboardList.list.get(Constants.viewTypes.WISHES_MANAGER_VIEW_TYPE) as WishListViewModel).updateWishList(Data.wishList)
+
+                    Data.MoneyDashboard.actualMoneyState = Data.MoneyDashboard.moneySaved - Data.MoneyDashboard.moneySpend
+                }
+            })
+
+
+//            thread = object : Thread() {
+//                override fun run() {
+//                    Log.i("New", "Thread")
+//                    while (1 > 0) {
+//                        if (runThread) {
+//                            if (activity != null) {
+//
+//
+//                                 //Log.i("Thread", Thread.currentThread().name.toString())
+//
+//                            }
+//                        } else {
+//                            break
+//                        }
+//
+//                    }
+//                }
+//            }
 
         thread?.start()
+        wishThread?.start()
         Data.dashboardThreadStared = true
 
 
@@ -184,6 +204,7 @@ class DashboardFragment : Fragment() {
         Log.i("fragment","destroyed")
         runThread = false
         thread = null
+        wishThread = null
         super.onDestroy()
     }
 

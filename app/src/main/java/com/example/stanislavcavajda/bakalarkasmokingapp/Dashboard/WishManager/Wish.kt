@@ -1,18 +1,14 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager
 
-import android.app.Activity
 import android.content.Context
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
 import android.databinding.ObservableFloat
 import android.net.Uri
-import android.util.Log
 import android.view.View
-import com.daimajia.swipe.SwipeLayout
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DateConverter
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.RealmDB
-import com.example.stanislavcavajda.bakalarkasmokingapp.R
 
 /**
  * Created by stanislavcavajda on 04/03/2018.
@@ -20,20 +16,18 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.R
 
 class Wish {
 
-    var id:String = ""
+    var id: String = ""
     var title: ObservableField<String> = ObservableField()
     var desc: ObservableField<String> = ObservableField()
     var price: Int = 0
     var image: Uri? = null
     var canBuy: ObservableBoolean = ObservableBoolean()
     var isBought: ObservableBoolean = ObservableBoolean()
-    var endDate:ObservableField<String> = ObservableField()
+    var endDate: ObservableField<String> = ObservableField()
     var progress: ObservableFloat = ObservableFloat()
-    var context:Context
+    var context: Context
 
-
-
-    constructor(id:String,title: String, desc: String, price: Int, bought: Boolean,context: Context,imageUri: Uri) {
+    constructor(id: String, title: String, desc: String, price: Int, bought: Boolean, context: Context, imageUri: Uri) {
 
         this.id = id
 
@@ -48,51 +42,7 @@ class Wish {
             Data.MoneyDashboard.moneySpend += price
         }
 
-        setWish(title,desc,price,imageUri)
-
-
-
-
-        val factory = (context as Activity).layoutInflater
-
-        val swipeLayoutEntryView = factory.inflate(R.layout.wish_list_item, null)
-
-        var swipeLayout = swipeLayoutEntryView.findViewById<SwipeLayout>(R.id.wish_item_swipe_layout)
-        swipeLayout.showMode = SwipeLayout.ShowMode.LayDown
-        swipeLayout.addDrag(SwipeLayout.DragEdge.Left,swipeLayoutEntryView.findViewById(R.id.bottom_wrapper))
-        swipeLayout.addSwipeListener(object : SwipeLayout.SwipeListener {
-
-            override fun onUpdate(layout: SwipeLayout?, leftOffset: Int, topOffset: Int) {
-                Data.swipeCanClick = false
-                Log.i("Can click",Data.swipeCanClick.toString())
-            }
-
-            override fun onStartOpen(layout: SwipeLayout?) {
-
-            }
-
-            override fun onStartClose(layout: SwipeLayout?) {
-
-            }
-
-            override fun onHandRelease(layout: SwipeLayout?, xvel: Float, yvel: Float) {
-                Data.swipeCanClick = false
-                Log.i("Can click",Data.swipeCanClick.toString())
-
-            }
-
-            override fun onClose(layout: SwipeLayout?) {
-                Data.swipeCanClick = true
-                Log.i("Can click",Data.swipeCanClick.toString())
-            }
-
-            override fun onOpen(layout: SwipeLayout?) {
-                Data.swipeCanClick = false
-                Log.i("Can click",Data.swipeCanClick.toString())
-            }
-        })
-
-
+        setWish(title, desc, price, imageUri)
     }
 
     fun setWish(title: String, desc: String, price: Int, imageUri: Uri) {
@@ -114,15 +64,13 @@ class Wish {
                 var moneySavedPerDay = (Data.MoneyDashboard.packagePrice / Data.MoneyDashboard.cigarretesInPackage) * Data.MoneyDashboard.cigarretesPerDay
                 var day = 86400
                 this.endDate.set(formatDate(dateConverter.getDate((((price.toFloat() - Data.MoneyDashboard.actualMoneyState) / moneySavedPerDay.toFloat()) * day + currentTimestamp).toLong())))
-                this.progress.set((Data.MoneyDashboard.actualMoneyState / price.toFloat())*100)
+                this.progress.set((Data.MoneyDashboard.actualMoneyState / price.toFloat()) * 100)
                 this.canBuy.set(false)
             }
         }
-
-
     }
 
-    fun setBought(v:View) {
+    fun setBought(v: View) {
 
         if (isBought.get()) {
             buy(true)
@@ -130,13 +78,12 @@ class Wish {
             buy(false)
         }
 
-        RealmDB.updateWish(this.id,this)
-
+        RealmDB.updateWish(this.id, this)
     }
 
-    fun formatDate(date:String):String {
-        val day = date.substring(0,2)
-        val month = date.substring(3,5)
+    fun formatDate(date: String): String {
+        val day = date.substring(0, 2)
+        val month = date.substring(3, 5)
         val year = date.substring(6, date.length)
         return "$day.$month.$year"
     }
@@ -152,6 +99,4 @@ class Wish {
             }
         }
     }
-
-
 }
