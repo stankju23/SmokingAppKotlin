@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
-import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.RealmDB
+import com.example.stanislavcavajda.bakalarkasmokingapp.RealmDatabase.RealmDB
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.ThemeManager
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import kotlinx.android.synthetic.main.activity_edit_wish.*

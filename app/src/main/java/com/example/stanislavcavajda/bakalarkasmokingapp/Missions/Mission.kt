@@ -1,9 +1,39 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Missions
 
+import android.databinding.ObservableBoolean
+import android.databinding.ObservableField
+import com.example.stanislavcavajda.bakalarkasmokingapp.Model.Date
 /**
  * Created by stanislavcavajda on 21/03/2018.
  */
-class Mission(var name: String = "",var date:String = "",var locked:Boolean = false,var available:Boolean = false,var activities: ArrayList<Activity>? = null,var done:Int = 0  ){
+class Mission {
+
+        var id:String
+        var name: String
+        var date:String
+        var completionDate:Date
+        var locked:ObservableBoolean = ObservableBoolean()
+        var available:ObservableBoolean = ObservableBoolean()
+        var activities: ArrayList<Activity> = ArrayList()
+        var done:Int = 0
+        var observableCompletionDate:ObservableField<Date> = ObservableField()
+        var completionTime:ObservableField<String> = ObservableField()
+
+
+
+    constructor(id:String,name:String,date:String,completionDate: Date,locked:Boolean,available:Boolean,activities:ArrayList<Activity>,done:Int){
+        this.id = id
+        this.name = name
+        this.date = date
+        this.completionDate = completionDate
+        this.locked.set(locked)
+        this.available.set(available)
+        this.activities?.addAll(activities)
+        completionTime.set("${completionDate?.hours}h ${completionDate?.minutes}m ${completionDate?.seconds}")
+        this.done = done
+    }
+
+
 
     fun getDone() {
         this.done = 0
@@ -12,6 +42,9 @@ class Mission(var name: String = "",var date:String = "",var locked:Boolean = fa
                this. done ++
             }
         }
+
+        completionTime.set("${completionDate?.hours}h ${completionDate?.minutes}m ${completionDate?.seconds}")
+
     }
 
     fun getDoneToString():String {
@@ -21,8 +54,9 @@ class Mission(var name: String = "",var date:String = "",var locked:Boolean = fa
     fun setMission(mission: Mission) {
         this.name = mission.name
         this.date = mission.date
-        this.locked = mission.locked
-        this.available = mission.available
+        this.completionDate = mission.completionDate
+        this.locked.set(mission.locked.get())
+        this.available.set(mission.available.get())
         this.activities = mission.activities
         this.done = mission.done
     }

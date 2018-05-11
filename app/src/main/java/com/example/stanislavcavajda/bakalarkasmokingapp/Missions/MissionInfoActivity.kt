@@ -11,10 +11,13 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.ThemeManager
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.databinding.ActivityMissionInfoBinding
 import kotlinx.android.synthetic.main.activity_mission_info.*
+import java.util.*
 
 class MissionInfoActivity : AppCompatActivity() {
 
     var missionPosition = 0
+
+    var timer = Timer()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,13 +28,19 @@ class MissionInfoActivity : AppCompatActivity() {
 
         this.missionPosition = intent.getIntExtra(Constants.extras.EXTRA_ITEM_ID,0)
 
-        binding.viewModel = ActivityListViewModel(Data.missionList[missionPosition].activities!!)
+        var viewModel = ActivityListViewModel(Data.missionList[missionPosition].activities!!)
+
+
+        binding.viewModel = viewModel
+        binding.missionInfo = Data.missionList[missionPosition]
+
 
         button5.setOnClickListener {
             var intent = Intent(this,ObjectivesActivity::class.java)
             intent.putExtra(Constants.extras.EXTRA_ITEM_ID,this.missionPosition)
             startActivity(intent)
         }
+
 
 
         setSupportActionBar(mission_info_toolbar)
@@ -50,5 +59,10 @@ class MissionInfoActivity : AppCompatActivity() {
 
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDestroy() {
+        timer.cancel()
+        super.onDestroy()
     }
 }

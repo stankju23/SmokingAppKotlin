@@ -3,30 +3,64 @@
     package="com.example.stanislavcavajda.bakalarkasmokingapp">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".Main.MainActivity">
+        android:theme="@style/SplashTheme">
+        <activity android:name=".Main.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main.SettingsActivity" />
-        <activity android:name=".Dashboard.HealthList.HealthProgressListActivity" />
-        <activity android:name=".Dashboard.HealthList.HealthProgressDetailActivity" />
-        <activity android:name=".Dashboard.MainProgressDetailActivity" />
-        <activity android:name=".Dashboard.WishManager.WishesActivity" />
-        <activity android:name=".Dashboard.MoneySaved.MoneySavedActivity" />
-        <activity android:name=".Dashboard.MainProgress.MainProgressDetailActivity" />
-        <activity android:name=".Dashboard.WishManager.AddWishActivity" />
-        <activity android:name=".Dashboard.WishManager.EditWishActivity" />
-        <activity android:name=".Missions.MissionInfoActivity" />
-        <activity android:name=".Missions.ObjectivesActivity" />
-        <activity android:name=".Main.ChangeColor"></activity>
+        <activity
+            android:name=".Main.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Main.SettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Dashboard.HealthList.HealthProgressListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Dashboard.HealthList.HealthProgressDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Dashboard.MainProgressDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Dashboard.WishManager.WishesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Dashboard.MoneySaved.MoneySavedActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Dashboard.MainProgress.MainProgressDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Dashboard.WishManager.AddWishActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Dashboard.WishManager.EditWishActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Missions.MissionInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Missions.ObjectivesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Main.ChangeColor"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Walkthrough.Walkthrough" />
+        <activity android:name=".Cravings.AddCraving"></activity>
     </application>
+
 </manifest>

@@ -44,6 +44,7 @@ object Constants {
 
     object preferences {
         const val DATE_PREFERENCES = "date"
+        const val FIRST_TIME = "firstTime"
     }
 
     object Wish {

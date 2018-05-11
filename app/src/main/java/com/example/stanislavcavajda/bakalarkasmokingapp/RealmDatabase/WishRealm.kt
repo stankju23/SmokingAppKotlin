@@ -1,4 +1,4 @@
-package com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager
+package com.example.stanislavcavajda.bakalarkasmokingapp.RealmDatabase
 
 import io.realm.RealmObject
 

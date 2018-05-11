@@ -35,4 +35,9 @@
     <string name="mark_as_done">Mark as done</string>
     <string name="mark_as_undone">Mark as undone</string>
     <string name="bought">Bought</string>
+    <string name="completion_time">Completion time :</string>
+    <string name="tap_to_save_craving">Tap to save craving</string>
+    <string name="number_of_cravings">Number of cravings </string>
+    <string name="show_craving_preferences">Show craving preferences</string>
+    <string name="first_aid">First Aid</string>
 </resources>

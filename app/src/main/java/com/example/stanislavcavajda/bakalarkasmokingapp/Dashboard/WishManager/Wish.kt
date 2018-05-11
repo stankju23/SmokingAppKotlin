@@ -8,7 +8,7 @@ import android.net.Uri
 import android.view.View
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DateConverter
-import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.RealmDB
+import com.example.stanislavcavajda.bakalarkasmokingapp.RealmDatabase.RealmDB
 
 /**
  * Created by stanislavcavajda on 04/03/2018.

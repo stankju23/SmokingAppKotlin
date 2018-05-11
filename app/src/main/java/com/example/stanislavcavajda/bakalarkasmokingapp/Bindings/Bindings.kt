@@ -9,6 +9,7 @@ import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.daimajia.swipe.SwipeLayout
@@ -83,6 +84,10 @@ fun setDone(layout:ConstraintLayout, done:Boolean) {
 
 }
 
+@BindingAdapter("bindDate")
+fun bindDate(textview:TextView,date:String){
+    textview.setText("dasdiuasidbasduiasbdasbiasbd")
+}
 
 
 

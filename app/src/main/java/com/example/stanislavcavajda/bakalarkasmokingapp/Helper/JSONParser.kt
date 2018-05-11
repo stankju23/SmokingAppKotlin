@@ -6,17 +6,16 @@ import android.util.Log
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.HealthList.HealthProgressViewModel
 import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Objective
 import com.example.stanislavcavajda.bakalarkasmokingapp.Model.Date
-import com.google.gson.Gson
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
+import java.util.*
 
 /**
  * Created by stanislavcavajda on 02/03/2018.
  */
 object JSONParser {
 
-    var gson: Gson = Gson()
 
 
     fun loadJsonFromAssets(name:String, context:Context): String{
@@ -87,7 +86,7 @@ object JSONParser {
                 var id = arrayItem.getInt("id")
                 var title = arrayItem.getString("title")
                 var desc = arrayItem.getString("desc")
-                objectiveList.add(Objective(id,title,desc))
+                objectiveList.add(Objective(UUID.randomUUID().toString(),title,desc))
             }
 
         } catch (e:Exception) {

@@ -25,7 +25,7 @@ class MissionListViewModel {
             var recyclerView: RecyclerView = (context as Activity).findViewById(R.id.missions_recycler_view)
             var clickedPosition = recyclerView.getChildAdapterPosition(v)
             var missionInfo = Intent(context, MissionInfoActivity::class.java)
-            if (Data.missionList[clickedPosition].available) {
+            if (Data.missionList[clickedPosition].available.get()) {
                 missionInfo.putExtra(Constants.extras.EXTRA_ITEM_ID, clickedPosition)
                 (context as Activity).startActivity(missionInfo)
             }

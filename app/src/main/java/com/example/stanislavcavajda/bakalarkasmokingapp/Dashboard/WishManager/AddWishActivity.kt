@@ -11,9 +11,9 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
-import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.RealmDB
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.ThemeManager
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
+import com.example.stanislavcavajda.bakalarkasmokingapp.RealmDatabase.RealmDB
 import io.vrinda.kotlinpermissions.PermissionsActivity
 import kotlinx.android.synthetic.main.activity_add_wish.*
 import java.util.UUID

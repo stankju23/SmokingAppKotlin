@@ -27,14 +27,6 @@ class MissionsFragment : Fragment() {
         recycler.setHasFixedSize(true)
 
 
-
-//        for (item in Data.missionList) {
-//            for (activity in item.activities!!) {
-//                Log.i("activity", activity.objective?.title)
-//            }
-//            Log.i("======", "======")
-//        }
-
         var missionViewModel = MissionListViewModel(Data.missionList,activity)
 
         binding.viewModel = missionViewModel
@@ -55,7 +47,7 @@ class MissionsFragment : Fragment() {
     fun scrollToPosition(recyclerView: RecyclerView) {
         var index = 0
         for (i in 0..Data.missionList.size - 1) {
-            if (Data.missionList[i].available) {
+            if (Data.missionList[i].available.get()) {
                 index = i
             }
         }

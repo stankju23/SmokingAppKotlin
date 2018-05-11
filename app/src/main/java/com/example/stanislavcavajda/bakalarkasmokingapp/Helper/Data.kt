@@ -13,7 +13,7 @@ object Data {
 
     var healthProgressViewList: ArrayList<HealthProgressViewModel> = ArrayList()
     //var date = "02-03-2018 15:00"
-    var date = "04-04-2018 15:48"
+    var date = "03-05-2018 09:53"
     var healthProgressTimes: ArrayList<Long> = ArrayList()
     var wishList: ArrayList<Wish> = ArrayList()
     var timeList: ArrayList<MainProgressDetailTime> = ArrayList()

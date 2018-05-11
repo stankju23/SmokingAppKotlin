@@ -35,7 +35,7 @@
     </android.support.v7.widget.Toolbar>
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/mission_info"
+        android:id="@+id/mission_info_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="?colorPrimary"
@@ -51,20 +51,20 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
-            android:text="TextView"
+            android:text="@{missionInfo.name}"
             android:textColor="@color/light_grey"
             android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="MISSION 2" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginBottom="24dp"
             android:layout_marginTop="24dp"
+            android:padding="3dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView34"
             app:layout_constraintHorizontal_bias="0.5"
@@ -79,8 +79,9 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:text="TextView"
+            android:text="@string/completion_time"
             android:textColor="@color/light_grey"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView4"
             app:layout_constraintEnd_toStartOf="@+id/textView35"
             app:layout_constraintHorizontal_bias="0.5"
@@ -92,28 +93,29 @@
             android:id="@+id/textView35"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text="@{missionInfo.completionTime}"
             android:textColor="@color/light_grey"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView34"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/textView34"
-            app:layout_constraintTop_toTopOf="@+id/textView34"
-            tools:text="22h 11m 5s" />
+            app:layout_constraintTop_toTopOf="@+id/textView34" />
 
     </android.support.constraint.ConstraintLayout>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         app:itemBinding="@{viewModel.itemBinding}"
         app:items="@{viewModel.activityList}"
         app:layoutManager="@{LayoutManagers.linear()}"
+        app:layout_constraintBottom_toTopOf="@id/button5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mission_info"
-        app:layout_constraintBottom_toTopOf="@id/button5"/>
+        app:layout_constraintTop_toBottomOf="@id/mission_info_layout" />
 
     <Button
         android:id="@+id/button5"

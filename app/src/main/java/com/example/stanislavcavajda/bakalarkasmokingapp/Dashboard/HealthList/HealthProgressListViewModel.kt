@@ -29,7 +29,7 @@ class HealthProgressListViewModel : BaseObservable {
         this.context = context
         var index = 0
         for (item in this.healthProgressViewList) {
-            if (item.date.get().progress < 100 && index < 3) {
+            if (item.date.get()?.progress!! < 100 && index < 3) {
                 this.dashboardHealthProgressViewList.add(item)
                 index++
             }
@@ -39,7 +39,7 @@ class HealthProgressListViewModel : BaseObservable {
     fun updateAll() {
         var index = 0
         for (item in this.healthProgressViewList) {
-            if (item.date.get().progress < 100 && index < 3) {
+            if (item.date.get()?.progress!! < 100 && index < 3) {
                 this.dashboardHealthProgressViewList.set(index,item)
                 index++
             }
