@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.Button
 import android.widget.ImageView
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 
@@ -33,6 +34,9 @@ class CravingFragment : Fragment() {
 
         var imageView = view.findViewById<ImageView>(R.id.inside_oval)
         var cigarette = view.findViewById<ImageView>(R.id.cigarette)
+
+        var showCravingBtn = view.findViewById<Button>(R.id.show_cravings)
+
         imageView.startAnimation(animation)
         cigarette.startAnimation(cigaretteAnim)
 
@@ -40,6 +44,11 @@ class CravingFragment : Fragment() {
             val addCraving = Intent(activity, AddCraving::class.java)
             startActivity(addCraving)
         })
+
+        showCravingBtn.setOnClickListener {
+            var showCravings = Intent(activity,ShowCravings::class.java)
+            startActivity(showCravings)
+        }
 
         return view
     }

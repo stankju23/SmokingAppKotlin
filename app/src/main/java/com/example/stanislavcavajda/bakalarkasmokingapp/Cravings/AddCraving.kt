@@ -1,85 +1,60 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Cravings
 
-import android.Manifest
-import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
+import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.GPSTracker
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.ThemeManager
 import com.example.stanislavcavajda.bakalarkasmokingapp.Koloda.KolodaAdapter
 import com.example.stanislavcavajda.bakalarkasmokingapp.Koloda.KolodaClass
 import com.example.stanislavcavajda.bakalarkasmokingapp.Koloda.KolodaItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
-import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationServices
 import com.mindorks.placeholderview.SwipeDecor
 import com.mindorks.placeholderview.SwipePlaceHolderView
 import com.mindorks.placeholderview.SwipeViewBuilder
 import kotlinx.android.synthetic.main.activity_add_craving.*
-import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
 
 
-class AddCraving : AppCompatActivity(), GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
-
-    override fun onConnectionFailed(p0: ConnectionResult?) {
-
-    }
-
-    override fun onConnected(p0: Bundle?) {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            var lastLocation = LocationServices.FusedLocationApi?.getLastLocation(googleApiClient);
-            try {
-                latitude = lastLocation?.getLatitude()!!
-                longitude = lastLocation?.getLongitude()!!
-            } catch (e: Exception) {
-
-            }
-
-        }
-
-        Toast.makeText(this,getCityName(latitude,longitude),Toast.LENGTH_LONG).show()
-        Log.i("latitude",latitude.toString())
-        Log.i("longitude",longitude.toString())
-
-    }
-
-    override fun onConnectionSuspended(p0: Int) {
-
-    }
+class AddCraving : AppCompatActivity() {
 
     lateinit var googleApiClient: GoogleApiClient
-
 
     private var adapter: KolodaAdapter? = null
     var latitude:Double = 0.0
     var longitude:Double = 0.0
+
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    lateinit var locationCallback: LocationCallback
+
+    lateinit var gpsTracker:GPSTracker
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ThemeManager.setTheme(this, Data.actualTheme)
         setContentView(R.layout.activity_add_craving)
 
+        gpsTracker =  GPSTracker(this)
+        if (gpsTracker.canGetLocation) {
+            gpsTracker.getLocation()
+            Toast.makeText(this, getCityName(gpsTracker.latitude,gpsTracker.longitude), Toast.LENGTH_SHORT).show()
+        } else {
+            gpsTracker.showSettingsAlert()
+        }
 
-        googleApiClient = GoogleApiClient
-                .Builder(this,this,this)
-                .addApi(LocationServices.API)
-                .build()
-
-
-
-
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
 
         var toolbar = findViewById<Toolbar>(R.id.add_craving_toolbar)
@@ -121,6 +96,10 @@ class AddCraving : AppCompatActivity(), GoogleApiClient.ConnectionCallbacks, Goo
 
     }
 
+    fun showToast(){
+        Toast.makeText(this,getCityName(latitude,longitude),Toast.LENGTH_SHORT).show()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.add_craving, menu)
         return true
@@ -143,14 +122,23 @@ class AddCraving : AppCompatActivity(), GoogleApiClient.ConnectionCallbacks, Goo
     }
 
     override fun onStart() {
-        if (googleApiClient != null) {
-            googleApiClient.connect()
-        }
         super.onStart()
+
     }
 
-    override fun onStop() {
-        googleApiClient.disconnect()
+    override fun onResume() {
+
+        super.onResume()
+    }
+
+    override fun onPause() {
+        gpsTracker.stopUsingGPS()
+        super.onPause()
+    }
+
+    override fun onStop()
+    {
+
         super.onStop()
     }
 
@@ -158,7 +146,13 @@ class AddCraving : AppCompatActivity(), GoogleApiClient.ConnectionCallbacks, Goo
         var geocoder = Geocoder(this, Locale.getDefault())
         var list = ArrayList<Address>()
         list.addAll(geocoder.getFromLocation(lat,long,1))
-        return list[0].locality
-    }
+        var city = ""
+        try {
+            city = list[0].locality + "," +list[0].thoroughfare + "," +list[0].featureName
+        } catch (e:Exception) {
 
+        }
+
+        return city
+    }
 }

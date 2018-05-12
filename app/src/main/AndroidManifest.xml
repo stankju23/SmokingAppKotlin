@@ -60,7 +60,8 @@
             android:name=".Main.ChangeColor"
             android:screenOrientation="portrait" />
         <activity android:name=".Walkthrough.Walkthrough" />
-        <activity android:name=".Cravings.AddCraving"></activity>
+        <activity android:name=".Cravings.AddCraving" />
+        <activity android:name=".Cravings.ShowCravings"></activity>
     </application>
 
 </manifest>

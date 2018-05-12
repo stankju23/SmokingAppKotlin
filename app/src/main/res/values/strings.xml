@@ -40,4 +40,5 @@
     <string name="number_of_cravings">Number of cravings </string>
     <string name="show_craving_preferences">Show craving preferences</string>
     <string name="first_aid">First Aid</string>
+    <string name="cravings_title">Cravings</string>
 </resources>

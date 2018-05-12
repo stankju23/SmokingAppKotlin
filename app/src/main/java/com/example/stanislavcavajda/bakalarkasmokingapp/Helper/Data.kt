@@ -1,5 +1,6 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Helper
 
+import com.example.stanislavcavajda.bakalarkasmokingapp.Cravings.Craving
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.HealthList.HealthProgressViewModel
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MainProgress.MainProgressDetailTime
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.Wish
@@ -21,6 +22,7 @@ object Data {
     var objectives: ArrayList<Objective> = ArrayList()
     var missionList: ArrayList<Mission> = ArrayList()
     var actualTheme = 1
+    var cravings:ArrayList<Craving> = ArrayList()
 
     var dashboardThreadStared = false
     var themeChanged = false
