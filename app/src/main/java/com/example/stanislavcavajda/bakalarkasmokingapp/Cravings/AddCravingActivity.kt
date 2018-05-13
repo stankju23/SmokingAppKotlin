@@ -1,44 +1,25 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Cravings
 
-import android.location.Address
-import android.location.Geocoder
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
-import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.GPSTracker
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.ThemeManager
-import com.example.stanislavcavajda.bakalarkasmokingapp.Koloda.KolodaAdapter
 import com.example.stanislavcavajda.bakalarkasmokingapp.Koloda.KolodaClass
 import com.example.stanislavcavajda.bakalarkasmokingapp.Koloda.KolodaItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
-import com.google.android.gms.common.api.GoogleApiClient
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationServices
 import com.mindorks.placeholderview.SwipeDecor
 import com.mindorks.placeholderview.SwipePlaceHolderView
 import com.mindorks.placeholderview.SwipeViewBuilder
 import kotlinx.android.synthetic.main.activity_add_craving.*
-import java.util.*
-import kotlin.collections.ArrayList
 
 
-class AddCraving : AppCompatActivity() {
+class AddCravingActivity : AppCompatActivity() {
 
-    lateinit var googleApiClient: GoogleApiClient
-
-    private var adapter: KolodaAdapter? = null
     var latitude:Double = 0.0
     var longitude:Double = 0.0
-
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-    lateinit var locationCallback: LocationCallback
-
-    lateinit var gpsTracker:GPSTracker
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,15 +27,6 @@ class AddCraving : AppCompatActivity() {
         ThemeManager.setTheme(this, Data.actualTheme)
         setContentView(R.layout.activity_add_craving)
 
-        gpsTracker =  GPSTracker(this)
-        if (gpsTracker.canGetLocation) {
-            gpsTracker.getLocation()
-            Toast.makeText(this, getCityName(gpsTracker.latitude,gpsTracker.longitude), Toast.LENGTH_SHORT).show()
-        } else {
-            gpsTracker.showSettingsAlert()
-        }
-
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
 
         var toolbar = findViewById<Toolbar>(R.id.add_craving_toolbar)
@@ -96,9 +68,6 @@ class AddCraving : AppCompatActivity() {
 
     }
 
-    fun showToast(){
-        Toast.makeText(this,getCityName(latitude,longitude),Toast.LENGTH_SHORT).show()
-    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.add_craving, menu)
@@ -132,7 +101,7 @@ class AddCraving : AppCompatActivity() {
     }
 
     override fun onPause() {
-        gpsTracker.stopUsingGPS()
+
         super.onPause()
     }
 
@@ -142,17 +111,4 @@ class AddCraving : AppCompatActivity() {
         super.onStop()
     }
 
-    fun getCityName(lat:Double, long:Double):String {
-        var geocoder = Geocoder(this, Locale.getDefault())
-        var list = ArrayList<Address>()
-        list.addAll(geocoder.getFromLocation(lat,long,1))
-        var city = ""
-        try {
-            city = list[0].locality + "," +list[0].thoroughfare + "," +list[0].featureName
-        } catch (e:Exception) {
-
-        }
-
-        return city
-    }
 }

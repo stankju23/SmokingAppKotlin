@@ -47,6 +47,10 @@ class MainActivity : AppCompatActivity() {
             RealmDB.getWishes(this)
         }
 
+        if (Data.cravings.isEmpty()) {
+            RealmDB.getCravings(this)
+        }
+
         var binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         var toolbar = findViewById<Toolbar>(R.id.my_toolbar)

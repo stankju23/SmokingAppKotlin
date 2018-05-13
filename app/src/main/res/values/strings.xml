@@ -41,4 +41,5 @@
     <string name="show_craving_preferences">Show craving preferences</string>
     <string name="first_aid">First Aid</string>
     <string name="cravings_title">Cravings</string>
+    <string name="title_activity_craving_map">Map</string>
 </resources>

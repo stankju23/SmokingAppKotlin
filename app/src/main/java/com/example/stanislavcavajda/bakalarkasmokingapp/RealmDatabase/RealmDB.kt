@@ -3,6 +3,7 @@ package com.example.stanislavcavajda.bakalarkasmokingapp.RealmDatabase
 import android.content.Context
 import android.net.Uri
 import android.util.Log
+import com.example.stanislavcavajda.bakalarkasmokingapp.Cravings.Craving
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.Wish
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DateConverter
@@ -159,6 +160,32 @@ object RealmDB {
         var endTimestamp = dateConverter.getCurrentTimestamp()
         var vysledok = endTimestamp - startTimestamp
         Log.i("Read time ", vysledok.toString())
+
+    }
+
+    fun saveCraving(craving:Craving) {
+        realm.beginTransaction()
+        var realmCraving = realm.createObject(CravingRealm::class.java)
+        realmCraving.id = craving.id
+        realmCraving.time = craving.time
+        realmCraving.date = craving.date
+        realmCraving.latitude = craving.latitude
+        realmCraving.longitude = craving.longitude
+        realm.commitTransaction()
+    }
+
+    fun getCravings(context: Context) {
+
+        val result = realm.where(CravingRealm::class.java).findAll()
+
+        for (item in result) {
+            try {
+                var craving = Craving(item.id,item.time,item.date,item.latitude,item.longitude,context)
+                Data.cravings.add(craving)
+            } catch (e:Exception) {
+                Log.i("Cravings" ,"Can't load")
+            }
+        }
 
     }
 }

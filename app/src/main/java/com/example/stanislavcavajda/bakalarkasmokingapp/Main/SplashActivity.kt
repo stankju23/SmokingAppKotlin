@@ -14,6 +14,7 @@ class SplashActivity : AppCompatActivity() {
         var preferences = getSharedPreferences("walkthrough", Context.MODE_PRIVATE)
         var firstTime = preferences.getBoolean(Constants.preferences.FIRST_TIME,false)
 
+
         if (!firstTime) {
 //            var walkthrough = Intent(this, Walkthrough::class.java)
 //            startActivity(walkthrough)

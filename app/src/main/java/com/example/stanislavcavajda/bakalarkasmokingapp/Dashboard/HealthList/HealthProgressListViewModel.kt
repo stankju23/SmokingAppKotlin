@@ -22,7 +22,6 @@ class HealthProgressListViewModel : BaseObservable {
     var itemBinding : ItemBinding<HealthProgressViewModel> = ItemBinding.of(BR.viewModel, R.layout.health_progress_list_item)
 
 
-
     constructor(healthProgressViewList: ArrayList<HealthProgressViewModel>, context: Context) {
         this.healthProgressViewList.clear()
         this.healthProgressViewList.addAll(healthProgressViewList)

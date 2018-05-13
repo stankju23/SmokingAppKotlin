@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
 
+
+
 public class DateConverter () {
 
 
@@ -41,9 +43,19 @@ public class DateConverter () {
         val calendar = Calendar.getInstance()
         val tz = TimeZone.getDefault()
         calendar.add(Calendar.MILLISECOND, tz.getOffset(calendar.timeInMillis))
-        val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        val sdf = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
         val currenTimeZone = java.util.Date(time * 1000)
         return sdf.format(currenTimeZone)
+    }
+
+    @SuppressLint("NewApi")
+    fun getTime():String {
+        val cal = Calendar.getInstance()
+        cal.timeInMillis = System.currentTimeMillis()
+        val date = cal.time
+        var mHour = date.hours
+        var mMinute = date.minutes
+        return "${if (mHour <10) "0$mHour" else "$mHour"} : ${if (mMinute <10) "0$mMinute" else "$mMinute"}"
     }
 
 

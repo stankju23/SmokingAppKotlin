@@ -44,7 +44,7 @@ class WishListViewModel: BaseObservable {
     fun updateWish() {
         var actualWish: Wish? = null
         for (item in wishList) {
-            if (!item.canBuy.get() && !item.isBought.get()) {
+            if (!item.isBought.get()) {
                 actualWish = item
                 break
             }

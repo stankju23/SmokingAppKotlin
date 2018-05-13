@@ -1,7 +1,6 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Cravings
 
 import android.content.Context
-import android.graphics.Color
 import android.support.v7.widget.CardView
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +27,7 @@ class CravingCell(item: Craving) : SimpleCell<Craving, CravingCell.ViewHolder>(i
         viewHolder.time.setText(item.time)
         viewHolder.city.setText(item.city)
         if (position % 2 == 1) {
-            viewHolder.card.setCardBackgroundColor(Color.parseColor("#EFEFEF"))
+            viewHolder.card.setCardBackgroundColor(context.resources.getColor(R.color.item_grey))
         } else {
             viewHolder.card.setCardBackgroundColor(context.resources.getColor(R.color.white))
         }

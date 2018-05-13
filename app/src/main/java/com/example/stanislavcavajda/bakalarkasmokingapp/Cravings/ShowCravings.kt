@@ -1,5 +1,6 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Cravings
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
@@ -60,19 +61,9 @@ class ShowCravings : AppCompatActivity() {
 
     fun bindData() {
         var list = ArrayList<CravingCell>()
-        for (i in 0..5) {
-            var craving = Craving("1","14:28","10.05.2018",49.308632,18.788138,this)
-            list.add(CravingCell(craving))
-        }
 
-        for (i in 0..10) {
-            var craving = Craving("1","09:18","11.05.2018",49.308632,18.788138,this)
-            list.add(CravingCell(craving))
-        }
-
-        for (i in 0..12) {
-            var craving = Craving("1","10:34","12.05.2018",49.308632,18.788138,this)
-            list.add(CravingCell(craving))
+        for (item in Data.cravings) {
+            list.add(CravingCell(item))
         }
 
         recyclerView.addCells(list)
@@ -86,6 +77,8 @@ class ShowCravings : AppCompatActivity() {
                 return true
             }
             R.id.show_map -> {
+                var mapActivity = Intent(this,CravingMapActivity::class.java)
+                startActivity(mapActivity)
                 return true
             }
         }

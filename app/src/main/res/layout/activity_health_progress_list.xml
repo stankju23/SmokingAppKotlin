@@ -37,6 +37,7 @@
             app:itemBinding="@{viewModel.itemBinding}"
             app:items="@{viewModel.healthProgressViewList}"
             app:layoutManager="@{LayoutManagers.linear()}"
+            android:background="@color/item_grey"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
