@@ -3,13 +3,12 @@ package com.example.stanislavcavajda.bakalarkasmokingapp.Cravings
 import android.content.Context
 import android.location.Address
 import android.location.Geocoder
-import java.util.*
-import kotlin.collections.ArrayList
+import java.util.Locale
 
 /**
  * Created by stanislavcavajda on 12/05/2018.
  */
-class Craving {
+class Craving:CravingItem {
 
     var id:String
     var time:String

@@ -18,8 +18,6 @@ import kotlinx.android.synthetic.main.activity_add_craving.*
 
 class AddCravingActivity : AppCompatActivity() {
 
-    var latitude:Double = 0.0
-    var longitude:Double = 0.0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

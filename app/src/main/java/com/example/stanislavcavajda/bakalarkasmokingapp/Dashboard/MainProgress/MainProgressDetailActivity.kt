@@ -11,7 +11,7 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Model.Date
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.databinding.ActivityMainProgressDetailBinding
 import kotlinx.android.synthetic.main.activity_main_progress_detail.*
-import java.util.Timer
+import java.util.*
 import kotlin.concurrent.timerTask
 
 class MainProgressDetailActivity : AppCompatActivity() {
@@ -31,7 +31,7 @@ class MainProgressDetailActivity : AppCompatActivity() {
         setSupportActionBar(main_progress_detail_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.abc_ic_ab_back_material)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white)
         supportActionBar?.title = getString(R.string.main_progress_detail_title)
 
         timer.scheduleAtFixedRate(timerTask {

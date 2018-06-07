@@ -15,9 +15,9 @@
             swiping= "@{viewModel.canBuy.get()}">
 
             <android.support.constraint.ConstraintLayout
-                android:background="@drawable/edit_wish_swipe_bg"
+                android:background="?colorPrimary"
                 android:id="@+id/bottom_wrapper"
-                android:layout_width="75dp"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:onClick="@{viewModel.setBought}">
 

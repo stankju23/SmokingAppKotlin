@@ -50,7 +50,7 @@ class CravingMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
         var markers = ArrayList<LatLng>()
 
-        var cravings = ArrayList<Craving>()
+        var cravings = ArrayList<CravingItem>()
 
         cravings.addAll(Data.cravings)
 
@@ -73,8 +73,10 @@ class CravingMapActivity : AppCompatActivity(), OnMapReadyCallback {
 //        }
 
         for (i in cravings) {
-            var city = LatLng(i.latitude, i.longitude)
-            markers.add(city)
+            if (i is Craving) {
+                var city = LatLng(i.latitude, i.longitude)
+                markers.add(city)
+            }
         }
 
         val icon = BitmapFactory.decodeResource(getResources(),R.drawable.marker)

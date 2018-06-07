@@ -16,7 +16,7 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.RealmDatabase.RealmDB
 import io.vrinda.kotlinpermissions.PermissionsActivity
 import kotlinx.android.synthetic.main.activity_add_wish.*
-import java.util.UUID
+import java.util.*
 
 class AddWishActivity : PermissionsActivity() {
 
@@ -70,7 +70,7 @@ class AddWishActivity : PermissionsActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.abc_ic_ab_back_material)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white)
 
         add_wish_image.setOnClickListener {
 

@@ -1,9 +1,10 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Helper
 
-import com.example.stanislavcavajda.bakalarkasmokingapp.Cravings.Craving
+import com.example.stanislavcavajda.bakalarkasmokingapp.Cravings.CravingItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.HealthList.HealthProgressViewModel
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MainProgress.MainProgressDetailTime
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.Wish
+import com.example.stanislavcavajda.bakalarkasmokingapp.Main.Achievment
 import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Mission
 import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Objective
 
@@ -14,15 +15,16 @@ object Data {
 
     var healthProgressViewList: ArrayList<HealthProgressViewModel> = ArrayList()
     //var date = "02-03-2018 15:00"
-    var date = "03-05-2018 09:53"
+    var date = "01-06-2018 11:13"
     var healthProgressTimes: ArrayList<Long> = ArrayList()
     var wishList: ArrayList<Wish> = ArrayList()
     var timeList: ArrayList<MainProgressDetailTime> = ArrayList()
-    var swipeCanClick: Boolean = true
+    var achievmentList: ArrayList<Achievment> = ArrayList()
+
     var objectives: ArrayList<Objective> = ArrayList()
     var missionList: ArrayList<Mission> = ArrayList()
     var actualTheme = 1
-    var cravings:ArrayList<Craving> = ArrayList()
+    var cravings:ArrayList<CravingItem> = ArrayList()
 
     var dashboardThreadStared = false
     var themeChanged = false

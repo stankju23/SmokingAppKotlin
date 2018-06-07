@@ -10,9 +10,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
-import com.example.stanislavcavajda.bakalarkasmokingapp.RealmDatabase.RealmDB
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.ThemeManager
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
+import com.example.stanislavcavajda.bakalarkasmokingapp.RealmDatabase.RealmDB
 import kotlinx.android.synthetic.main.activity_edit_wish.*
 
 class EditWishActivity : AppCompatActivity() {
@@ -31,7 +31,7 @@ class EditWishActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.abc_ic_ab_back_material)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white)
 
 
         position = intent.getIntExtra(Constants.extras.EXTRA_ITEM_ID,0)

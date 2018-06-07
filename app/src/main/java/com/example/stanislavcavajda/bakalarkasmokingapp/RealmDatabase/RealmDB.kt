@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.util.Log
 import com.example.stanislavcavajda.bakalarkasmokingapp.Cravings.Craving
+import com.example.stanislavcavajda.bakalarkasmokingapp.Cravings.CravingHeader
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.Wish
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DateConverter
@@ -13,7 +14,7 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Objective
 import com.example.stanislavcavajda.bakalarkasmokingapp.Model.Date
 import io.realm.Realm
 import io.realm.RealmList
-import java.util.*
+import java.util.ArrayList
 
 /**
  * Created by stanislavcavajda on 13/03/2018.
@@ -171,6 +172,16 @@ object RealmDB {
         realmCraving.date = craving.date
         realmCraving.latitude = craving.latitude
         realmCraving.longitude = craving.longitude
+        realmCraving.isHeader = false
+        realm.commitTransaction()
+    }
+
+    fun saveHeader(header:CravingHeader) {
+        realm.beginTransaction()
+        var realmCraving = realm.createObject(CravingRealm::class.java)
+        realmCraving.id = header.id
+        realmCraving.date = header.date
+        realmCraving.isHeader = true
         realm.commitTransaction()
     }
 
@@ -180,8 +191,14 @@ object RealmDB {
 
         for (item in result) {
             try {
-                var craving = Craving(item.id,item.time,item.date,item.latitude,item.longitude,context)
-                Data.cravings.add(craving)
+                if (item.isHeader) {
+                    var cravingHeader = CravingHeader(item.id,item.date)
+                    Data.cravings.add(cravingHeader)
+                } else {
+                    var craving = Craving(item.id,item.time,item.date,item.latitude,item.longitude,context)
+                    Data.cravings.add(craving)
+                }
+
             } catch (e:Exception) {
                 Log.i("Cravings" ,"Can't load")
             }

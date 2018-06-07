@@ -48,10 +48,10 @@ android {
 dependencies {
     implementation 'com.android.support:appcompat-v7:21+'
     implementation 'com.android.support:design:27.1.0'
+    compile 'com.google.android.gms:play-services-location:15.0.0'
     implementation 'com.android.support:support-vector-drawable:26.1.0'
     implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.google.android.gms:play-services-maps:15.0.1'
-    kapt "com.android.databinding:compiler:3.1.1"
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:26.1.0'
@@ -80,5 +80,8 @@ dependencies {
     compile 'com.github.Yalantis:Koloda-Android:v0.0.1-alpha'
     compile 'com.mindorks:placeholderview:0.7.1'
     compile 'com.github.jaychang0917:SimpleRecyclerView:1.2.0'
+    compile 'com.yarolegovich:sliding-root-nav:1.1.0'
+    compile 'com.brandongogetap:stickyheaders:0.5.0'
+
 
 }

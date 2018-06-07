@@ -2,12 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.stanislavcavajda.bakalarkasmokingapp">
 
-    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <android:uses-permission android:name="android.permission.INTERNET" />
-    <android:uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <android:uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <android:uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -78,8 +78,10 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+
         <activity
             android:name=".Cravings.CravingMapActivity"
-            android:label="@string/title_activity_craving_map"></activity>
+            android:label="@string/title_activity_craving_map" />
+        <activity android:name=".Main.AchievmentActivity"></activity>
     </application>
 </manifest>

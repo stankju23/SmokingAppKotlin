@@ -11,11 +11,26 @@
                   <entry key="vectorAssetStep">
                     <value>
                       <PersistentState>
+                        <option name="children">
+                          <map>
+                            <entry key="clipartAsset">
+                              <value>
+                                <PersistentState>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="url" value="jar:file:/private/var/folders/j6/hch4yp3x579_xkx_zz3z9jkm0000gn/T/AppTranslocation/41039F5F-040C-4B6A-AD27-9920B416012C/d/Android%20Studio%203.2%20Preview.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_arrow_back_black_24dp.xml" />
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                         <option name="values">
                           <map>
-                            <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="marker" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/../../marker.svg" />
+                            <entry key="color" value="ffffff" />
+                            <entry key="outputName" value="ic_arrow_back_white" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/../../achievment.svg" />
                           </map>
                         </option>
                       </PersistentState>

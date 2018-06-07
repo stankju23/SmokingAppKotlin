@@ -22,8 +22,9 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Model.Date
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.databinding.FragmentDashboardBinding
 import java.text.NumberFormat
-import java.util.*
-import kotlin.collections.ArrayList
+import java.util.Locale
+import java.util.Timer
+import java.util.TimerTask
 
 class DashboardFragment : Fragment() {
 
@@ -65,7 +66,7 @@ class DashboardFragment : Fragment() {
         }
 
 
-        dashboardList = DashboardListViewModel(ArrayList(), activity.applicationContext)
+        dashboardList = DashboardListViewModel(ArrayList(), activity)
 
         var healthProgress = HealthProgressListViewModel(Data.healthProgressViewList, activity)
         var mainProgress = MainProgressViewModel(date, activity,Data.timeList)

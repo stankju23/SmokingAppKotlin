@@ -1,6 +1,7 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Bindings
 
 import android.databinding.BindingAdapter
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.support.constraint.ConstraintLayout
 import android.util.TypedValue
@@ -89,6 +90,18 @@ fun bindDate(textview:TextView,date:String){
     textview.setText("dasdiuasidbasduiasbdasbiasbd")
 }
 
+
+@BindingAdapter("imageSrc")
+fun setImageSrc(imageView: ImageView,image:Drawable) {
+    val context = imageView.getContext()
+    if (image != null) {
+        Glide.with(context)
+            .load(image)
+            .into(imageView)
+    } else {
+        Glide.with(context).clear(imageView)
+    }
+}
 
 
 @BindingAdapter("swiping")

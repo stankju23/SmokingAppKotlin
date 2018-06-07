@@ -11,6 +11,7 @@ open class CravingRealm (
         var time:String = "",
         var date:String = "",
         var latitude:Double = 0.0,
-        var longitude:Double = 0.0
+        var longitude:Double = 0.0,
+        var isHeader:Boolean = false
 
 ):RealmObject()
