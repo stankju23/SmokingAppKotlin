@@ -16,7 +16,7 @@ import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import com.example.stanislavcavajda.bakalarkasmokingapp.Cravings.CravingFragment
+//import com.example.stanislavcavajda.bakalarkasmokingapp.Cravings.CravingFragment
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.DashboardFragment
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.BottomNavigationViewHelper
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
@@ -148,7 +148,7 @@ class MainActivity : AppCompatActivity() {
                     supportActionBar?.setDisplayHomeAsUpEnabled(false)
                     supportActionBar?.setDisplayShowHomeEnabled(false)
                     supportActionBar?.title = resources.getString(R.string.title_cravings)
-                    fragmentManager.beginTransaction().replace(R.id.fragment_container, CravingFragment(), "cravings").commit()
+//                    fragmentManager.beginTransaction().replace(R.id.fragment_container, CravingFragment(), "cravings").commit()
                     return@OnNavigationItemSelectedListener true
                 }
 

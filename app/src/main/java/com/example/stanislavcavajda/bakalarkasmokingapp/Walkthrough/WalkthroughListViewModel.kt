@@ -17,7 +17,15 @@ class WalkthroughListViewModel: BaseObservable {
         this.walkthroughList.addAll(walkthroughList)
         this.context = context
         this.itemBinding = OnItemBind { itemBinding, position, item ->
-            itemBinding.set(BR.viewModel, R.layout.walkthrough_money_item)
+            itemBinding.set(BR.viewModel,
+                when(position) {
+                    0 -> R.layout.walkthrough_welcome_item
+                    1 -> R.layout.walkthrough_cigarettes_info_item
+                    2 -> R.layout.walkthrough_cigarettes_info_item
+                    3 ->R.layout.walkthrough_currency_item
+                    4-> R.layout.walkthrough_currency_item
+                    else -> R.layout.walkthrough_cigarettes_info_item
+                })
         }
     }
 }

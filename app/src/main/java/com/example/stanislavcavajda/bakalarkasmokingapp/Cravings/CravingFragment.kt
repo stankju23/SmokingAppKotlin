@@ -21,7 +21,6 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DateConverter
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.RealmDatabase.RealmDB
-import com.example.stanislavcavajda.bakalarkasmokingapp.databinding.FragmentCravingBinding
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.LocationRequest
@@ -78,7 +77,6 @@ class CravingFragment : Fragment(),GoogleApiClient.OnConnectionFailedListener,Go
 
 
     var dateConverter = DateConverter()
-    lateinit var binding:FragmentCravingBinding
 
     lateinit var mGoogleApiClient: GoogleApiClient
 

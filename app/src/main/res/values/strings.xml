@@ -44,4 +44,16 @@
     <string name="title_activity_craving_map">Map</string>
     <string name="congratulation">Congratulation</string>
     <string name="share">Share</string>
+    <string name="next">Next</string>
+    
+    
+    // walkthrough end page
+    
+    <string name="cigarettes_smoked"> cigarettes smoked every day</string>
+    <string name="cigarettes_in_package"> cigarettes in packet</string>
+    <string name="cost"> cost one packet</string>
+    <string name="preffered_currency"> my preffered currency</string>
+    <string name="stop">Stop smoking now !</string>
+    <string name="congratulation_walkthrough">Congratulation, your are on your way to stop smoking.</string>
+
 </resources>

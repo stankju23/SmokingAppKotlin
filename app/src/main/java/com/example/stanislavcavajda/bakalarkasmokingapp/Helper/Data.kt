@@ -29,6 +29,8 @@ object Data {
     var dashboardThreadStared = false
     var themeChanged = false
 
+    var walkthroughList = ArrayList<Object>()
+
 
 
     object Theme {
@@ -41,7 +43,7 @@ object Data {
         var moneySpend:Float = 0.0f
         var cigarretesPerDay: Int = 15
         var cigarretesInPackage:Int = 20
-        var packagePrice:Double = 3.40
+        var packagePrice:Double = 3.3
         var actualMoneyState:Float = 0.0f
     }
 }
