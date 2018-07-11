@@ -4,7 +4,6 @@ import android.Manifest
 import android.app.Fragment
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.databinding.DataBindingUtil
 import android.location.Location
 import android.location.LocationListener
 import android.os.Bundle
@@ -31,8 +30,6 @@ import java.util.UUID
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -42,8 +39,10 @@ class CravingFragment : Fragment(),GoogleApiClient.OnConnectionFailedListener,Go
 
 
     override fun onLocationChanged(location: Location?) {
-        this.latitude = location?.latitude!!
-        this.longitude = location?.longitude!!
+        if(location != null) {
+            this.latitude = location.latitude
+            this.longitude = location.longitude
+        }
     }
 
     override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
@@ -59,20 +58,14 @@ class CravingFragment : Fragment(),GoogleApiClient.OnConnectionFailedListener,Go
     }
 
     override fun onConnected(p0: Bundle?) {
-        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-             ActivityCompat.requestPermissions(activity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),100)
-             startLocationServices()
-        } else {
-            startLocationServices()
-        }
-
+        startLocationServices()
     }
 
     override fun onConnectionSuspended(p0: Int) {
     }
 
     override fun onConnectionFailed(p0: ConnectionResult) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
 
@@ -113,10 +106,10 @@ class CravingFragment : Fragment(),GoogleApiClient.OnConnectionFailedListener,Go
         cigarette.startAnimation(cigaretteAnim)
 
         imageView.setOnClickListener(View.OnClickListener {
-            if (latitude != 0.0 && longitude != 0.0) {
+            if (latitude != null && longitude != null) {
                 if (Data.cravings.size == 0) {
                     var header = CravingHeader(UUID.randomUUID().toString(),dateConverter.getDate(dateConverter.getCurrentTimestamp()))
-                    var craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity)
+                    var craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity,false)
                     Data.cravings.add(header)
                     RealmDB.saveHeader(header)
                     Data.cravings.add(craving)
@@ -124,20 +117,27 @@ class CravingFragment : Fragment(),GoogleApiClient.OnConnectionFailedListener,Go
                 } else {
                     if (Data.cravings[Data.cravings.size - 1] is Craving && (Data.cravings[Data.cravings.size - 1] as Craving).date != dateConverter.getDate(dateConverter.getCurrentTimestamp())) {
                         var header = CravingHeader(UUID.randomUUID().toString(),dateConverter.getDate(dateConverter.getCurrentTimestamp()))
-                        var craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity)
+                        var craving:Craving
+                        if ((Data.cravings[Data.cravings.size - 1] as Craving).blackBG) {
+                            craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity,false)
+                        } else {
+                            craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity,true)
+                        }
                         Data.cravings.add(header)
                         RealmDB.saveHeader(header)
                         Data.cravings.add(craving)
                         RealmDB.saveCraving(craving)
                     } else {
-                        var craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity)
+                        var craving:Craving
+                        if ((Data.cravings[Data.cravings.size - 1] as Craving).blackBG) {
+                            craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity,false)
+                        } else {
+                            craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity,true)
+                        }
                         Data.cravings.add(craving)
                         RealmDB.saveCraving(craving)
                     }
                 }
-
-
-
                 val addCraving = Intent(activity, AddCravingActivity::class.java)
                 startActivity(addCraving)
             }
@@ -187,7 +187,11 @@ class CravingFragment : Fragment(),GoogleApiClient.OnConnectionFailedListener,Go
     fun startLocationServices() {
 
         var req = LocationRequest.create().setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient,req,this)
+        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, req, this)
+        } else {
+            ActivityCompat.requestPermissions(activity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),100)
+        }
 
     }
 
@@ -205,7 +209,9 @@ class CravingFragment : Fragment(),GoogleApiClient.OnConnectionFailedListener,Go
 //    }
 
     override fun onPause() {
-        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient,this)
+        if (mGoogleApiClient.isConnected) {
+            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this)
+        }
         super.onPause()
     }
 }

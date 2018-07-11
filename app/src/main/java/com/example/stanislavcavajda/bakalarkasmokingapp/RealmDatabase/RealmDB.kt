@@ -173,6 +173,7 @@ object RealmDB {
         realmCraving.latitude = craving.latitude
         realmCraving.longitude = craving.longitude
         realmCraving.isHeader = false
+        realmCraving.blacBG = craving.blackBG
         realm.commitTransaction()
     }
 
@@ -195,7 +196,7 @@ object RealmDB {
                     var cravingHeader = CravingHeader(item.id,item.date)
                     Data.cravings.add(cravingHeader)
                 } else {
-                    var craving = Craving(item.id,item.time,item.date,item.latitude,item.longitude,context)
+                    var craving = Craving(item.id,item.time,item.date,item.latitude,item.longitude,context,item.blacBG)
                     Data.cravings.add(craving)
                 }
 

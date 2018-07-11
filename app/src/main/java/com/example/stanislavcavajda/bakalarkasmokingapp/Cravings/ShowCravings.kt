@@ -39,10 +39,16 @@ class ShowCravings : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item?.itemId == R.id.show_map) {
-            var mapActivity = Intent(this,CravingMapActivity::class.java)
-            startActivity(mapActivity)
+        when(item?.itemId) {
+            R.id.show_map -> {
+                var mapActivity = Intent(this,CravingMapActivity::class.java)
+                startActivity(mapActivity)
+            }
 
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
     }

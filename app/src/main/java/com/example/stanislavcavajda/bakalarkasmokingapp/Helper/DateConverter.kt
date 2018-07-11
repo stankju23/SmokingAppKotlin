@@ -49,6 +49,16 @@ public class DateConverter () {
     }
 
     @SuppressLint("NewApi")
+    fun getFullDate(time: Long): String {
+        val calendar = Calendar.getInstance()
+        val tz = TimeZone.getDefault()
+        calendar.add(Calendar.MILLISECOND, tz.getOffset(calendar.timeInMillis))
+        val sdf = SimpleDateFormat("dd-MM-yyyy HH:MM", Locale.getDefault())
+        val currenTimeZone = java.util.Date(time * 1000)
+        return sdf.format(currenTimeZone)
+    }
+
+    @SuppressLint("NewApi")
     fun getTime():String {
         val cal = Calendar.getInstance()
         cal.timeInMillis = System.currentTimeMillis()

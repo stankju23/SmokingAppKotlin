@@ -13,6 +13,7 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Objective
  */
 object Data {
 
+
     var healthProgressViewList: ArrayList<HealthProgressViewModel> = ArrayList()
     //var date = "02-03-2018 15:00"
     var date = "01-06-2018 11:13"
@@ -29,7 +30,6 @@ object Data {
     var dashboardThreadStared = false
     var themeChanged = false
 
-    var walkthroughList = ArrayList<Object>()
 
 
 
@@ -43,6 +43,7 @@ object Data {
         var moneySpend:Float = 0.0f
         var cigarretesPerDay: Int = 15
         var cigarretesInPackage:Int = 20
+        var currency:String = ""
         var packagePrice:Double = 3.3
         var actualMoneyState:Float = 0.0f
     }

@@ -54,6 +54,14 @@ object Constants {
         const val DESC = "wish_desc"
     }
 
+    object actualState {
+        const val CIGARETTES_PER_DAY = "cigarettes_per_day"
+        const val CIGARETTES_IN_PACKAGE = "cigarettes_in_package"
+        const val PACKAGE_PRICE = "package_price"
+        const val CURRENCY = "currency"
+        const val ACTUAL_DATE = "actual_date"
+    }
+
     object Themes {
         const val theme1 = 0
         const val theme2 = 1

@@ -18,16 +18,23 @@ class Craving:CravingItem {
     var city:String
     var address:String
     var context:Context
+    var blackBG:Boolean
 
-    constructor(id:String,time:String,date:String,lat: Double,long: Double,context: Context) {
+    constructor(id:String,time:String,date:String,lat: Double,long: Double,context: Context,blackBG:Boolean) {
         this.id = id
         this.time = time
         this.date = date
         this.latitude = lat
         this.longitude = long
         this.context = context
-        this.city = getAddress(this.latitude,this.longitude)[0]
-        this.address = "${getAddress(this.latitude,this.longitude)[1]},${getAddress(this.latitude,this.longitude)[2]}"
+        if (getAddress(this.latitude,this.longitude).size > 0) {
+            this.city = getAddress(this.latitude, this.longitude)[0]
+            this.address = "${getAddress(this.latitude, this.longitude)[1]},${getAddress(this.latitude, this.longitude)[2]}"
+        } else {
+            this.city = "unknown"
+            this.address = "unknown"
+        }
+        this.blackBG = blackBG
 
     }
 
@@ -41,7 +48,6 @@ class Craving:CravingItem {
         } catch (e:Exception) {
 
         }
-
         return city
     }
 

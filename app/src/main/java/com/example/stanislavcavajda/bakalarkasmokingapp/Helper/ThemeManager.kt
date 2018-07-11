@@ -12,10 +12,10 @@ object ThemeManager {
     fun setTheme(context: Context,actualTheme:Int) {
         when (actualTheme) {
             Constants.Themes.theme1 -> {
-                context.setTheme(R.style.AppTheme)
+                context.setTheme(R.style.Theme1)
             }
             Constants.Themes.theme2 -> {
-                context.setTheme(R.style.Theme1)
+                context.setTheme(R.style.AppTheme)
             }
 
         }

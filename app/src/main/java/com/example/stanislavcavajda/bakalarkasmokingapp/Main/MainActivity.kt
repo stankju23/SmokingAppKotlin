@@ -1,14 +1,12 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Main
 
 //import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DateConverter
-import android.Manifest
+//import com.example.stanislavcavajda.bakalarkasmokingapp.Cravings.CravingFragment
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -16,7 +14,7 @@ import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-//import com.example.stanislavcavajda.bakalarkasmokingapp.Cravings.CravingFragment
+import com.example.stanislavcavajda.bakalarkasmokingapp.Cravings.CravingFragment
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.DashboardFragment
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.BottomNavigationViewHelper
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
@@ -47,6 +45,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var achievmentDrawer: SlidingRootNav
     val REQUEST_PERMISSION_CODE = 100
 
+    var missionTimer = Timer()
+    var achievmentTimer = Timer()
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         var dateConverter = DateConverter()
@@ -55,9 +56,6 @@ class MainActivity : AppCompatActivity() {
 
         ThemeManager.setTheme(this, Data.actualTheme)
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), REQUEST_PERMISSION_CODE)
-        }
 
         // var preferences = getSharedPreferences("date", Context.MODE_PRIVATE)
         //Data.date = preferences.getString(Constants.preferences.DATE_PREFERENCES,"03-02-2018")
@@ -71,6 +69,7 @@ class MainActivity : AppCompatActivity() {
         if (Data.cravings.isEmpty()) {
             RealmDB.getCravings(this)
         }
+
 
         var binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
@@ -148,7 +147,7 @@ class MainActivity : AppCompatActivity() {
                     supportActionBar?.setDisplayHomeAsUpEnabled(false)
                     supportActionBar?.setDisplayShowHomeEnabled(false)
                     supportActionBar?.title = resources.getString(R.string.title_cravings)
-//                    fragmentManager.beginTransaction().replace(R.id.fragment_container, CravingFragment(), "cravings").commit()
+                    fragmentManager.beginTransaction().replace(R.id.fragment_container, CravingFragment(), "cravings").commit()
                     return@OnNavigationItemSelectedListener true
                 }
 
@@ -212,7 +211,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        var timer = Timer().scheduleAtFixedRate(object : TimerTask() {
+        missionTimer.scheduleAtFixedRate(object : TimerTask() {
             override fun run() {
                 for (i in 1..21) {
                     var date = Date(dateConverter.getCurrentTimestamp() - dateConverter.convertDateToTimestamp(Data.date), Constants.timeConst.twentyOneDays)
@@ -238,7 +237,7 @@ class MainActivity : AppCompatActivity() {
             }
         }, 0, 1000)
 
-        var achievmentTimer = Timer().scheduleAtFixedRate(object : TimerTask() {
+        achievmentTimer.scheduleAtFixedRate(object : TimerTask() {
             override fun run() {
                 for (item in Data.achievmentList) {
                     if (item.endTimestamp <= dateConverter.getCurrentTimestamp()) {
@@ -273,7 +272,7 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.settings -> {
                 if (navigation.selectedItemId == R.id.navigation_dasboard) {
-                    var intent = Intent(this, ChangeColor::class.java)
+                    var intent = Intent(this, SettingsActivity::class.java)
                     startActivity(intent)
                 } else {
 
@@ -285,8 +284,17 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onPause() {
+        super.onPause()
+    }
+
     override fun onRestart() {
-        Data.themeChanged = ThemeManager.recreateActivity(this, Data.themeChanged, Data.actualTheme)
+
+        if (Data.themeChanged) {
+            Data.themeChanged = false
+            ThemeManager.setTheme(this, Data.actualTheme)
+            this.recreate()
+        }
         super.onRestart()
     }
 
@@ -300,4 +308,12 @@ class MainActivity : AppCompatActivity() {
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
+
+    override fun onDestroy() {
+        this.missionTimer.cancel()
+        this.achievmentTimer.cancel()
+        super.onDestroy()
+    }
+
+
 }

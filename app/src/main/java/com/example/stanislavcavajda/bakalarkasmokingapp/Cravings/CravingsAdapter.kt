@@ -41,7 +41,7 @@ class CravingsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>,StickyHead
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is CravingViewHolder) {
-            if (position % 2 == 1) {
+            if ((list[position] as Craving).blackBG) {
                 holder.card.setCardBackgroundColor(context.resources.getColor(R.color.item_grey))
             } else {
                 holder.card.setCardBackgroundColor(context.resources.getColor(R.color.white))
