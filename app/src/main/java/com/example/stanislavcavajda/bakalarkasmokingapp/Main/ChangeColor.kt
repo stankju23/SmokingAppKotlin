@@ -1,5 +1,6 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Main
 
+import android.content.Context
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v7.app.AppCompatActivity
@@ -25,10 +26,15 @@ class ChangeColor : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white)
         supportActionBar?.title = getString(R.string.change_color_title)
+        var actualStatePreferences = getSharedPreferences("actualState", Context.MODE_PRIVATE)
+        var actualStateEditor = actualStatePreferences?.edit()
+
 
         var theme1 = findViewById<ConstraintLayout>(R.id.theme1)
         theme1.setOnClickListener {
             Data.actualTheme = Constants.Themes.theme1
+            actualStateEditor?.putInt(Constants.actualState.THEME, Data.actualTheme)
+            actualStateEditor?.commit()
             Data.themeChanged = true
             ThemeManager.setTheme(this,Data.actualTheme)
             recreate()
@@ -37,6 +43,8 @@ class ChangeColor : AppCompatActivity() {
         var theme2 = findViewById<ConstraintLayout>(R.id.theme2)
         theme2.setOnClickListener {
             Data.actualTheme = Constants.Themes.theme2
+            actualStateEditor?.putInt(Constants.actualState.THEME, Data.actualTheme)
+            actualStateEditor?.commit()
             Data.themeChanged = true
             ThemeManager.setTheme(this,Data.actualTheme)
             recreate()

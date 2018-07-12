@@ -60,6 +60,7 @@ object Constants {
         const val PACKAGE_PRICE = "package_price"
         const val CURRENCY = "currency"
         const val ACTUAL_DATE = "actual_date"
+        const val THEME = "actual_theme"
     }
 
     object Themes {

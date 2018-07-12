@@ -31,6 +31,7 @@ class SplashActivity : AppCompatActivity() {
             Data.MoneyDashboard.cigarretesInPackage = preferences.getInt(Constants.actualState.CIGARETTES_IN_PACKAGE, 0)
             Data.MoneyDashboard.packagePrice = preferences.getFloat(Constants.actualState.PACKAGE_PRICE,0f).toDouble()
             Data.MoneyDashboard.currency = preferences.getString(Constants.actualState.CURRENCY, "")
+            Data.actualTheme = preferences.getInt(Constants.actualState.THEME,0)
             Data.date = preferences.getString(Constants.actualState.ACTUAL_DATE,"")
 
             var mainActivity = Intent(this,MainActivity::class.java)
