@@ -29,6 +29,10 @@ class SettingsActivity : AppCompatActivity() {
             var changeColorActivity = Intent(this,ChangeColor::class.java)
             startActivity(changeColorActivity)
         }
+        smoking_preferences_btn.setOnClickListener {
+            var smokingPreferences = Intent(this,SmokingPreferences::class.java)
+            startActivity(smokingPreferences)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

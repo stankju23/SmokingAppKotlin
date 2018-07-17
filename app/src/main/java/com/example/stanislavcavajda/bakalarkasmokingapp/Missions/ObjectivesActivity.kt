@@ -34,7 +34,7 @@ class ObjectivesActivity : AppCompatActivity() {
         setSupportActionBar(objectives_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.abc_ic_ab_back_material)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white)
         supportActionBar?.title = Data.missionList[position].name
     }
 

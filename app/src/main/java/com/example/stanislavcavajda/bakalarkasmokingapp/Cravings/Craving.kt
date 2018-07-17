@@ -3,6 +3,8 @@ package com.example.stanislavcavajda.bakalarkasmokingapp.Cravings
 import android.content.Context
 import android.location.Address
 import android.location.Geocoder
+import android.util.Log
+import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import java.util.Locale
 
 /**
@@ -27,12 +29,20 @@ class Craving:CravingItem {
         this.latitude = lat
         this.longitude = long
         this.context = context
-        if (getAddress(this.latitude,this.longitude).size > 0) {
-            this.city = getAddress(this.latitude, this.longitude)[0]
-            this.address = "${getAddress(this.latitude, this.longitude)[1]},${getAddress(this.latitude, this.longitude)[2]}"
+        if (this.latitude != 0.0 && this.longitude != 0.0) {
+            try {
+                this.city = getAddress(this.latitude, this.longitude)[0]
+                this.address = "${getAddress(this.latitude, this.longitude)[1]},${getAddress(this.latitude, this.longitude)[2]}"
+
+            } catch (e:Exception) {
+                Log.i("Cant get","Address")
+                this.city = context.getString(R.string.not_specified_place)
+                this.address = context.getString(R.string.not_specified_place)
+            }
+
         } else {
-            this.city = "unknown"
-            this.address = "unknown"
+            this.city = context.getString(R.string.not_specified_place)
+            this.address = context.getString(R.string.not_specified_place)
         }
         this.blackBG = blackBG
 

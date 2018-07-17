@@ -71,7 +71,7 @@ class DashboardFragment : Fragment() {
         var healthProgress = HealthProgressListViewModel(Data.healthProgressViewList, activity)
         var mainProgress = MainProgressViewModel(date, activity,Data.timeList)
         var wishesManager = WishListViewModel(Data.wishList,activity)
-        var moneySaved = MoneySavedViewModel(Data.MoneyDashboard.moneySaved,Data.MoneyDashboard.moneySpend)
+        var moneySaved = MoneySavedViewModel(Data.MoneyDashboard.moneySaved,Data.MoneyDashboard.moneySpend,Data.MoneyDashboard.currency)
 
 
         dashboardList.list.add(mainProgress as Object)
@@ -137,7 +137,7 @@ class DashboardFragment : Fragment() {
                     Data.MoneyDashboard.moneySaved = (result).toFloat()
 
                     (dashboardList.list.get(Constants.viewTypes.MONEY_SAVED_VIEW_TYPE) as MoneySavedViewModel).updateMoney(
-                            Data.MoneyDashboard.moneySaved, 0.0f)
+                            Data.MoneyDashboard.moneySaved, 0.0f,Data.MoneyDashboard.currency)
 
                     updateWishList()
 

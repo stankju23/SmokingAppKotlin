@@ -23,7 +23,7 @@ public class DateConverter () {
     // converting date to timestamp
     fun convertDateToTimestamp(date: String) : Long {
         val timestamp: Timestamp
-        val simpleDateFormat = SimpleDateFormat("dd-MM-yyyy kk:mm")
+        val simpleDateFormat = SimpleDateFormat("dd-MM-yyyy hh:mm:ss")
         val date = simpleDateFormat.parse(date)
         timestamp = Timestamp(date.time)
         return timestamp.time / 1000

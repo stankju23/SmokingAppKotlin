@@ -32,10 +32,17 @@ class AchievmentAdapter(var achievmentList:ArrayList<Achievment>,var context: Co
         } else {
             holder.achievmentImage.alpha = 1f
         }
+
         holder.achievmentImage.setOnClickListener {
             if (achievmentList[position].isComplete) {
                 var achievmentActivity = Intent(context, AchievmentActivity::class.java)
                 achievmentActivity.putExtra(Constants.extras.EXTRA_ITEM_ID, position)
+
+                if (achievmentList[position].price != 0) {
+                    achievmentActivity.putExtra("money", true)
+                }else {
+                    achievmentActivity.putExtra("money", false)
+                }
                 (context as Activity).startActivity(achievmentActivity)
             }
         }

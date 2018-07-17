@@ -14,8 +14,9 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DateConverter
 import com.example.stanislavcavajda.bakalarkasmokingapp.Main.MainActivity
-
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
+import java.text.SimpleDateFormat
+import java.util.Date
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -49,12 +50,15 @@ class WalkthroughFragment4 : Fragment() {
         nextButton.setOnClickListener {
             if (activity != null) {
 
-                var actualDate = dateConverter.getFullDate(dateConverter.getCurrentTimestamp())
+                val sdf = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
+                val actualDate = sdf.format(Date())
+
                 var currency = currencySpinner.selectedItem.toString()
                 Data.MoneyDashboard.currency = currency
                 var preferences = activity?.getSharedPreferences("walkthrough", Context.MODE_PRIVATE)
                 var editor = preferences?.edit()
-                editor?.putBoolean(Constants.preferences.FIRST_TIME,true)
+                Data.firstTime = true
+                editor?.putBoolean(Constants.preferences.FIRST_TIME,Data.firstTime)
                 editor?.commit()
 
                 var actualStatePreferences = activity?.getSharedPreferences("actualState",Context.MODE_PRIVATE)

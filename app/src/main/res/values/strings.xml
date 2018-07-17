@@ -59,4 +59,9 @@
     <string name="pastel_template">Pastel template</string>
     <string name="dark_green_color">Dark green color</string>
     <string name="change_color_title">Change color</string>
+    <string name="cigarettes_smoked_every_day">Cigarettes smoked every day</string>
+    <string name="cigarettes_in_packet">Cigarettes in packet</string>
+    <string name="packet_cost">Packet cost</string>
+    <string name="smoking_preferences">Smoking preferences</string>
+    <string name="not_specified_place">Not specified place</string>
 </resources>

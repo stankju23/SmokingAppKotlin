@@ -11,7 +11,7 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.ThemeManager
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.databinding.ActivityMissionInfoBinding
 import kotlinx.android.synthetic.main.activity_mission_info.*
-import java.util.*
+import java.util.Timer
 
 class MissionInfoActivity : AppCompatActivity() {
 
@@ -28,7 +28,7 @@ class MissionInfoActivity : AppCompatActivity() {
 
         this.missionPosition = intent.getIntExtra(Constants.extras.EXTRA_ITEM_ID,0)
 
-        var viewModel = ActivityListViewModel(Data.missionList[missionPosition].activities!!)
+        var viewModel = ActivityListViewModel(Data.missionList[missionPosition].activities)
 
 
         binding.viewModel = viewModel
@@ -46,7 +46,7 @@ class MissionInfoActivity : AppCompatActivity() {
         setSupportActionBar(mission_info_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.abc_ic_ab_back_material)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white)
         supportActionBar?.title = Data.missionList[missionPosition].name
     }
 

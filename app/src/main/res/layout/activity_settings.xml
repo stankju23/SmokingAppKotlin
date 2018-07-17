@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context="com.example.stanislavcavajda.bakalarkasmokingapp.Main.SettingsActivity"
-    android:background="@color/light_grey">
+    android:background="@color/light_grey"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/settings_toolbar"
@@ -19,22 +19,40 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title="sadasdas"
-        app:titleTextColor="@color/white"></android.support.v7.widget.Toolbar>
+        app:titleTextColor="@color/white">
+    </android.support.v7.widget.Toolbar>
 
     <Button
         android:id="@+id/change_color_button"
         android:layout_width="0dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="4dp"
         android:background="@color/white"
-        android:paddingLeft="20dp"
+        android:paddingLeft="16dp"
         android:text="@string/change_color"
         android:textAlignment="viewStart"
         android:textAppearance="@android:style/TextAppearance.Small"
         android:textColor="@android:color/darker_gray"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/smoking_preferences_btn" />
+
+    <Button
+        android:id="@+id/smoking_preferences_btn"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/white"
+        android:paddingLeft="16dp"
+        android:text="@string/smoking_preferences"
+        android:textAlignment="viewStart"
+        android:textAppearance="@android:style/TextAppearance.Small"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settings_toolbar" />
-
-
 </android.support.constraint.ConstraintLayout>

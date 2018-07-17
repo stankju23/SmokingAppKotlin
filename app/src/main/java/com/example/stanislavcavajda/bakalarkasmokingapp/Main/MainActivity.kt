@@ -80,18 +80,35 @@ class MainActivity : AppCompatActivity() {
             .withRootViewScale(1f)
         achievmentDrawer = slidingView.inject()
 
-        var achievmentRecyclerView = findViewById<RecyclerView>(R.id.achievment_list)
+        var achievmentRecyclerView = findViewById<RecyclerView>(R.id.achievment_day_list)
         achievmentRecyclerView.layoutManager = LinearLayoutManager(this)
+        var achievmentMoneyRecyclerView = findViewById<RecyclerView>(R.id.achievment_money_list)
+        achievmentMoneyRecyclerView.layoutManager = LinearLayoutManager(this)
 
 
         if (Data.achievmentList.size == 0) {
-            for (i in 1..11) {
-                Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.achievment), "END", "dasdasdasd",dateConverter.convertDateToTimestamp(Data.date) + i * Constants.timeConst.oneDay, false))
+            for (i in 1..7) {
+                Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.empty_days), "END", "dasdasdasd",dateConverter.convertDateToTimestamp(Data.date) + i * 2 * Constants.timeConst.oneDay, false,0))
             }
         }
 
+        if (Data.achievmentsMoneyList.size == 0) {
+            Data.achievmentsMoneyList.add(Achievment(resources.getDrawable(R.drawable.empty_stars),"1${Data.MoneyDashboard.currency} earned","You earned 1${Data.MoneyDashboard.currency}",0,false,1))
+            Data.achievmentsMoneyList.add(Achievment(resources.getDrawable(R.drawable.empty_stars),"3${Data.MoneyDashboard.currency} earned","You earned 3${Data.MoneyDashboard.currency}",0,false,3))
+            Data.achievmentsMoneyList.add(Achievment(resources.getDrawable(R.drawable.empty_stars),"5${Data.MoneyDashboard.currency} earned","You earned 5${Data.MoneyDashboard.currency}",0,false,5))
+            Data.achievmentsMoneyList.add(Achievment(resources.getDrawable(R.drawable.empty_stars),"10${Data.MoneyDashboard.currency} earned","You earned 10${Data.MoneyDashboard.currency}",0,false,10))
+            Data.achievmentsMoneyList.add(Achievment(resources.getDrawable(R.drawable.empty_stars),"20${Data.MoneyDashboard.currency} earned","You earned 20${Data.MoneyDashboard.currency}",0,false,20))
+            Data.achievmentsMoneyList.add(Achievment(resources.getDrawable(R.drawable.empty_stars),"50${Data.MoneyDashboard.currency} earned","You earned 50${Data.MoneyDashboard.currency}",0,false,50))
+            Data.achievmentsMoneyList.add(Achievment(resources.getDrawable(R.drawable.empty_stars),"100${Data.MoneyDashboard.currency} earned","You earned 100${Data.MoneyDashboard.currency}",0,false,100))
+        }
+
+
+
+
         var achievmentAdapter = AchievmentAdapter(Data.achievmentList,this)
+        var moneyAchievmentAdapter = AchievmentAdapter(Data.achievmentsMoneyList,this)
         achievmentRecyclerView.adapter = achievmentAdapter
+        achievmentMoneyRecyclerView.adapter = moneyAchievmentAdapter
 
         var toolbar = findViewById<Toolbar>(R.id.my_toolbar)
         setSupportActionBar(toolbar)
@@ -244,6 +261,24 @@ class MainActivity : AppCompatActivity() {
                         item.isComplete = true
                         runOnUiThread {
                             achievmentAdapter.notifyDataSetChanged()
+                        }
+                    } else {
+                        item.isComplete = false
+                        runOnUiThread {
+                            achievmentAdapter.notifyDataSetChanged()
+                        }
+                    }
+                }
+                for (item in Data.achievmentsMoneyList) {
+                    if (item.price <= Data.MoneyDashboard.moneySaved) {
+                        item.isComplete = true
+                        runOnUiThread {
+                            moneyAchievmentAdapter.notifyDataSetChanged()
+                        }
+                    } else {
+                        item.isComplete = false
+                        runOnUiThread {
+                            moneyAchievmentAdapter.notifyDataSetChanged()
                         }
                     }
                 }

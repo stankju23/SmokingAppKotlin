@@ -15,8 +15,8 @@
                           <map>
                             <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="dark_green_color" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/../../dark_green_color.svg" />
+                            <entry key="outputName" value="empty_days" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/../../empty_days.svg" />
                           </map>
                         </option>
                       </PersistentState>

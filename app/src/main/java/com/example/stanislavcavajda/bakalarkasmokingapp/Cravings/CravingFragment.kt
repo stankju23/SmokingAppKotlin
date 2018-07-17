@@ -9,6 +9,7 @@ import android.location.LocationListener
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DateConverter
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
@@ -24,7 +26,6 @@ import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
-import kotlinx.android.synthetic.main.fragment_craving.view.*
 import java.util.UUID
 
 
@@ -54,7 +55,7 @@ class CravingFragment : Fragment(),GoogleApiClient.OnConnectionFailedListener,Go
     }
 
     override fun onProviderDisabled(p0: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Toast.makeText(activity,"Turn on GPS location",Toast.LENGTH_SHORT).show()
     }
 
     override fun onConnected(p0: Bundle?) {
@@ -106,41 +107,53 @@ class CravingFragment : Fragment(),GoogleApiClient.OnConnectionFailedListener,Go
         cigarette.startAnimation(cigaretteAnim)
 
         imageView.setOnClickListener(View.OnClickListener {
-            if (latitude != null && longitude != null) {
-                if (Data.cravings.size == 0) {
-                    var header = CravingHeader(UUID.randomUUID().toString(),dateConverter.getDate(dateConverter.getCurrentTimestamp()))
-                    var craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity,false)
-                    Data.cravings.add(header)
-                    RealmDB.saveHeader(header)
-                    Data.cravings.add(craving)
-                    RealmDB.saveCraving(craving)
-                } else {
-                    if (Data.cravings[Data.cravings.size - 1] is Craving && (Data.cravings[Data.cravings.size - 1] as Craving).date != dateConverter.getDate(dateConverter.getCurrentTimestamp())) {
-                        var header = CravingHeader(UUID.randomUUID().toString(),dateConverter.getDate(dateConverter.getCurrentTimestamp()))
-                        var craving:Craving
-                        if ((Data.cravings[Data.cravings.size - 1] as Craving).blackBG) {
-                            craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity,false)
-                        } else {
-                            craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity,true)
-                        }
+            try {
+                if (latitude != null && longitude != null) {
+                    if (Data.cravings.size == 0) {
+                        var header = CravingHeader(UUID.randomUUID().toString(), dateConverter.getDate(dateConverter.getCurrentTimestamp()))
+                        var craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity, false)
                         Data.cravings.add(header)
                         RealmDB.saveHeader(header)
                         Data.cravings.add(craving)
                         RealmDB.saveCraving(craving)
                     } else {
-                        var craving:Craving
-                        if ((Data.cravings[Data.cravings.size - 1] as Craving).blackBG) {
-                            craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity,false)
+                        if (Data.cravings[Data.cravings.size - 1] is Craving && (Data.cravings[Data.cravings.size - 1] as Craving).date != dateConverter.getDate(dateConverter.getCurrentTimestamp())) {
+                            var header = CravingHeader(UUID.randomUUID().toString(), dateConverter.getDate(dateConverter.getCurrentTimestamp()))
+                            var craving: Craving
+                            if ((Data.cravings[Data.cravings.size - 1] as Craving).blackBG) {
+                                craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity, false)
+                            } else {
+                                craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity, true)
+                            }
+                            Data.cravings.add(header)
+                            RealmDB.saveHeader(header)
+                            Data.cravings.add(craving)
+                            RealmDB.saveCraving(craving)
                         } else {
-                            craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity,true)
+                            var craving: Craving
+                            if ((Data.cravings[Data.cravings.size - 1] as Craving).blackBG) {
+                                craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity, false)
+                            } else {
+                                craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity, true)
+                            }
+                            Data.cravings.add(craving)
+                            RealmDB.saveCraving(craving)
                         }
-                        Data.cravings.add(craving)
-                        RealmDB.saveCraving(craving)
                     }
+
+                    val addCraving = Intent(activity, AddCravingActivity::class.java)
+                    startActivity(addCraving)
                 }
+            } catch (e:Exception) {
+                var craving:Craving
+                craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity, true)
+                Data.cravings.add(craving)
+                RealmDB.saveCraving(craving)
                 val addCraving = Intent(activity, AddCravingActivity::class.java)
                 startActivity(addCraving)
+                Log.i("Error", e.message)
             }
+
         })
 
         showCravingBtn.setOnClickListener {
@@ -151,25 +164,25 @@ class CravingFragment : Fragment(),GoogleApiClient.OnConnectionFailedListener,Go
 
 
 
-        for (item in Data.cravings) {
-            if (item is Craving) {
-                cravingCount ++
-            }
-        }
-
-        numberOfCraving = view.number_of_cravings
-        numberOfCraving.text = "$cravingCount"
+//        for (item in Data.cravings) {
+//            if (item is Craving) {
+//                cravingCount ++
+//            }
+//        }
+//
+//        numberOfCraving = view.number_of_cravings
+//        numberOfCraving.text = "$cravingCount"
         return view
     }
 
     override fun onResume() {
-        cravingCount = 0
-        for (item in Data.cravings) {
-            if (item is Craving) {
-                cravingCount ++
-            }
-        }
-        numberOfCraving.text = "$cravingCount"
+//        cravingCount = 0
+//        for (item in Data.cravings) {
+//            if (item is Craving) {
+//                cravingCount ++
+//            }
+//        }
+//        numberOfCraving.text = "$cravingCount"
         super.onResume()
     }
 

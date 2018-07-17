@@ -14,6 +14,8 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Objective
 object Data {
 
 
+    var firstTime:Boolean = true
+
     var healthProgressViewList: ArrayList<HealthProgressViewModel> = ArrayList()
     //var date = "02-03-2018 15:00"
     var date = "01-06-2018 11:13"
@@ -21,6 +23,7 @@ object Data {
     var wishList: ArrayList<Wish> = ArrayList()
     var timeList: ArrayList<MainProgressDetailTime> = ArrayList()
     var achievmentList: ArrayList<Achievment> = ArrayList()
+    var achievmentsMoneyList: ArrayList<Achievment> = ArrayList()
 
     var objectives: ArrayList<Objective> = ArrayList()
     var missionList: ArrayList<Mission> = ArrayList()

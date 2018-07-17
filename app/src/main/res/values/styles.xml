@@ -4,7 +4,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">#84BBC3</item>
         <item name="colorPrimaryDark">#558D96</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">#84BBC3</item>
         <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
     </style>
 
@@ -30,8 +30,11 @@
     <style name="Theme1" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">#AAB857</item>
         <item name="colorPrimaryDark">#464646</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+        <item name="colorAccent">#AAB857</item>
+    </style>
+
+    <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:colorAccent">#0000FF</item>
     </style>
 
     <style name="MyAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">

@@ -16,6 +16,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/SplashTheme">
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
         <activity android:name=".Main.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -62,8 +72,10 @@
             android:name=".Main.ChangeColor"
             android:screenOrientation="portrait" />
         <activity android:name=".Walkthrough.Walkthrough" />
-        <activity android:name=".Cravings.AddCravingActivity" />
-        <activity android:name=".Cravings.ShowCravings" />
+        <activity android:name=".Cravings.AddCravingActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Cravings.ShowCravings"
+            android:screenOrientation="portrait"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -82,6 +94,7 @@
         <activity
             android:name=".Cravings.CravingMapActivity"
             android:label="@string/title_activity_craving_map" />
-        <activity android:name=".Main.AchievmentActivity"></activity>
+        <activity android:name=".Main.AchievmentActivity" />
+        <activity android:name=".Main.SmokingPreferences"></activity>
     </application>
 </manifest>

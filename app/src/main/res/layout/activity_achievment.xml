@@ -14,16 +14,18 @@
     android:id="@+id/share_screen">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
+        android:id="@+id/achievment_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title="@{achievment.title}"
-        app:titleTextColor="@color/white">
-    </android.support.v7.widget.Toolbar>
+        app:titleTextColor="@color/white"></android.support.v7.widget.Toolbar>
 
     <TextView
         android:id="@+id/congratulation_text"
@@ -38,7 +40,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/achievment_toolbar" />
 
     <TextView
         android:id="@+id/desc_text"
@@ -76,7 +78,7 @@
         android:scaleType="fitXY"
         app:imageSrc="@{achievment.image}"
         app:layout_constraintBottom_toTopOf="@+id/share_btn"
-        app:layout_constraintDimensionRatio="1:1.5"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/desc_text" />
