@@ -30,9 +30,9 @@ class ChangeColor : AppCompatActivity() {
         var actualStateEditor = actualStatePreferences?.edit()
 
 
-        var theme1 = findViewById<ConstraintLayout>(R.id.theme1)
-        theme1.setOnClickListener {
-            Data.actualTheme = Constants.Themes.theme1
+        var appTheme = findViewById<ConstraintLayout>(R.id.app_theme)
+        appTheme.setOnClickListener {
+            Data.actualTheme = Constants.Themes.pastel
             actualStateEditor?.putInt(Constants.actualState.THEME, Data.actualTheme)
             actualStateEditor?.commit()
             Data.themeChanged = true
@@ -40,15 +40,36 @@ class ChangeColor : AppCompatActivity() {
             recreate()
         }
 
-        var theme2 = findViewById<ConstraintLayout>(R.id.theme2)
-        theme2.setOnClickListener {
-            Data.actualTheme = Constants.Themes.theme2
+        var blueOcean = findViewById<ConstraintLayout>(R.id.blue_ocean)
+        blueOcean.setOnClickListener {
+            Data.actualTheme = Constants.Themes.blueOcean
             actualStateEditor?.putInt(Constants.actualState.THEME, Data.actualTheme)
             actualStateEditor?.commit()
             Data.themeChanged = true
             ThemeManager.setTheme(this,Data.actualTheme)
             recreate()
         }
+
+        var wine = findViewById<ConstraintLayout>(R.id.wine)
+        wine.setOnClickListener {
+            Data.actualTheme = Constants.Themes.wine
+            actualStateEditor?.putInt(Constants.actualState.THEME, Data.actualTheme)
+            actualStateEditor?.commit()
+            Data.themeChanged = true
+            ThemeManager.setTheme(this,Data.actualTheme)
+            recreate()
+        }
+
+        var banana = findViewById<ConstraintLayout>(R.id.banana)
+        banana.setOnClickListener {
+            Data.actualTheme = Constants.Themes.banana
+            actualStateEditor?.putInt(Constants.actualState.THEME, Data.actualTheme)
+            actualStateEditor?.commit()
+            Data.themeChanged = true
+            ThemeManager.setTheme(this,Data.actualTheme)
+            recreate()
+        }
+
 
 
     }

@@ -34,7 +34,7 @@
         <android.support.v7.widget.RecyclerView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@color/item_grey"
+            android:background="?secondaryClr"
             app:itemBinding="@{viewModel.itemBinding}"
             app:items="@{viewModel.healthProgressViewList}"
             app:layoutManager="@{LayoutManagers.linear()}"

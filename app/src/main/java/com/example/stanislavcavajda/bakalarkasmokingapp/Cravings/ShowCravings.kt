@@ -1,10 +1,8 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Cravings
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import android.view.Menu
 import android.view.MenuItem
 import com.brandongogetap.stickyheaders.StickyLayoutManager
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
@@ -40,11 +38,6 @@ class ShowCravings : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item?.itemId) {
-            R.id.show_map -> {
-                var mapActivity = Intent(this,CravingMapActivity::class.java)
-                startActivity(mapActivity)
-            }
-
             android.R.id.home -> {
                 onBackPressed()
                 return true
@@ -53,9 +46,5 @@ class ShowCravings : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.show_cravings, menu)
-        return true
-    }
 
 }

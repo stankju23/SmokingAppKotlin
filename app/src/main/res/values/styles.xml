@@ -2,14 +2,36 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#84BBC3</item>
-        <item name="colorPrimaryDark">#558D96</item>
-        <item name="colorAccent">#84BBC3</item>
-        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+        <item name="colorPrimary">#CEE08C</item>
+        <item name="colorPrimaryDark">#aab857</item>
+        <item name="colorAccent">#464646</item>
+        <item name="secondaryClr">#D1DBDA</item>
     </style>
 
+    <style name="blueOcean" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#8CC2E0</item>
+        <item name="colorPrimaryDark">#5788b8</item>
+        <item name="colorAccent">#464646</item>
+        <item name="secondaryClr">#D1DBDA</item>
+    </style>
+
+    <style name="wine" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#C0364D</item>
+        <item name="colorPrimaryDark">#a41537</item>
+        <item name="colorAccent">#E8E5E3</item>
+        <item name="secondaryClr">#D1DBDA</item>
+    </style>
+
+    <style name="banana" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#F4F1E0</item>
+        <item name="colorPrimaryDark">#E4CB66</item>
+        <item name="colorAccent">#332E42</item>
+        <item name="secondaryClr">#4f4132</item>
+    </style>
+
+
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/ic_launcher_background</item>
+        <item name="android:windowBackground">@color/white</item>
     </style>
 
 
@@ -27,11 +49,6 @@
     </style>
 
 
-    <style name="Theme1" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#AAB857</item>
-        <item name="colorPrimaryDark">#464646</item>
-        <item name="colorAccent">#AAB857</item>
-    </style>
 
     <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:colorAccent">#0000FF</item>

@@ -16,7 +16,7 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.RealmDatabase.RealmDB
 import io.vrinda.kotlinpermissions.PermissionsActivity
 import kotlinx.android.synthetic.main.activity_add_wish.*
-import java.util.*
+import java.util.UUID
 
 class AddWishActivity : PermissionsActivity() {
 
@@ -33,22 +33,22 @@ class AddWishActivity : PermissionsActivity() {
 
         add_wish_btn.setOnClickListener{
             if( title_text.text.length == 0 ) {
-                title_text.setError("First name is required!")
+                title_text.setError(getString(R.string.error_name))
             }
 
             if( price_text.text.length == 0 ) {
-                price_text.setError("First name is required!")
+                price_text.setError(getString(R.string.error_price))
             }
 
             if( desc.text.length == 0 ) {
-                desc.setError("First name is required!")
+                desc.setError(getString(R.string.error_desc))
             }
 
-            if (add_wish_image.resources == null) {
-                Log.i("nevybarl si ", "obrazok ")
+            if (imagePath == null) {
+                Toast.makeText(this,"Please choose image",Toast.LENGTH_SHORT).show()
             }
 
-            if( title_text.text.length != 0 && desc.text.length != 0 && price_text.text.length != 0 ) {
+            if( title_text.text.length != 0 && desc.text.length != 0 && price_text.text.length != 0 && add_wish_image.resources != null) {
 
                 try {
                     var wish = Wish(UUID.randomUUID().toString(),title_text.text.toString(),desc.text.toString(),price_text.text.toString().toInt(),false,this,imagePath!!)
@@ -57,7 +57,9 @@ class AddWishActivity : PermissionsActivity() {
                     RealmDB.addWishToDB(wish)
                     onBackPressed()
                 } catch (e: Exception) {
-                    Log.i("Error", e.message)
+//                    if (e != null) {
+//                        Log.i("Error", e.message)
+//                    }
                     Toast.makeText(this,"Something went wrong try again",Toast.LENGTH_SHORT)
                 }
 

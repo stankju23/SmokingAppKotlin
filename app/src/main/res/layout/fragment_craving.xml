@@ -71,7 +71,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="?colorPrimary"
-        android:text="@string/show_craving_preferences"
+        android:text="@string/show_all_cravings"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"

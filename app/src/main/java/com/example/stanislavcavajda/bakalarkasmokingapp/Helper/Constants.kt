@@ -40,6 +40,7 @@ object Constants {
         const val EXTRA_DESC = "desc"
         const val EXTRA_DATE = "date"
         const val EXTRA_ITEM_ID = "itemId"
+        const val EXTRA_OBJ_ID = "objectiveId"
     }
 
     object preferences {
@@ -64,7 +65,9 @@ object Constants {
     }
 
     object Themes {
-        const val theme1 = 0
-        const val theme2 = 1
+        const val pastel = 0
+        const val blueOcean = 1
+        const val wine = 2
+        const val banana = 3
     }
 }

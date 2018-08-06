@@ -5,12 +5,15 @@ import android.location.Address
 import android.location.Geocoder
 import android.util.Log
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
+import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.clustering.ClusterItem
 import java.util.Locale
 
 /**
  * Created by stanislavcavajda on 12/05/2018.
  */
-class Craving:CravingItem {
+class Craving:CravingItem,ClusterItem {
+
 
     var id:String
     var time:String
@@ -59,6 +62,18 @@ class Craving:CravingItem {
 
         }
         return city
+    }
+
+    override fun getSnippet(): String {
+        return "${this.date}, ${this.time}"
+    }
+
+    override fun getTitle(): String {
+        return this.city
+    }
+
+    override fun getPosition(): LatLng {
+        return LatLng(this.latitude,this.longitude)
     }
 
 }

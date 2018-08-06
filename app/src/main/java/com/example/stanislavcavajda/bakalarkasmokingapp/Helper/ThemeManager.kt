@@ -11,11 +11,17 @@ object ThemeManager {
 
     fun setTheme(context: Context,actualTheme:Int) {
         when (actualTheme) {
-            Constants.Themes.theme1 -> {
-                context.setTheme(R.style.Theme1)
-            }
-            Constants.Themes.theme2 -> {
+            Constants.Themes.pastel -> {
                 context.setTheme(R.style.AppTheme)
+            }
+            Constants.Themes.blueOcean -> {
+                context.setTheme(R.style.blueOcean)
+            }
+            Constants.Themes.wine -> {
+                context.setTheme(R.style.wine)
+            }
+            Constants.Themes.banana -> {
+                context.setTheme(R.style.banana)
             }
 
         }
@@ -24,15 +30,22 @@ object ThemeManager {
     fun recreateActivity(context: Context, colorChanged:Boolean,actualTheme:Int):Boolean {
         if (colorChanged) {
             when (actualTheme) {
-                Constants.Themes.theme1 -> {
+                Constants.Themes.pastel -> {
                     (context as Activity).recreate()
                     return false
                 }
-                Constants.Themes.theme2 -> {
+                Constants.Themes.blueOcean -> {
                     (context as Activity).recreate()
                     return false
                 }
-
+                Constants.Themes.wine -> {
+                    (context as Activity).recreate()
+                    return false
+                }
+                Constants.Themes.banana -> {
+                    (context as Activity).recreate()
+                    return false
+                }
             }
         }
         return false

@@ -151,7 +151,7 @@ object RealmDB {
                     var activity = Activity(item.isDone,objective,item.id)
                     activities.add(activity)
                 }
-                var mission = Mission(item.id,item.name,item.date,Date(0,0),item.locked,item.available,activities,item.done)
+                var mission = Mission(item.id,item.name,item.date,Date(0,0),item.locked,item.available,activities,item.done,context)
                Data.missionList.add(mission)
             } catch (e:Exception) {
 

@@ -81,9 +81,22 @@ fun setDone(layout:ConstraintLayout, done:Boolean) {
             layout.translationY = layout.translationY + dp
         }
     }
-
-
 }
+
+@BindingAdapter("move")
+fun setMove(text:TextView, done:Boolean) {
+    val density = text.context.getResources().getDisplayMetrics().density
+    var dp = 56 * density
+    if (!done){
+        text.translationY = dp
+        text.animate().translationYBy(-dp).duration = 200
+    }
+    if (done) {
+        text.animate().translationYBy(dp).duration = 200
+    }
+}
+
+
 
 @BindingAdapter("bindDate")
 fun bindDate(textview:TextView,date:String){
@@ -112,4 +125,31 @@ fun disableSwiping(layout: SwipeLayout,canBuy:Boolean) {
         layout.isSwipeEnabled = false
     }
 }
+
+@BindingAdapter("colourText")
+fun setColourText(textView:TextView,isDone:Boolean) {
+    val value = TypedValue()
+    textView.context.getTheme().resolveAttribute(R.attr.colorPrimary, value, true)
+    if (isDone){
+        textView.setTextColor(value.data)
+    } else {
+        textView.setTextColor(textView.context.resources.getColor(R.color.black))
+    }
+
+}
+
+@BindingAdapter("setBackground")
+fun setBackground(layout: ConstraintLayout,isDone:Boolean) {
+    if (isDone){
+        val value = TypedValue()
+        layout.context.getTheme().resolveAttribute(R.attr.colorPrimaryDark, value, true)
+        layout.setBackgroundColor(value.data)
+    } else {
+        val value = TypedValue()
+        layout.context.getTheme().resolveAttribute(R.attr.colorPrimary, value, true)
+        layout.setBackgroundColor(value.data)
+    }
+
+}
+
 

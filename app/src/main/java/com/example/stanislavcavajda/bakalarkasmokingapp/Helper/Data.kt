@@ -33,6 +33,9 @@ object Data {
     var dashboardThreadStared = false
     var themeChanged = false
 
+    var actualClickedMission = 0
+    var actualClickedActivity = 0
+
 
 
 

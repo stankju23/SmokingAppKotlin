@@ -1,8 +1,11 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Cravings
 
-import android.graphics.BitmapFactory
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
+import android.view.Menu
+import android.view.MenuItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.ThemeManager
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
@@ -10,20 +13,21 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.maps.android.clustering.ClusterManager
 
-
-
-class CravingMapActivity : AppCompatActivity(), OnMapReadyCallback {
+class CravingMapActivity : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMarkerClickListener {
 
     private lateinit var mMap: GoogleMap
+    lateinit var mClusterManager :ClusterManager<Craving>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         ThemeManager.setTheme(this,Data.actualTheme)
+
         setContentView(R.layout.activity_craving_map)
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
@@ -42,6 +46,14 @@ class CravingMapActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
 
+        var toolbar = findViewById<Toolbar>(R.id.map_toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white)
+        supportActionBar?.title = resources.getString(R.string.map_of_cravings)
+
+
         mMap = googleMap
 
         var options = MarkerOptions()
@@ -54,40 +66,48 @@ class CravingMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
         cravings.addAll(Data.cravings)
 
-//        val sortedList = cravings.sortedWith(compareBy({ it.address }))
-//        var index = 0
-//        for (item in sortedList) {
-//
-//
-//            if (index != 0) {
-//                if (item.address != Data.cravings[index - 1].address) {
-//                    var city = LatLng(item.latitude, item.longitude)
-//                    markers.add(city)
-//                }
-//            } else {
-//                var city = LatLng(item.latitude, item.longitude)
-//                markers.add(city)
-//            }
-//
-//            index++
-//        }
+        mClusterManager = ClusterManager<Craving>(this,mMap)
+
+        mMap.setOnCameraIdleListener(mClusterManager)
+        mMap.setOnMarkerClickListener(mClusterManager)
+
+        mClusterManager.renderer = CravingMarkerRenderer(mClusterManager,this,mMap)
 
         for (i in cravings) {
             if (i is Craving) {
-                var city = LatLng(i.latitude, i.longitude)
-                markers.add(city)
+                mClusterManager.addItem(i)
             }
         }
 
-        val icon = BitmapFactory.decodeResource(getResources(),R.drawable.marker)
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng((cravings[cravings.size - 1] as Craving).latitude,(cravings[cravings.size - 1] as Craving).longitude),16f))
+    }
 
-        for (city in markers) {
-            options.position(city)
-            options.icon(BitmapDescriptorFactory.fromBitmap(icon))
-            mMap.addMarker(options)
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.map_activity, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+            R.id.show_list -> {
+                var cravingList = Intent(this,ShowCravings::class.java)
+                startActivity(cravingList)
+
+                return true
+            }
         }
+        return super.onOptionsItemSelected(item)
+    }
 
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(markers[markers.size - 1],  16f))
-
+    override fun onMarkerClick(marker: Marker?): Boolean {
+        if (marker != null) {
+            marker.showInfoWindow()
+            return true
+        }
+        return false
     }
 }

@@ -81,6 +81,7 @@ dependencies {
     implementation 'com.yarolegovich:sliding-root-nav:1.1.0'
     implementation 'com.brandongogetap:stickyheaders:0.5.0'
     implementation "com.yuyakaido.android:card-stack-view:1.0.0-beta9"
+    implementation 'com.google.maps.android:android-maps-utils:0.5+'
 
 
 }

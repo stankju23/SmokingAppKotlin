@@ -2,10 +2,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/show_map"
-        android:icon="@drawable/show_map"
-        android:title="Text to be seen by user"
-        app:showAsAction="always"
-        android:orderInCategory="0"/>
+
 </menu>

@@ -9,14 +9,12 @@ import android.location.LocationListener
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DateConverter
@@ -77,8 +75,6 @@ class CravingFragment : Fragment(),GoogleApiClient.OnConnectionFailedListener,Go
     var latitude = 0.0
     var longitude = 0.0
 
-    lateinit var numberOfCraving:TextView
-    var cravingCount = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -91,6 +87,8 @@ class CravingFragment : Fragment(),GoogleApiClient.OnConnectionFailedListener,Go
             .addApi(LocationServices.API)
             .build()
         mGoogleApiClient.connect()
+
+
 
 
 
@@ -145,20 +143,21 @@ class CravingFragment : Fragment(),GoogleApiClient.OnConnectionFailedListener,Go
                     startActivity(addCraving)
                 }
             } catch (e:Exception) {
-                var craving:Craving
-                craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity, true)
-                Data.cravings.add(craving)
-                RealmDB.saveCraving(craving)
-                val addCraving = Intent(activity, AddCravingActivity::class.java)
-                startActivity(addCraving)
-                Log.i("Error", e.message)
+//                var craving:Craving
+//                if((Data.cravings[Data.cravings.size - 1] as Craving).blackBG)
+//                craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity, true)
+//                Data.cravings.add(craving)
+//                RealmDB.saveCraving(craving)
+//                val addCraving = Intent(activity, AddCravingActivity::class.java)
+//                startActivity(addCraving)
+//                Log.i("Error", e.message)
             }
 
         })
 
         showCravingBtn.setOnClickListener {
 
-            var showCravings = Intent(activity,ShowCravings::class.java)
+            var showCravings = Intent(activity,CravingMapActivity::class.java)
             startActivity(showCravings)
         }
 
@@ -200,6 +199,8 @@ class CravingFragment : Fragment(),GoogleApiClient.OnConnectionFailedListener,Go
     fun startLocationServices() {
 
         var req = LocationRequest.create().setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+        req.interval = 100
+        req.fastestInterval = 50
         if (ContextCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, req, this)
         } else {

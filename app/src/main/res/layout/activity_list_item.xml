@@ -5,11 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable name="activity" type="com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Activity"></variable>
+        <variable name="activity_listener" type="com.example.stanislavcavajda.bakalarkasmokingapp.Helper.OnClick"></variable>
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{(v)-> activity_listener.OnItemClick(v)}">
 
         <TextView
             android:id="@+id/textView36"
@@ -20,6 +22,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@{activity.objective.title}"
+            colourText="@{activity.isDone().get()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

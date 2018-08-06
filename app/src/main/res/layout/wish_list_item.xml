@@ -8,6 +8,13 @@
     </data>
 
 
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp"
+        android:background="?secondaryClr">
+
         <com.daimajia.swipe.SwipeLayout
             android:id="@+id/wish_item_swipe_layout"
             android:layout_width="match_parent"
@@ -126,5 +133,7 @@
             </android.support.constraint.ConstraintLayout>
 
         </com.daimajia.swipe.SwipeLayout>
+
+    </android.support.constraint.ConstraintLayout>
 
 </layout>

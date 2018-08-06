@@ -1,8 +1,11 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Missions
 
+import android.content.Context
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
 import com.example.stanislavcavajda.bakalarkasmokingapp.Model.Date
+import com.example.stanislavcavajda.bakalarkasmokingapp.R
+
 /**
  * Created by stanislavcavajda on 21/03/2018.
  */
@@ -18,10 +21,11 @@ class Mission {
         var done:Int = 0
         var observableCompletionDate:ObservableField<Date> = ObservableField()
         var completionTime:ObservableField<String> = ObservableField()
+        var context:Context
 
 
 
-    constructor(id:String,name:String,date:String,completionDate: Date,locked:Boolean,available:Boolean,activities:ArrayList<Activity>,done:Int){
+    constructor(id:String,name:String,date:String,completionDate: Date,locked:Boolean,available:Boolean,activities:ArrayList<Activity>,done:Int,context: Context){
         this.id = id
         this.name = name
         this.date = date
@@ -29,7 +33,8 @@ class Mission {
         this.locked.set(locked)
         this.available.set(available)
         this.activities?.addAll(activities)
-        completionTime.set("${completionDate?.hours}h ${completionDate?.minutes}m ${completionDate?.seconds}")
+        this.context = context
+        completionTime.set("${completionDate?.hours} ${context.resources.getString(R.string.hours)}  ${completionDate?.minutes} ${context.resources.getString(R.string.minutes)}  ${completionDate?.seconds} ${context.resources.getString(R.string.seconds)}")
         this.done = done
     }
 
@@ -39,12 +44,11 @@ class Mission {
         this.done = 0
         for (i in 0..activities?.size!! - 1) {
             if (activities?.get(i)?.isDone?.get()!!) {
-               this. done ++
+               this.done++
             }
         }
 
-        completionTime.set("${completionDate?.hours}h ${completionDate?.minutes}m ${completionDate?.seconds}")
-
+        completionTime.set("${completionDate?.hours} ${context.resources.getString(R.string.hours)}  ${completionDate?.minutes} ${context.resources.getString(R.string.minutes)}  ${completionDate?.seconds} ${context.resources.getString(R.string.seconds)}")
     }
 
     fun getDoneToString():String {
