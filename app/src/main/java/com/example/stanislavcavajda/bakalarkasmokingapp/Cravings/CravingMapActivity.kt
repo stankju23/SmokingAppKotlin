@@ -78,8 +78,9 @@ class CravingMapActivity : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnM
                 mClusterManager.addItem(i)
             }
         }
-
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng((cravings[cravings.size - 1] as Craving).latitude,(cravings[cravings.size - 1] as Craving).longitude),16f))
+        if (cravings.size > 0) {
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng((cravings[cravings.size - 1] as Craving).latitude, (cravings[cravings.size - 1] as Craving).longitude), 16f))
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

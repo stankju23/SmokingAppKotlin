@@ -12,6 +12,7 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.Walkthrough.Walkthrough
+import io.realm.Realm
 
 class SplashActivity : AppCompatActivity() {
 
@@ -19,9 +20,10 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        Realm.init(this)
+
         var preferences = getSharedPreferences("walkthrough", Context.MODE_PRIVATE)
         Data.firstTime = preferences.getBoolean(Constants.preferences.FIRST_TIME,false)
-
 
         if (!Data.firstTime) {
 

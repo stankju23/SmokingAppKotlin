@@ -36,7 +36,7 @@
             android:id="@+id/wishes_recycler"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@color/white"
+            android:background="?secondaryClr"
             android:nestedScrollingEnabled="false"
             app:layoutManager="@{LayoutManagers.linear()}"
             app:items="@{viewModel.wishList}"

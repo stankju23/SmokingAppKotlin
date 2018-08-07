@@ -48,7 +48,6 @@
     <string name="show_all_cravings">Show all cravings</string>
     <string name="map_of_cravings">Map of Cravings</string>
     <string name="objectives">Objectives - </string>
-
     // walkthrough end page
     <string name="cigarettes_smoked"> cigarettes smoked every day</string>
     <string name="cigarettes_in_package"> cigarettes in packet</string>
@@ -72,10 +71,13 @@
     <string name="wish_hint_name">Name</string>
     <string name="wish_hint_price">Price</string>
     <string name="wish_hint_description">Description</string>
-
     //error massages
     <string name="error_name">Missing name</string>
     <string name="error_price">Missing price</string>
     <string name="error_desc">Missing description</string>
     <string name="error_image">Missing image</string>
+    <string name="add_your_own_card">Add your own card</string>
+    <string name="add_card">Add card</string>
+    <string name="write_a_title">Write a title</string>
+    <string name="write_a_description">Write a description</string>
 </resources>

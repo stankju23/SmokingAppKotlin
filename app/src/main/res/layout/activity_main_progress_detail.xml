@@ -42,65 +42,24 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/main_progress_detail_toolbar"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintTop_toBottomOf="@+id/main_progress_detail_toolbar">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/title_text"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/time_detail"
-                    android:textAlignment="center"
-                    android:textColor="?colorPrimary"
-                    android:textSize="24sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/desc"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:padding="10dp"
-                    android:text="This app is your guide to resist smoking at least 21 days. This time period is crusius and is neccessary to go through it and resist. When you successfuly resist this limit, there is no need to motivate you, because you will have enough powerfull will to resist anytime. You can enjoy better quality of your life, without worries."
-                    android:textAlignment="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/title_text" />
-
-                <TextView
-                    android:id="@+id/title2_text"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/detail_text_title"
-                    android:textAlignment="center"
-                    android:textColor="?colorPrimary"
-                    android:textSize="20sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/desc" />
+                android:layout_height="match_parent"
+                android:layout_gravity="center">
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/main_progress_detail_recycler_view"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     app:itemBinding="@{viewModel.detailItemBinding}"
                     app:items="@{viewModel.timeList}"
                     app:layoutManager="@{LayoutManagers.linear()}"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/title2_text" />
-
+                    app:layout_constraintTop_toTopOf="parent" />
             </android.support.constraint.ConstraintLayout>
         </ScrollView>
     </android.support.constraint.ConstraintLayout>

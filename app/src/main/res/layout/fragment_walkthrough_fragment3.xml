@@ -49,7 +49,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView40"
-        tools:text="20" />
+        tools:text="20"
+        android:inputType="number"
+        android:digits="0123456789."/>
 
     <Button
         android:id="@+id/next_button"

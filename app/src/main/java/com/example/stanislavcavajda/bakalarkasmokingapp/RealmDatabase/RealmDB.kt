@@ -8,6 +8,7 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Cravings.CravingHeader
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.Wish
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DateConverter
+import com.example.stanislavcavajda.bakalarkasmokingapp.Koloda.KolodaItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Activity
 import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Mission
 import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Objective
@@ -205,5 +206,41 @@ object RealmDB {
             }
         }
 
+    }
+
+    fun addCard(card:KolodaItem) {
+        realm.beginTransaction()
+        var realmCard = realm.createObject(CardRealm::class.java)
+        realmCard.id = card.id
+        realmCard.title = card.title
+        realmCard.desc = card.desc
+        realmCard.category = card.category
+        realmCard.popularity = card.popularity
+        realm.commitTransaction()
+    }
+
+    fun updateCard(card:KolodaItem) {
+
+        var realmCard = realm.where(CardRealm::class.java).equalTo("id",card.id).findFirst()
+
+        if (realmCard != null) {
+            realm.beginTransaction()
+            realmCard.popularity = card.popularity
+            realm.insertOrUpdate(realmCard)
+            realm.commitTransaction()
+        }
+    }
+
+    fun loadCards(context:Context) {
+        val result = realm.where(CardRealm::class.java).findAll()
+
+        for (item in result) {
+            try {
+                var kolodaItem = KolodaItem(item.id,item.category,item.title,item.desc,context)
+                Data.cravingsCardList.add(kolodaItem)
+            } catch (e:Exception) {
+                Log.e("Load card error : ", e.message)
+            }
+        }
     }
 }

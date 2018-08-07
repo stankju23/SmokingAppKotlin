@@ -32,7 +32,6 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.databinding.ActivityMain
 import com.yarolegovich.slidingrootnav.SlideGravity
 import com.yarolegovich.slidingrootnav.SlidingRootNav
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder
-import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.Collections
 import java.util.Timer
@@ -60,10 +59,13 @@ class MainActivity : AppCompatActivity() {
         // var preferences = getSharedPreferences("date", Context.MODE_PRIVATE)
         //Data.date = preferences.getString(Constants.preferences.DATE_PREFERENCES,"03-02-2018")
 
-        Realm.init(this)
         //Realm.deleteRealm(Realm.getDefaultConfiguration())
         if (Data.wishList.isEmpty()) {
             RealmDB.getWishes(this)
+        }
+
+        if (Data.cravingsCardList.isEmpty()) {
+            RealmDB.loadCards(this)
         }
 
         if (Data.cravings.isEmpty()) {

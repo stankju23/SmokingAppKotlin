@@ -4,6 +4,7 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Cravings.CravingItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.HealthList.HealthProgressViewModel
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MainProgress.MainProgressDetailTime
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.Wish
+import com.example.stanislavcavajda.bakalarkasmokingapp.Koloda.KolodaItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.Main.Achievment
 import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Mission
 import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Objective
@@ -24,6 +25,7 @@ object Data {
     var timeList: ArrayList<MainProgressDetailTime> = ArrayList()
     var achievmentList: ArrayList<Achievment> = ArrayList()
     var achievmentsMoneyList: ArrayList<Achievment> = ArrayList()
+    var cravingsCardList: ArrayList<KolodaItem> = ArrayList()
 
     var objectives: ArrayList<Objective> = ArrayList()
     var missionList: ArrayList<Mission> = ArrayList()

@@ -1,9 +1,13 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.MenuItem
@@ -30,6 +34,11 @@ class AddWishActivity : PermissionsActivity() {
         ThemeManager.setTheme(this,Data.actualTheme)
 
         setContentView(R.layout.activity_add_wish)
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 100)
+        }
+
 
         add_wish_btn.setOnClickListener{
             if( title_text.text.length == 0 ) {

@@ -13,10 +13,13 @@ import android.widget.Spinner
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DateConverter
+import com.example.stanislavcavajda.bakalarkasmokingapp.Koloda.KolodaItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.Main.MainActivity
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
+import com.example.stanislavcavajda.bakalarkasmokingapp.RealmDatabase.RealmDB
 import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.UUID
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -50,6 +53,8 @@ class WalkthroughFragment4 : Fragment() {
         nextButton.setOnClickListener {
             if (activity != null) {
 
+                nextButton.isEnabled = false
+
                 val sdf = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
                 val actualDate = sdf.format(Date())
 
@@ -72,6 +77,13 @@ class WalkthroughFragment4 : Fragment() {
                 actualStateEditor?.commit()
 
                 Data.date = actualDate
+
+                for (i in 0..3) {
+                    var kolodaItem = KolodaItem(UUID.randomUUID().toString(),i,"asdasmd","adsjvdvjashjvdasdhasjvhdvhjashjvgdhjvasjvhdjvghasjvgdasgdjvghasdjgvjadvascfjasdfhahsdjashdcjascjhasfcjasfc", activity!!)
+                    Data.cravingsCardList.add(kolodaItem)
+                    RealmDB.addCard(kolodaItem)
+                }
+
                 var mainActivity = Intent(activity,MainActivity::class.java)
                 activity?.startActivity(mainActivity)
             }

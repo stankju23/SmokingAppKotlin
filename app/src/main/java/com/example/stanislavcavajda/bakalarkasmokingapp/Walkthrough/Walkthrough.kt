@@ -18,4 +18,8 @@ class Walkthrough : AppCompatActivity() {
         var fm = supportFragmentManager
         fm.beginTransaction().setCustomAnimations(R.anim.slide_in_right,R.anim.slide_out_left).add(R.id.container,WelcomeFragment()).commit()
     }
+
+    override fun onBackPressed() {
+
+    }
 }

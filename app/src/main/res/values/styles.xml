@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -6,6 +6,9 @@
         <item name="colorPrimaryDark">#aab857</item>
         <item name="colorAccent">#464646</item>
         <item name="secondaryClr">#D1DBDA</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowEnterTransition">@android:transition/explode</item>
+        <item name="android:windowExitTransition">@android:transition/explode</item>
     </style>
 
     <style name="blueOcean" parent="Theme.AppCompat.Light.NoActionBar">
@@ -13,6 +16,9 @@
         <item name="colorPrimaryDark">#5788b8</item>
         <item name="colorAccent">#464646</item>
         <item name="secondaryClr">#D1DBDA</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowEnterTransition">@android:transition/explode</item>
+        <item name="android:windowExitTransition">@android:transition/explode</item>
     </style>
 
     <style name="wine" parent="Theme.AppCompat.Light.NoActionBar">
@@ -20,6 +26,9 @@
         <item name="colorPrimaryDark">#a41537</item>
         <item name="colorAccent">#E8E5E3</item>
         <item name="secondaryClr">#D1DBDA</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowEnterTransition">@android:transition/explode</item>
+        <item name="android:windowExitTransition">@android:transition/explode</item>
     </style>
 
     <style name="banana" parent="Theme.AppCompat.Light.NoActionBar">
@@ -27,6 +36,9 @@
         <item name="colorPrimaryDark">#E4CB66</item>
         <item name="colorAccent">#332E42</item>
         <item name="secondaryClr">#4f4132</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowEnterTransition">@android:transition/explode</item>
+        <item name="android:windowExitTransition">@android:transition/explode</item>
     </style>
 
 

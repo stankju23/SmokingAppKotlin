@@ -3,7 +3,9 @@ package com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager
 import android.Manifest
 import android.content.pm.PackageManager
 import android.databinding.DataBindingUtil
+import android.os.Build
 import android.os.Bundle
+import android.support.annotation.RequiresApi
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
@@ -20,6 +22,7 @@ class WishesActivity : AppCompatActivity() {
     var binding: ActivityWishesBinding? = null
     var viewModel: WishListViewModel? = null
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -41,6 +44,7 @@ class WishesActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white)
         supportActionBar?.title = resources.getString(R.string.wishes_manager_title)
+
 
 
         wishes_recycler.setHasFixedSize(true)

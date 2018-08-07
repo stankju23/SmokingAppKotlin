@@ -3,16 +3,20 @@ package com.example.stanislavcavajda.bakalarkasmokingapp.Cravings
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.ThemeManager
 import com.example.stanislavcavajda.bakalarkasmokingapp.Koloda.KolodaAdapter
 import com.example.stanislavcavajda.bakalarkasmokingapp.Koloda.KolodaItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
+import com.example.stanislavcavajda.bakalarkasmokingapp.RealmDatabase.RealmDB
 import com.yuyakaido.android.cardstackview.CardStackView
 import com.yuyakaido.android.cardstackview.SwipeDirection
 import kotlinx.android.synthetic.main.activity_add_craving.*
@@ -30,8 +34,6 @@ class AddCravingActivity : AppCompatActivity() {
         ThemeManager.setTheme(this, Data.actualTheme)
         setContentView(R.layout.activity_add_craving)
 
-
-
         var toolbar = findViewById<Toolbar>(R.id.add_craving_toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -40,11 +42,9 @@ class AddCravingActivity : AppCompatActivity() {
         supportActionBar?.title = resources.getString(R.string.first_aid)
 
 
+        var sortedList = Data.cravingsCardList.sortedByDescending({selector(it)} )
         var kolodaItemList = ArrayList<KolodaItem>()
-
-        for (i in 0..5) {
-            kolodaItemList.add(KolodaItem(resources.getDrawable(R.drawable.koloda_item1),"Going out and running", "adsjvdvjashjvdasdhasjvhdvhjashjvgdhjvasjvhdjvghasjvgdasgdjvghasdjgvjadvascfjasdfhahsdjashdcjascjhasfcjasfc"))
-        }
+        kolodaItemList.addAll(sortedList)
 
         adapter = KolodaAdapter(this,kolodaItemList)
 
@@ -58,12 +58,22 @@ class AddCravingActivity : AppCompatActivity() {
             override fun onCardSwiped(direction: SwipeDirection?) {
                 try {
                     if (direction == SwipeDirection.Left) {
-                        kolodaItemList[swipe_card.topIndex - 1].popularity--
+                        for (item in Data.cravingsCardList) {
+                            if (item.id == kolodaItemList[swipe_card.topIndex-1].id) {
+                                item.popularity--
+                                RealmDB.updateCard(item)
+                            }
+                        }
                     } else {
-                        kolodaItemList[swipe_card.topIndex - 1].popularity--
+                        for (item in Data.cravingsCardList) {
+                            if (item.id == kolodaItemList[swipe_card.topIndex-1].id) {
+                                item.popularity++
+                                RealmDB.updateCard(item)
+                            }
+                        }
                     }
                     if (swipe_card.topIndex == kolodaItemList.size) {
-                        finish()
+                        empty_state_layout.visibility = View.VISIBLE
                     }
                 } catch (e:Exception) { }
             }
@@ -86,9 +96,15 @@ class AddCravingActivity : AppCompatActivity() {
             swipeLeft()
         }
 
-
+        add_card.setOnClickListener {
+            var addCardActivity = Intent(this,AddCardActivity::class.java)
+            startActivity(addCardActivity)
+            this.finish()
+        }
 
     }
+
+    fun selector(p: KolodaItem): Int = p.popularity
 
     private fun extractRemainingTouristSpots(): ArrayList<KolodaItem> {
         val spots = ArrayList<KolodaItem>()
@@ -99,6 +115,15 @@ class AddCravingActivity : AppCompatActivity() {
     }
 
     fun swipeLeft() {
+
+        like.isEnabled = false
+        dislike.isEnabled = false
+        var handler = Handler()
+        handler.postDelayed(Runnable {
+            like.isEnabled = true
+            dislike.isEnabled = true
+        },500)
+
         val spots = extractRemainingTouristSpots()
         if (spots.isEmpty()) {
             return
@@ -106,7 +131,6 @@ class AddCravingActivity : AppCompatActivity() {
 
         val target = swipe_card.getTopView()
         val targetOverlay = swipe_card.getTopView().getOverlayContainer()
-
         val rotation = ObjectAnimator.ofPropertyValuesHolder(
             target, PropertyValuesHolder.ofFloat("rotation", -10f))
         rotation.duration = 200
@@ -127,9 +151,20 @@ class AddCravingActivity : AppCompatActivity() {
         overlayAnimationSet.playTogether(overlayAnimator)
 
         swipe_card.swipe(SwipeDirection.Left, cardAnimationSet, overlayAnimationSet)
+
+
     }
 
     fun swipeRight() {
+
+        like.isEnabled = false
+        dislike.isEnabled = false
+        var handler = Handler()
+        handler.postDelayed(Runnable {
+            like.isEnabled = true
+            dislike.isEnabled = true
+        },500)
+
         val spots = extractRemainingTouristSpots()
         if (spots.isEmpty()) {
             return
@@ -181,6 +216,8 @@ class AddCravingActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+
 
     override fun onStart() {
         super.onStart()

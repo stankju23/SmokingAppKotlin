@@ -7,6 +7,7 @@ import android.databinding.BaseObservable
 import android.databinding.ObservableField
 import android.support.v7.app.AlertDialog
 import android.text.InputType
+import android.text.method.DigitsKeyListener
 import android.view.View
 import android.widget.EditText
 import android.widget.FrameLayout
@@ -116,6 +117,8 @@ class PreferencesViewModel : BaseObservable {
 
         var layout = FrameLayout(context)
         var setValueEditText = EditText(context)
+        setValueEditText.inputType = InputType.TYPE_CLASS_NUMBER
+        setValueEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789."))
         setValueEditText.setText(packetCost.get())
         layout.addView(setValueEditText)
         layout.setPadding(45,0,45,0)

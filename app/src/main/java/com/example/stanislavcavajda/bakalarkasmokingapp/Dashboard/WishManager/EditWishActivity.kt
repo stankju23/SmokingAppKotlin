@@ -27,6 +27,7 @@ class EditWishActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_edit_wish)
 
+
         var toolbar = findViewById<Toolbar>(R.id.edit_wish_toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -62,6 +63,9 @@ class EditWishActivity : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.edit_wish_menu,menu)
         return true

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="wine" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#C0364D</item>
+        <item name="colorPrimaryDark">#a41537</item>
+        <item name="colorAccent">#E8E5E3</item>
+        <item name="secondaryClr">#D1DBDA</item>
+    </style>
+</resources>

@@ -11,7 +11,7 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Model.Date
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.databinding.ActivityMainProgressDetailBinding
 import kotlinx.android.synthetic.main.activity_main_progress_detail.*
-import java.util.*
+import java.util.Timer
 import kotlin.concurrent.timerTask
 
 class MainProgressDetailActivity : AppCompatActivity() {
