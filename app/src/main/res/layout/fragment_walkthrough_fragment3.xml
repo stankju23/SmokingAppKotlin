@@ -25,7 +25,7 @@
         android:id="@+id/textView40"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="How much cost one packet ?"
+        android:text="@string/cost"
         android:textColor="@color/light_grey"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/actual_value"
@@ -41,6 +41,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/walkthrough_edit_text"
+        android:inputType="number"
+        android:digits="0123456789."
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="36sp"
@@ -49,9 +51,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView40"
-        tools:text="20"
-        android:inputType="number"
-        android:digits="0123456789."/>
+        tools:text="20" />
 
     <Button
         android:id="@+id/next_button"

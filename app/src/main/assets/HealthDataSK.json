@@ -1,0 +1,79 @@
+{
+  "stats":[
+    {
+      "title":"Blood presure",
+      "desc":"Your blood pressure, pulse rate and the temperature of your hands and feet have returned to normal.",
+      "duration":1600.0
+    },
+    {
+      "title":"Remaining nicotine",
+      "desc":"Remaining nicotine in your bloodstream has fallen to 6.25% of normal peak daily levels, a 93.75% reduction.",
+      "duration":7200.0
+    },
+    {
+      "title": "Oxygen level",
+      "desc": "Your blood oxygen level has increased to normal. Carbon monoxide levels have dropped to normal.",
+      "duration" : 43200.0
+    },
+    {
+      "title": "Anxeties",
+      "desc": "Anxieties have peaked in intensity and within two weeks should return to near pre-cessation levels.",
+      "duration" : 86400.0
+    },
+    {
+      "title": "Regeneracia",
+      "desc": "Damaged nerve endings have started to regrow and your sense of smell and taste are beginning to return to normal. Cessation anger and irritability will have peaked.",
+      "duration" : 172800.0
+    },
+    {
+      "title": "Nicotine free",
+      "desc": "Your entire body will test 100% nicotine-free and over 90% of all nicotine metabolites (the chemicals it breaks down into) will now have passed from your body via your urine.  Symptoms (http://whyquit.com/FFN/chapters/FFN_09_Physical.pdf) of chemical withdrawal have peaked in intensity, including restlessness. The number of cue induced crave episodes experienced during any quitting day have peaked for the average ex-user. Lung bronchial tubes leading to air sacs (alveoli) are beginning to relax in recovering smokers. Breathing is becoming easier and your lung's functional abilities are starting to increase",
+      "duration" : 259200.0
+    },
+    {
+      "title": "Crave ending",
+      "desc": "The average ex-smoker will encounter an average of three cue induced crave episodes per day (http://whyquit.com/FFN/chapters/FFN_11_Subconscious.pdf). Although we may not be average and although serious cessation time distortion can make minutes feel like hours, it is unlikely that any single episode will last longer than 3 minutes. Keep a clock handy and time them.",
+      "duration" : 691200.0
+    },
+    {
+      "title": "Addiction",
+      "desc": "Recovery has likely progressed to the point where your addiction is no longer doing the talking. Blood circulation in your gums and teeth are now similar to that of a non-user.",
+      "duration" : 1209600.0
+    },
+    {
+      "title": "Non-smoker brain",
+      "desc": "The number of acetylcholine receptors, which were up-regulated in response to nicotine's presence in the frontal, parietal, temporal, occipital, basal ganglia, thalamus, brain stem, and cerebellum regions of the brain, have now substantially down-regulated, and receptor binding has returned to levels seen in the brains of non-smokers (2007 study).",
+      "duration" : 1814400.0
+    },
+    {
+      "title": "Phycisal recover",
+      "desc": "Cessation related anger, anxiety, difficulty concentrating, impatience, insomnia, restlessness and depression have ended. If still experiencing any of these symptoms get seen and evaluated by your physician.",
+      "duration" : 2419200.0
+    },
+    {
+      "title": "Hearth attack risk",
+      "desc": "Your heart attack risk (http://whyquit.com/joel/Joel_02_18_circulatory_damage.html) has started to drop. Your lung function is beginning to improve.",
+      "duration" : 7776000.0
+    },
+    {
+      "title": "Blood circulation",
+      "desc": "Your circulation has substantially improved. Walking has become easier. Your chronic cough, if any, has likely disappeared. If not, get seen by a doctor, and sooner if at all concerned, as a chronic cough can be a sign of lung cancer.",
+      "duration" : 7776000.0
+    },
+    {
+      "title": "Hearth improve",
+      "desc": "Your excess risk of coronary heart disease, heart attack and stroke has dropped to less than half that of a smoker.",
+      "duration" : 31104000.0
+    },
+    {
+      "title": "Hearth recover",
+      "desc": "Your risk of stroke has declined to that of a non-smoker.",
+      "duration" : 155520000.0
+    },
+    {
+      "title": "Lung recover",
+      "desc": "Your risk of being diagnosed with lung cancer is between 30% and 50% of that for a continuing smoker. Risk of death from lung cancer has declined by almost half if you were an average smoker (one pack per day).  Risk of cancer of the mouth, throat, esophagus and pancreas have declined. Risk of developing diabetes for both men and women is now similar to that of a never-smoker.",
+      "duration" : 311040000.0
+    }
+  ]
+}

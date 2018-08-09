@@ -48,7 +48,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:percent="@{viewModel.date.progress}"
                     app:strokeWidth="6dp"
-                    app:bgColor="@color/unselectedBarColor" />
+                    app:bgColor="@color/black" />
 
                 <TextView
                     android:id="@+id/title"
@@ -58,7 +58,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="10dp"
                     android:text="@{viewModel.title}"
-                    android:textColor="@color/unselectedColor"
+                    android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/colorfulRingProgressView"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -72,7 +72,7 @@
                     android:layout_marginTop="8dp"
                     android:lines="2"
                     android:text="@{viewModel.desc}"
-                    android:textColor="@color/unselectedColor"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@+id/colorfulRingProgressView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/colorfulRingProgressView"
@@ -87,7 +87,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="@{String.valueOf((int)viewModel.date.progress) + '%'}"
-                    android:textColor="@color/unselectedColor"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@+id/colorfulRingProgressView"
                     app:layout_constraintEnd_toEndOf="@+id/colorfulRingProgressView"
                     app:layout_constraintStart_toStartOf="@+id/colorfulRingProgressView"

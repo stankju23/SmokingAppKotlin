@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
-        android:text="How many cigarettes are in one packet ?"
+        android:text="@string/cigarettes_in_package"
         android:textAlignment="center"
         android:textColor="@color/light_grey"
         android:textSize="18sp"

@@ -187,16 +187,21 @@ object RealmDB {
         realm.commitTransaction()
     }
 
-    fun getCravings(context: Context) {
+    fun getCravings(context: Context)
+    {
+
 
         val result = realm.where(CravingRealm::class.java).findAll()
 
         for (item in result) {
-            try {
-                if (item.isHeader) {
+            try
+            {
+                if (item.isHeader)
+                {
                     var cravingHeader = CravingHeader(item.id,item.date)
                     Data.cravings.add(cravingHeader)
-                } else {
+                } else
+                {
                     var craving = Craving(item.id,item.time,item.date,item.latitude,item.longitude,context,item.blacBG)
                     Data.cravings.add(craving)
                 }

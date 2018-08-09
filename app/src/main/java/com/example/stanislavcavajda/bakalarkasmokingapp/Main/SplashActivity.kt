@@ -10,6 +10,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
+import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.ThemeManager
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.Walkthrough.Walkthrough
 import io.realm.Realm
@@ -19,6 +20,9 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        ThemeManager.setTheme(this,Data.actualTheme)
+
 
         Realm.init(this)
 

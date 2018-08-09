@@ -183,7 +183,13 @@ class DashboardFragment : Fragment() {
 
 
     fun prepareHealthProgressList() {
-        Data.healthProgressViewList.addAll(JSONParser.parseHealthData(JSONParser.loadJsonFromAssets("HealthData",activity),activity))
+
+
+        when(activity.resources.configuration.locale.country){
+            "US" -> Data.healthProgressViewList.addAll(JSONParser.parseHealthData(JSONParser.loadJsonFromAssets("HealthDataEN",activity),activity))
+            "SK" -> Data.healthProgressViewList.addAll(JSONParser.parseHealthData(JSONParser.loadJsonFromAssets("HealthDataSK",activity),activity))
+            else -> Data.healthProgressViewList.addAll(JSONParser.parseHealthData(JSONParser.loadJsonFromAssets("HealthDataEN",activity),activity))
+        }
     }
 
 

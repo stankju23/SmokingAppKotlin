@@ -2,14 +2,13 @@ package com.example.stanislavcavajda.bakalarkasmokingapp.Walkthrough
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
-
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -36,13 +35,16 @@ class WalkthroughFragment3 : Fragment() {
 
         var actualValue = view.findViewById<EditText>(R.id.actual_value)
 
-        actualValue.inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL
         nextButton.setOnClickListener {
-            var packagePrice = actualValue.text.toString()
-            Data.MoneyDashboard.packagePrice = packagePrice.toDouble()
-            var fm = activity?.supportFragmentManager
-            fm?.beginTransaction()?.setCustomAnimations(R.anim.slide_in_right,R.anim.slide_out_left)?.replace(R.id.container,WalkthroughFragment4())?.commit()
 
+            var packagePrice = actualValue.text.toString()
+            if (packagePrice.length != 0) {
+                Data.MoneyDashboard.packagePrice = packagePrice.toDouble()
+                var fm = activity?.supportFragmentManager
+                fm?.beginTransaction()?.setCustomAnimations(R.anim.slide_in_right,R.anim.slide_out_left)?.replace(R.id.container,WalkthroughFragment4())?.commit()
+            } else {
+                Toast.makeText(activity,R.string.error_price,Toast.LENGTH_SHORT).show()
+            }
         }
 
         return view

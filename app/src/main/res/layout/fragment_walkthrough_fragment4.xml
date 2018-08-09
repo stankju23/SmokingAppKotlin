@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="What is your prefered currency ?"
+        android:text="@string/preffered_currency"
         android:textColor="@color/light_grey"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/currency_spinner"

@@ -9,7 +9,8 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Model.Date
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
-import java.util.*
+import java.util.ArrayList
+import java.util.UUID
 
 /**
  * Created by stanislavcavajda on 02/03/2018.
@@ -86,7 +87,11 @@ object JSONParser {
                 var id = arrayItem.getInt("id")
                 var title = arrayItem.getString("title")
                 var desc = arrayItem.getString("desc")
-                objectiveList.add(Objective(UUID.randomUUID().toString(),title,desc))
+
+                var titleId = context.resources.getIdentifier(title,"string",context.packageName)
+                var descId = context.resources.getIdentifier(desc,"string",context.packageName)
+
+                objectiveList.add(Objective(UUID.randomUUID().toString(),titleId,descId))
             }
 
         } catch (e:Exception) {

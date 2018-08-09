@@ -10,6 +10,18 @@
         android:layout_height="match_parent"
         android:background="@android:color/white">
 
+        <TextView
+            android:id="@+id/textView49"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:background="@color/light_grey"
+            android:text="@string/no_smoked"
+            android:textColor="@android:color/background_dark"
+            android:paddingLeft="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/achievment_day_list"
             android:layout_width="match_parent"
@@ -22,20 +34,10 @@
         </android.support.v7.widget.RecyclerView>
 
         <TextView
-            android:id="@+id/textView49"
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:background="@color/light_grey"
-            android:text="@string/days"
-            android:textColor="@android:color/background_dark"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
             android:id="@+id/textView50"
             android:layout_width="0dp"
             android:layout_height="20dp"
+            android:paddingLeft="25dp"
             android:background="@color/light_grey"
             android:text="Money"
             android:textColor="@android:color/background_dark"

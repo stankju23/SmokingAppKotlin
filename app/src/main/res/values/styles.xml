@@ -2,7 +2,7 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#CEE08C</item>
+        <item name="colorPrimary">#c9e26a</item>
         <item name="colorPrimaryDark">#aab857</item>
         <item name="colorAccent">#464646</item>
         <item name="secondaryClr">#D1DBDA</item>
@@ -24,7 +24,7 @@
     <style name="wine" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">#C0364D</item>
         <item name="colorPrimaryDark">#a41537</item>
-        <item name="colorAccent">#E8E5E3</item>
+        <item name="colorAccent">#464646</item>
         <item name="secondaryClr">#D1DBDA</item>
         <item name="android:windowActivityTransitions">true</item>
         <item name="android:windowEnterTransition">@android:transition/explode</item>
@@ -32,9 +32,9 @@
     </style>
 
     <style name="banana" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#F4F1E0</item>
-        <item name="colorPrimaryDark">#E4CB66</item>
-        <item name="colorAccent">#332E42</item>
+        <item name="colorPrimary">#E4CB66</item>
+        <item name="colorPrimaryDark">#b2a15b</item>
+        <item name="colorAccent">#464646</item>
         <item name="secondaryClr">#4f4132</item>
         <item name="android:windowActivityTransitions">true</item>
         <item name="android:windowEnterTransition">@android:transition/explode</item>
@@ -43,7 +43,7 @@
 
 
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowBackground">?colorPrimary</item>
     </style>
 
 

@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
-        android:text="How many cigarettes did you smoke every day ?"
+        android:text="@string/cigarettes_smoked"
         android:textAlignment="center"
         android:textColor="@color/light_grey"
         android:textSize="18sp"

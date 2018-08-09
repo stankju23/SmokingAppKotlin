@@ -33,7 +33,6 @@ import com.yarolegovich.slidingrootnav.SlideGravity
 import com.yarolegovich.slidingrootnav.SlidingRootNav
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.Collections
 import java.util.Timer
 import java.util.TimerTask
 import java.util.UUID
@@ -55,6 +54,8 @@ class MainActivity : AppCompatActivity() {
 
         ThemeManager.setTheme(this, Data.actualTheme)
 
+
+       // var config = RealmConfiguration.Builder().deleteRealmIfMigrationNeeded().build()
 
         // var preferences = getSharedPreferences("date", Context.MODE_PRIVATE)
         //Data.date = preferences.getString(Constants.preferences.DATE_PREFERENCES,"03-02-2018")
@@ -89,9 +90,12 @@ class MainActivity : AppCompatActivity() {
 
 
         if (Data.achievmentList.size == 0) {
-            for (i in 1..7) {
-                Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.empty_days), "END", "dasdasdasd",dateConverter.convertDateToTimestamp(Data.date) + i * 2 * Constants.timeConst.oneDay, false,0))
-            }
+            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.empty_days), resources.getString(R.string.achievments_noSmoked_one_title), resources.getString(R.string.achievments_noSmoked_one_desc),dateConverter.convertDateToTimestamp(Data.date) + Constants.timeConst.oneDay, false,0))
+            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.empty_days), resources.getString(R.string.achievments_noSmoked_three_title), resources.getString(R.string.achievments_noSmoked_three_desc),dateConverter.convertDateToTimestamp(Data.date) + 3 * Constants.timeConst.oneDay, false,0))
+            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.empty_days), resources.getString(R.string.achievments_noSmoked_seven_title), resources.getString(R.string.achievments_noSmoked_seven_desc),dateConverter.convertDateToTimestamp(Data.date) + 7 * Constants.timeConst.oneDay, false,0))
+            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.empty_days), resources.getString(R.string.achievments_noSmoked_twelve_title), resources.getString(R.string.achievments_noSmoked_twelve_desc),dateConverter.convertDateToTimestamp(Data.date) + 12 * Constants.timeConst.oneDay, false,0))
+            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.empty_days), resources.getString(R.string.achievments_noSmoked_twentyone_title), resources.getString(R.string.achievments_noSmoked_twentyone_desc),dateConverter.convertDateToTimestamp(Data.date) + 21 * Constants.timeConst.oneDay, false,0))
+
         }
 
         if (Data.achievmentsMoneyList.size == 0) {
@@ -209,23 +213,22 @@ class MainActivity : AppCompatActivity() {
 
             var missionList = ArrayList<Mission>()
 
-            for (i in 1..21) {
+            for (i in 0..20) {
                 var activities = ArrayList<Activity>()
-                Collections.shuffle(Data.objectives)
-                for (i in 0..4) {
-                    var activity = Activity(false, Data.objectives[i], UUID.randomUUID().toString())
+                for (j in 1..5) {
+                    var activity = Activity(false, Data.objectives[i * 5 + j - 1], UUID.randomUUID().toString())
                     activities.add(activity)
                 }
                 var date = Date(dateConverter.getCurrentTimestamp() - dateConverter.convertDateToTimestamp(Data.date), Constants.timeConst.twentyOneDays)
                 if (i <= date.days) {
-                    var mission = Mission(UUID.randomUUID().toString(), "Mission $i", dateConverter.getDate(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay), Date(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay + Constants.timeConst.oneDay - dateConverter.getCurrentTimestamp(), Constants.timeConst.oneDay), false, false, activities, 0,this)
+                    var mission = Mission(UUID.randomUUID().toString(), "", dateConverter.getDate(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay), Date(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay + Constants.timeConst.oneDay - dateConverter.getCurrentTimestamp(), Constants.timeConst.oneDay), false, false, activities, 0,this)
                     missionList.add(mission)
                 } else {
                     if (i == date.days.toInt() + 1) {
-                        var mission = Mission(UUID.randomUUID().toString(), "Mission $i", dateConverter.getDate(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay), Date(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay + Constants.timeConst.oneDay - dateConverter.getCurrentTimestamp(), Constants.timeConst.oneDay), false, false, activities, 0,this)
+                        var mission = Mission(UUID.randomUUID().toString(), "", dateConverter.getDate(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay), Date(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay + Constants.timeConst.oneDay - dateConverter.getCurrentTimestamp(), Constants.timeConst.oneDay), false, false, activities, 0,this)
                         missionList.add(mission)
                     } else {
-                        var mission = Mission(UUID.randomUUID().toString(), "Mission $i", dateConverter.getDate(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay), Date(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay + Constants.timeConst.oneDay - dateConverter.getCurrentTimestamp(), Constants.timeConst.oneDay), false, false, activities, 0,this)
+                        var mission = Mission(UUID.randomUUID().toString(), "", dateConverter.getDate(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay), Date(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay + Constants.timeConst.oneDay - dateConverter.getCurrentTimestamp(), Constants.timeConst.oneDay), false, false, activities, 0,this)
                         missionList.add(mission)
                     }
                 }
@@ -242,18 +245,18 @@ class MainActivity : AppCompatActivity() {
                 for (i in 1..21) {
                     var date = Date(dateConverter.getCurrentTimestamp() - dateConverter.convertDateToTimestamp(Data.date), Constants.timeConst.twentyOneDays)
                     if (i <= date.days) {
-                        var mission = Mission(Data.missionList[i - 1].id, "Mission $i", dateConverter.getDate(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay), Date((dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay) + Constants.timeConst.oneDay - dateConverter.getCurrentTimestamp(), Constants.timeConst.oneDay), false, false, Data.missionList[i - 1].activities!!, Data.missionList[i - 1].done,this@MainActivity)
+                        var mission = Mission(Data.missionList[i - 1].id, "${resources.getString(R.string.mission)} $i", dateConverter.getDate(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay), Date((dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay) + Constants.timeConst.oneDay - dateConverter.getCurrentTimestamp(), Constants.timeConst.oneDay), false, false, Data.missionList[i - 1].activities!!, Data.missionList[i - 1].done,this@MainActivity)
                         Data.missionList[i - 1].setMission(mission)
                         Data.missionList[i - 1].getDone()
                     } else {
                         if (i == date.days.toInt() + 1) {
-                            var mission = Mission(Data.missionList[i - 1].id, "Mission $i", dateConverter.getDate(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay), Date(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay + Constants.timeConst.oneDay - dateConverter.getCurrentTimestamp(), Constants.timeConst.oneDay), false, true, Data.missionList[i - 1].activities!!, Data.missionList[i - 1].done,this@MainActivity)
+                            var mission = Mission(Data.missionList[i - 1].id, "${resources.getString(R.string.mission)} $i", dateConverter.getDate(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay), Date(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay + Constants.timeConst.oneDay - dateConverter.getCurrentTimestamp(), Constants.timeConst.oneDay), false, true, Data.missionList[i - 1].activities!!, Data.missionList[i - 1].done,this@MainActivity)
                             Data.missionList[i - 1].setMission(mission)
                             Data.missionList[i - 1].getDone()
                             //Log.i(Data.missionList[i - 1].name ,  "${Data.missionList[i - 1].observableCompletionDate?.get()?.hours}  ${Data.missionList[i - 1].observableCompletionDate?.get()?.minutes} ${Data.missionList[i - 1].observableCompletionDate?.get()?.seconds}")
                             Log.i("MISSION", Data.missionList[i - 1].completionTime.get())
                         } else {
-                            var mission = Mission(Data.missionList[i - 1].id, "Mission $i", dateConverter.getDate(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay), Date(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay + Constants.timeConst.oneDay - dateConverter.getCurrentTimestamp(), Constants.timeConst.oneDay), true, false, Data.missionList[i - 1].activities!!, Data.missionList[i - 1].done,this@MainActivity)
+                            var mission = Mission(Data.missionList[i - 1].id, "${resources.getString(R.string.mission)} $i", dateConverter.getDate(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay), Date(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay + Constants.timeConst.oneDay - dateConverter.getCurrentTimestamp(), Constants.timeConst.oneDay), true, false, Data.missionList[i - 1].activities!!, Data.missionList[i - 1].done,this@MainActivity)
                             Data.missionList[i - 1].setMission(mission)
                             Data.missionList[i - 1].getDone()
                         }
@@ -353,6 +356,9 @@ class MainActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
     override fun onDestroy() {
         this.missionTimer.cancel()
         this.achievmentTimer.cancel()

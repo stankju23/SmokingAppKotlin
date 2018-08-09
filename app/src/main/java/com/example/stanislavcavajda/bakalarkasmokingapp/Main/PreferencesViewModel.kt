@@ -14,6 +14,7 @@ import android.widget.FrameLayout
 import android.widget.Toast
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
+import com.example.stanislavcavajda.bakalarkasmokingapp.R
 
 class PreferencesViewModel : BaseObservable {
 
@@ -40,8 +41,8 @@ class PreferencesViewModel : BaseObservable {
         var editor = preferences.edit()
 
         var builder = AlertDialog.Builder(context)
-        builder.setTitle("Cigarettes smoked per day")
-        builder.setMessage("Set value")
+        builder.setTitle(R.string.cigarettes_smoked_every_day)
+        builder.setMessage(R.string.set_value)
 
         var layout = FrameLayout(context)
         var setValueEditText = EditText(context)
@@ -51,7 +52,7 @@ class PreferencesViewModel : BaseObservable {
         layout.setPadding(45,0,45,0)
         builder.setView(layout)
 
-        builder.setPositiveButton("Yes", DialogInterface.OnClickListener { dialogInterface, i ->
+        builder.setPositiveButton(R.string.yes, DialogInterface.OnClickListener { dialogInterface, i ->
             var value = setValueEditText.text.toString()
             if (value.length != 0 || value.toInt() < 0) {
                 cigarretesPerDay.set(value)
@@ -63,7 +64,7 @@ class PreferencesViewModel : BaseObservable {
             }
         })
 
-        builder.setNegativeButton("No", DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() })
+        builder.setNegativeButton(R.string.no, DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() })
 
 
         var dialog = builder.create()
@@ -76,8 +77,8 @@ class PreferencesViewModel : BaseObservable {
         var editor = preferences.edit()
 
         var builder = AlertDialog.Builder(context)
-        builder.setTitle("Cigarettes in packet")
-        builder.setMessage("Set value")
+        builder.setTitle(R.string.cigarettes_in_packet)
+        builder.setMessage(R.string.set_value)
 
         var layout = FrameLayout(context)
         var setValueEditText = EditText(context)
@@ -87,7 +88,7 @@ class PreferencesViewModel : BaseObservable {
         layout.setPadding(45,0,45,0)
         builder.setView(layout)
 
-        builder.setPositiveButton("Yes", DialogInterface.OnClickListener { dialogInterface, i ->
+        builder.setPositiveButton(R.string.yes, DialogInterface.OnClickListener { dialogInterface, i ->
             var value = setValueEditText.text.toString()
             if (value.length != 0 || value.toInt() < 0) {
                 cigarretesInPacket.set(value)
@@ -99,7 +100,7 @@ class PreferencesViewModel : BaseObservable {
             }
         })
 
-        builder.setNegativeButton("No", DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() })
+        builder.setNegativeButton(R.string.no, DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() })
 
 
         var dialog = builder.create()
@@ -112,8 +113,8 @@ class PreferencesViewModel : BaseObservable {
         var editor = preferences.edit()
 
         var builder = AlertDialog.Builder(context)
-        builder.setTitle("Packet cost")
-        builder.setMessage("Set value")
+        builder.setTitle(R.string.packet_cost)
+        builder.setMessage(R.string.set_value)
 
         var layout = FrameLayout(context)
         var setValueEditText = EditText(context)
@@ -124,7 +125,7 @@ class PreferencesViewModel : BaseObservable {
         layout.setPadding(45,0,45,0)
         builder.setView(layout)
 
-        builder.setPositiveButton("Yes", DialogInterface.OnClickListener { dialogInterface, i ->
+        builder.setPositiveButton(R.string.yes, DialogInterface.OnClickListener { dialogInterface, i ->
             var value = setValueEditText.text.toString()
             if (value.length != 0 || value.toInt() < 0) {
                 packetCost.set(value)
@@ -136,7 +137,7 @@ class PreferencesViewModel : BaseObservable {
             }
         })
 
-        builder.setNegativeButton("No", DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() })
+        builder.setNegativeButton(R.string.no, DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() })
 
 
         var dialog = builder.create()

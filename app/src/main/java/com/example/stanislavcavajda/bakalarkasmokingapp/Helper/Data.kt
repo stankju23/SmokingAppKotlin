@@ -19,7 +19,7 @@ object Data {
 
     var healthProgressViewList: ArrayList<HealthProgressViewModel> = ArrayList()
     //var date = "02-03-2018 15:00"
-    var date = "01-06-2018 11:13"
+    var date = "01-08-2018 11:13:00"
     var healthProgressTimes: ArrayList<Long> = ArrayList()
     var wishList: ArrayList<Wish> = ArrayList()
     var timeList: ArrayList<MainProgressDetailTime> = ArrayList()
@@ -29,7 +29,7 @@ object Data {
 
     var objectives: ArrayList<Objective> = ArrayList()
     var missionList: ArrayList<Mission> = ArrayList()
-    var actualTheme = 1
+    var actualTheme = 0
     var cravings:ArrayList<CravingItem> = ArrayList()
 
     var dashboardThreadStared = false

@@ -10,6 +10,7 @@ import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.ScrollView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -84,15 +85,15 @@ fun setDone(layout:ConstraintLayout, done:Boolean) {
 }
 
 @BindingAdapter("move")
-fun setMove(text:TextView, done:Boolean) {
-    val density = text.context.getResources().getDisplayMetrics().density
+fun setMove(layout:ScrollView, done:Boolean) {
+    val density = layout.context.getResources().getDisplayMetrics().density
     var dp = 56 * density
     if (!done){
-        text.translationY = dp
-        text.animate().translationYBy(-dp).duration = 200
+        layout.translationY = dp
+        layout.animate().translationYBy(-dp).duration = 200
     }
     if (done) {
-        text.animate().translationYBy(dp).duration = 200
+        layout.animate().translationYBy(dp).duration = 200
     }
 }
 
