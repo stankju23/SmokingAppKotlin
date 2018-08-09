@@ -31,7 +31,7 @@ class MainProgressDetailActivity : AppCompatActivity() {
         setSupportActionBar(main_progress_detail_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.abc_ic_ab_back_material)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white)
         supportActionBar?.title = getString(R.string.main_progress_detail_title)
 
         timer.scheduleAtFixedRate(timerTask {

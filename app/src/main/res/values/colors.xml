@@ -18,4 +18,5 @@
     <color name="light_grey">#d3d3d3</color>
     <color name="complete">#54FF53</color>
     <color name="item_grey">#EFEFEF</color>
+    <color name="black">#000000</color>
 </resources>

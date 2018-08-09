@@ -23,7 +23,7 @@ public class DateConverter () {
     // converting date to timestamp
     fun convertDateToTimestamp(date: String) : Long {
         val timestamp: Timestamp
-        val simpleDateFormat = SimpleDateFormat("dd-MM-yyyy kk:mm")
+        val simpleDateFormat = SimpleDateFormat("dd-MM-yyyy hh:mm:ss")
         val date = simpleDateFormat.parse(date)
         timestamp = Timestamp(date.time)
         return timestamp.time / 1000
@@ -44,6 +44,16 @@ public class DateConverter () {
         val tz = TimeZone.getDefault()
         calendar.add(Calendar.MILLISECOND, tz.getOffset(calendar.timeInMillis))
         val sdf = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+        val currenTimeZone = java.util.Date(time * 1000)
+        return sdf.format(currenTimeZone)
+    }
+
+    @SuppressLint("NewApi")
+    fun getFullDate(time: Long): String {
+        val calendar = Calendar.getInstance()
+        val tz = TimeZone.getDefault()
+        calendar.add(Calendar.MILLISECOND, tz.getOffset(calendar.timeInMillis))
+        val sdf = SimpleDateFormat("dd-MM-yyyy HH:MM", Locale.getDefault())
         val currenTimeZone = java.util.Date(time * 1000)
         return sdf.format(currenTimeZone)
     }

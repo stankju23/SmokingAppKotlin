@@ -1,15 +1,49 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#84BBC3</item>
-        <item name="colorPrimaryDark">#558D96</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+        <item name="colorPrimary">#c9e26a</item>
+        <item name="colorPrimaryDark">#aab857</item>
+        <item name="colorAccent">#464646</item>
+        <item name="secondaryClr">#D1DBDA</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowEnterTransition">@android:transition/explode</item>
+        <item name="android:windowExitTransition">@android:transition/explode</item>
     </style>
 
+    <style name="blueOcean" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#8CC2E0</item>
+        <item name="colorPrimaryDark">#5788b8</item>
+        <item name="colorAccent">#464646</item>
+        <item name="secondaryClr">#D1DBDA</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowEnterTransition">@android:transition/explode</item>
+        <item name="android:windowExitTransition">@android:transition/explode</item>
+    </style>
+
+    <style name="wine" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#C0364D</item>
+        <item name="colorPrimaryDark">#a41537</item>
+        <item name="colorAccent">#464646</item>
+        <item name="secondaryClr">#D1DBDA</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowEnterTransition">@android:transition/explode</item>
+        <item name="android:windowExitTransition">@android:transition/explode</item>
+    </style>
+
+    <style name="banana" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#E4CB66</item>
+        <item name="colorPrimaryDark">#b2a15b</item>
+        <item name="colorAccent">#464646</item>
+        <item name="secondaryClr">#4f4132</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowEnterTransition">@android:transition/explode</item>
+        <item name="android:windowExitTransition">@android:transition/explode</item>
+    </style>
+
+
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/ic_launcher_background</item>
+        <item name="android:windowBackground">?colorPrimary</item>
     </style>
 
 
@@ -27,11 +61,9 @@
     </style>
 
 
-    <style name="Theme1" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#AAB857</item>
-        <item name="colorPrimaryDark">#464646</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+
+    <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:colorAccent">#0000FF</item>
     </style>
 
     <style name="MyAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">

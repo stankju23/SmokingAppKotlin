@@ -4,59 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Cravings.AddCravingActivity"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".Cravings.AddCravingActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/add_craving_toolbar"
         android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
         android:background="?colorPrimary"
+        android:elevation="4dp"
         app:layout_collapseMode="pin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:titleTextColor="@color/white"
-        android:elevation="4dp">
+        app:titleTextColor="@color/white"></android.support.v7.widget.Toolbar>
 
-    </android.support.v7.widget.Toolbar>
-
-
-    <!--<com.yalantis.library.Koloda-->
-        <!--android:id="@+id/koloda"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_marginBottom="16dp"-->
-        <!--android:layout_marginTop="8dp"-->
-        <!--app:koloda_max_visible_cards="2"-->
-        <!--app:koloda_card_layout="@layout/koloda_card"-->
-        <!--/>-->
-
-
-    <com.mindorks.placeholderview.SwipePlaceHolderView
+    <com.yuyakaido.android.cardstackview.CardStackView
         android:id="@+id/swipe_card"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:paddingTop="32dp"
+        app:elevationEnabled="true"
         app:layout_constraintBottom_toTopOf="@+id/buttonsLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_craving_toolbar"
-        >
-
-
-    </com.mindorks.placeholderview.SwipePlaceHolderView>
+        app:leftOverlay="@layout/swipe_out_message"
+        app:rightOverlay="@layout/swipe_in_message"
+        app:scaleDiff="0.02"
+        app:stackFrom="bottom"
+        app:swipeDirection="horizontal"
+        app:swipeEnabled="true"
+        app:translationDiff="8"
+        app:visibleCount="3"></com.yuyakaido.android.cardstackview.CardStackView>
 
     <LinearLayout
         android:id="@+id/buttonsLayout"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:weightSum="2"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:orientation="horizontal"
         android:background="#00000000"
+        android:orientation="horizontal"
+        android:weightSum="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -67,10 +59,11 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:padding="10dp"
-            android:scaleType="fitCenter"
+            android:paddingBottom="10dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:scaleType="fitEnd"
             android:src="@drawable/ic_dislike" />
-
 
         <ImageButton
             android:id="@+id/like"
@@ -78,10 +71,78 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:padding="10dp"
-            android:scaleType="fitCenter"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:scaleType="fitStart"
             android:src="@drawable/ic_like" />
-
     </LinearLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/empty_state_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_craving_toolbar">
+
+        <ImageView
+            android:id="@+id/imageView13"
+            android:layout_width="200dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginStart="80dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView41"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:srcCompat="@drawable/ic_empty_no_card_image" />
+
+        <TextView
+            android:id="@+id/textView41"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/add_your_own_card"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/add_card"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView13" />
+
+        <Button
+            android:id="@+id/add_card"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/ripple_effect"
+            android:paddingBottom="5dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingTop="5dp"
+            android:text="@string/add_card"
+            android:textAppearance="@android:style/TextAppearance.Small"
+            android:textColor="?colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView41" />
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

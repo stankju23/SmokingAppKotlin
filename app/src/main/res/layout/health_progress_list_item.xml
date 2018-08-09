@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="viewModel"
@@ -10,21 +9,29 @@
         </variable>
     </data>
 
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp"
+        android:background="?secondaryClr">
+
         <android.support.v7.widget.CardView
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:id="@+id/health_card"
-            android:layout_marginBottom="1dp"
-            card_view:cardElevation="0.5dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="0dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/mainColor"
             android:onClick="@{viewModel.showDetail}"
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp">
 
                 <com.timqi.sectorprogressview.ColorfulRingProgressView
                     android:id="@+id/colorfulRingProgressView"
@@ -41,7 +48,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:percent="@{viewModel.date.progress}"
                     app:strokeWidth="6dp"
-                    card_view:bgColor="@color/unselectedBarColor" />
+                    app:bgColor="@color/black" />
 
                 <TextView
                     android:id="@+id/title"
@@ -51,7 +58,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="10dp"
                     android:text="@{viewModel.title}"
-                    android:textColor="@color/unselectedColor"
+                    android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/colorfulRingProgressView"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -65,7 +72,7 @@
                     android:layout_marginTop="8dp"
                     android:lines="2"
                     android:text="@{viewModel.desc}"
-                    android:textColor="@color/unselectedColor"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@+id/colorfulRingProgressView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/colorfulRingProgressView"
@@ -80,13 +87,16 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="@{String.valueOf((int)viewModel.date.progress) + '%'}"
-                    android:textColor="@color/unselectedColor"
-                    card_view:layout_constraintBottom_toBottomOf="@+id/colorfulRingProgressView"
-                    card_view:layout_constraintEnd_toEndOf="@+id/colorfulRingProgressView"
-                    card_view:layout_constraintStart_toStartOf="@+id/colorfulRingProgressView"
-                    card_view:layout_constraintTop_toTopOf="@+id/colorfulRingProgressView" />
-
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/colorfulRingProgressView"
+                    app:layout_constraintEnd_toEndOf="@+id/colorfulRingProgressView"
+                    app:layout_constraintStart_toStartOf="@+id/colorfulRingProgressView"
+                    app:layout_constraintTop_toTopOf="@+id/colorfulRingProgressView" />
             </android.support.constraint.ConstraintLayout>
         </android.support.v7.widget.CardView>
+
+    </android.support.constraint.ConstraintLayout>
+
+
 
 </layout>

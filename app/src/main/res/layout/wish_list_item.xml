@@ -8,6 +8,13 @@
     </data>
 
 
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp"
+        android:background="?secondaryClr">
+
         <com.daimajia.swipe.SwipeLayout
             android:id="@+id/wish_item_swipe_layout"
             android:layout_width="match_parent"
@@ -15,9 +22,9 @@
             swiping= "@{viewModel.canBuy.get()}">
 
             <android.support.constraint.ConstraintLayout
-                android:background="@drawable/edit_wish_swipe_bg"
+                android:background="?colorPrimary"
                 android:id="@+id/bottom_wrapper"
-                android:layout_width="75dp"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:onClick="@{viewModel.setBought}">
 
@@ -61,6 +68,7 @@
                     android:id="@+id/circleImageView"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
+                    android:transitionName="image"
                     android:layout_marginBottom="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
@@ -72,17 +80,18 @@
                     imageUri="@{viewModel.image}"/>
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/wish_list_item_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
+                    android:transitionName="title"
                     android:text="@{viewModel.title}"
                     app:layout_constraintStart_toEndOf="@+id/circleImageView"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView26"
+                    android:id="@+id/wish_list_item_desc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -90,10 +99,11 @@
                     android:layout_marginTop="10dp"
                     android:lines="2"
                     android:text="@{viewModel.desc}"
-                    android:textSize="12sp"
+                    android:textSize="11sp"
+                    android:transitionName="desc"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/circleImageView"
-                    app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                    app:layout_constraintTop_toBottomOf="@+id/wish_list_item_title" />
 
                 <TextView
                     android:id="@+id/textView25"
@@ -101,30 +111,34 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="@{!viewModel.canBuy ? @string/can_buy_it + ' ' + viewModel.endDate  : viewModel.isBought ? @string/bought : @string/can_buy_it }"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView27"
-                    app:layout_constraintEnd_toStartOf="@+id/textView27"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/wish_list_item_price"
+                    app:layout_constraintEnd_toStartOf="@+id/wish_list_item_price"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/circleImageView"
-                    app:layout_constraintTop_toTopOf="@+id/textView27"
+                    app:layout_constraintTop_toTopOf="@+id/wish_list_item_price"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
-                    android:id="@+id/textView27"
+                    android:id="@+id/wish_list_item_price"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="@{@string/price + viewModel.price}"
-                    android:textSize="12sp"
+                    android:textSize="10sp"
+                    android:transitionName="price"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/textView25"
-                    app:layout_constraintTop_toBottomOf="@+id/textView26" />
+                    app:layout_constraintTop_toBottomOf="@+id/wish_list_item_desc" />
 
             </android.support.constraint.ConstraintLayout>
 
         </com.daimajia.swipe.SwipeLayout>
+
+    </android.support.constraint.ConstraintLayout>
 
 </layout>

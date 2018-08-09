@@ -2,12 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.stanislavcavajda.bakalarkasmokingapp">
 
-    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <android:uses-permission android:name="android.permission.INTERNET" />
-    <android:uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <android:uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <android:uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -16,6 +16,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/SplashTheme">
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
         <activity android:name=".Main.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -61,9 +71,17 @@
         <activity
             android:name=".Main.ChangeColor"
             android:screenOrientation="portrait" />
-        <activity android:name=".Walkthrough.Walkthrough" />
-        <activity android:name=".Cravings.AddCravingActivity" />
-        <activity android:name=".Cravings.ShowCravings" />
+
+        <activity android:name=".Walkthrough.Walkthrough"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".Cravings.AddCravingActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".Cravings.ShowCravings"
+            android:screenOrientation="portrait" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -78,8 +96,19 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+
         <activity
             android:name=".Cravings.CravingMapActivity"
-            android:label="@string/title_activity_craving_map"></activity>
+            android:label="@string/title_activity_craving_map"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".Main.AchievmentActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".Main.SmokingPreferences"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".Cravings.AddCardActivity"
+            android:screenOrientation="portrait"/>
     </application>
 </manifest>

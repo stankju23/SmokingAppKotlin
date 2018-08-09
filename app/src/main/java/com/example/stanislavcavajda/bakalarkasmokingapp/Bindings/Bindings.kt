@@ -1,6 +1,7 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Bindings
 
 import android.databinding.BindingAdapter
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.support.constraint.ConstraintLayout
 import android.util.TypedValue
@@ -9,6 +10,7 @@ import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.ScrollView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -80,15 +82,40 @@ fun setDone(layout:ConstraintLayout, done:Boolean) {
             layout.translationY = layout.translationY + dp
         }
     }
-
-
 }
+
+@BindingAdapter("move")
+fun setMove(layout:ScrollView, done:Boolean) {
+    val density = layout.context.getResources().getDisplayMetrics().density
+    var dp = 56 * density
+    if (!done){
+        layout.translationY = dp
+        layout.animate().translationYBy(-dp).duration = 200
+    }
+    if (done) {
+        layout.animate().translationYBy(dp).duration = 200
+    }
+}
+
+
 
 @BindingAdapter("bindDate")
 fun bindDate(textview:TextView,date:String){
     textview.setText("dasdiuasidbasduiasbdasbiasbd")
 }
 
+
+@BindingAdapter("imageSrc")
+fun setImageSrc(imageView: ImageView,image:Drawable) {
+    val context = imageView.getContext()
+    if (image != null) {
+        Glide.with(context)
+            .load(image)
+            .into(imageView)
+    } else {
+        Glide.with(context).clear(imageView)
+    }
+}
 
 
 @BindingAdapter("swiping")
@@ -99,4 +126,31 @@ fun disableSwiping(layout: SwipeLayout,canBuy:Boolean) {
         layout.isSwipeEnabled = false
     }
 }
+
+@BindingAdapter("colourText")
+fun setColourText(textView:TextView,isDone:Boolean) {
+    val value = TypedValue()
+    textView.context.getTheme().resolveAttribute(R.attr.colorPrimary, value, true)
+    if (isDone){
+        textView.setTextColor(value.data)
+    } else {
+        textView.setTextColor(textView.context.resources.getColor(R.color.black))
+    }
+
+}
+
+@BindingAdapter("setBackground")
+fun setBackground(layout: ConstraintLayout,isDone:Boolean) {
+    if (isDone){
+        val value = TypedValue()
+        layout.context.getTheme().resolveAttribute(R.attr.colorPrimaryDark, value, true)
+        layout.setBackgroundColor(value.data)
+    } else {
+        val value = TypedValue()
+        layout.context.getTheme().resolveAttribute(R.attr.colorPrimary, value, true)
+        layout.setBackgroundColor(value.data)
+    }
+
+}
+
 

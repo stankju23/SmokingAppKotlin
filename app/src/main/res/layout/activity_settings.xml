@@ -1,34 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.stanislavcavajda.bakalarkasmokingapp.Main.SettingsActivity">
+    tools:context="com.example.stanislavcavajda.bakalarkasmokingapp.Main.SettingsActivity"
+    android:background="?secondaryClr"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <DatePicker
-        android:id="@+id/datePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/settings_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="sadasdas"
+        app:titleTextColor="@color/white">
+    </android.support.v7.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:text="Zvoľte dátum"
-        android:textSize="20sp"
+    <Button
+        android:id="@+id/change_color_button"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/white"
+        android:paddingLeft="16dp"
+        android:text="@string/change_color"
+        android:textAlignment="viewStart"
+        android:textAppearance="@android:style/TextAppearance.Small"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/smoking_preferences_btn" />
+
+    <Button
+        android:id="@+id/smoking_preferences_btn"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/white"
+        android:paddingLeft="16dp"
+        android:text="@string/smoking_preferences"
+        android:textAlignment="viewStart"
+        android:textAppearance="@android:style/TextAppearance.Small"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settings_toolbar" />
 </android.support.constraint.ConstraintLayout>

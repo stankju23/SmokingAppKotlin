@@ -29,4 +29,9 @@ class Activity:BaseObservable {
         }
         RealmDB.updateMission(this)
     }
+
+    fun onClick(v:View) {
+
+    }
+
 }

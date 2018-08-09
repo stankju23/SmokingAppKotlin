@@ -1,0 +1,330 @@
+
+<resources>
+    <string name="app_name">BakalarkaSmokingApp</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="more_btn">Zobraziť viac</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    // titles
+    <string name="health_progress_title">Zdravotné štatistiky</string>
+    <string name="title_dashboard">Prehľad</string>
+    <string name="title_mission">Misie</string>
+    <string name="title_cravings">Abstinencie</string>
+    <string name="title_infoarea">InfoArea</string>
+    <string name="main_progress_detail_title">Čas bez fajčenia</string>
+    <string name="days">\ dni</string>
+    <string name="hours">\ hod</string>
+    <string name="minutes">\ min</string>
+    <string name="seconds">\ sek</string>
+    <string name="time_progress">Časový priebeh</string>
+    <string name="health_improvements">Zdravotné štatistiky</string>
+    <string name="wishes_manager_title">Manažér prianí</string>
+    <string name="money_saved_title">Ušetrené peniaze</string>
+    <string name="main_progress_show_detail">Zobratiť detail</string>
+    <string name="empty"></string>
+    <string name="congratulation">Gratulujeme</string>
+    <string name="share">Zdieľať</string>
+    <string name="next">Ďalej</string>
+
+
+    // walkthrough
+    <string name="welcome_title">Vitajte</string>
+    <string name="welcome_desc">Je úžasné, že ste sa rozhodli skoncovať s fajčením. Volám sa Juraj Macák a budem Vaším sprievodcom. Tak ako som to dokázal ja, dokážete to aj Vy. Verím, že moje skúsenosti, ktoré som premietol do tejto aplikácie pomôžu nad zlozvykom vyhrať a učinia Váš život zdravším a plnohodnotnejším</string>
+    <string name="cigarettes_smoked">Koľko cigariet vyfajčíte denne?</string>
+    <string name="cigarettes_in_package">Koľko cigariet má jedna krabička?</string>
+    <string name="cost">Koľko stojí krabička cigariet?</string>
+    <string name="preffered_currency">Aká je Vaša preferovaná mena?</string>
+    <string name="stop">Prestať fajčiť teraz !</string>
+    <string name="next_button">Ďalej</string>
+    <string name="start_app">Prestať fajčiť teraz !</string>
+
+    // settings
+    <string name="change_color">Zmeniť tému</string>
+    <string name="settings_title">Nastavenia</string>
+    <string name="change_color_title">Zmeniť tému</string>
+    <string name="cigarettes_smoked_every_day">Vyfajčené cigarety za deň</string>
+    <string name="cigarettes_in_packet">Počet cigariet v balíčku</string>
+    <string name="packet_cost">Hodnota balíčka</string>
+    <string name="smoking_preferences">Nastavenie parametrov</string>
+    <string name="yes">Áno</string>
+    <string name="no">Zrušiť</string>
+    <string name="set_value">Zadaj hodnotu : </string>
+
+
+    //wishes
+    <string name="add_wish">Pridať želanie</string>
+    <string name="you_have_no_wishes_now">Momentálne nemáš žiadne nové želania !</string>
+    <string name="wish_hint_name">Názov</string>
+    <string name="wish_hint_price">Cena</string>
+    <string name="wish_hint_description">Popis</string>
+    <string name="show_wishes">Ukáž priania</string>
+    <string name="edit_wish">Upraviť prianie</string>
+    <string name="can_buy_it">Môžem kúpiť</string>
+    <string name="price">Cena : </string>
+    <string name="bought">Kupené</string>
+
+    //cravings
+    <string name="not_specified_place">Nešpecifikovaná lokalita</string>
+    <string name="title_activity_craving_map">Mapa</string>
+    <string name="tap_to_save_craving">Kliknite a uložte abstinenciu</string>
+    <string name="cravings_title">Abstinencie</string>
+    <string name="show_craving_preferences">Analýza abstinencíi</string>
+    <string name="show_all_cravings">Zoznam abstinenčných príznakov</string>
+    <string name="map_of_cravings">Mapa abstinencií</string>
+    <string name="first_aid">Prvá pomoc</string>
+
+    //missions
+    <string name="go_to_objectives">Úlohy</string>
+    <string name="mark_as_done">Označiť ako spravené</string>
+    <string name="mark_as_undone">Označiť ako nespravené</string>
+    <string name="objectives">Úlohy </string>
+    <string name="completion_time">Čas do uzamknutia :</string>
+    <string name="mission">Misia</string>
+
+    //temy
+    <string name="pastel_template">Pastelová téma</string>
+    <string name="dark_green_color">Relaxačná téma</string>
+
+    //error massages
+    <string name="error_name">Zadaj názov </string>
+    <string name="error_price">Zadaj cenu</string>
+    <string name="error_desc">Zadaj popis</string>
+    <string name="error_image">Nezabudni zadať obrázok</string>
+    <string name="write_a_title">Napíš titulok</string>
+    <string name="write_a_description">Napíš popis</string>
+
+    // cards
+    <string name="add_your_own_card">Ach nie, tipy sa minuly, ale nezúfaj. Pridaj si vlastnú kartu</string>
+    <string name="add_card">Pridať kartu</string>
+
+
+    //achievments
+    <string name="no_smoked">Odmeny za vydržaný čas</string>
+    <string name="achievments_noSmoked_one_title">Ste skvelý!</string>
+    <string name="achievments_noSmoked_one_desc">Vydržali ste prvý deň!</string>
+    <string name="achievments_noSmoked_three_title">Perfektné!</string>
+    <string name="achievments_noSmoked_three_desc">Už 3 dni nefajčíte, citíte ten rozdiel?</string>
+    <string name="achievments_noSmoked_seven_title">Ste na správnej ceste</string>
+    <string name="achievments_noSmoked_seven_desc">Najťažší týždeň máte za sebou, len tak ďalej!</string>
+    <string name="achievments_noSmoked_twelve_title">Bližíte sa do finále</string>
+    <string name="achievments_noSmoked_twelve_desc">Vybudovali ste si silnú vôľu prestať fajčiť</string>
+    <string name="achievments_noSmoked_twentyone_title">Dokázali ste to!</string>
+    <string name="achievments_noSmoked_twentyone_desc">Gratulujem, stali ste sa nefajčiarom</string>
+
+
+    //mission activities
+    <string name="activity_1_title">Daj si vodu 1</string>
+    <string name="activity_1_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 1</string>
+    <string name="activity_2_title">Daj si vodu 2</string>
+    <string name="activity_2_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 2</string>
+    <string name="activity_3_title">Daj si vodu 3</string>
+    <string name="activity_3_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 3</string>
+    <string name="activity_4_title">Daj si vodu 4</string>
+    <string name="activity_4_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 4</string>
+    <string name="activity_5_title">Daj si vodu 5</string>
+    <string name="activity_5_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 5</string>
+    <string name="activity_6_title">Daj si vodu 6</string>
+    <string name="activity_6_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 6</string>
+    <string name="activity_7_title">Daj si vodu 7</string>
+    <string name="activity_7_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 7</string>
+    <string name="activity_8_title">Daj si vodu 8</string>
+    <string name="activity_8_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 8</string>
+    <string name="activity_9_title">Daj si vodu 9</string>
+    <string name="activity_9_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 9</string>
+    <string name="activity_10_title">Daj si vodu 10</string>
+    <string name="activity_10_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 10</string>
+    <string name="activity_11_title">Daj si vodu 11</string>
+    <string name="activity_11_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 11</string>
+    <string name="activity_12_title">Daj si vodu 12</string>
+    <string name="activity_12_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 12</string>
+    <string name="activity_13_title">Daj si vodu 13</string>
+    <string name="activity_13_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 13</string>
+    <string name="activity_14_title">Daj si vodu 14</string>
+    <string name="activity_14_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 14</string>
+    <string name="activity_15_title">Daj si vodu 15</string>
+    <string name="activity_15_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 15</string>
+    <string name="activity_16_title">Daj si vodu 16</string>
+    <string name="activity_16_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 16</string>
+    <string name="activity_17_title">Daj si vodu 17</string>
+    <string name="activity_17_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 17</string>
+    <string name="activity_18_title">Daj si vodu 18</string>
+    <string name="activity_18_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 18</string>
+    <string name="activity_19_title">Daj si vodu 19</string>
+    <string name="activity_19_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 19</string>
+    <string name="activity_20_title">Daj si vodu 20</string>
+    <string name="activity_20_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 20</string>
+    <string name="activity_21_title">Daj si vodu 21</string>
+    <string name="activity_21_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 21</string>
+    <string name="activity_22_title">Daj si vodu 22</string>
+    <string name="activity_22_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 22</string>
+    <string name="activity_23_title">Daj si vodu 23</string>
+    <string name="activity_23_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 23</string>
+    <string name="activity_24_title">Daj si vodu 24</string>
+    <string name="activity_24_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 24</string>
+    <string name="activity_25_title">Daj si vodu 25</string>
+    <string name="activity_25_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 25</string>
+    <string name="activity_26_title">Daj si vodu 26</string>
+    <string name="activity_26_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 26</string>
+    <string name="activity_27_title">Daj si vodu 27</string>
+    <string name="activity_27_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 27</string>
+    <string name="activity_28_title">Daj si vodu 28</string>
+    <string name="activity_28_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 28</string>
+    <string name="activity_29_title">Daj si vodu 29</string>
+    <string name="activity_29_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 29</string>
+    <string name="activity_30_title">Daj si vodu 30</string>
+    <string name="activity_30_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 30</string>
+    <string name="activity_31_title">Daj si vodu 31</string>
+    <string name="activity_31_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 31</string>
+    <string name="activity_32_title">Daj si vodu 32</string>
+    <string name="activity_32_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 32</string>
+    <string name="activity_33_title">Daj si vodu 33</string>
+    <string name="activity_33_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 33</string>
+    <string name="activity_34_title">Daj si vodu 34</string>
+    <string name="activity_34_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 34</string>
+    <string name="activity_35_title">Daj si vodu 35</string>
+    <string name="activity_35_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 35</string>
+    <string name="activity_36_title">Daj si vodu 36</string>
+    <string name="activity_36_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 36</string>
+    <string name="activity_37_title">Daj si vodu 37</string>
+    <string name="activity_37_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 37</string>
+    <string name="activity_38_title">Daj si vodu 38</string>
+    <string name="activity_38_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 38</string>
+    <string name="activity_39_title">Daj si vodu 39</string>
+    <string name="activity_39_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 39</string>
+    <string name="activity_40_title">Daj si vodu 40</string>
+    <string name="activity_40_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 40</string>
+    <string name="activity_41_title">Daj si vodu 41</string>
+    <string name="activity_41_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 41</string>
+    <string name="activity_42_title">Daj si vodu 42</string>
+    <string name="activity_42_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 42</string>
+    <string name="activity_43_title">Daj si vodu 43</string>
+    <string name="activity_43_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 43</string>
+    <string name="activity_44_title">Daj si vodu 44</string>
+    <string name="activity_44_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 44</string>
+    <string name="activity_45_title">Daj si vodu 45</string>
+    <string name="activity_45_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 45</string>
+    <string name="activity_46_title">Daj si vodu 46</string>
+    <string name="activity_46_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 46</string>
+    <string name="activity_47_title">Daj si vodu 47</string>
+    <string name="activity_47_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 47</string>
+    <string name="activity_48_title">Daj si vodu 48</string>
+    <string name="activity_48_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 48</string>
+    <string name="activity_49_title">Daj si vodu 49</string>
+    <string name="activity_49_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 49</string>
+    <string name="activity_50_title">Daj si vodu 50</string>
+    <string name="activity_50_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 50</string>
+    <string name="activity_51_title">Daj si vodu 51</string>
+    <string name="activity_51_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 51</string>
+    <string name="activity_52_title">Daj si vodu 52</string>
+    <string name="activity_52_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 52</string>
+    <string name="activity_53_title">Daj si vodu 53</string>
+    <string name="activity_53_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 53</string>
+    <string name="activity_54_title">Daj si vodu 54</string>
+    <string name="activity_54_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 54</string>
+    <string name="activity_55_title">Daj si vodu 55</string>
+    <string name="activity_55_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 55</string>
+    <string name="activity_56_title">Daj si vodu 56</string>
+    <string name="activity_56_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 56</string>
+    <string name="activity_57_title">Daj si vodu 57</string>
+    <string name="activity_57_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 57</string>
+    <string name="activity_58_title">Daj si vodu 58</string>
+    <string name="activity_58_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 58</string>
+    <string name="activity_59_title">Daj si vodu 59</string>
+    <string name="activity_59_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 59</string>
+    <string name="activity_60_title">Daj si vodu 60</string>
+    <string name="activity_60_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 60</string>
+    <string name="activity_61_title">Daj si vodu 61</string>
+    <string name="activity_61_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 61</string>
+    <string name="activity_62_title">Daj si vodu 62</string>
+    <string name="activity_62_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 62</string>
+    <string name="activity_63_title">Daj si vodu 63</string>
+    <string name="activity_63_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 63</string>
+    <string name="activity_64_title">Daj si vodu 64</string>
+    <string name="activity_64_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 64</string>
+    <string name="activity_65_title">Daj si vodu 65</string>
+    <string name="activity_65_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 65</string>
+    <string name="activity_66_title">Daj si vodu 66</string>
+    <string name="activity_66_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 66</string>
+    <string name="activity_67_title">Daj si vodu 67</string>
+    <string name="activity_67_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 67</string>
+    <string name="activity_68_title">Daj si vodu 68</string>
+    <string name="activity_68_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 68</string>
+    <string name="activity_69_title">Daj si vodu 69</string>
+    <string name="activity_69_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 69</string>
+    <string name="activity_70_title">Daj si vodu 70</string>
+    <string name="activity_70_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 70</string>
+    <string name="activity_71_title">Daj si vodu 71</string>
+    <string name="activity_71_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 71</string>
+    <string name="activity_72_title">Daj si vodu 72</string>
+    <string name="activity_72_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 72</string>
+    <string name="activity_73_title">Daj si vodu 73</string>
+    <string name="activity_73_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 73</string>
+    <string name="activity_74_title">Daj si vodu 74</string>
+    <string name="activity_74_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 74</string>
+    <string name="activity_75_title">Daj si vodu 75</string>
+    <string name="activity_75_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 75</string>
+    <string name="activity_76_title">Daj si vodu 76</string>
+    <string name="activity_76_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 76</string>
+    <string name="activity_77_title">Daj si vodu 77</string>
+    <string name="activity_77_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 77</string>
+    <string name="activity_78_title">Daj si vodu 78</string>
+    <string name="activity_78_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 78</string>
+    <string name="activity_79_title">Daj si vodu 79</string>
+    <string name="activity_79_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 79</string>
+    <string name="activity_80_title">Daj si vodu 80</string>
+    <string name="activity_80_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 80</string>
+    <string name="activity_81_title">Daj si vodu 81</string>
+    <string name="activity_81_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 81</string>
+    <string name="activity_82_title">Daj si vodu 82</string>
+    <string name="activity_82_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 82</string>
+    <string name="activity_83_title">Daj si vodu 83</string>
+    <string name="activity_83_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 83</string>
+    <string name="activity_84_title">Daj si vodu 84</string>
+    <string name="activity_84_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 84</string>
+    <string name="activity_85_title">Daj si vodu 85</string>
+    <string name="activity_85_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 85</string>
+    <string name="activity_86_title">Daj si vodu 86</string>
+    <string name="activity_86_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 86</string>
+    <string name="activity_87_title">Daj si vodu 87</string>
+    <string name="activity_87_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 87</string>
+    <string name="activity_88_title">Daj si vodu 88</string>
+    <string name="activity_88_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 88</string>
+    <string name="activity_89_title">Daj si vodu 89</string>
+    <string name="activity_89_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 89</string>
+    <string name="activity_90_title">Daj si vodu 90</string>
+    <string name="activity_90_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 90</string>
+    <string name="activity_91_title">Daj si vodu 91</string>
+    <string name="activity_91_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 91</string>
+    <string name="activity_92_title">Daj si vodu 92</string>
+    <string name="activity_92_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 92</string>
+    <string name="activity_93_title">Daj si vodu 93</string>
+    <string name="activity_93_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 93</string>
+    <string name="activity_94_title">Daj si vodu 94</string>
+    <string name="activity_94_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 94</string>
+    <string name="activity_95_title">Daj si vodu 95</string>
+    <string name="activity_95_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 95</string>
+    <string name="activity_96_title">Daj si vodu 96</string>
+    <string name="activity_96_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 96</string>
+    <string name="activity_97_title">Daj si vodu 97</string>
+    <string name="activity_97_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 97</string>
+    <string name="activity_98_title">Daj si vodu 98</string>
+    <string name="activity_98_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 98</string>
+    <string name="activity_99_title">Daj si vodu 99</string>
+    <string name="activity_99_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 99</string>
+    <string name="activity_100_title">Daj si vodu 100</string>
+    <string name="activity_100_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 100</string>
+    <string name="activity_101_title">Daj si vodu 101</string>
+    <string name="activity_101_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 101</string>
+    <string name="activity_102_title">Daj si vodu 102</string>
+    <string name="activity_102_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 102</string>
+    <string name="activity_103_title">Daj si vodu 103</string>
+    <string name="activity_103_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 103</string>
+    <string name="activity_104_title">Daj si vodu 104</string>
+    <string name="activity_104_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 104</string>
+    <string name="activity_105_title">Daj si vodu 105</string>
+    <string name="activity_105_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 105</string>
+
+
+</resources>

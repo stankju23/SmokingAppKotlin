@@ -4,6 +4,6 @@ import io.realm.RealmObject
 
 open class ObjectiveRealm(
     var id:String = "",
-    var title:String = "",
-    var desc:String = ""
+    var title:Int = 0,
+    var desc:Int = 0
 ) : RealmObject()

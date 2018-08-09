@@ -1,10 +1,14 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.databinding.DataBindingUtil
+import android.os.Build
 import android.os.Bundle
+import android.support.annotation.RequiresApi
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.MenuItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
@@ -18,8 +22,13 @@ class WishesActivity : AppCompatActivity() {
     var binding: ActivityWishesBinding? = null
     var viewModel: WishListViewModel? = null
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 100)
+        }
 
         ThemeManager.setTheme(this,Data.actualTheme)
 
@@ -33,8 +42,9 @@ class WishesActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.abc_ic_ab_back_material)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white)
         supportActionBar?.title = resources.getString(R.string.wishes_manager_title)
+
 
 
         wishes_recycler.setHasFixedSize(true)
@@ -58,9 +68,6 @@ class WishesActivity : AppCompatActivity() {
         })
 
 
-        var dividerDecoration = DividerItemDecoration(this,LinearLayoutManager.VERTICAL)
-        dividerDecoration.setDrawable(resources.getDrawable(R.drawable.divider))
-        wishes_recycler.addItemDecoration(dividerDecoration)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -29,10 +29,7 @@
             app:gapLimit="30"
             android:animateLayoutChanges="false"
             android:nestedScrollingEnabled="false"
-            />
-
-
-
+            android:backgroundTint="?secondaryClr" />
 
 </FrameLayout>
 </layout>

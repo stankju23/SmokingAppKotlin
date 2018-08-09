@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.example.stanislavcavajda.bakalarkasmokingapp.BR
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.OnWishClick
-import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import me.tatarka.bindingcollectionadapter2.ItemBinding
@@ -24,9 +23,9 @@ class MissionListViewModel {
         override fun onWishClick(v: View) {
             var recyclerView: RecyclerView = (context as Activity).findViewById(R.id.missions_recycler_view)
             var clickedPosition = recyclerView.getChildAdapterPosition(v)
+            Data.actualClickedMission = clickedPosition
             var missionInfo = Intent(context, MissionInfoActivity::class.java)
             if (Data.missionList[clickedPosition].available.get()) {
-                missionInfo.putExtra(Constants.extras.EXTRA_ITEM_ID, clickedPosition)
                 (context as Activity).startActivity(missionInfo)
             }
         }

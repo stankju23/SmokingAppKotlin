@@ -34,14 +34,15 @@
         <android.support.v7.widget.RecyclerView
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="?secondaryClr"
             app:itemBinding="@{viewModel.itemBinding}"
             app:items="@{viewModel.healthProgressViewList}"
             app:layoutManager="@{LayoutManagers.linear()}"
-            android:background="@color/item_grey"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/products_toolbar" />
+            app:layout_constraintTop_toBottomOf="@id/products_toolbar"
+            app:layout_constraintVertical_bias="0.0" />
     </android.support.constraint.ConstraintLayout>
 </layout>

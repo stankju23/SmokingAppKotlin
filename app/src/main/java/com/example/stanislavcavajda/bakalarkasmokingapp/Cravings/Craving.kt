@@ -3,13 +3,17 @@ package com.example.stanislavcavajda.bakalarkasmokingapp.Cravings
 import android.content.Context
 import android.location.Address
 import android.location.Geocoder
-import java.util.*
-import kotlin.collections.ArrayList
+import android.util.Log
+import com.example.stanislavcavajda.bakalarkasmokingapp.R
+import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.clustering.ClusterItem
+import java.util.Locale
 
 /**
  * Created by stanislavcavajda on 12/05/2018.
  */
-class Craving {
+class Craving:CravingItem,ClusterItem {
+
 
     var id:String
     var time:String
@@ -19,16 +23,31 @@ class Craving {
     var city:String
     var address:String
     var context:Context
+    var blackBG:Boolean
 
-    constructor(id:String,time:String,date:String,lat: Double,long: Double,context: Context) {
+    constructor(id:String,time:String,date:String,lat: Double,long: Double,context: Context,blackBG:Boolean) {
         this.id = id
         this.time = time
         this.date = date
         this.latitude = lat
         this.longitude = long
         this.context = context
-        this.city = getAddress(this.latitude,this.longitude)[0]
-        this.address = "${getAddress(this.latitude,this.longitude)[1]},${getAddress(this.latitude,this.longitude)[2]}"
+        if (this.latitude != 0.0 && this.longitude != 0.0) {
+            try {
+                this.city = getAddress(this.latitude, this.longitude)[0]
+                this.address = "${getAddress(this.latitude, this.longitude)[1]},${getAddress(this.latitude, this.longitude)[2]}"
+
+            } catch (e:Exception) {
+                Log.i("Cant get","Address")
+                this.city = context.getString(R.string.not_specified_place)
+                this.address = context.getString(R.string.not_specified_place)
+            }
+
+        } else {
+            this.city = context.getString(R.string.not_specified_place)
+            this.address = context.getString(R.string.not_specified_place)
+        }
+        this.blackBG = blackBG
 
     }
 
@@ -42,8 +61,19 @@ class Craving {
         } catch (e:Exception) {
 
         }
-
         return city
+    }
+
+    override fun getSnippet(): String {
+        return "${this.date}, ${this.time}"
+    }
+
+    override fun getTitle(): String {
+        return this.city
+    }
+
+    override fun getPosition(): LatLng {
+        return LatLng(this.latitude,this.longitude)
     }
 
 }

@@ -22,8 +22,9 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Model.Date
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.databinding.FragmentDashboardBinding
 import java.text.NumberFormat
-import java.util.*
-import kotlin.collections.ArrayList
+import java.util.Locale
+import java.util.Timer
+import java.util.TimerTask
 
 class DashboardFragment : Fragment() {
 
@@ -65,12 +66,12 @@ class DashboardFragment : Fragment() {
         }
 
 
-        dashboardList = DashboardListViewModel(ArrayList(), activity.applicationContext)
+        dashboardList = DashboardListViewModel(ArrayList(), activity)
 
         var healthProgress = HealthProgressListViewModel(Data.healthProgressViewList, activity)
         var mainProgress = MainProgressViewModel(date, activity,Data.timeList)
         var wishesManager = WishListViewModel(Data.wishList,activity)
-        var moneySaved = MoneySavedViewModel(Data.MoneyDashboard.moneySaved,Data.MoneyDashboard.moneySpend)
+        var moneySaved = MoneySavedViewModel(Data.MoneyDashboard.moneySaved,Data.MoneyDashboard.moneySpend,Data.MoneyDashboard.currency)
 
 
         dashboardList.list.add(mainProgress as Object)
@@ -136,7 +137,7 @@ class DashboardFragment : Fragment() {
                     Data.MoneyDashboard.moneySaved = (result).toFloat()
 
                     (dashboardList.list.get(Constants.viewTypes.MONEY_SAVED_VIEW_TYPE) as MoneySavedViewModel).updateMoney(
-                            Data.MoneyDashboard.moneySaved, 0.0f)
+                            Data.MoneyDashboard.moneySaved, 0.0f,Data.MoneyDashboard.currency)
 
                     updateWishList()
 
@@ -182,7 +183,13 @@ class DashboardFragment : Fragment() {
 
 
     fun prepareHealthProgressList() {
-        Data.healthProgressViewList.addAll(JSONParser.parseHealthData(JSONParser.loadJsonFromAssets("HealthData",activity),activity))
+
+
+        when(activity.resources.configuration.locale.country){
+            "US" -> Data.healthProgressViewList.addAll(JSONParser.parseHealthData(JSONParser.loadJsonFromAssets("HealthDataEN",activity),activity))
+            "SK" -> Data.healthProgressViewList.addAll(JSONParser.parseHealthData(JSONParser.loadJsonFromAssets("HealthDataSK",activity),activity))
+            else -> Data.healthProgressViewList.addAll(JSONParser.parseHealthData(JSONParser.loadJsonFromAssets("HealthDataEN",activity),activity))
+        }
     }
 
 

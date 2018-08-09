@@ -4,16 +4,18 @@ import android.content.Context
 import android.net.Uri
 import android.util.Log
 import com.example.stanislavcavajda.bakalarkasmokingapp.Cravings.Craving
+import com.example.stanislavcavajda.bakalarkasmokingapp.Cravings.CravingHeader
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.Wish
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DateConverter
+import com.example.stanislavcavajda.bakalarkasmokingapp.Koloda.KolodaItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Activity
 import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Mission
 import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Objective
 import com.example.stanislavcavajda.bakalarkasmokingapp.Model.Date
 import io.realm.Realm
 import io.realm.RealmList
-import java.util.*
+import java.util.ArrayList
 
 /**
  * Created by stanislavcavajda on 13/03/2018.
@@ -150,7 +152,7 @@ object RealmDB {
                     var activity = Activity(item.isDone,objective,item.id)
                     activities.add(activity)
                 }
-                var mission = Mission(item.id,item.name,item.date,Date(0,0),item.locked,item.available,activities,item.done)
+                var mission = Mission(item.id,item.name,item.date,Date(0,0),item.locked,item.available,activities,item.done,context)
                Data.missionList.add(mission)
             } catch (e:Exception) {
 
@@ -171,21 +173,79 @@ object RealmDB {
         realmCraving.date = craving.date
         realmCraving.latitude = craving.latitude
         realmCraving.longitude = craving.longitude
+        realmCraving.isHeader = false
+        realmCraving.blacBG = craving.blackBG
         realm.commitTransaction()
     }
 
-    fun getCravings(context: Context) {
+    fun saveHeader(header:CravingHeader) {
+        realm.beginTransaction()
+        var realmCraving = realm.createObject(CravingRealm::class.java)
+        realmCraving.id = header.id
+        realmCraving.date = header.date
+        realmCraving.isHeader = true
+        realm.commitTransaction()
+    }
+
+    fun getCravings(context: Context)
+    {
+
 
         val result = realm.where(CravingRealm::class.java).findAll()
 
         for (item in result) {
-            try {
-                var craving = Craving(item.id,item.time,item.date,item.latitude,item.longitude,context)
-                Data.cravings.add(craving)
+            try
+            {
+                if (item.isHeader)
+                {
+                    var cravingHeader = CravingHeader(item.id,item.date)
+                    Data.cravings.add(cravingHeader)
+                } else
+                {
+                    var craving = Craving(item.id,item.time,item.date,item.latitude,item.longitude,context,item.blacBG)
+                    Data.cravings.add(craving)
+                }
+
             } catch (e:Exception) {
                 Log.i("Cravings" ,"Can't load")
             }
         }
 
+    }
+
+    fun addCard(card:KolodaItem) {
+        realm.beginTransaction()
+        var realmCard = realm.createObject(CardRealm::class.java)
+        realmCard.id = card.id
+        realmCard.title = card.title
+        realmCard.desc = card.desc
+        realmCard.category = card.category
+        realmCard.popularity = card.popularity
+        realm.commitTransaction()
+    }
+
+    fun updateCard(card:KolodaItem) {
+
+        var realmCard = realm.where(CardRealm::class.java).equalTo("id",card.id).findFirst()
+
+        if (realmCard != null) {
+            realm.beginTransaction()
+            realmCard.popularity = card.popularity
+            realm.insertOrUpdate(realmCard)
+            realm.commitTransaction()
+        }
+    }
+
+    fun loadCards(context:Context) {
+        val result = realm.where(CardRealm::class.java).findAll()
+
+        for (item in result) {
+            try {
+                var kolodaItem = KolodaItem(item.id,item.category,item.title,item.desc,context)
+                Data.cravingsCardList.add(kolodaItem)
+            } catch (e:Exception) {
+                Log.e("Load card error : ", e.message)
+            }
+        }
     }
 }

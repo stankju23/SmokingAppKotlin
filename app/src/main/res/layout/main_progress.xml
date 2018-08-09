@@ -11,18 +11,27 @@
             type="com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MainProgress.MainProgressViewModel"></variable>
     </data>
 
-    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="4dp"
+        android:background="?secondaryClr"
+        android:paddingTop="8dp"
+        android:paddingBottom="4dp">
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="4dp"
-        card_view:cardElevation="4dp">
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="0dp">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <FrameLayout
             android:id="@+id/recycler_view_layout"
             android:layout_width="match_parent"
@@ -117,10 +126,12 @@
                 android:text="@string/main_progress_show_detail"
                 android:textAppearance="@android:style/TextAppearance.Small"
                 android:textColor="?colorPrimary"
-                card_view:layout_constraintBottom_toBottomOf="parent"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@+id/textView4" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
+    </android.support.constraint.ConstraintLayout>
 </layout>
