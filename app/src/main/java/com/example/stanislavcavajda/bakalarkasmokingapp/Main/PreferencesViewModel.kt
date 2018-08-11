@@ -12,8 +12,10 @@ import android.view.View
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.Toast
+import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.Wish
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
+import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.NotificationScheduler
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 
 class PreferencesViewModel : BaseObservable {
@@ -59,6 +61,7 @@ class PreferencesViewModel : BaseObservable {
                 Data.MoneyDashboard.cigarretesPerDay = value.toInt()
                 editor.putInt(Constants.actualState.CIGARETTES_PER_DAY, value.toInt())
                 editor.commit()
+                updateWishesNotifcations(Data.wishList)
             } else {
                 Toast.makeText(context,"Value isnt correct",Toast.LENGTH_SHORT).show()
             }
@@ -95,6 +98,7 @@ class PreferencesViewModel : BaseObservable {
                 Data.MoneyDashboard.cigarretesInPackage = value.toInt()
                 editor.putInt(Constants.actualState.CIGARETTES_IN_PACKAGE, value.toInt())
                 editor.commit()
+                updateWishesNotifcations(Data.wishList)
             } else {
                 Toast.makeText(context,"Value isnt correct",Toast.LENGTH_SHORT).show()
             }
@@ -132,6 +136,7 @@ class PreferencesViewModel : BaseObservable {
                 Data.MoneyDashboard.packagePrice = value.toDouble()
                 editor.putFloat(Constants.actualState.PACKAGE_PRICE, value.toFloat())
                 editor.commit()
+                updateWishesNotifcations(Data.wishList)
             } else {
                 Toast.makeText(context,"Value isnt correct",Toast.LENGTH_SHORT).show()
             }
@@ -142,5 +147,13 @@ class PreferencesViewModel : BaseObservable {
 
         var dialog = builder.create()
         dialog.show()
+    }
+
+    fun updateWishesNotifcations(list:ArrayList<Wish>) {
+        var nS = NotificationScheduler()
+        for (i in 0..list.size-1) {
+            var wish = list[i]
+            nS.scheduleNotification(wish.title.get()!!, wish.desc.get()!!, R.drawable.currency_image, context,i,wish.endTime)
+        }
     }
 }

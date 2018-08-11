@@ -26,6 +26,7 @@ class Wish {
     var endDate: ObservableField<String> = ObservableField()
     var progress: ObservableFloat = ObservableFloat()
     var context: Context
+    var endTime:Long = 0L
 
     constructor(id: String, title: String, desc: String, price: Int, bought: Boolean, context: Context, imageUri: Uri) {
 
@@ -64,6 +65,7 @@ class Wish {
                 var moneySavedPerDay = (Data.MoneyDashboard.packagePrice / Data.MoneyDashboard.cigarretesInPackage) * Data.MoneyDashboard.cigarretesPerDay
                 var day = 86400
                 this.endDate.set(formatDate(dateConverter.getDate((((price.toFloat() - Data.MoneyDashboard.actualMoneyState) / moneySavedPerDay.toFloat()) * day + currentTimestamp).toLong())))
+                this.endTime = ((price.toFloat() - Data.MoneyDashboard.actualMoneyState) / moneySavedPerDay.toFloat() * day).toLong()
                 this.progress.set((Data.MoneyDashboard.actualMoneyState / price.toFloat()) * 100)
                 this.canBuy.set(false)
             }

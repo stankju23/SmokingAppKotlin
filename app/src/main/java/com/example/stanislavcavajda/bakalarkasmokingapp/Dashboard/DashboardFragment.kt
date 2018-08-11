@@ -120,6 +120,9 @@ class DashboardFragment : Fragment() {
                     (dashboardList.list.get(Constants.viewTypes.HEALTH_PROGRESS_VIEW_TYPE) as HealthProgressListViewModel).updateAll()
                     //result = "%.2f".format(actualSaved(currentTimestamp - dateTimestamp, Data.MoneyDashboard.cigarretesPerDay, Data.MoneyDashboard.packagePrice, Data.MoneyDashboard.cigarretesInPackage))
 
+                    for (item in Data.wishList) {
+                        Log.i("End", "wish ${item.endTime}")
+                    }
 
                 }
             }

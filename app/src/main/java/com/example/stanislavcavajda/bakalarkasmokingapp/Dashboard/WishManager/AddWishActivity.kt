@@ -9,12 +9,15 @@ import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.Toolbar
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
+import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.NotificationScheduler
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.ThemeManager
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.RealmDatabase.RealmDB
@@ -41,29 +44,66 @@ class AddWishActivity : PermissionsActivity() {
 
 
         add_wish_btn.setOnClickListener{
+
             if( title_text.text.length == 0 ) {
-                title_text.setError(getString(R.string.error_name))
+                title_text_layout.setError(getString(R.string.error_name))
+                title_text.addTextChangedListener(object : TextWatcher{
+                    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    }
+
+                    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    }
+
+                    override fun afterTextChanged(p0: Editable?) {
+                        title_text_layout.setError(null)
+                    }
+                })
             }
 
             if( price_text.text.length == 0 ) {
-                price_text.setError(getString(R.string.error_price))
+                price_text_layout.setError(getString(R.string.error_price))
+                price_text.addTextChangedListener(object : TextWatcher{
+                    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    }
+
+                    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    }
+
+                    override fun afterTextChanged(p0: Editable?) {
+                        price_text_layout.setError(null)
+                    }
+                })
             }
 
-            if( desc.text.length == 0 ) {
-                desc.setError(getString(R.string.error_desc))
+            if( desc_text.text.length == 0 ) {
+                desc_text_layout.setError(getString(R.string.error_desc))
+                desc_text.addTextChangedListener(object : TextWatcher{
+                    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    }
+
+                    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    }
+
+                    override fun afterTextChanged(p0: Editable?) {
+                        desc_text_layout.setError(null)
+                    }
+                })
             }
+
 
             if (imagePath == null) {
                 Toast.makeText(this,"Please choose image",Toast.LENGTH_SHORT).show()
             }
 
-            if( title_text.text.length != 0 && desc.text.length != 0 && price_text.text.length != 0 && add_wish_image.resources != null) {
+            if( title_text.text.length != 0 && desc_text.text.length != 0 && price_text.text.length != 0 && add_wish_image.resources != null) {
 
                 try {
-                    var wish = Wish(UUID.randomUUID().toString(),title_text.text.toString(),desc.text.toString(),price_text.text.toString().toInt(),false,this,imagePath!!)
+                    var wish = Wish(UUID.randomUUID().toString(),title_text.text.toString(),desc_text.text.toString(),price_text.text.toString().toInt(),false,this,imagePath!!)
                     Log.i("Id",wish.id)
                     Data.wishList.add(wish)
                     RealmDB.addWishToDB(wish)
+                    var notificationScheduler = NotificationScheduler()
+                    notificationScheduler.scheduleNotification(wish.title.get()!!,"Mozete si kupit svoje prianie",R.drawable.empty_stars,this,Data.wishList.size - 1,wish.endTime)
                     onBackPressed()
                 } catch (e: Exception) {
 //                    if (e != null) {

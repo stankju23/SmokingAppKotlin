@@ -13,6 +13,7 @@ import android.widget.Spinner
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DateConverter
+import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.NotificationScheduler
 import com.example.stanislavcavajda.bakalarkasmokingapp.Koloda.KolodaItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.Main.MainActivity
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
@@ -33,6 +34,7 @@ class WalkthroughFragment4 : Fragment() {
     // TODO: Rename and change types of parameters
 
     var dateConverter = DateConverter()
+    var notificationScheduler = NotificationScheduler()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,6 +84,10 @@ class WalkthroughFragment4 : Fragment() {
                     var kolodaItem = KolodaItem(UUID.randomUUID().toString(),i,"asdasmd","adsjvdvjashjvdasdhasjvhdvhjashjvgdhjvasjvhdjvghasjvgdasgdjvghasdjgvjadvascfjasdfhahsdjashdcjascjhasfcjasfc", activity!!)
                     Data.cravingsCardList.add(kolodaItem)
                     RealmDB.addCard(kolodaItem)
+                }
+
+                for (i in 1..22) {
+                    notificationScheduler.scheduleNotification("$i ${activity?.resources?.getString(R.string.days)}","Vydrzali ste $i den nefajcit",R.drawable.empty_days,activity!!,i,i * Constants.timeConst.oneDay)
                 }
 
                 var mainActivity = Intent(activity,MainActivity::class.java)

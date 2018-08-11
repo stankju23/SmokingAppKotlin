@@ -48,7 +48,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:percent="@{viewModel.date.progress}"
                     app:strokeWidth="6dp"
-                    app:bgColor="@color/black" />
+                    app:bgColor="@color/unselectedBarColor" />
 
                 <TextView
                     android:id="@+id/title"
@@ -70,6 +70,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
+                    android:ellipsize="end"
                     android:lines="2"
                     android:text="@{viewModel.desc}"
                     android:textColor="@color/black"

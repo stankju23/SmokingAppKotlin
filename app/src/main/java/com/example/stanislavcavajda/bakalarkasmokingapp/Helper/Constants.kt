@@ -70,4 +70,10 @@ object Constants {
         const val wine = 2
         const val banana = 3
     }
+
+    object Notification{
+        const val title = "notificationTitle"
+        const val desc = "notificationDesc"
+        const val image = "notificationImage"
+    }
 }

@@ -5,6 +5,8 @@
     <string name="more_btn">Show all stats</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
     // titles
     <string name="health_progress_title">Health progress</string>
     <string name="title_dashboard">Dashboard</string>
@@ -18,68 +20,73 @@
     <string name="time_progress">Time progress</string>
     <string name="health_improvements">Health improvements</string>
     <string name="wishes_manager_title">Wishes Manager</string>
-    <string name="show_wishes">Show wishes</string>
     <string name="money_saved_title">Money saved</string>
-    <string name="money_button">Show money stats</string>
-    <string name="can_buy_it">I can buy it</string>
-    <string name="price">Price : </string>
-    <string name="add_wish">Add wish</string>
     <string name="main_progress_show_detail">Show detail</string>
-    <string name="edit_wish">Edit Wish</string>
-    <string name="main_progress_detail_title">No smoking time detail</string>
-    <string name="time_detail">Time details of smoking</string>
-    <string name="detail_text_title">Time from when i stop smoking</string>
     <string name="empty"></string>
-    <string name="mission">Mission</string>
-    <string name="go_to_objectives">Go to the objectives</string>
-    <string name="going_doing">Going doing something good</string>
-    <string name="mark_as_done">Mark as done</string>
-    <string name="mark_as_undone">Mark as undone</string>
-    <string name="bought">Bought</string>
-    <string name="completion_time">Completion time :</string>
-    <string name="tap_to_save_craving">Tap to save craving</string>
-    <string name="number_of_cravings">Number of cravings </string>
-    <string name="show_craving_preferences">Show craving preferences</string>
-    <string name="first_aid">First Aid</string>
-    <string name="cravings_title">Cravings</string>
-    <string name="title_activity_craving_map">Map</string>
     <string name="congratulation">Congratulation</string>
     <string name="share">Share</string>
     <string name="next">Next</string>
-    <string name="show_all_cravings">Show all cravings</string>
-    <string name="map_of_cravings">Map of Cravings</string>
-    <string name="objectives">Objectives - </string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="set_value">Set value : </string>
+
+
+    // walkthrough
     <string name="welcome_title">Vitajte</string>
     <string name="welcome_desc">Je úžasné, že ste sa rozhodli skoncovať s fajčením. Volám sa Juraj Macák a budem Vaším sprievodcom. Tak ako som to dokázal ja, dokážete to aj Vy. Verím, že moje skúsenosti, ktoré som premietol do tejto aplikácie pomôžu nad zlozvykom vyhrať a učinia Váš život zdravším a plnohodnotnejším</string>
-
-
-
-    // walkthrough end page
     <string name="cigarettes_smoked"> cigarettes smoked every day</string>
     <string name="cigarettes_in_package"> cigarettes in packet</string>
     <string name="cost"> cost one packet</string>
     <string name="preffered_currency"> my preffered currency</string>
     <string name="stop">Stop smoking now !</string>
-    <string name="congratulation_walkthrough">Congratulation, your are on your way to stop smoking.</string>
     <string name="next_button">Next</string>
     <string name="start_app">Start App</string>
+
+
+
+    // settings
     <string name="change_color">Change color</string>
     <string name="settings_title">Settings</string>
-    <string name="pastel_template">Pastel template</string>
-    <string name="dark_green_color">Dark green color</string>
     <string name="change_color_title">Change color</string>
     <string name="cigarettes_smoked_every_day">Cigarettes smoked every day</string>
     <string name="cigarettes_in_packet">Cigarettes in packet</string>
     <string name="packet_cost">Packet cost</string>
     <string name="smoking_preferences">Smoking preferences</string>
-    <string name="not_specified_place">Not specified place</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="set_value">Set value : </string>
+
+    //wishes
+    <string name="add_wish">Add wish</string>
     <string name="you_have_no_wishes_now">You have no wishes now !</string>
     <string name="wish_hint_name">Name</string>
     <string name="wish_hint_price">Price</string>
     <string name="wish_hint_description">Description</string>
+    <string name="show_wishes">Show wishes</string>
+    <string name="edit_wish">Edit Wish</string>
+    <string name="can_buy_it">I can buy it</string>
+    <string name="price">Price : </string>
+    <string name="bought">Bought</string>
+
+    //cravings
+    <string name="not_specified_place">Not specified place</string>
+    <string name="title_activity_craving_map">Map</string>
+    <string name="tap_to_save_craving">Tap to save craving</string>
+    <string name="cravings_title">Cravings</string>
+    <string name="show_craving_preferences">Show craving preferences</string>
+    <string name="show_all_cravings">Show all cravings</string>
+    <string name="map_of_cravings">Map of Cravings</string>
+    <string name="first_aid">First Aid</string>
+
+    //missions
+    <string name="go_to_objectives">Go to the objectives</string>
+    <string name="mark_as_done">Mark as done</string>
+    <string name="mark_as_undone">Mark as undone</string>
+    <string name="objectives">Objectives - </string>
+    <string name="completion_time">Completion time :</string>
+    <string name="mission">Mission</string>
+
+
+    //temy
+    <string name="pastel_template">Pastel template</string>
+    <string name="dark_green_color">Dark green color</string>
 
 
     //error massages
@@ -87,10 +94,18 @@
     <string name="error_price">Missing price</string>
     <string name="error_desc">Missing description</string>
     <string name="error_image">Missing image</string>
-    <string name="add_your_own_card">Add your own card</string>
-    <string name="add_card">Add card</string>
     <string name="write_a_title">Write a title</string>
     <string name="write_a_description">Write a description</string>
+
+
+    // walkthrough end page
+    <string name="congratulation_walkthrough">Congratulation, your are on your way to stop smoking.</string>
+
+
+    // cards
+    <string name="add_your_own_card">Add your own card</string>
+    <string name="add_card">Add card</string>
+
 
     //achievments
     <string name="no_smoked">Odmeny za vydržaný čas</string>

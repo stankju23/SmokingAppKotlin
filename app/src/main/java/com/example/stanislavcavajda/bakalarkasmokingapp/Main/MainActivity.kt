@@ -54,7 +54,6 @@ class MainActivity : AppCompatActivity() {
 
         ThemeManager.setTheme(this, Data.actualTheme)
 
-
        // var config = RealmConfiguration.Builder().deleteRealmIfMigrationNeeded().build()
 
         // var preferences = getSharedPreferences("date", Context.MODE_PRIVATE)
@@ -81,6 +80,7 @@ class MainActivity : AppCompatActivity() {
             .withMenuLayout(R.layout.achievments_drawer_layout)
             .withGravity(SlideGravity.LEFT)
             .withRootViewScale(1f)
+            .withRootViewElevation(5)
         achievmentDrawer = slidingView.inject()
 
         var achievmentRecyclerView = findViewById<RecyclerView>(R.id.achievment_day_list)

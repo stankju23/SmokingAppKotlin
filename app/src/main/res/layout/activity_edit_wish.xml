@@ -31,52 +31,65 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_wish_toolbar" />
 
-    <EditText
-        android:id="@+id/title_text"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/title_text_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:text="TextView"
-        android:transitionName="title"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="16sp"
+        app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/edit_wish_image"
-        app:layout_constraintTop_toTopOf="@+id/edit_wish_image" />
+        app:layout_constraintTop_toTopOf="@+id/edit_wish_image">
 
-    <EditText
-        android:id="@+id/price_text"
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/title_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/wish_hint_name"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/price_text_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
-        android:inputType="number"
-        android:text="TextView"
-        android:transitionName="price"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/edit_wish_image"
+        app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/edit_wish_image"
-        app:layout_constraintTop_toBottomOf="@+id/title_text" />
+        app:layout_constraintTop_toBottomOf="@+id/title_text_layout">
 
-    <EditText
-        android:id="@+id/desc"
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/price_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/wish_hint_price"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/desc_text_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:transitionName="desc"
-        android:text="Damaged nerve endings have started to regrow and your sense of smell and taste are beginning to return to normal. Cessation anger and irritability will have peaked..."
-        android:textAlignment="viewStart"
-        android:textColor="@android:color/darker_gray"
+        app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/edit_wish_image"
-        app:layout_constraintTop_toBottomOf="@+id/edit_wish_image" />
+        app:layout_constraintTop_toBottomOf="@+id/price_text_layout">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/desc_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/wish_hint_description"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/save_wish"

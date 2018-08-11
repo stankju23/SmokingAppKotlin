@@ -86,6 +86,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         android:lines="2"
+                        android:ellipsize="end"
                         android:text="@{viewModel.actualWish.get().desc}"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toTopOf="@+id/imageView2"

@@ -29,48 +29,65 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/add_wish_toolbar" />
 
-    <EditText
-        android:id="@+id/title_text"
-        android:layout_width="0dp"
-        android:layout_height="46dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:hint="@string/wish_hint_name"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/add_wish_image"
-        app:layout_constraintTop_toTopOf="@+id/add_wish_image" />
-
-    <EditText
-        android:id="@+id/price_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
-        android:hint="@string/wish_hint_price"
-        android:inputType="number"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/add_wish_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/add_wish_image"
-        app:layout_constraintTop_toBottomOf="@+id/title_text" />
-
-    <EditText
-        android:id="@+id/desc"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/title_text_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:hint="@string/wish_hint_description"
-        android:textAlignment="viewStart"
-        android:textColor="@color/black"
+        android:layout_marginStart="16dp"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/add_wish_image"
+        app:layout_constraintTop_toTopOf="@+id/add_wish_image">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/title_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/wish_hint_name"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/price_text_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/add_wish_image"
+        app:layout_constraintTop_toBottomOf="@+id/title_text_layout">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/price_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/wish_hint_price"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/desc_text_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/add_wish_image"
-        app:layout_constraintTop_toBottomOf="@+id/add_wish_image" />
+        app:layout_constraintTop_toBottomOf="@+id/price_text_layout">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/desc_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/wish_hint_description"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/add_wish_btn"
