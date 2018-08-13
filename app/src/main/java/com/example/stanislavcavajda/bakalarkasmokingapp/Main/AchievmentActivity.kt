@@ -39,10 +39,10 @@ class AchievmentActivity : AppCompatActivity() {
 
         var position = intent.getIntExtra(Constants.extras.EXTRA_ITEM_ID,0)
         var achievment:Achievment
-        if (intent.getBooleanExtra("money",false) == false) {
+        if (intent.getBooleanExtra("mission",false) == false) {
             achievment = Data.achievmentList[position]
         } else {
-            achievment = Data.achievmentsMoneyList[position]
+            achievment = Data.missionsAchievments[position]
         }
 
         binding.achievment = achievment

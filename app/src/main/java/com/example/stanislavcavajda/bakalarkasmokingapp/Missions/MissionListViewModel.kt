@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.example.stanislavcavajda.bakalarkasmokingapp.BR
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.OnWishClick
+import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Animate
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import me.tatarka.bindingcollectionadapter2.ItemBinding
@@ -27,6 +28,8 @@ class MissionListViewModel {
             var missionInfo = Intent(context, MissionInfoActivity::class.java)
             if (Data.missionList[clickedPosition].available.get()) {
                 (context as Activity).startActivity(missionInfo)
+            } else {
+                Animate.shakeAnim(v,context)
             }
         }
     }

@@ -104,7 +104,7 @@ class EditWishActivity : AppCompatActivity() {
                     var wish = Data.wishList[position]
                     RealmDB.updateWish(wish.id, wish)
                     var notificationScheduler = NotificationScheduler()
-                    notificationScheduler.scheduleNotification(wish.title.get()!!, "Mozete si kupit svoje prianie", R.drawable.empty_stars, this, position, wish.endTime)
+                    notificationScheduler.scheduleNotification(wish.title.get()!!, "Mozete si kupit svoje prianie", R.drawable.achievment_mission_twenty, this, position, wish.endTime)
 
                     onBackPressed()
                 }

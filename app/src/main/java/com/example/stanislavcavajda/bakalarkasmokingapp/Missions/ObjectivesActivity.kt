@@ -36,6 +36,8 @@ class ObjectivesActivity : AppCompatActivity() {
             }
         })
 
+        dots.setupWithViewPager(viewPager)
+
         setSupportActionBar(objectives_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)

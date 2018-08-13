@@ -11,14 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="com.example.stanislavcavajda.bakalarkasmokingapp.Missions.MissionsFragment"
-        android:background="@color/white">
+        android:background="?secondaryClr">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/missions_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="4dp"
-            android:layout_marginTop="4dp"
             app:itemBinding="@{viewModel.itemBinding}"
             app:items="@{viewModel.missionList}"
             app:layoutManager="@{LayoutManagers.linear()}"

@@ -12,8 +12,8 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="2dp"
-        android:paddingTop="2dp"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp"
         android:background="?secondaryClr">
 
         <android.support.v7.widget.CardView
@@ -58,7 +58,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="10dp"
                     android:text="@{viewModel.title}"
-                    android:textColor="@color/black"
+                    android:textColor="?colorAccent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/colorfulRingProgressView"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -73,7 +73,7 @@
                     android:ellipsize="end"
                     android:lines="2"
                     android:text="@{viewModel.desc}"
-                    android:textColor="@color/black"
+                    android:textColor="?colorAccent"
                     app:layout_constraintBottom_toBottomOf="@+id/colorfulRingProgressView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/colorfulRingProgressView"
@@ -88,7 +88,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="@{String.valueOf((int)viewModel.date.progress) + '%'}"
-                    android:textColor="@color/black"
+                    android:textColor="?colorAccent"
                     app:layout_constraintBottom_toBottomOf="@+id/colorfulRingProgressView"
                     app:layout_constraintEnd_toEndOf="@+id/colorfulRingProgressView"
                     app:layout_constraintStart_toStartOf="@+id/colorfulRingProgressView"

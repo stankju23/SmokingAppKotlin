@@ -2,9 +2,10 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#c9e26a</item>
+        <item name="colorPrimary">#aab857</item>
         <item name="colorPrimaryDark">#aab857</item>
         <item name="colorAccent">#464646</item>
+        <item name="colorLight">#CEE08C</item>
         <item name="secondaryClr">#D1DBDA</item>
         <item name="android:windowActivityTransitions">true</item>
         <item name="android:windowEnterTransition">@android:transition/explode</item>
@@ -12,9 +13,10 @@
     </style>
 
     <style name="blueOcean" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#8CC2E0</item>
+        <item name="colorPrimary">#5788b8</item>
         <item name="colorPrimaryDark">#5788b8</item>
         <item name="colorAccent">#464646</item>
+        <item name="colorLight">#8CC2E0</item>
         <item name="secondaryClr">#D1DBDA</item>
         <item name="android:windowActivityTransitions">true</item>
         <item name="android:windowEnterTransition">@android:transition/explode</item>
@@ -22,9 +24,10 @@
     </style>
 
     <style name="wine" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#C0364D</item>
+        <item name="colorPrimary">#a41537</item>
         <item name="colorPrimaryDark">#a41537</item>
-        <item name="colorAccent">#464646</item>
+        <item name="colorAccent">#C0364D</item>
+        <item name="colorLight">#E8E5E3</item>
         <item name="secondaryClr">#D1DBDA</item>
         <item name="android:windowActivityTransitions">true</item>
         <item name="android:windowEnterTransition">@android:transition/explode</item>
@@ -32,10 +35,11 @@
     </style>
 
     <style name="banana" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#E4CB66</item>
-        <item name="colorPrimaryDark">#b2a15b</item>
-        <item name="colorAccent">#464646</item>
-        <item name="secondaryClr">#4f4132</item>
+        <item name="colorPrimary">#4f4132</item>
+        <item name="colorPrimaryDark">#4f4132</item>
+        <item name="colorAccent">#332E42</item>
+        <item name="colorLight">#F4F1E0</item>
+        <item name="secondaryClr">#E4CB66</item>
         <item name="android:windowActivityTransitions">true</item>
         <item name="android:windowEnterTransition">@android:transition/explode</item>
         <item name="android:windowExitTransition">@android:transition/explode</item>

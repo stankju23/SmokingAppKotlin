@@ -25,7 +25,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
-
         <activity android:name=".Main.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,6 +32,7 @@
             </intent-filter>
         </activity>
         <receiver android:name=".Helper.NotificationReceiver" />
+
         <activity
             android:name=".Main.MainActivity"
             android:screenOrientation="portrait" />
@@ -59,12 +59,12 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Dashboard.WishManager.AddWishActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".Dashboard.WishManager.EditWishActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".Missions.MissionInfoActivity"
             android:screenOrientation="portrait" />
@@ -74,14 +74,12 @@
         <activity
             android:name=".Main.ChangeColor"
             android:screenOrientation="portrait" />
-
-        <activity android:name=".Walkthrough.Walkthrough"
-            android:screenOrientation="portrait"/>
-
+        <activity
+            android:name=".Walkthrough.Walkthrough"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Cravings.AddCravingActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".Cravings.ShowCravings"
             android:screenOrientation="portrait" />
@@ -100,21 +98,23 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-
-
         <activity
             android:name=".Cravings.CravingMapActivity"
             android:label="@string/title_activity_craving_map"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Main.AchievmentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Main.SmokingPreferences"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Cravings.AddCardActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
 
-        <activity android:name=".Main.AchievmentActivity"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".Main.SmokingPreferences"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".Cravings.AddCardActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:screenOrientation="portrait"/>
+        <activity android:name=".Journal.EditJournal"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"></activity>
     </application>
 </manifest>

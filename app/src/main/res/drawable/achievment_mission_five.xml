@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="530dp"
+    android:height="504dp"
+    android:viewportWidth="530"
+    android:viewportHeight="504">
+
+    <group>
+        <group
+                android:translateX="-2364.000000"
+                android:translateY="-157.000000">
+            <group
+                    android:translateX="2364.000000"
+                    android:translateY="157.000000">
+                <path
+                    android:fillColor="#FFDB70"
+                    android:strokeWidth="1"
+                    android:pathData="M 265.5 0 L 327.932286 192.522049 L 530 192.522049 L 366.52389 311.49792 L 428.97611 504 L 265.5 385.024129 L 102.02389 504 L 164.47611 311.49792 L 1 192.522049 L 203.067714 192.522049 Z" />
+                <group>
+                    <path
+                        android:fillColor="#FDBC4B"
+                        android:strokeWidth="1"
+                        android:pathData="M 265.260676 0 L 265.260676 274.67501 L 327.724225 192.438178 Z" />
+                    <path
+                        android:fillColor="#FDBC4B"
+                        android:strokeWidth="1"
+                        android:pathData="M 265.260676 274.67501 L 529.893127 192.438178 L 366.335155 311.362218 Z" />
+                    <path
+                        android:fillColor="#FDBC4B"
+                        android:strokeWidth="1"
+                        android:pathData="M 265.260676 274.67501 L 428.818648 503.780436 L 265.260676 384.856396 Z" />
+                    <path
+                        android:fillColor="#FDBC4B"
+                        android:strokeWidth="1"
+                        android:pathData="M 265.260676 274.67501 L 164.186197 311.362218 L 101.702704 503.780436 Z" />
+                    <path
+                        android:fillColor="#FDBC4B"
+                        android:strokeWidth="1"
+                        android:pathData="M 0.628225352 192.438178 L 202.797127 192.438178 L 265.260676 274.67501 Z" />
+                </group>
+            </group>
+        </group>
+    </group>
+</vector>

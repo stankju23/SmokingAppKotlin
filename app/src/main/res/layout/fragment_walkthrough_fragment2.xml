@@ -52,6 +52,7 @@
         android:textColor="@color/light_grey"
         android:textSize="36sp"
         android:textStyle="bold"
+        android:editable="false"
         app:layout_constraintBottom_toTopOf="@+id/next_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

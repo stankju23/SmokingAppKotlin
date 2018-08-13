@@ -14,6 +14,7 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DateConverter
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.NotificationScheduler
+import com.example.stanislavcavajda.bakalarkasmokingapp.Journal.Journal
 import com.example.stanislavcavajda.bakalarkasmokingapp.Koloda.KolodaItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.Main.MainActivity
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
@@ -86,8 +87,15 @@ class WalkthroughFragment4 : Fragment() {
                     RealmDB.addCard(kolodaItem)
                 }
 
-                for (i in 1..22) {
-                    notificationScheduler.scheduleNotification("$i ${activity?.resources?.getString(R.string.days)}","Vydrzali ste $i den nefajcit",R.drawable.empty_days,activity!!,i,i * Constants.timeConst.oneDay)
+                for (i in 1..21) {
+                    notificationScheduler.scheduleNotification("$i ${activity?.resources?.getString(R.string.days)}","Vydrzali ste $i den nefajcit",R.drawable.achievment_mission_twenty,activity!!,i,i * Constants.timeConst.oneDay)
+                }
+
+                var currentTimestamp = dateConverter.getCurrentTimestamp()
+                for (i in 1..21) {
+                    var journal = Journal(i.toString(),"","", currentTimestamp + (i-1)*Constants.timeConst.oneDay,activity!!)
+                    RealmDB.addJournal(journal)
+                    Data.journalCardSList.add(journal)
                 }
 
                 var mainActivity = Intent(activity,MainActivity::class.java)
@@ -99,12 +107,6 @@ class WalkthroughFragment4 : Fragment() {
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @return A new instance of fragment WalkthroughFragment4.
-         */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance() = WalkthroughFragment4()

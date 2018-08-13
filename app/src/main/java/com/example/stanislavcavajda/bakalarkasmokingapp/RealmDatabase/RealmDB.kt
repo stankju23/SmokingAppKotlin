@@ -8,6 +8,7 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Cravings.CravingHeader
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.Wish
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DateConverter
+import com.example.stanislavcavajda.bakalarkasmokingapp.Journal.Journal
 import com.example.stanislavcavajda.bakalarkasmokingapp.Koloda.KolodaItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Activity
 import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Mission
@@ -245,6 +246,39 @@ object RealmDB {
                 Data.cravingsCardList.add(kolodaItem)
             } catch (e:Exception) {
                 Log.e("Load card error : ", e.message)
+            }
+        }
+    }
+
+    fun addJournal(journal:Journal) {
+        realm.beginTransaction()
+        var realmJournal = realm.createObject(JournalRealm::class.java)
+        realmJournal.id = journal.id
+        realmJournal.title = journal.title.get()!!
+        realmJournal.desc = journal.desc.get()!!
+        realmJournal.timestamp = journal.timestamp
+        realm.commitTransaction()
+    }
+
+    fun updateJournal(journal:Journal) {
+        var realmJournal = realm.where(JournalRealm::class.java).equalTo("id",journal.id).findFirst()
+        if (realmJournal != null) {
+            realm.beginTransaction()
+            realmJournal.title = journal.title.get()!!
+            realmJournal.desc = journal.desc.get()!!
+            realm.commitTransaction()
+        }
+    }
+
+    fun getJournalCard(context:Context) {
+        val result = realm.where(JournalRealm::class.java).findAll()
+
+        for (item in result) {
+            try {
+                var journal = Journal(item.id,item.title,item.desc,item.timestamp,context)
+                Data.journalCardSList.add(journal)
+            } catch (e:Exception) {
+
             }
         }
     }

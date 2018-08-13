@@ -47,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/wish_hint_name"
-            android:textColor="@color/black"
+            android:textColor="?colorAccent"
             android:textSize="16sp" />
     </android.support.design.widget.TextInputLayout>
 
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/wish_hint_price"
             android:inputType="number"
-            android:textColor="@color/black"
+            android:textColor="?colorAccent"
             android:textSize="16sp" />
     </android.support.design.widget.TextInputLayout>
 
@@ -87,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/wish_hint_description"
-            android:textColor="@color/black"
+            android:textColor="?colorAccent"
             android:textSize="16sp" />
     </android.support.design.widget.TextInputLayout>
 

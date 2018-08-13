@@ -38,10 +38,10 @@ class AchievmentAdapter(var achievmentList:ArrayList<Achievment>,var context: Co
                 var achievmentActivity = Intent(context, AchievmentActivity::class.java)
                 achievmentActivity.putExtra(Constants.extras.EXTRA_ITEM_ID, position)
 
-                if (achievmentList[position].price != 0) {
-                    achievmentActivity.putExtra("money", true)
+                if (achievmentList[position].endTimestamp == 0L) {
+                    achievmentActivity.putExtra("mission", true)
                 }else {
-                    achievmentActivity.putExtra("money", false)
+                    achievmentActivity.putExtra("mission", false)
                 }
                 (context as Activity).startActivity(achievmentActivity)
             }

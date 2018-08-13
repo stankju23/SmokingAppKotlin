@@ -16,12 +16,14 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.Cravings.CravingFragment
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.DashboardFragment
+import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.WishesActivity
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.BottomNavigationViewHelper
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DateConverter
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.JSONParser
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.ThemeManager
+import com.example.stanislavcavajda.bakalarkasmokingapp.Journal.JournalFragment
 import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Activity
 import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Mission
 import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.MissionsFragment
@@ -32,6 +34,7 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.databinding.ActivityMain
 import com.yarolegovich.slidingrootnav.SlideGravity
 import com.yarolegovich.slidingrootnav.SlidingRootNav
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.Timer
 import java.util.TimerTask
@@ -45,6 +48,7 @@ class MainActivity : AppCompatActivity() {
 
     var missionTimer = Timer()
     var achievmentTimer = Timer()
+    var journalTimer = Timer()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -54,6 +58,7 @@ class MainActivity : AppCompatActivity() {
 
         ThemeManager.setTheme(this, Data.actualTheme)
 
+        Realm.init(this)
        // var config = RealmConfiguration.Builder().deleteRealmIfMigrationNeeded().build()
 
         // var preferences = getSharedPreferences("date", Context.MODE_PRIVATE)
@@ -70,6 +75,15 @@ class MainActivity : AppCompatActivity() {
 
         if (Data.cravings.isEmpty()) {
             RealmDB.getCravings(this)
+        }
+
+        if (Data.journalCardSList.isEmpty()) {
+            RealmDB.getJournalCard(this)
+        }
+
+        if (intent.getBooleanExtra("wishes",false)) {
+            var intent = Intent(this,WishesActivity::class.java)
+            startActivity(intent)
         }
 
 
@@ -90,29 +104,44 @@ class MainActivity : AppCompatActivity() {
 
 
         if (Data.achievmentList.size == 0) {
-            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.empty_days), resources.getString(R.string.achievments_noSmoked_one_title), resources.getString(R.string.achievments_noSmoked_one_desc),dateConverter.convertDateToTimestamp(Data.date) + Constants.timeConst.oneDay, false,0))
-            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.empty_days), resources.getString(R.string.achievments_noSmoked_three_title), resources.getString(R.string.achievments_noSmoked_three_desc),dateConverter.convertDateToTimestamp(Data.date) + 3 * Constants.timeConst.oneDay, false,0))
-            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.empty_days), resources.getString(R.string.achievments_noSmoked_seven_title), resources.getString(R.string.achievments_noSmoked_seven_desc),dateConverter.convertDateToTimestamp(Data.date) + 7 * Constants.timeConst.oneDay, false,0))
-            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.empty_days), resources.getString(R.string.achievments_noSmoked_twelve_title), resources.getString(R.string.achievments_noSmoked_twelve_desc),dateConverter.convertDateToTimestamp(Data.date) + 12 * Constants.timeConst.oneDay, false,0))
-            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.empty_days), resources.getString(R.string.achievments_noSmoked_twentyone_title), resources.getString(R.string.achievments_noSmoked_twentyone_desc),dateConverter.convertDateToTimestamp(Data.date) + 21 * Constants.timeConst.oneDay, false,0))
+            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.achiemvent_one_day), resources.getString(R.string.achievments_noSmoked_one_title), resources.getString(R.string.achievments_noSmoked_one_desc),dateConverter.convertDateToTimestamp(Data.date) + Constants.timeConst.oneDay, false))
+            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.achievment_three_days), resources.getString(R.string.achievments_noSmoked_three_title), resources.getString(R.string.achievments_noSmoked_three_desc),dateConverter.convertDateToTimestamp(Data.date) + 3 * Constants.timeConst.oneDay, false))
+            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.achievment_seven_days), resources.getString(R.string.achievments_noSmoked_seven_title), resources.getString(R.string.achievments_noSmoked_seven_desc),dateConverter.convertDateToTimestamp(Data.date) + 7 * Constants.timeConst.oneDay, false))
+            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.achievment_twelve_days), resources.getString(R.string.achievments_noSmoked_twelve_title), resources.getString(R.string.achievments_noSmoked_twelve_desc),dateConverter.convertDateToTimestamp(Data.date) + 12 * Constants.timeConst.oneDay, false))
+            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.achievment_twentyone_days), resources.getString(R.string.achievments_noSmoked_twentyone_title), resources.getString(R.string.achievments_noSmoked_twentyone_desc),dateConverter.convertDateToTimestamp(Data.date) + 21 * Constants.timeConst.oneDay, false))
 
         }
 
-        if (Data.achievmentsMoneyList.size == 0) {
-            Data.achievmentsMoneyList.add(Achievment(resources.getDrawable(R.drawable.empty_stars),"1${Data.MoneyDashboard.currency} earned","You earned 1${Data.MoneyDashboard.currency}",0,false,1))
-            Data.achievmentsMoneyList.add(Achievment(resources.getDrawable(R.drawable.empty_stars),"3${Data.MoneyDashboard.currency} earned","You earned 3${Data.MoneyDashboard.currency}",0,false,3))
-            Data.achievmentsMoneyList.add(Achievment(resources.getDrawable(R.drawable.empty_stars),"5${Data.MoneyDashboard.currency} earned","You earned 5${Data.MoneyDashboard.currency}",0,false,5))
-            Data.achievmentsMoneyList.add(Achievment(resources.getDrawable(R.drawable.empty_stars),"10${Data.MoneyDashboard.currency} earned","You earned 10${Data.MoneyDashboard.currency}",0,false,10))
-            Data.achievmentsMoneyList.add(Achievment(resources.getDrawable(R.drawable.empty_stars),"20${Data.MoneyDashboard.currency} earned","You earned 20${Data.MoneyDashboard.currency}",0,false,20))
-            Data.achievmentsMoneyList.add(Achievment(resources.getDrawable(R.drawable.empty_stars),"50${Data.MoneyDashboard.currency} earned","You earned 50${Data.MoneyDashboard.currency}",0,false,50))
-            Data.achievmentsMoneyList.add(Achievment(resources.getDrawable(R.drawable.empty_stars),"100${Data.MoneyDashboard.currency} earned","You earned 100${Data.MoneyDashboard.currency}",0,false,100))
+        if (Data.missionsAchievments.size == 0) {
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_one),"1${Data.MoneyDashboard.currency} earned","You earned 1${Data.MoneyDashboard.currency}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_two),"3${Data.MoneyDashboard.currency} earned","You earned 3${Data.MoneyDashboard.currency}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_three),"5${Data.MoneyDashboard.currency} earned","You earned 5${Data.MoneyDashboard.currency}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_four),"10${Data.MoneyDashboard.currency} earned","You earned 10${Data.MoneyDashboard.currency}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_five),"20${Data.MoneyDashboard.currency} earned","You earned 20${Data.MoneyDashboard.currency}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_six),"50${Data.MoneyDashboard.currency} earned","You earned 50${Data.MoneyDashboard.currency}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_seven),"100${Data.MoneyDashboard.currency} earned","You earned 100${Data.MoneyDashboard.currency}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_eight),"1${Data.MoneyDashboard.currency} earned","You earned 1${Data.MoneyDashboard.currency}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_nine),"3${Data.MoneyDashboard.currency} earned","You earned 3${Data.MoneyDashboard.currency}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_ten),"5${Data.MoneyDashboard.currency} earned","You earned 5${Data.MoneyDashboard.currency}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_eleven),"10${Data.MoneyDashboard.currency} earned","You earned 10${Data.MoneyDashboard.currency}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_twelve),"20${Data.MoneyDashboard.currency} earned","You earned 20${Data.MoneyDashboard.currency}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_thirteen),"50${Data.MoneyDashboard.currency} earned","You earned 50${Data.MoneyDashboard.currency}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_fourteen),"100${Data.MoneyDashboard.currency} earned","You earned 100${Data.MoneyDashboard.currency}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_fifteen),"1${Data.MoneyDashboard.currency} earned","You earned 1${Data.MoneyDashboard.currency}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_sixteen),"3${Data.MoneyDashboard.currency} earned","You earned 3${Data.MoneyDashboard.currency}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_seventeen),"5${Data.MoneyDashboard.currency} earned","You earned 5${Data.MoneyDashboard.currency}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_eighteen),"10${Data.MoneyDashboard.currency} earned","You earned 10${Data.MoneyDashboard.currency}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_nineteen),"20${Data.MoneyDashboard.currency} earned","You earned 20${Data.MoneyDashboard.currency}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_twenty),"50${Data.MoneyDashboard.currency} earned","You earned 50${Data.MoneyDashboard.currency}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_twentyone),"100${Data.MoneyDashboard.currency} earned","You earned 100${Data.MoneyDashboard.currency}",0,false))
+
         }
 
 
 
 
         var achievmentAdapter = AchievmentAdapter(Data.achievmentList,this)
-        var moneyAchievmentAdapter = AchievmentAdapter(Data.achievmentsMoneyList,this)
+        var moneyAchievmentAdapter = AchievmentAdapter(Data.missionsAchievments,this)
         achievmentRecyclerView.adapter = achievmentAdapter
         achievmentMoneyRecyclerView.adapter = moneyAchievmentAdapter
 
@@ -120,7 +149,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.achievment_icon)
         supportActionBar?.title = resources.getString(R.string.title_dashboard)
 
         var fragmentManager = getFragmentManager()
@@ -142,7 +171,7 @@ class MainActivity : AppCompatActivity() {
 
                     supportActionBar?.setDisplayHomeAsUpEnabled(true)
                     supportActionBar?.setDisplayShowHomeEnabled(true)
-                    supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
+                    supportActionBar?.setHomeAsUpIndicator(R.drawable.achievment_icon)
                     supportActionBar?.title = resources.getString(R.string.title_dashboard)
                     fragmentManager.beginTransaction().replace(R.id.fragment_container, DashboardFragment(), "dashboard").commit()
                     return@OnNavigationItemSelectedListener true
@@ -188,9 +217,13 @@ class MainActivity : AppCompatActivity() {
                     if (this.achievmentDrawer.isMenuOpened) {
                         this.achievmentDrawer.closeMenu(true)
                     }
-                    supportActionBar?.setDisplayHomeAsUpEnabled(true)
-                    supportActionBar?.setDisplayShowHomeEnabled(true)
-                    supportActionBar?.title = resources.getString(R.string.title_infoarea)
+
+                    this.menu.findItem(R.id.settings).isVisible = false
+                    this.menu.findItem(R.id.settings).isEnabled = false
+                    supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                    supportActionBar?.setDisplayShowHomeEnabled(false)
+                    supportActionBar?.title = resources.getString(R.string.title_journal)
+                    fragmentManager.beginTransaction().replace(R.id.fragment_container,JournalFragment(),"journal").commit()
 
                     return@OnNavigationItemSelectedListener true
                 }
@@ -281,8 +314,17 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 }
-                for (item in Data.achievmentsMoneyList) {
-                    if (item.price <= Data.MoneyDashboard.moneySaved) {
+
+                var numberOfCompleteMissions = 0
+                for (item in Data.missionList) {
+                    if(item.done == 5) {
+                        numberOfCompleteMissions++
+                    }
+                }
+
+                var index = 0
+                for (item in Data.missionsAchievments) {
+                    if (index < numberOfCompleteMissions) {
                         item.isComplete = true
                         runOnUiThread {
                             moneyAchievmentAdapter.notifyDataSetChanged()
@@ -293,9 +335,19 @@ class MainActivity : AppCompatActivity() {
                             moneyAchievmentAdapter.notifyDataSetChanged()
                         }
                     }
+                    index++
                 }
             }
         }, 0, 1000)
+
+        journalTimer.scheduleAtFixedRate(object :TimerTask() {
+            override fun run() {
+                var currentTimestamp = dateConverter.getCurrentTimestamp()
+                for (item in Data.journalCardSList) {
+                    item.updateJournal(currentTimestamp)
+                }
+            }
+        },0,1000)
     }
 
     override fun onBackPressed() {
@@ -362,6 +414,7 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         this.missionTimer.cancel()
         this.achievmentTimer.cancel()
+        this.journalTimer.cancel()
         super.onDestroy()
     }
 

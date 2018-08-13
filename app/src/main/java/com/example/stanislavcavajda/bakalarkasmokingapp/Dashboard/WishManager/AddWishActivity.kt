@@ -103,7 +103,7 @@ class AddWishActivity : PermissionsActivity() {
                     Data.wishList.add(wish)
                     RealmDB.addWishToDB(wish)
                     var notificationScheduler = NotificationScheduler()
-                    notificationScheduler.scheduleNotification(wish.title.get()!!,"Mozete si kupit svoje prianie",R.drawable.empty_stars,this,Data.wishList.size - 1,wish.endTime)
+                    notificationScheduler.scheduleNotification(wish.title.get()!!,"Mozete si kupit svoje prianie",R.drawable.achievment_mission_twenty,this,Data.wishList.size - 1,wish.endTime)
                     onBackPressed()
                 } catch (e: Exception) {
 //                    if (e != null) {

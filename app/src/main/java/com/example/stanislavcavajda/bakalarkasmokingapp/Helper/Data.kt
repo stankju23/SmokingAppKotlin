@@ -4,6 +4,7 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Cravings.CravingItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.HealthList.HealthProgressViewModel
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MainProgress.MainProgressDetailTime
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.Wish
+import com.example.stanislavcavajda.bakalarkasmokingapp.Journal.Journal
 import com.example.stanislavcavajda.bakalarkasmokingapp.Koloda.KolodaItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.Main.Achievment
 import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Mission
@@ -24,8 +25,9 @@ object Data {
     var wishList: ArrayList<Wish> = ArrayList()
     var timeList: ArrayList<MainProgressDetailTime> = ArrayList()
     var achievmentList: ArrayList<Achievment> = ArrayList()
-    var achievmentsMoneyList: ArrayList<Achievment> = ArrayList()
+    var missionsAchievments: ArrayList<Achievment> = ArrayList()
     var cravingsCardList: ArrayList<KolodaItem> = ArrayList()
+    var journalCardSList: ArrayList<Journal> = ArrayList()
 
     var objectives: ArrayList<Objective> = ArrayList()
     var missionList: ArrayList<Mission> = ArrayList()
@@ -38,6 +40,8 @@ object Data {
     var actualClickedMission = 0
     var actualClickedActivity = 0
 
+
+    var notificationChannel: String = "My Notification Channel"
 
 
 

@@ -4,6 +4,7 @@ import android.databinding.BindingAdapter
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.support.constraint.ConstraintLayout
+import android.support.v7.widget.CardView
 import android.util.TypedValue
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
@@ -143,14 +144,45 @@ fun setColourText(textView:TextView,isDone:Boolean) {
 fun setBackground(layout: ConstraintLayout,isDone:Boolean) {
     if (isDone){
         val value = TypedValue()
-        layout.context.getTheme().resolveAttribute(R.attr.colorPrimaryDark, value, true)
+        layout.context.getTheme().resolveAttribute(R.attr.colorPrimary, value, true)
         layout.setBackgroundColor(value.data)
     } else {
         val value = TypedValue()
-        layout.context.getTheme().resolveAttribute(R.attr.colorPrimary, value, true)
+        layout.context.getTheme().resolveAttribute(R.attr.colorLight, value, true)
         layout.setBackgroundColor(value.data)
     }
 
 }
 
+@BindingAdapter("availableColor", "lockedColor")
+fun setTextColor(textView:TextView, locked:Boolean, available:Boolean){
+    if (locked) {
+        textView.setTextColor(textView.context.resources.getColor(R.color.white))
+    } else {
+        if (available) {
+            textView.setTextColor(textView.context.resources.getColor(R.color.white))
+        } else {
+            val value = TypedValue()
+            textView.context.getTheme().resolveAttribute(R.attr.colorAccent, value, true)
+            textView.setTextColor(value.data)
+        }
+    }
+}
+
+@BindingAdapter("cardLockedColor","writtenColor")
+fun setJournalCardColor(layout:CardView, locked:Boolean, written:Boolean){
+    if (locked == true) {
+        layout.setCardBackgroundColor(layout.context.resources.getColor(R.color.light_grey))
+    } else {
+        if (written == true) {
+            val value = TypedValue()
+            layout.context.getTheme().resolveAttribute(R.attr.colorAccent, value, true)
+            layout.setCardBackgroundColor(value.data)
+        } else {
+            val value = TypedValue()
+            layout.context.getTheme().resolveAttribute(R.attr.colorPrimary, value, true)
+            layout.setCardBackgroundColor(value.data)
+        }
+    }
+}
 

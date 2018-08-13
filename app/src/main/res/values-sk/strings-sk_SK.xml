@@ -12,7 +12,7 @@
     <string name="title_dashboard">Prehľad</string>
     <string name="title_mission">Misie</string>
     <string name="title_cravings">Abstinencie</string>
-    <string name="title_infoarea">InfoArea</string>
+    <string name="title_journal">Diár</string>
     <string name="main_progress_detail_title">Čas bez fajčenia</string>
     <string name="days">\ dni</string>
     <string name="hours">\ hod</string>
@@ -27,6 +27,7 @@
     <string name="congratulation">Gratulujeme</string>
     <string name="share">Zdieľať</string>
     <string name="next">Ďalej</string>
+    <string name="save">Uložiť</string>
 
 
     // walkthrough
@@ -99,9 +100,15 @@
     <string name="add_your_own_card">Ach nie, tipy sa minuly, ale nezúfaj. Pridaj si vlastnú kartu</string>
     <string name="add_card">Pridať kartu</string>
 
+    // journal
+    <string name="entry_write">Napíš článok</string>
+    <string name="entry_read">Prečítaj článok</string>
+    <string name="locked">Uzamknuté</string>
+    <string name="story_title">Záznam pre deň :</string>
 
     //achievments
     <string name="no_smoked">Odmeny za vydržaný čas</string>
+    <string name="missions_complete">Odmeny za splnené misie</string>
     <string name="achievments_noSmoked_one_title">Ste skvelý!</string>
     <string name="achievments_noSmoked_one_desc">Vydržali ste prvý deň!</string>
     <string name="achievments_noSmoked_three_title">Perfektné!</string>

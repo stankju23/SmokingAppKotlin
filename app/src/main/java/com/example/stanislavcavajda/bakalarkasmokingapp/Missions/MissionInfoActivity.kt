@@ -94,11 +94,11 @@ class MissionInfoActivity : AppCompatActivity() {
     fun setLayoutBackground(layout:ConstraintLayout, context: Context,isDone:Boolean) {
         if (isDone){
             val value = TypedValue()
-            layout.context.getTheme().resolveAttribute(R.attr.colorPrimaryDark, value, true)
+            layout.context.getTheme().resolveAttribute(R.attr.colorPrimary, value, true)
             layout.setBackgroundColor(value.data)
         } else {
             val value = TypedValue()
-            layout.context.getTheme().resolveAttribute(R.attr.colorPrimary, value, true)
+            layout.context.getTheme().resolveAttribute(R.attr.colorLight, value, true)
             layout.setBackgroundColor(value.data)
         }
     }

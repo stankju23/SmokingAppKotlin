@@ -1,9 +1,12 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Main
 
 import android.Manifest
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
@@ -13,7 +16,6 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.ThemeManager
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.Walkthrough.Walkthrough
-import io.realm.Realm
 
 class SplashActivity : AppCompatActivity() {
 
@@ -24,12 +26,26 @@ class SplashActivity : AppCompatActivity() {
         ThemeManager.setTheme(this,Data.actualTheme)
 
 
-        Realm.init(this)
 
         var preferences = getSharedPreferences("walkthrough", Context.MODE_PRIVATE)
         Data.firstTime = preferences.getBoolean(Constants.preferences.FIRST_TIME,false)
 
         if (!Data.firstTime) {
+
+            var mNotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            var name = "Notification Channel"
+            var desc = "Toto je novy notifikacny channel"
+
+            var importance = NotificationManager.IMPORTANCE_DEFAULT
+            if (android.os.Build.VERSION.SDK_INT >=  android.os.Build.VERSION_CODES.O) {
+                var mChannel = NotificationChannel(Data.notificationChannel,name,importance)
+                mChannel.description = desc
+                mChannel.enableLights(true)
+                mChannel.lightColor = Color.RED
+                mChannel.enableVibration(true)
+                mChannel.vibrationPattern = longArrayOf(100, 200, 300, 400, 500, 400, 300, 200, 400)
+                mNotificationManager.createNotificationChannel(mChannel)
+            }
 
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 var walkthrough = Intent(this, Walkthrough::class.java)

@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="@{(v)-> listener.onWishClick(v)}"
-        android:background="@color/white">
+        android:background="?secondaryClr">
 
         <android.support.v7.widget.CardView
             android:layout_width="0dp"
@@ -48,7 +48,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:text="@{mission.name}"
-                    android:textColor="@{mission.locked ? @color/white :mission.available ? @color/white : @android:color/darker_gray}"
+                    availableColor="@{mission.available.get()}"
+                    lockedColor="@{mission.locked.get()}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -69,7 +70,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:text="@{mission.locked ? @string/empty : mission.getDoneToString()}"
-                    android:textColor="@{mission.locked ? @color/light_grey :mission.available ? @color/white : @android:color/darker_gray}"
+                    availableColor="@{mission.available.get()}"
+                    lockedColor="@{mission.locked.get()}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -105,7 +107,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:text="@{mission.date}"
-                        android:textColor="@{mission.locked ? @color/white : mission.available ? @color/white : @android:color/darker_gray}"
+                        availableColor="@{mission.available.get()}"
+                        lockedColor="@{mission.locked.get()}"
                         app:layout_constraintBottom_toBottomOf="@+id/imageView"
                         app:layout_constraintStart_toEndOf="@+id/imageView"
                         app:layout_constraintTop_toTopOf="@+id/imageView" />

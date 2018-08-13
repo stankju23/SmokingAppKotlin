@@ -50,7 +50,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@{viewModel.dashboardHealthProgressViewList.get(0).title}"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="?colorAccent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/health_progress_1" />
@@ -100,7 +100,7 @@
                 android:layout_marginStart="8dp"
                 android:text="@{String.valueOf((int)viewModel.dashboardHealthProgressViewList.get(0).date.progress) + '%'}"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="?colorAccent"
                 app:layout_constraintBottom_toBottomOf="@+id/health_progress_1"
                 app:layout_constraintEnd_toEndOf="@+id/health_progress_1"
                 app:layout_constraintStart_toStartOf="@+id/health_progress_1"

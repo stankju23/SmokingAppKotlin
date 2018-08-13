@@ -21,8 +21,8 @@ class NotificationReceiver: BroadcastReceiver() {
 
             var mainActivity = Intent(context,MainActivity::class.java)
             mainActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            mainActivity.putExtra("wishes", true)
             var pendingIntent = PendingIntent.getActivity(context,0,mainActivity,PendingIntent.FLAG_UPDATE_CURRENT)
-
 
             var builder = NotificationCompat.Builder(context)
             builder.setSmallIcon(image)
@@ -30,7 +30,7 @@ class NotificationReceiver: BroadcastReceiver() {
             builder.setContentText(desc)
             builder.setContentIntent(pendingIntent)
             builder.setAutoCancel(true)
-
+            builder.setChannelId(Data.notificationChannel)
             notificationManager.notify(0,builder.build())
         }
     }
