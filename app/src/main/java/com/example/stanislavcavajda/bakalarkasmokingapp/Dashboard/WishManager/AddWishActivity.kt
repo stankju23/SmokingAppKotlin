@@ -103,12 +103,9 @@ class AddWishActivity : PermissionsActivity() {
                     Data.wishList.add(wish)
                     RealmDB.addWishToDB(wish)
                     var notificationScheduler = NotificationScheduler()
-                    notificationScheduler.scheduleNotification(wish.title.get()!!,"Mozete si kupit svoje prianie",R.drawable.achievment_mission_twenty,this,Data.wishList.size - 1,wish.endTime)
+                    notificationScheduler.scheduleNotification(wish.title.get()!!,"Mozete si kupit svoje prianie",R.drawable.achievment_mission_twenty,applicationContext,0,wish.endTime,true,false)
                     onBackPressed()
                 } catch (e: Exception) {
-//                    if (e != null) {
-//                        Log.i("Error", e.message)
-//                    }
                     Toast.makeText(this,"Something went wrong try again",Toast.LENGTH_SHORT)
                 }
 
@@ -163,6 +160,20 @@ class AddWishActivity : PermissionsActivity() {
 
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            100 -> {
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+                } else {
+                    this.finish()
+                }
+            }
+        }
+        return
     }
 }
 

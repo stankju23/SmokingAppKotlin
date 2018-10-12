@@ -13,15 +13,19 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
+import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DataManager
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.ThemeManager
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.Walkthrough.Walkthrough
+import io.realm.Realm
 
 class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        Realm.init(this)
 
         ThemeManager.setTheme(this,Data.actualTheme)
 
@@ -57,13 +61,7 @@ class SplashActivity : AppCompatActivity() {
 
 
         } else {
-            var preferences = getSharedPreferences("actualState",Context.MODE_PRIVATE)
-            Data.MoneyDashboard.cigarretesPerDay = preferences.getInt(Constants.actualState.CIGARETTES_PER_DAY, 0)
-            Data.MoneyDashboard.cigarretesInPackage = preferences.getInt(Constants.actualState.CIGARETTES_IN_PACKAGE, 0)
-            Data.MoneyDashboard.packagePrice = preferences.getFloat(Constants.actualState.PACKAGE_PRICE,0f).toDouble()
-            Data.MoneyDashboard.currency = preferences.getString(Constants.actualState.CURRENCY, "")
-            Data.actualTheme = preferences.getInt(Constants.actualState.THEME,0)
-            Data.date = preferences.getString(Constants.actualState.ACTUAL_DATE,"")
+            DataManager.loadMainData(this)
 
             var mainActivity = Intent(this,MainActivity::class.java)
             startActivity(mainActivity)

@@ -18,7 +18,8 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Dashboard.WishManager.WishesActivity">
+        tools:context=".Dashboard.WishManager.WishesActivity"
+        android:background="?secondaryClr">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/wishes_list_toolbar"
@@ -38,7 +39,6 @@
             android:layout_height="0dp"
             android:background="?secondaryClr"
             android:nestedScrollingEnabled="false"
-            app:layoutManager="@{LayoutManagers.linear()}"
             app:items="@{viewModel.wishList}"
             app:itemBinding="@{viewModel.itemBinding}"
             adapter="@{viewModel.adapter}"
@@ -68,7 +68,7 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:visibility="@{viewModel.visibility}"
+            android:visibility="@{viewModel.visibilityEmptyScreen}"
             android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

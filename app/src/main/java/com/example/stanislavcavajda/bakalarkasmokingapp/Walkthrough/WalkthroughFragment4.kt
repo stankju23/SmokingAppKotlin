@@ -88,7 +88,7 @@ class WalkthroughFragment4 : Fragment() {
                 }
 
                 for (i in 1..21) {
-                    notificationScheduler.scheduleNotification("$i ${activity?.resources?.getString(R.string.days)}","Vydrzali ste $i den nefajcit",R.drawable.achievment_mission_twenty,activity!!,i,i * Constants.timeConst.oneDay)
+                    notificationScheduler.scheduleNotification("$i ${activity?.resources?.getString(R.string.days)}","Vydrzali ste $i den nefajcit",R.drawable.achievment_mission_twenty,activity!!,i,i * Constants.timeConst.oneDay,false,false)
                 }
 
                 var currentTimestamp = dateConverter.getCurrentTimestamp()

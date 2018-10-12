@@ -11,14 +11,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Dashboard.DashboardFragment"
-    android:background="@color/unselectedBarColor">
+    android:background="?secondaryClr">
 
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/dashboard_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="@{LayoutManagers.linear()}"
             app:items="@{viewModel.list}"
             app:itemBinding="@{viewModel.itemBinding}"
             android:layout_marginBottom="0dp"

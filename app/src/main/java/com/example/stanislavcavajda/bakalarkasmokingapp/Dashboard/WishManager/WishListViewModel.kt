@@ -22,6 +22,7 @@ class WishListViewModel: BaseObservable {
     var actualWish: ObservableField<Wish> = ObservableField()
     var adapter: WishAdapter<Wish> = WishAdapter()
     var visibility: ObservableInt = ObservableInt()
+    var visibilityEmptyScreen: ObservableInt = ObservableInt()
 
     lateinit var context: Context
 
@@ -29,24 +30,39 @@ class WishListViewModel: BaseObservable {
 
     constructor(wishList: ArrayList<Wish>, context: Context) {
         this.wishList.addAll(wishList)
-        if (wishList.isEmpty()) {
+        if (wishList.size == 0) {
+            this.visibilityEmptyScreen.set(View.VISIBLE)
+        } else {
+            this.visibilityEmptyScreen.set(View.GONE)
+        }
+
+        updateWish()
+
+        if (actualWish.get() == null) {
             this.visibility.set(View.VISIBLE)
         } else {
             this.visibility.set(View.GONE)
         }
-        updateWish()
+
         this.context = context
     }
 
     fun updateWishList(newWishList: ArrayList<Wish>) {
         this.wishList.clear()
         this.wishList.addAll(newWishList)
-        if (wishList.isEmpty()) {
+        updateWish()
+
+        if (actualWish.get() == null) {
             this.visibility.set(View.VISIBLE)
         } else {
             this.visibility.set(View.GONE)
         }
-        updateWish()
+
+        if (wishList.size == 0) {
+            this.visibilityEmptyScreen.set(View.VISIBLE)
+        } else {
+            this.visibilityEmptyScreen.set(View.GONE)
+        }
     }
 
     fun updateWish() {

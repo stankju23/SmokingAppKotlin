@@ -1,9 +1,9 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard
 
-
 import android.app.Fragment
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -21,13 +21,11 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.JSONParser
 import com.example.stanislavcavajda.bakalarkasmokingapp.Model.Date
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.databinding.FragmentDashboardBinding
-import java.text.NumberFormat
-import java.util.Locale
+import java.text.DecimalFormat
 import java.util.Timer
 import java.util.TimerTask
 
 class DashboardFragment : Fragment() {
-
 
     var dateConverter = DateConverter()
     var progress = 0f
@@ -40,28 +38,28 @@ class DashboardFragment : Fragment() {
     var timer: Timer = Timer()
     var dashboardTimer = Timer()
     var wordList = ArrayList<String>()
-
+    var decimalFormat = DecimalFormat("###.##")
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        var binding:FragmentDashboardBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_dashboard, container, false)
+        var binding: FragmentDashboardBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_dashboard, container, false)
 
         var view = binding.root
 
         recycler = view.findViewById<RecyclerView>(R.id.dashboard_recycler_view)
-        recycler.setItemViewCacheSize(20);
-        recycler.setDrawingCacheEnabled(true);
-        recycler.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+        recycler.layoutManager = LinearLayoutManager(activity)
+        recycler.setItemViewCacheSize(4)
+        recycler.setDrawingCacheEnabled(true)
+        recycler.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH)
 
-        date = Date(dateConverter.getCurrentTimestamp() - dateConverter.convertDateToTimestamp(Data.date),Constants.timeConst.twentyOneDays)
+        date = Date(dateConverter.getCurrentTimestamp() - dateConverter.convertDateToTimestamp(Data.date), Constants.timeConst.twentyOneDays)
 
-        if(Data.healthProgressViewList.isEmpty()) {
+        if (Data.healthProgressViewList.isEmpty()) {
             prepareHealthProgressList()
         }
 
@@ -69,9 +67,9 @@ class DashboardFragment : Fragment() {
         dashboardList = DashboardListViewModel(ArrayList(), activity)
 
         var healthProgress = HealthProgressListViewModel(Data.healthProgressViewList, activity)
-        var mainProgress = MainProgressViewModel(date, activity,Data.timeList)
-        var wishesManager = WishListViewModel(Data.wishList,activity)
-        var moneySaved = MoneySavedViewModel(Data.MoneyDashboard.moneySaved,Data.MoneyDashboard.moneySpend,Data.MoneyDashboard.currency)
+        var mainProgress = MainProgressViewModel(date, activity, Data.timeList)
+        var wishesManager = WishListViewModel(Data.wishList, activity)
+        var moneySaved = MoneySavedViewModel(Data.MoneyDashboard.moneySaved, Data.MoneyDashboard.moneySpend, Data.MoneyDashboard.currency)
 
 
         dashboardList.list.add(mainProgress as Object)
@@ -85,20 +83,22 @@ class DashboardFragment : Fragment() {
         wordList.add(resources.getString(R.string.minutes))
         wordList.add(resources.getString(R.string.seconds))
 
-        var result = ""
-        val nf = NumberFormat.getInstance(Locale.US)
 
-        Log.i("Dashboard fragment","created")
+        Log.i("Dashboard fragment", "created")
+
 
         currentTimestamp = dateConverter.getCurrentTimestamp()
         dateTimestamp = dateConverter.convertDateToTimestamp(Data.date)
-        //result = "%.2f".format(actualSaved(currentTimestamp - dateTimestamp,Data.MoneyDashboard.cigarretesPerDay,Data.MoneyDashboard.packagePrice, Data.MoneyDashboard.cigarretesInPackage))
+        var result = decimalFormat.format(actualSaved(currentTimestamp - dateTimestamp, Data.MoneyDashboard.cigarretesPerDay, Data.MoneyDashboard.packagePrice, Data.MoneyDashboard.cigarretesInPackage))
 
-        Data.MoneyDashboard.actualMoneyState = Data.MoneyDashboard.moneySaved - Data.MoneyDashboard.moneySpend
+        result = result.replace(",",".")
+
+
+        Data.MoneyDashboard.moneySaved = result.toFloat()
         updateWishList()
 
 
-        dashboardTimer.scheduleAtFixedRate(object : TimerTask(){
+        dashboardTimer.scheduleAtFixedRate(object : TimerTask() {
             override fun run() {
                 if (activity != null) {
                     currentTimestamp = dateConverter.getCurrentTimestamp()
@@ -110,7 +110,7 @@ class DashboardFragment : Fragment() {
                     (dashboardList.list.get(Constants.viewTypes.MAIN_PROGRESS_VIEW_TYPE) as MainProgressViewModel).setProgress(date)
 
                     Data.timeList.clear()
-                    Data.timeList.addAll(dateConverter.updateMainProgressDetail(currentTimestamp-dateTimestamp,wordList))
+                    Data.timeList.addAll(dateConverter.updateMainProgressDetail(currentTimestamp - dateTimestamp, wordList))
 
                     (dashboardList.list.get(Constants.viewTypes.MAIN_PROGRESS_VIEW_TYPE) as MainProgressViewModel).updateDetail(Data.timeList)
 
@@ -118,29 +118,23 @@ class DashboardFragment : Fragment() {
 
 
                     (dashboardList.list.get(Constants.viewTypes.HEALTH_PROGRESS_VIEW_TYPE) as HealthProgressListViewModel).updateAll()
-                    //result = "%.2f".format(actualSaved(currentTimestamp - dateTimestamp, Data.MoneyDashboard.cigarretesPerDay, Data.MoneyDashboard.packagePrice, Data.MoneyDashboard.cigarretesInPackage))
-
-                    for (item in Data.wishList) {
-                        Log.i("End", "wish ${item.endTime}")
-                    }
 
                 }
             }
-        },1000,1000)
-
+        }, 0, 1000)
 
 //
 
         timer.scheduleAtFixedRate(object : TimerTask() {
             override fun run() {
                 try {
-                    var result = actualSaved(currentTimestamp - dateTimestamp,Data.MoneyDashboard.cigarretesPerDay,Data.MoneyDashboard.packagePrice, Data.MoneyDashboard.cigarretesInPackage).toString()
-
+                    result = decimalFormat.format(actualSaved(currentTimestamp - dateTimestamp, Data.MoneyDashboard.cigarretesPerDay, Data.MoneyDashboard.packagePrice, Data.MoneyDashboard.cigarretesInPackage))
+                    result = result.replace(",",".")
                     //Data.MoneyDashboard.moneySaved = nf.parse(result).toFloat() / 100
-                    Data.MoneyDashboard.moneySaved = (result).toFloat()
+                    Data.MoneyDashboard.moneySaved = result.toFloat()
 
                     (dashboardList.list.get(Constants.viewTypes.MONEY_SAVED_VIEW_TYPE) as MoneySavedViewModel).updateMoney(
-                            Data.MoneyDashboard.moneySaved, 0.0f,Data.MoneyDashboard.currency)
+                        Data.MoneyDashboard.moneySaved, 0.0f, Data.MoneyDashboard.currency)
 
                     updateWishList()
 
@@ -150,13 +144,11 @@ class DashboardFragment : Fragment() {
                     (dashboardList.list.get(Constants.viewTypes.WISHES_MANAGER_VIEW_TYPE) as WishListViewModel).updateWishList(Data.wishList)
 
                     Data.MoneyDashboard.actualMoneyState = Data.MoneyDashboard.moneySaved - Data.MoneyDashboard.moneySpend
-
-                }catch (e:Exception) {
+                } catch (e: Exception) {
 
                 }
-
             }
-        },1000,1)
+        }, 0, 1)
 
 
 
@@ -171,42 +163,39 @@ class DashboardFragment : Fragment() {
         return view
     }
 
-    fun actualSaved(actualTimestamp:Long, cigarretesPerDay: Int, packagePrice:Double,inPackage:Int):Float {
+    fun actualSaved(actualTimestamp: Long, cigarretesPerDay: Int, packagePrice: Double, inPackage: Int): Float {
         var result = 0.0f
         var day = 86400
-        result = (((packagePrice.toFloat()/ inPackage.toFloat()) * cigarretesPerDay)/ day.toFloat()) * actualTimestamp
+        result = (((packagePrice.toFloat() / inPackage.toFloat()) * cigarretesPerDay) / day.toFloat()) * actualTimestamp
         return result
     }
 
     fun updateWishList() {
         for (i in Data.wishList) {
-            i.setWish(i.title.get()!!,i.desc.get()!!,i.price,i.image!!)
+            i.setWish(i.title.get()!!, i.desc.get()!!, i.price, i.image!!)
         }
     }
-
 
     fun prepareHealthProgressList() {
 
-
-        when(activity.resources.configuration.locale.country){
-            "US" -> Data.healthProgressViewList.addAll(JSONParser.parseHealthData(JSONParser.loadJsonFromAssets("HealthDataEN",activity),activity))
-            "SK" -> Data.healthProgressViewList.addAll(JSONParser.parseHealthData(JSONParser.loadJsonFromAssets("HealthDataSK",activity),activity))
-            else -> Data.healthProgressViewList.addAll(JSONParser.parseHealthData(JSONParser.loadJsonFromAssets("HealthDataEN",activity),activity))
+        when (activity.resources.configuration.locale.country) {
+            "US" -> Data.healthProgressViewList.addAll(JSONParser.parseHealthData(JSONParser.loadJsonFromAssets("HealthDataEN", activity), activity))
+            "SK" -> Data.healthProgressViewList.addAll(JSONParser.parseHealthData(JSONParser.loadJsonFromAssets("HealthDataSK", activity), activity))
+            else -> Data.healthProgressViewList.addAll(JSONParser.parseHealthData(JSONParser.loadJsonFromAssets("HealthDataEN", activity), activity))
         }
     }
-
 
     fun updateHealthProgress(currentTimestamp: Long, dateTimestamp: Long) {
         var index = 0
         for (item in Data.healthProgressTimes) {
-            date = Date(dateTimestamp + item - currentTimestamp,item)
+            date = Date(dateTimestamp + item - currentTimestamp, item)
             Data.healthProgressViewList[index].date.set(date)
             index++
         }
     }
 
     override fun onDestroy() {
-        Log.i("fragment","destroyed")
+        Log.i("fragment", "destroyed")
         timer.cancel()
         dashboardTimer.cancel()
         super.onDestroy()
@@ -214,9 +203,7 @@ class DashboardFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-
-        Log.i("Dashboard fragment","stopped")
-
+        Log.i("Dashboard fragment", "stopped")
     }
 
     override fun onPause() {
@@ -227,6 +214,4 @@ class DashboardFragment : Fragment() {
         Log.i("Thread", "resumed")
         super.onResume()
     }
-
-
 }

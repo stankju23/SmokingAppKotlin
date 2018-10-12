@@ -33,7 +33,6 @@ class ShowCravings : AppCompatActivity() {
         layoutManager.elevateHeaders(true)
         show_cravings_recyclerView.layoutManager = layoutManager
         show_cravings_recyclerView.adapter = adapter
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

@@ -5,9 +5,12 @@ import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
 import android.databinding.ObservableFloat
 import android.net.Uri
+import android.os.Handler
 import android.view.View
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DateConverter
+import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.NotificationScheduler
+import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.RealmDatabase.RealmDB
 
 /**
@@ -26,7 +29,7 @@ class Wish {
     var endDate: ObservableField<String> = ObservableField()
     var progress: ObservableFloat = ObservableFloat()
     var context: Context
-    var endTime:Long = 0L
+    var endTime: Long = 0L
 
     constructor(id: String, title: String, desc: String, price: Int, bought: Boolean, context: Context, imageUri: Uri) {
 
@@ -81,6 +84,18 @@ class Wish {
         }
 
         RealmDB.updateWish(this.id, this)
+
+        var handler = Handler()
+        handler.postDelayed(Runnable {
+            var nS = NotificationScheduler()
+            for (i in 0..Data.wishList.size - 1) {
+                var wish = Data.wishList[i]
+                if (!wish.isBought.get() && !wish.canBuy.get()) {
+                    nS.scheduleNotification(wish.title.get()!!, wish.desc.get()!!, R.drawable.currency_image, context,21 + i, wish.endTime,true,false)
+                }
+            }
+
+        }, 200)
     }
 
     fun formatDate(date: String): String {

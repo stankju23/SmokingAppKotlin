@@ -24,13 +24,15 @@ class Craving:CravingItem,ClusterItem {
     var address:String
     var context:Context
     var blackBG:Boolean
+    var timeStamp:Long
 
-    constructor(id:String,time:String,date:String,lat: Double,long: Double,context: Context,blackBG:Boolean) {
+    constructor(id:String,time:String,date:String,lat: Double,long: Double,context: Context,blackBG:Boolean,timestamp: Long) {
         this.id = id
         this.time = time
         this.date = date
         this.latitude = lat
         this.longitude = long
+        this.timeStamp = timestamp
         this.context = context
         if (this.latitude != 0.0 && this.longitude != 0.0) {
             try {

@@ -75,5 +75,6 @@ object Constants {
         const val title = "notificationTitle"
         const val desc = "notificationDesc"
         const val image = "notificationImage"
+        const val id = "id"
     }
 }

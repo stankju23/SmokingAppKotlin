@@ -112,9 +112,10 @@
             android:name=".Cravings.AddCardActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
-
-        <activity android:name=".Journal.EditJournal"
+        <activity
+            android:name=".Journal.EditJournal"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Journal.JournalStoryActivity"></activity>
     </application>
 </manifest>

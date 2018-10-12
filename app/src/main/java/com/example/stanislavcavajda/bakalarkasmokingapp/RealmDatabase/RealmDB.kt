@@ -16,7 +16,7 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Objective
 import com.example.stanislavcavajda.bakalarkasmokingapp.Model.Date
 import io.realm.Realm
 import io.realm.RealmList
-import java.util.ArrayList
+import java.util.*
 
 /**
  * Created by stanislavcavajda on 13/03/2018.
@@ -176,6 +176,7 @@ object RealmDB {
         realmCraving.longitude = craving.longitude
         realmCraving.isHeader = false
         realmCraving.blacBG = craving.blackBG
+        realmCraving.timeStamp = craving.timeStamp
         realm.commitTransaction()
     }
 
@@ -203,7 +204,7 @@ object RealmDB {
                     Data.cravings.add(cravingHeader)
                 } else
                 {
-                    var craving = Craving(item.id,item.time,item.date,item.latitude,item.longitude,context,item.blacBG)
+                    var craving = Craving(item.id,item.time,item.date,item.latitude,item.longitude,context,item.blacBG,item.timeStamp)
                     Data.cravings.add(craving)
                 }
 

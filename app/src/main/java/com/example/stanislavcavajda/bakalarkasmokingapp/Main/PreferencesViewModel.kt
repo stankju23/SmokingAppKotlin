@@ -1,45 +1,52 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Main
 
 import android.app.Activity
+import android.app.ActivityManager
 import android.content.Context
+import android.content.Context.ACTIVITY_SERVICE
 import android.content.DialogInterface
+import android.content.Intent
 import android.databinding.BaseObservable
 import android.databinding.ObservableField
 import android.support.v7.app.AlertDialog
 import android.text.InputType
 import android.text.method.DigitsKeyListener
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.FrameLayout
+import android.widget.Spinner
 import android.widget.Toast
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.Wish
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.NotificationScheduler
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
+import com.example.stanislavcavajda.bakalarkasmokingapp.Walkthrough.Walkthrough
 
 class PreferencesViewModel : BaseObservable {
 
     var cigarretesPerDay: ObservableField<String> = ObservableField()
     var cigarretesInPacket: ObservableField<String> = ObservableField()
     var packetCost: ObservableField<String> = ObservableField()
+    var currency: ObservableField<String> = ObservableField()
     var context: Context
 
-
-    constructor(cigarretesPerDay:String,cigarretesInPacket:String,packetCost:String,context: Context) {
-        updatePreferences(cigarretesPerDay,cigarretesInPacket,packetCost)
+    constructor(cigarretesPerDay: String, cigarretesInPacket: String, packetCost: String, context: Context,currency: String) {
+        updatePreferences(cigarretesPerDay, cigarretesInPacket, packetCost,currency)
         this.context = context
     }
 
-    fun updatePreferences(cigarretesPerDay:String,cigarretesInPacket:String,packetCost:String) {
+    fun updatePreferences(cigarretesPerDay: String, cigarretesInPacket: String, packetCost: String,currency:String) {
         this.cigarretesPerDay.set(cigarretesPerDay)
         this.cigarretesInPacket.set(cigarretesInPacket)
         this.packetCost.set(packetCost)
+        this.currency.set(currency)
     }
 
-    fun setCigarettesPerDay(v:View) {
+    fun setCigarettesPerDay(v: View) {
 
-        var preferences = (context as Activity).getSharedPreferences("actualState",Context.MODE_PRIVATE)
+        var preferences = (context as Activity).getSharedPreferences("actualState", Context.MODE_PRIVATE)
         var editor = preferences.edit()
 
         var builder = AlertDialog.Builder(context)
@@ -51,7 +58,7 @@ class PreferencesViewModel : BaseObservable {
         setValueEditText.inputType = InputType.TYPE_CLASS_NUMBER
         setValueEditText.setText(cigarretesPerDay.get())
         layout.addView(setValueEditText)
-        layout.setPadding(45,0,45,0)
+        layout.setPadding(45, 0, 45, 0)
         builder.setView(layout)
 
         builder.setPositiveButton(R.string.yes, DialogInterface.OnClickListener { dialogInterface, i ->
@@ -63,20 +70,19 @@ class PreferencesViewModel : BaseObservable {
                 editor.commit()
                 updateWishesNotifcations(Data.wishList)
             } else {
-                Toast.makeText(context,"Value isnt correct",Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Value isnt correct", Toast.LENGTH_SHORT).show()
             }
         })
 
         builder.setNegativeButton(R.string.no, DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() })
 
-
         var dialog = builder.create()
         dialog.show()
     }
 
-    fun setCigarettesInPacket(v:View) {
+    fun setCigarettesInPacket(v: View) {
 
-        var preferences = (context as Activity).getSharedPreferences("actualState",Context.MODE_PRIVATE)
+        var preferences = (context as Activity).getSharedPreferences("actualState", Context.MODE_PRIVATE)
         var editor = preferences.edit()
 
         var builder = AlertDialog.Builder(context)
@@ -88,7 +94,7 @@ class PreferencesViewModel : BaseObservable {
         setValueEditText.inputType = InputType.TYPE_CLASS_NUMBER
         setValueEditText.setText(cigarretesInPacket.get())
         layout.addView(setValueEditText)
-        layout.setPadding(45,0,45,0)
+        layout.setPadding(45, 0, 45, 0)
         builder.setView(layout)
 
         builder.setPositiveButton(R.string.yes, DialogInterface.OnClickListener { dialogInterface, i ->
@@ -100,20 +106,19 @@ class PreferencesViewModel : BaseObservable {
                 editor.commit()
                 updateWishesNotifcations(Data.wishList)
             } else {
-                Toast.makeText(context,"Value isnt correct",Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Value isnt correct", Toast.LENGTH_SHORT).show()
             }
         })
 
         builder.setNegativeButton(R.string.no, DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() })
 
-
         var dialog = builder.create()
         dialog.show()
     }
 
-    fun setPacketCost(v:View) {
+    fun setPacketCost(v: View) {
 
-        var preferences = (context as Activity).getSharedPreferences("actualState",Context.MODE_PRIVATE)
+        var preferences = (context as Activity).getSharedPreferences("actualState", Context.MODE_PRIVATE)
         var editor = preferences.edit()
 
         var builder = AlertDialog.Builder(context)
@@ -126,7 +131,7 @@ class PreferencesViewModel : BaseObservable {
         setValueEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789."))
         setValueEditText.setText(packetCost.get())
         layout.addView(setValueEditText)
-        layout.setPadding(45,0,45,0)
+        layout.setPadding(45, 0, 45, 0)
         builder.setView(layout)
 
         builder.setPositiveButton(R.string.yes, DialogInterface.OnClickListener { dialogInterface, i ->
@@ -138,22 +143,78 @@ class PreferencesViewModel : BaseObservable {
                 editor.commit()
                 updateWishesNotifcations(Data.wishList)
             } else {
-                Toast.makeText(context,"Value isnt correct",Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Value isnt correct", Toast.LENGTH_SHORT).show()
             }
         })
 
         builder.setNegativeButton(R.string.no, DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() })
 
+        var dialog = builder.create()
+        dialog.show()
+    }
+
+    fun setCurrency(v: View) {
+
+        var preferences = (context as Activity).getSharedPreferences("actualState", Context.MODE_PRIVATE)
+        var editor = preferences.edit()
+
+        var builder = AlertDialog.Builder(context)
+        builder.setTitle(R.string.packet_cost)
+        builder.setMessage(R.string.set_value)
+
+        var layout = FrameLayout(context)
+        var currencySpinner = Spinner(context)
+
+        var adapter = ArrayAdapter<String>(context,android.R.layout.simple_dropdown_item_1line, arrayOf("€","$","лв","kn"))
+        currencySpinner.adapter = adapter
+
+        layout.addView(currencySpinner)
+        layout.setPadding(45, 0, 45, 0)
+        builder.setView(layout)
+
+        builder.setPositiveButton(R.string.yes, DialogInterface.OnClickListener { dialogInterface, i ->
+            var value = currencySpinner.selectedItem.toString()
+                currency.set(value)
+                Data.MoneyDashboard.currency = value
+                editor.putString(Constants.actualState.CURRENCY, value.toString())
+                editor.commit()
+                updateWishesNotifcations(Data.wishList)
+        })
+
+        builder.setNegativeButton(R.string.no, DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() })
 
         var dialog = builder.create()
         dialog.show()
     }
 
-    fun updateWishesNotifcations(list:ArrayList<Wish>) {
+    fun factoryReset(v: View) {
+        var builder = AlertDialog.Builder(context)
+        builder.setTitle(R.string.factory_reset)
+        builder.setMessage(R.string.factory_reset_desc)
+
+        builder.setPositiveButton(R.string.yes, DialogInterface.OnClickListener { dialogInterface, i ->
+            //            RealmDB.realm.beginTransaction()
+//            RealmDB.realm.deleteAll()
+//            RealmDB.realm.commitTransaction()
+//            DataManager.deleteMainData(context)
+            (context.getSystemService(ACTIVITY_SERVICE) as ActivityManager).clearApplicationUserData()
+            var walkthrough = Intent(context, Walkthrough::class.java)
+            context.startActivity(walkthrough)
+        })
+
+        builder.setNegativeButton(R.string.no, DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() })
+
+        var dialog = builder.create()
+        dialog.show()
+    }
+
+    fun updateWishesNotifcations(list: ArrayList<Wish>) {
         var nS = NotificationScheduler()
-        for (i in 0..list.size-1) {
+        for (i in 0..list.size - 1) {
             var wish = list[i]
-            nS.scheduleNotification(wish.title.get()!!, wish.desc.get()!!, R.drawable.currency_image, context,i,wish.endTime)
+            if (!wish.isBought.get() && !wish.canBuy.get()) {
+                nS.scheduleNotification(wish.title.get()!!, wish.desc.get()!!, R.drawable.currency_image, context, 21 + i, wish.endTime, true, false)
+            }
         }
     }
 }

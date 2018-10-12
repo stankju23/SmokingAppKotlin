@@ -39,7 +39,7 @@ fun setImageUrl(imageView: ImageView, uri: Uri?) {
     if (uri != null) {
         Glide.with(context)
             .load(uri)
-            .apply(RequestOptions().override(300, 200))
+            .apply(RequestOptions().override(200, 150))
             .into(imageView)
     } else {
         Glide.with(context).clear(imageView)

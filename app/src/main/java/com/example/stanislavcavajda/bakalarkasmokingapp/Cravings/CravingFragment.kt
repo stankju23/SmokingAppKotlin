@@ -109,7 +109,7 @@ class CravingFragment : Fragment(),GoogleApiClient.OnConnectionFailedListener,Go
                 if (latitude != null && longitude != null) {
                     if (Data.cravings.size == 0) {
                         var header = CravingHeader(UUID.randomUUID().toString(), dateConverter.getDate(dateConverter.getCurrentTimestamp()))
-                        var craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity, false)
+                        var craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity, false,dateConverter.getCurrentTimestamp())
                         Data.cravings.add(header)
                         RealmDB.saveHeader(header)
                         Data.cravings.add(craving)
@@ -119,9 +119,9 @@ class CravingFragment : Fragment(),GoogleApiClient.OnConnectionFailedListener,Go
                             var header = CravingHeader(UUID.randomUUID().toString(), dateConverter.getDate(dateConverter.getCurrentTimestamp()))
                             var craving: Craving
                             if ((Data.cravings[Data.cravings.size - 1] as Craving).blackBG) {
-                                craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity, false)
+                                craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity, false,dateConverter.getCurrentTimestamp())
                             } else {
-                                craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity, true)
+                                craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity, true,dateConverter.getCurrentTimestamp())
                             }
                             Data.cravings.add(header)
                             RealmDB.saveHeader(header)
@@ -130,9 +130,9 @@ class CravingFragment : Fragment(),GoogleApiClient.OnConnectionFailedListener,Go
                         } else {
                             var craving: Craving
                             if ((Data.cravings[Data.cravings.size - 1] as Craving).blackBG) {
-                                craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity, false)
+                                craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity, false,dateConverter.getCurrentTimestamp())
                             } else {
-                                craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity, true)
+                                craving = Craving(UUID.randomUUID().toString(), dateConverter.getTime(), dateConverter.getDate(dateConverter.getCurrentTimestamp()), latitude, longitude, activity, true,dateConverter.getCurrentTimestamp())
                             }
                             Data.cravings.add(craving)
                             RealmDB.saveCraving(craving)
@@ -200,7 +200,6 @@ class CravingFragment : Fragment(),GoogleApiClient.OnConnectionFailedListener,Go
 
         var req = LocationRequest.create().setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
         req.interval = 100
-        req.fastestInterval = 50
         if (ContextCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, req, this)
         } else {

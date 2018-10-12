@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.TextView
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 
@@ -35,7 +35,7 @@ class WalkthroughFragment1 : Fragment() {
         var view = inflater.inflate(R.layout.fragment_walkthrough_fragment1, container, false)
         var nextButton = view.findViewById<Button>(R.id.next_button)
 
-        var actualValue = view.findViewById<EditText>(R.id.actual_value)
+        var actualValue = view.findViewById<TextView>(R.id.actual_value)
         actualValue.setText(value.toString())
 
         var plusBtn = view.findViewById<ImageButton>(R.id.plus_button)

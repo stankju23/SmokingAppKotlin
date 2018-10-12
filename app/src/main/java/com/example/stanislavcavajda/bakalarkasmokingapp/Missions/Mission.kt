@@ -3,6 +3,7 @@ package com.example.stanislavcavajda.bakalarkasmokingapp.Missions
 import android.content.Context
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
+import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Model.Date
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 
@@ -52,7 +53,7 @@ class Mission {
     }
 
     fun getDoneToString():String {
-        return "${this.done}/5"
+        return "${this.done}/${Data.numberOfObjectivesInCravings}"
     }
 
     fun setMission(mission: Mission) {

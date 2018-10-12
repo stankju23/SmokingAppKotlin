@@ -18,11 +18,16 @@ class NotificationReceiver: BroadcastReceiver() {
             var title = intent.getStringExtra(Constants.Notification.title)
             var desc = intent.getStringExtra(Constants.Notification.desc)
             var image = intent.getIntExtra(Constants.Notification.image,0)
+            var id = intent.getIntExtra(Constants.Notification.id,0)
+            var wish = intent.getBooleanExtra("wish",false)
+
 
             var mainActivity = Intent(context,MainActivity::class.java)
             mainActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            mainActivity.putExtra("wishes", true)
-            var pendingIntent = PendingIntent.getActivity(context,0,mainActivity,PendingIntent.FLAG_UPDATE_CURRENT)
+            if (wish) {
+                mainActivity.putExtra("wishes", true)
+            }
+            var pendingIntent = PendingIntent.getActivity(context,id,mainActivity,PendingIntent.FLAG_UPDATE_CURRENT)
 
             var builder = NotificationCompat.Builder(context)
             builder.setSmallIcon(image)
@@ -31,7 +36,7 @@ class NotificationReceiver: BroadcastReceiver() {
             builder.setContentIntent(pendingIntent)
             builder.setAutoCancel(true)
             builder.setChannelId(Data.notificationChannel)
-            notificationManager.notify(0,builder.build())
+            notificationManager.notify(id,builder.build())
         }
     }
 

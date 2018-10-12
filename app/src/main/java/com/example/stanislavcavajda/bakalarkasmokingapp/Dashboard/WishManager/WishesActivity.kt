@@ -9,6 +9,7 @@ import android.support.annotation.RequiresApi
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.MenuItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
@@ -34,6 +35,7 @@ class WishesActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this,R.layout.activity_wishes)
 
+        wishes_recycler.layoutManager = LinearLayoutManager(this)
         viewModel = WishListViewModel(Data.wishList,this)
 
         binding?.viewModel = viewModel
@@ -100,5 +102,19 @@ class WishesActivity : AppCompatActivity() {
     override fun onRestart() {
 
         super.onRestart()
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            100 -> {
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+                } else {
+                    this.finish()
+                }
+            }
+        }
+        return
     }
 }

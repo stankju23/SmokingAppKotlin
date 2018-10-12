@@ -18,6 +18,7 @@ class JournalListViewModel: BaseObservable {
 
     var journalItemList: ObservableArrayList<Journal> = ObservableArrayList()
     var itemBinding:ItemBinding<Journal> = ItemBinding.of(BR.journal,R.layout.journal_card)
+    var itemBinding1:ItemBinding<Journal> = ItemBinding.of(BR.journalItem,R.layout.journal_story_item)
     lateinit var context:Context
 
     var listener = object : OnClick {
@@ -40,5 +41,10 @@ class JournalListViewModel: BaseObservable {
         itemBinding.bindExtra(BR.journalListener,listener)
         this.journalItemList.addAll(list)
         this.context = context
+    }
+
+    fun showStory(v:View) {
+        var intent = Intent(context,JournalStoryActivity::class.java)
+        context.startActivity(intent)
     }
 }

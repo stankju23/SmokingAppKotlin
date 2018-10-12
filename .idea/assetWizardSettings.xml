@@ -15,8 +15,8 @@
                           <map>
                             <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="achievment_icon" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/../../achievment_icon.svg" />
+                            <entry key="outputName" value="book" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/../../book.svg" />
                           </map>
                         </option>
                       </PersistentState>

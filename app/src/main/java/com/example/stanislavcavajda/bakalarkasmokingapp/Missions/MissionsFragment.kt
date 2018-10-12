@@ -1,8 +1,9 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Missions
 
+import android.app.Fragment
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -24,8 +25,8 @@ class MissionsFragment : Fragment() {
         var view = binding.root
 
         var recycler = view.findViewById<RecyclerView>(R.id.missions_recycler_view)
+        recycler.layoutManager = LinearLayoutManager(activity)
         recycler.setHasFixedSize(true)
-
 
         var missionViewModel = MissionListViewModel(Data.missionList,activity)
 

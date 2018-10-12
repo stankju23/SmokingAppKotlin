@@ -105,7 +105,6 @@
         android:layout_marginTop="24dp"
         app:itemBinding="@{viewModel.itemBinding}"
         app:items="@{viewModel.activityList}"
-        app:layoutManager="@{LayoutManagers.linear()}"
         app:layout_constraintBottom_toTopOf="@+id/button5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

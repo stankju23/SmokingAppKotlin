@@ -32,6 +32,7 @@ class HealthProgressDetailActivity : AppCompatActivity() {
         var itemId = intent.getIntExtra(Constants.extras.EXTRA_ITEM_ID,0)
         var healthProgres = Data.healthProgressViewList[itemId]
 
+
         setSupportActionBar(health_progress_detail_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)

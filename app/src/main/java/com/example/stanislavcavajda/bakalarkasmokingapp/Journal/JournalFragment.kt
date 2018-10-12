@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.databinding.FragmentJournalBinding
+
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
@@ -32,6 +33,10 @@ class JournalFragment : Fragment() {
         var view = binding.root
 
         var journalListViewModel = JournalListViewModel(Data.journalCardSList,activity)
+
+        //var scrollView = view.findViewById<ScrollView>(R.id.journal_tab_scroll_view)
+
+        //OverScrollDecoratorHelper.setUpOverScroll(scrollView)
 
         binding.journalViewModel = journalListViewModel
         return view

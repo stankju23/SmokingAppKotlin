@@ -6,6 +6,7 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.util.TypedValue
 import android.view.MenuItem
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
@@ -33,6 +34,7 @@ class MissionInfoActivity : AppCompatActivity() {
 
         var viewModel = ActivityListViewModel(Data.missionList[missionPosition].activities,this)
 
+        activity_recycler_view.layoutManager = LinearLayoutManager(this)
 
         binding.viewModel = viewModel
         binding.missionInfo = Data.missionList[missionPosition]
@@ -47,7 +49,7 @@ class MissionInfoActivity : AppCompatActivity() {
         Data.missionList[missionPosition].getDone()
         number_of_done.setText("${resources.getString(R.string.objectives)} ${Data.missionList[missionPosition].done}/5")
 
-        if (Data.missionList[missionPosition].done == 5) {
+        if (Data.missionList[missionPosition].done == Data.numberOfObjectivesInCravings) {
             setLayoutBackground(mission_info_layout,this,true)
         } else {
             setLayoutBackground(mission_info_layout,this,false)
@@ -80,9 +82,9 @@ class MissionInfoActivity : AppCompatActivity() {
 
     override fun onResume() {
         Data.missionList[missionPosition].getDone()
-        number_of_done.setText("${resources.getString(R.string.objectives)} ${Data.missionList[missionPosition].done}/5")
+        number_of_done.setText("${resources.getString(R.string.objectives)} ${Data.missionList[missionPosition].done}/${Data.numberOfObjectivesInCravings}")
 
-        if (Data.missionList[missionPosition].done == 5) {
+        if (Data.missionList[missionPosition].done == Data.numberOfObjectivesInCravings) {
             setLayoutBackground(mission_info_layout,this,true)
         } else {
             setLayoutBackground(mission_info_layout,this,false)

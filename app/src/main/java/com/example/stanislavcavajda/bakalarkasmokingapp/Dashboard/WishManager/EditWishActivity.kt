@@ -1,5 +1,9 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
@@ -12,6 +16,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
+import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.NotificationReceiver
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.NotificationScheduler
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.ThemeManager
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
@@ -104,7 +109,7 @@ class EditWishActivity : AppCompatActivity() {
                     var wish = Data.wishList[position]
                     RealmDB.updateWish(wish.id, wish)
                     var notificationScheduler = NotificationScheduler()
-                    notificationScheduler.scheduleNotification(wish.title.get()!!, "Mozete si kupit svoje prianie", R.drawable.achievment_mission_twenty, this, position, wish.endTime)
+                    notificationScheduler.scheduleNotification(wish.title.get()!!, "Mozete si kupit svoje prianie", R.drawable.achievment_mission_twenty, applicationContext, 0, wish.endTime,true,false)
 
                     onBackPressed()
                 }
@@ -132,6 +137,12 @@ class EditWishActivity : AppCompatActivity() {
                 return true
             }
             R.id.delete -> {
+                val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+                val myIntent = Intent(applicationContext, NotificationReceiver::class.java)
+                val pendingIntent = PendingIntent.getBroadcast(
+                    applicationContext, 0, myIntent,
+                    PendingIntent.FLAG_UPDATE_CURRENT)
+                alarmManager.cancel(pendingIntent)
                 RealmDB.deleteWish(Data.wishList[position])
                 Data.wishList.removeAt(position)
                 onBackPressed()

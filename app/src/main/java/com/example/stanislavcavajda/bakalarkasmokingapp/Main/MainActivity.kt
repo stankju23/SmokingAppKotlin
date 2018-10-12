@@ -14,16 +14,19 @@ import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import com.example.stanislavcavajda.bakalarkasmokingapp.Cravings.CravingFragment
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.DashboardFragment
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.WishesActivity
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.BottomNavigationViewHelper
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
+import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DataManager
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DateConverter
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.JSONParser
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.ThemeManager
 import com.example.stanislavcavajda.bakalarkasmokingapp.Journal.JournalFragment
+import com.example.stanislavcavajda.bakalarkasmokingapp.Journal.JournalStoryActivity
 import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Activity
 import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Mission
 import com.example.stanislavcavajda.bakalarkasmokingapp.Missions.MissionsFragment
@@ -44,6 +47,8 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var menu: Menu
     lateinit var achievmentDrawer: SlidingRootNav
+
+
     val REQUEST_PERMISSION_CODE = 100
 
     var missionTimer = Timer()
@@ -56,15 +61,30 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
 
+        try {
+            Realm.init(this)
+        } catch (e:Exception) {
+            Log.e("Realm", e.message)
+        }
+
+
+
+        if (intent.getBooleanExtra("wishes",false)) {
+            DataManager.loadMainData(this)
+            var intent = Intent(this,WishesActivity::class.java)
+            startActivity(intent)
+        }
+
         ThemeManager.setTheme(this, Data.actualTheme)
 
-        Realm.init(this)
+
        // var config = RealmConfiguration.Builder().deleteRealmIfMigrationNeeded().build()
 
         // var preferences = getSharedPreferences("date", Context.MODE_PRIVATE)
         //Data.date = preferences.getString(Constants.preferences.DATE_PREFERENCES,"03-02-2018")
 
         //Realm.deleteRealm(Realm.getDefaultConfiguration())
+
         if (Data.wishList.isEmpty()) {
             RealmDB.getWishes(this)
         }
@@ -81,13 +101,11 @@ class MainActivity : AppCompatActivity() {
             RealmDB.getJournalCard(this)
         }
 
-        if (intent.getBooleanExtra("wishes",false)) {
-            var intent = Intent(this,WishesActivity::class.java)
-            startActivity(intent)
-        }
 
 
         var binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+
 
         var slidingView = SlidingRootNavBuilder(this)
             .withDragDistance(220)
@@ -113,27 +131,27 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (Data.missionsAchievments.size == 0) {
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_one),"1${Data.MoneyDashboard.currency} earned","You earned 1${Data.MoneyDashboard.currency}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_two),"3${Data.MoneyDashboard.currency} earned","You earned 3${Data.MoneyDashboard.currency}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_three),"5${Data.MoneyDashboard.currency} earned","You earned 5${Data.MoneyDashboard.currency}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_four),"10${Data.MoneyDashboard.currency} earned","You earned 10${Data.MoneyDashboard.currency}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_five),"20${Data.MoneyDashboard.currency} earned","You earned 20${Data.MoneyDashboard.currency}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_six),"50${Data.MoneyDashboard.currency} earned","You earned 50${Data.MoneyDashboard.currency}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_seven),"100${Data.MoneyDashboard.currency} earned","You earned 100${Data.MoneyDashboard.currency}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_eight),"1${Data.MoneyDashboard.currency} earned","You earned 1${Data.MoneyDashboard.currency}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_nine),"3${Data.MoneyDashboard.currency} earned","You earned 3${Data.MoneyDashboard.currency}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_ten),"5${Data.MoneyDashboard.currency} earned","You earned 5${Data.MoneyDashboard.currency}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_eleven),"10${Data.MoneyDashboard.currency} earned","You earned 10${Data.MoneyDashboard.currency}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_twelve),"20${Data.MoneyDashboard.currency} earned","You earned 20${Data.MoneyDashboard.currency}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_thirteen),"50${Data.MoneyDashboard.currency} earned","You earned 50${Data.MoneyDashboard.currency}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_fourteen),"100${Data.MoneyDashboard.currency} earned","You earned 100${Data.MoneyDashboard.currency}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_fifteen),"1${Data.MoneyDashboard.currency} earned","You earned 1${Data.MoneyDashboard.currency}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_sixteen),"3${Data.MoneyDashboard.currency} earned","You earned 3${Data.MoneyDashboard.currency}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_seventeen),"5${Data.MoneyDashboard.currency} earned","You earned 5${Data.MoneyDashboard.currency}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_eighteen),"10${Data.MoneyDashboard.currency} earned","You earned 10${Data.MoneyDashboard.currency}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_nineteen),"20${Data.MoneyDashboard.currency} earned","You earned 20${Data.MoneyDashboard.currency}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_twenty),"50${Data.MoneyDashboard.currency} earned","You earned 50${Data.MoneyDashboard.currency}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_twentyone),"100${Data.MoneyDashboard.currency} earned","You earned 100${Data.MoneyDashboard.currency}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_one),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 1 ${resources.getString(R.string.missions)}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_two),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 2 ${resources.getString(R.string.missions)}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_three),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 3 ${resources.getString(R.string.missions)}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_four),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 4 ${resources.getString(R.string.missions)}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_five),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 5 ${resources.getString(R.string.missions)}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_six),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 6 ${resources.getString(R.string.missions)}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_seven),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 7 ${resources.getString(R.string.missions)}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_eight),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 8 ${resources.getString(R.string.missions)}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_nine),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 9 ${resources.getString(R.string.missions)}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_ten),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 10 ${resources.getString(R.string.missions)}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_eleven),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 11 ${resources.getString(R.string.missions)}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_twelve),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 12 ${resources.getString(R.string.missions)}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_thirteen),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 13 ${resources.getString(R.string.missions)}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_fourteen),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 14 ${resources.getString(R.string.missions)}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_fifteen),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 15 ${resources.getString(R.string.missions)}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_sixteen),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 16 ${resources.getString(R.string.missions)}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_seventeen),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 17 ${resources.getString(R.string.missions)}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_eighteen),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 18 ${resources.getString(R.string.missions)}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_nineteen),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 19 ${resources.getString(R.string.missions)}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_twenty),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 20 ${resources.getString(R.string.missions)}",0,false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_twentyone),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 21 ${resources.getString(R.string.missions)}",0,false))
 
         }
 
@@ -212,20 +230,24 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.navigation_infoarea -> {
 
+
                     this.achievmentDrawer.isMenuLocked = true
 
                     if (this.achievmentDrawer.isMenuOpened) {
                         this.achievmentDrawer.closeMenu(true)
                     }
 
-                    this.menu.findItem(R.id.settings).isVisible = false
-                    this.menu.findItem(R.id.settings).isEnabled = false
+                    this.menu.findItem(R.id.settings).setIcon(R.drawable.book)
+                    this.menu.findItem(R.id.settings).isVisible = true
+                    this.menu.findItem(R.id.settings).isEnabled = true
+
                     supportActionBar?.setDisplayHomeAsUpEnabled(false)
                     supportActionBar?.setDisplayShowHomeEnabled(false)
                     supportActionBar?.title = resources.getString(R.string.title_journal)
                     fragmentManager.beginTransaction().replace(R.id.fragment_container,JournalFragment(),"journal").commit()
 
                     return@OnNavigationItemSelectedListener true
+
                 }
 
             }
@@ -248,8 +270,8 @@ class MainActivity : AppCompatActivity() {
 
             for (i in 0..20) {
                 var activities = ArrayList<Activity>()
-                for (j in 1..5) {
-                    var activity = Activity(false, Data.objectives[i * 5 + j - 1], UUID.randomUUID().toString())
+                for (j in 1..Data.numberOfObjectivesInCravings) {
+                    var activity = Activity(false, Data.objectives[i * Data.numberOfObjectivesInCravings + (j - 1)], UUID.randomUUID().toString())
                     activities.add(activity)
                 }
                 var date = Date(dateConverter.getCurrentTimestamp() - dateConverter.convertDateToTimestamp(Data.date), Constants.timeConst.twentyOneDays)
@@ -317,7 +339,7 @@ class MainActivity : AppCompatActivity() {
 
                 var numberOfCompleteMissions = 0
                 for (item in Data.missionList) {
-                    if(item.done == 5) {
+                    if(item.done == Data.numberOfObjectivesInCravings) {
                         numberOfCompleteMissions++
                     }
                 }
@@ -374,7 +396,21 @@ class MainActivity : AppCompatActivity() {
                     var intent = Intent(this, SettingsActivity::class.java)
                     startActivity(intent)
                 } else {
+                    if (navigation.selectedItemId == R.id.navigation_infoarea) {
+                        var storyItems = 0
+                        for (item in Data.journalCardSList) {
+                            if (item.title.get()?.length != 0 && item.desc.get()?.length != 0) {
+                                storyItems++
+                            }
+                        }
 
+                        if (storyItems != 0) {
+                            var intent = Intent(this, JournalStoryActivity::class.java);
+                            this.startActivity(intent)
+                        } else {
+                            Toast.makeText(this,"You have not story elements :/", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
 
                 return true

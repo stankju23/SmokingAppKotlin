@@ -28,12 +28,6 @@
         android:fillColor="#E8E8E8"
         android:strokeWidth="1"/>
     <path
-        android:pathData="M18.219,5.459a2.221,2.195 0,1 0,4.441 0a2.221,2.195 0,1 0,-4.441 0z"
-        android:strokeColor="#00000000"
-        android:fillType="nonZero"
-        android:fillColor="#000000"
-        android:strokeWidth="1"/>
-    <path
         android:pathData="M0.176,21.659C-0.059,21.427 -0.059,21.051 0.176,20.819L2.47,18.551C2.704,18.319 3.085,18.319 3.32,18.551C3.554,18.783 3.554,19.16 3.32,19.392L1.026,21.659C0.791,21.891 0.411,21.891 0.176,21.659Z"
         android:strokeColor="#00000000"
         android:fillType="nonZero"

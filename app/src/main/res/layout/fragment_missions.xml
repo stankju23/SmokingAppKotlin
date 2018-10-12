@@ -19,7 +19,6 @@
             android:layout_height="match_parent"
             app:itemBinding="@{viewModel.itemBinding}"
             app:items="@{viewModel.missionList}"
-            app:layoutManager="@{LayoutManagers.linear()}"
             app:layout_constraintBottom_toTopOf="@+id/navigation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

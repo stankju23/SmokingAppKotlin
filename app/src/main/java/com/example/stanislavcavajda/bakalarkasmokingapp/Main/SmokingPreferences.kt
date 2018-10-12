@@ -19,7 +19,7 @@ class SmokingPreferences : AppCompatActivity() {
 
         var prefViewModel = PreferencesViewModel(Data.MoneyDashboard.cigarretesPerDay.toString()
             , Data.MoneyDashboard.cigarretesInPackage.toString()
-            , Data.MoneyDashboard.packagePrice.toString(),this)
+            , Data.MoneyDashboard.packagePrice.toString(),this,Data.MoneyDashboard.currency)
 
         binding.viewModel = prefViewModel
 

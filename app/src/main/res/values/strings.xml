@@ -24,7 +24,6 @@
     <string name="share">Share</string>
     <string name="next">Next</string>
     <string name="save">Save</string>
-
     // walkthrough
     <string name="welcome_title">Vitajte</string>
     <string name="welcome_desc">Je úžasné, že ste sa rozhodli skoncovať s fajčením. Volám sa Juraj Macák a budem Vaším sprievodcom. Tak ako som to dokázal ja, dokážete to aj Vy. Verím, že moje skúsenosti, ktoré som premietol do tejto aplikácie pomôžu nad zlozvykom vyhrať a učinia Váš život zdravším a plnohodnotnejším</string>
@@ -43,10 +42,14 @@
     <string name="cigarettes_smoked_every_day">Cigarettes smoked every day</string>
     <string name="cigarettes_in_packet">Cigarettes in packet</string>
     <string name="packet_cost">Packet cost</string>
+    <string name="currency">Currency</string>
     <string name="smoking_preferences">Smoking preferences</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="set_value">Set value : </string>
+    <string name="application_settings">Application settings</string>
+    <string name="factory_reset">Factory reset</string>
+    <string name="factory_reset_desc">Prajete si aplikáciu vrátuť do továrenských nastavéní (údaje budu vymazané) ?</string>
 
     //wishes
     <string name="add_wish">Add wish</string>
@@ -118,7 +121,8 @@
     <string name="achievments_noSmoked_twelve_desc">Vybudovali ste si silnú vôľu prestať fajčiť</string>
     <string name="achievments_noSmoked_twentyone_title">Dokázali ste to!</string>
     <string name="achievments_noSmoked_twentyone_desc">Gratulujem, stali ste sa nefajčiarom</string>
-
+    <string name="achievment_complete">You complete</string>
+    <string name="missions">missions.</string>
     //mission activities
     <string name="activity_1_title">Give water 1</string>
     <string name="activity_1_desc">Give water asbdasdasbidasbasjdboasdnkasldnlasndasldknsald 1</string>

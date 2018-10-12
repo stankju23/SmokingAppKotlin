@@ -20,7 +20,7 @@ object Data {
 
     var healthProgressViewList: ArrayList<HealthProgressViewModel> = ArrayList()
     //var date = "02-03-2018 15:00"
-    var date = "01-08-2018 11:13:00"
+    var date = "18-08-2018 11:13:00"
     var healthProgressTimes: ArrayList<Long> = ArrayList()
     var wishList: ArrayList<Wish> = ArrayList()
     var timeList: ArrayList<MainProgressDetailTime> = ArrayList()
@@ -28,6 +28,7 @@ object Data {
     var missionsAchievments: ArrayList<Achievment> = ArrayList()
     var cravingsCardList: ArrayList<KolodaItem> = ArrayList()
     var journalCardSList: ArrayList<Journal> = ArrayList()
+    var numberOfObjectivesInCravings:Int = 3
 
     var objectives: ArrayList<Objective> = ArrayList()
     var missionList: ArrayList<Mission> = ArrayList()
@@ -51,7 +52,7 @@ object Data {
 
 
     object MoneyDashboard {
-        var moneySaved:Float = 0.0f
+        var moneySaved:Float =0.0f
         var moneySpend:Float = 0.0f
         var cigarretesPerDay: Int = 15
         var cigarretesInPackage:Int = 20

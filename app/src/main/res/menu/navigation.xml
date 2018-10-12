@@ -8,7 +8,7 @@
 
     <item
         android:id="@+id/navigation_missions"
-        android:icon="@drawable/quests_icon"
+        android:icon="@drawable/missions_icon"
         android:title="@string/title_mission" />
 
     <item
@@ -18,7 +18,7 @@
 
     <item
         android:id="@+id/navigation_infoarea"
-        android:icon="@drawable/infoarea_icon"
+        android:icon="@drawable/quests_icon"
         android:title="@string/title_journal" />
 
 </menu>
