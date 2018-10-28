@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <import type="com.example.stanislavcavajda.bakalarkasmokingapp.R" />
         <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
         <variable name="viewModel" type="com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.DashboardListViewModel"></variable>
+
+        <variable name="mainProgress" type="com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MainProgress.MainProgressViewModel"></variable>
+        <variable name="healthProgress" type="com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.HealthList.HealthProgressListViewModel"></variable>
+        <variable name="wishManager" type="com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.WishListViewModel"></variable>
+        <variable name="moneySaved" type="com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MoneySaved.MoneySavedViewModel"></variable>
+
     </data>
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Dashboard.DashboardFragment"
-    android:background="?secondaryClr">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?secondaryClr">
 
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/dashboard_recycler_view"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:items="@{viewModel.list}"
-            app:itemBinding="@{viewModel.itemBinding}"
-            android:layout_marginBottom="0dp"
-            android:layout_marginTop="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/navigation"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:gapLimit="30"
-            android:animateLayoutChanges="false"
-            android:nestedScrollingEnabled="false"
-            android:backgroundTint="?secondaryClr" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-</FrameLayout>
+            <include layout="@layout/main_progress" bind:viewModel="@{mainProgress}"></include>
+            <include layout="@layout/healthprogress_dashboard_item_new" bind:viewModel="@{healthProgress}" ></include>
+            <include layout="@layout/wish_manager_dashboard_item" bind:viewModel="@{wishManager}"></include>
+            <include layout="@layout/money_saved_dashboard_item" bind:viewModel="@{moneySaved}"></include>
+
+        </LinearLayout>
+    </ScrollView>
+
 </layout>

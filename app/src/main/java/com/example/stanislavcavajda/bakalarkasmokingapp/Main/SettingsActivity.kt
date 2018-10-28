@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import com.example.stanislavcavajda.bakalarkasmokingapp.Feedback.FeedbackActivity
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.ThemeManager
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
@@ -32,6 +33,11 @@ class SettingsActivity : AppCompatActivity() {
         smoking_preferences_btn.setOnClickListener {
             var smokingPreferences = Intent(this,SmokingPreferences::class.java)
             startActivity(smokingPreferences)
+        }
+
+        feedback_button.setOnClickListener {
+            var feedbackActivity = Intent(this,FeedbackActivity::class.java)
+            startActivity(feedbackActivity)
         }
     }
 

@@ -77,4 +77,12 @@ object Constants {
         const val image = "notificationImage"
         const val id = "id"
     }
+
+    object Feedback {
+        const val RATE_APP = 0
+        const val LIKE = 1
+        const val TIPS = 2
+        const val APP_CHANGES = 3
+        const val SUBMIT = 4
+    }
 }

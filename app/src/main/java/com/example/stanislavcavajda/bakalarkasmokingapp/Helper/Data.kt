@@ -18,6 +18,8 @@ object Data {
 
     var firstTime:Boolean = true
 
+    var dashboardList = ArrayList<Object>()
+
     var healthProgressViewList: ArrayList<HealthProgressViewModel> = ArrayList()
     //var date = "02-03-2018 15:00"
     var date = "18-08-2018 11:13:00"
