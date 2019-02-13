@@ -34,7 +34,6 @@
     <string name="stop">Stop smoking now !</string>
     <string name="next_button">Next</string>
     <string name="start_app">Start App</string>
-
     // settings
     <string name="change_color">Change color</string>
     <string name="settings_title">Settings</string>
@@ -45,11 +44,26 @@
     <string name="currency">Currency</string>
     <string name="smoking_preferences">Smoking preferences</string>
     <string name="yes">Yes</string>
+    <string name="cancel">No</string>
     <string name="no">No</string>
     <string name="set_value">Set value : </string>
     <string name="application_settings">Application settings</string>
     <string name="factory_reset">Factory reset</string>
     <string name="factory_reset_desc">Prajete si aplikáciu vrátuť do továrenských nastavéní (údaje budu vymazané) ?</string>
+
+
+    // feedback
+    <string name="feedback_title">Feedback</string>
+    <string name="rate_this_app">Rate this app</string>
+    <string name="do_you_like_missions">Do you like missions ?</string>
+    <string name="do_you_like_cravings">Do you like cravings ?</string>
+    <string name="mission_tips">Mission tips</string>
+    <string name="craving_tips">Craving tips</string>
+    <string name="type_tips">Type tips ...</string>
+    <string name="what_would_you_change">What would you change on this app ?</string>
+    <string name="write_ideas">Write ideas ...</string>
+    <string name="submit_feedback">Submit feedback</string>
+
 
     //wishes
     <string name="add_wish">Add wish</string>
@@ -62,7 +76,6 @@
     <string name="can_buy_it">I can buy it</string>
     <string name="price">Price : </string>
     <string name="bought">Bought</string>
-
     //cravings
     <string name="not_specified_place">Not specified place</string>
     <string name="title_activity_craving_map">Map</string>
@@ -72,7 +85,6 @@
     <string name="show_all_cravings">Show all cravings</string>
     <string name="map_of_cravings">Map of Cravings</string>
     <string name="first_aid">First Aid</string>
-
     //missions
     <string name="go_to_objectives">Go to the objectives</string>
     <string name="mark_as_done">Mark as done</string>
@@ -80,13 +92,11 @@
     <string name="objectives">Objectives - </string>
     <string name="completion_time">Completion time :</string>
     <string name="mission">Mission</string>
-
     //temy
     <string name="pastel_template">Pastel template</string>
     <string name="blue_ocean_template">Blue ocean</string>
     <string name="wine_template">Wine</string>
     <string name="banana_template">Banana</string>
-
     //error massages
     <string name="error_name">Missing name</string>
     <string name="error_price">Missing price</string>
@@ -94,20 +104,16 @@
     <string name="error_image">Missing image</string>
     <string name="write_a_title">Write a title</string>
     <string name="write_a_description">Write a description</string>
-
     // walkthrough end page
     <string name="congratulation_walkthrough">Congratulation, your are on your way to stop smoking.</string>
-
     // cards
     <string name="add_your_own_card">Add your own card</string>
     <string name="add_card">Add card</string>
-
     // journal
     <string name="entry_write">Write entry</string>
     <string name="entry_read">Read entry</string>
     <string name="locked">Locked</string>
     <string name="story_title">Story for day :</string>
-
     //achievments
     <string name="no_smoked">Odmeny za vydržaný čas</string>
     <string name="missions_complete">Odmeny za splnené misie</string>

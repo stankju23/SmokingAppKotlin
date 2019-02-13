@@ -100,4 +100,21 @@ object JSONParser {
 
         return objectiveList
     }
+
+    fun parseCurrencies(context: Context):ArrayList<String> {
+        var string = loadJsonFromAssets("Currency",context)
+        var currencies = ArrayList<String>()
+
+        try {
+            var obj = JSONObject(string)
+            var currencyArray = obj.getJSONArray("currencies")
+            for (i in 0..currencyArray.length()) {
+                var currencyObj = currencyArray.getJSONObject(i)
+                currencies.add(currencyObj.getString("symbol_native"))
+            }
+        } catch (e:Exception) {
+
+        }
+        return currencies
+    }
 }

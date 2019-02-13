@@ -51,11 +51,25 @@
     <string name="currency">Mena</string>
     <string name="smoking_preferences">Nastavenie parametrov</string>
     <string name="yes">Áno</string>
-    <string name="no">Zrušiť</string>
+    <string name="cancel">Zrušiť</string>
+    <string name="no">Nie</string>
     <string name="set_value">Zadaj hodnotu : </string>
     <string name="application_settings">Nastavenia aplikácie </string>
     <string name="factory_reset">Vrátiť do továrenských nastavení</string>
     <string name="factory_reset_desc">Prajete si aplikáciu vrátuť do továrenských nastavéní (údaje budu vymazané) ?</string>
+
+
+    // feedback
+    <string name="feedback_title">Spätná väzba</string>
+    <string name="rate_this_app">Ohodnoďte aplikáciu</string>
+    <string name="do_you_like_missions">Páčili sa Vám misie ?</string>
+    <string name="do_you_like_cravings">Páčili sa Vám kartičky ?</string>
+    <string name="mission_tips">Nápady na misie</string>
+    <string name="craving_tips">Nápady na kartičky</string>
+    <string name="type_tips">Napíšte nápady ...</string>
+    <string name="what_would_you_change">Čo by ste zmenili/vylepšili na aplikácií ?</string>
+    <string name="write_ideas">Tu píšte nápady ...</string>
+    <string name="submit_feedback">Odoslať spätnú väzbu</string>
 
 
     //wishes

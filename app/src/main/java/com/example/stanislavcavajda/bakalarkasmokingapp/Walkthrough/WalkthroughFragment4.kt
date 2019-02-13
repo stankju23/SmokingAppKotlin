@@ -13,6 +13,7 @@ import android.widget.Spinner
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.DateConverter
+import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.JSONParser
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.NotificationScheduler
 import com.example.stanislavcavajda.bakalarkasmokingapp.Journal.Journal
 import com.example.stanislavcavajda.bakalarkasmokingapp.Koloda.KolodaItem
@@ -50,7 +51,7 @@ class WalkthroughFragment4 : Fragment() {
 
         var currencySpinner = view.findViewById<Spinner>(R.id.currency_spinner)
 
-        var adapter = ArrayAdapter<String>(activity,android.R.layout.simple_dropdown_item_1line, arrayOf("€","$","лв","kn"))
+        var adapter = ArrayAdapter<String>(context,android.R.layout.simple_dropdown_item_1line, JSONParser.parseCurrencies(activity!!))
         currencySpinner.adapter = adapter
 
         nextButton.setOnClickListener {
@@ -61,8 +62,8 @@ class WalkthroughFragment4 : Fragment() {
                 val sdf = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
                 val actualDate = sdf.format(Date())
 
-                var currency = currencySpinner.selectedItem.toString()
-                Data.MoneyDashboard.currency = currency
+                var currency = currencySpinner.selectedItem
+                Data.MoneyDashboard.currency = currency.toString()
                 var preferences = activity?.getSharedPreferences("walkthrough", Context.MODE_PRIVATE)
                 var editor = preferences?.edit()
                 Data.firstTime = true

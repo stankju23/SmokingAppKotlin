@@ -20,6 +20,7 @@ import android.widget.Toast
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.Wish
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Data
+import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.JSONParser
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.NotificationScheduler
 import com.example.stanislavcavajda.bakalarkasmokingapp.R
 import com.example.stanislavcavajda.bakalarkasmokingapp.Walkthrough.Walkthrough
@@ -74,7 +75,7 @@ class PreferencesViewModel : BaseObservable {
             }
         })
 
-        builder.setNegativeButton(R.string.no, DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() })
+        builder.setNegativeButton(R.string.cancel, DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() })
 
         var dialog = builder.create()
         dialog.show()
@@ -110,7 +111,7 @@ class PreferencesViewModel : BaseObservable {
             }
         })
 
-        builder.setNegativeButton(R.string.no, DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() })
+        builder.setNegativeButton(R.string.cancel, DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() })
 
         var dialog = builder.create()
         dialog.show()
@@ -147,7 +148,7 @@ class PreferencesViewModel : BaseObservable {
             }
         })
 
-        builder.setNegativeButton(R.string.no, DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() })
+        builder.setNegativeButton(R.string.cancel, DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() })
 
         var dialog = builder.create()
         dialog.show()
@@ -165,7 +166,7 @@ class PreferencesViewModel : BaseObservable {
         var layout = FrameLayout(context)
         var currencySpinner = Spinner(context)
 
-        var adapter = ArrayAdapter<String>(context,android.R.layout.simple_dropdown_item_1line, arrayOf("€","$","лв","kn"))
+        var adapter = ArrayAdapter<String>(context,android.R.layout.simple_dropdown_item_1line, JSONParser.parseCurrencies(context))
         currencySpinner.adapter = adapter
 
         layout.addView(currencySpinner)
@@ -181,7 +182,7 @@ class PreferencesViewModel : BaseObservable {
                 updateWishesNotifcations(Data.wishList)
         })
 
-        builder.setNegativeButton(R.string.no, DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() })
+        builder.setNegativeButton(R.string.cancel, DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() })
 
         var dialog = builder.create()
         dialog.show()
@@ -202,7 +203,7 @@ class PreferencesViewModel : BaseObservable {
             context.startActivity(walkthrough)
         })
 
-        builder.setNegativeButton(R.string.no, DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() })
+        builder.setNegativeButton(R.string.cancel, DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() })
 
         var dialog = builder.create()
         dialog.show()

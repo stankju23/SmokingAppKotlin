@@ -17,6 +17,11 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.example.stanislavcavajda.bakalarkasmokingapp.Cravings.CravingFragment
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.DashboardFragment
+import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.HealthList.HealthProgressListViewModel
+import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MainProgress.MainProgressViewModel
+import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MoneySaved.MoneySavedViewModel
+import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.Wish
+import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.WishListViewModel
 import com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.WishesActivity
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.BottomNavigationViewHelper
 import com.example.stanislavcavajda.bakalarkasmokingapp.Helper.Constants
@@ -39,6 +44,7 @@ import com.yarolegovich.slidingrootnav.SlidingRootNav
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
+import java.text.DecimalFormat
 import java.util.Timer
 import java.util.TimerTask
 import java.util.UUID
@@ -48,37 +54,51 @@ class MainActivity : AppCompatActivity() {
     lateinit var menu: Menu
     lateinit var achievmentDrawer: SlidingRootNav
 
-
     val REQUEST_PERMISSION_CODE = 100
 
     var missionTimer = Timer()
     var achievmentTimer = Timer()
     var journalTimer = Timer()
+    var dashboardTimer = Timer()
+    var timer = Timer()
+
+    lateinit var dateConverter: DateConverter
+
+    var wordList = ArrayList<String>()
+
+    lateinit var date: Date
+
+    var progress = 0f
+
+    var decimalFormat = DecimalFormat("###.##")
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        var dateConverter = DateConverter()
+        dateConverter = DateConverter()
 
         super.onCreate(savedInstanceState)
 
         try {
             Realm.init(this)
-        } catch (e:Exception) {
+        } catch (e: Exception) {
             Log.e("Realm", e.message)
         }
 
+        date = Date(dateConverter.getCurrentTimestamp() - dateConverter.convertDateToTimestamp(Data.date), Constants.timeConst.twentyOneDays)
 
+        if (Data.healthProgressViewList.isEmpty()) {
+            prepareHealthProgressList()
+        }
 
-        if (intent.getBooleanExtra("wishes",false)) {
+        if (intent.getBooleanExtra("wishes", false)) {
             DataManager.loadMainData(this)
-            var intent = Intent(this,WishesActivity::class.java)
+            var intent = Intent(this, WishesActivity::class.java)
             startActivity(intent)
         }
 
         ThemeManager.setTheme(this, Data.actualTheme)
 
-
-       // var config = RealmConfiguration.Builder().deleteRealmIfMigrationNeeded().build()
+        // var config = RealmConfiguration.Builder().deleteRealmIfMigrationNeeded().build()
 
         // var preferences = getSharedPreferences("date", Context.MODE_PRIVATE)
         //Data.date = preferences.getString(Constants.preferences.DATE_PREFERENCES,"03-02-2018")
@@ -101,11 +121,7 @@ class MainActivity : AppCompatActivity() {
             RealmDB.getJournalCard(this)
         }
 
-
-
         var binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
-
 
         var slidingView = SlidingRootNavBuilder(this)
             .withDragDistance(220)
@@ -122,44 +138,39 @@ class MainActivity : AppCompatActivity() {
 
 
         if (Data.achievmentList.size == 0) {
-            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.achiemvent_one_day), resources.getString(R.string.achievments_noSmoked_one_title), resources.getString(R.string.achievments_noSmoked_one_desc),dateConverter.convertDateToTimestamp(Data.date) + Constants.timeConst.oneDay, false))
-            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.achievment_three_days), resources.getString(R.string.achievments_noSmoked_three_title), resources.getString(R.string.achievments_noSmoked_three_desc),dateConverter.convertDateToTimestamp(Data.date) + 3 * Constants.timeConst.oneDay, false))
-            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.achievment_seven_days), resources.getString(R.string.achievments_noSmoked_seven_title), resources.getString(R.string.achievments_noSmoked_seven_desc),dateConverter.convertDateToTimestamp(Data.date) + 7 * Constants.timeConst.oneDay, false))
-            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.achievment_twelve_days), resources.getString(R.string.achievments_noSmoked_twelve_title), resources.getString(R.string.achievments_noSmoked_twelve_desc),dateConverter.convertDateToTimestamp(Data.date) + 12 * Constants.timeConst.oneDay, false))
-            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.achievment_twentyone_days), resources.getString(R.string.achievments_noSmoked_twentyone_title), resources.getString(R.string.achievments_noSmoked_twentyone_desc),dateConverter.convertDateToTimestamp(Data.date) + 21 * Constants.timeConst.oneDay, false))
-
+            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.achiemvent_one_day), resources.getString(R.string.achievments_noSmoked_one_title), resources.getString(R.string.achievments_noSmoked_one_desc), dateConverter.convertDateToTimestamp(Data.date) + Constants.timeConst.oneDay, false))
+            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.achievment_three_days), resources.getString(R.string.achievments_noSmoked_three_title), resources.getString(R.string.achievments_noSmoked_three_desc), dateConverter.convertDateToTimestamp(Data.date) + 3 * Constants.timeConst.oneDay, false))
+            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.achievment_seven_days), resources.getString(R.string.achievments_noSmoked_seven_title), resources.getString(R.string.achievments_noSmoked_seven_desc), dateConverter.convertDateToTimestamp(Data.date) + 7 * Constants.timeConst.oneDay, false))
+            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.achievment_twelve_days), resources.getString(R.string.achievments_noSmoked_twelve_title), resources.getString(R.string.achievments_noSmoked_twelve_desc), dateConverter.convertDateToTimestamp(Data.date) + 12 * Constants.timeConst.oneDay, false))
+            Data.achievmentList.add(Achievment(resources.getDrawable(R.drawable.achievment_twentyone_days), resources.getString(R.string.achievments_noSmoked_twentyone_title), resources.getString(R.string.achievments_noSmoked_twentyone_desc), dateConverter.convertDateToTimestamp(Data.date) + 21 * Constants.timeConst.oneDay, false))
         }
 
         if (Data.missionsAchievments.size == 0) {
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_one),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 1 ${resources.getString(R.string.missions)}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_two),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 2 ${resources.getString(R.string.missions)}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_three),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 3 ${resources.getString(R.string.missions)}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_four),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 4 ${resources.getString(R.string.missions)}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_five),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 5 ${resources.getString(R.string.missions)}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_six),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 6 ${resources.getString(R.string.missions)}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_seven),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 7 ${resources.getString(R.string.missions)}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_eight),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 8 ${resources.getString(R.string.missions)}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_nine),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 9 ${resources.getString(R.string.missions)}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_ten),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 10 ${resources.getString(R.string.missions)}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_eleven),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 11 ${resources.getString(R.string.missions)}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_twelve),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 12 ${resources.getString(R.string.missions)}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_thirteen),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 13 ${resources.getString(R.string.missions)}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_fourteen),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 14 ${resources.getString(R.string.missions)}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_fifteen),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 15 ${resources.getString(R.string.missions)}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_sixteen),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 16 ${resources.getString(R.string.missions)}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_seventeen),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 17 ${resources.getString(R.string.missions)}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_eighteen),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 18 ${resources.getString(R.string.missions)}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_nineteen),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 19 ${resources.getString(R.string.missions)}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_twenty),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 20 ${resources.getString(R.string.missions)}",0,false))
-            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_twentyone),resources.getString(R.string.congratulation),"${resources.getString(R.string.achievment_complete)} 21 ${resources.getString(R.string.missions)}",0,false))
-
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_one), resources.getString(R.string.congratulation), "${resources.getString(R.string.achievment_complete)} 1 ${resources.getString(R.string.missions)}", 0, false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_two), resources.getString(R.string.congratulation), "${resources.getString(R.string.achievment_complete)} 2 ${resources.getString(R.string.missions)}", 0, false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_three), resources.getString(R.string.congratulation), "${resources.getString(R.string.achievment_complete)} 3 ${resources.getString(R.string.missions)}", 0, false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_four), resources.getString(R.string.congratulation), "${resources.getString(R.string.achievment_complete)} 4 ${resources.getString(R.string.missions)}", 0, false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_five), resources.getString(R.string.congratulation), "${resources.getString(R.string.achievment_complete)} 5 ${resources.getString(R.string.missions)}", 0, false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_six), resources.getString(R.string.congratulation), "${resources.getString(R.string.achievment_complete)} 6 ${resources.getString(R.string.missions)}", 0, false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_seven), resources.getString(R.string.congratulation), "${resources.getString(R.string.achievment_complete)} 7 ${resources.getString(R.string.missions)}", 0, false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_eight), resources.getString(R.string.congratulation), "${resources.getString(R.string.achievment_complete)} 8 ${resources.getString(R.string.missions)}", 0, false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_nine), resources.getString(R.string.congratulation), "${resources.getString(R.string.achievment_complete)} 9 ${resources.getString(R.string.missions)}", 0, false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_ten), resources.getString(R.string.congratulation), "${resources.getString(R.string.achievment_complete)} 10 ${resources.getString(R.string.missions)}", 0, false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_eleven), resources.getString(R.string.congratulation), "${resources.getString(R.string.achievment_complete)} 11 ${resources.getString(R.string.missions)}", 0, false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_twelve), resources.getString(R.string.congratulation), "${resources.getString(R.string.achievment_complete)} 12 ${resources.getString(R.string.missions)}", 0, false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_thirteen), resources.getString(R.string.congratulation), "${resources.getString(R.string.achievment_complete)} 13 ${resources.getString(R.string.missions)}", 0, false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_fourteen), resources.getString(R.string.congratulation), "${resources.getString(R.string.achievment_complete)} 14 ${resources.getString(R.string.missions)}", 0, false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_fifteen), resources.getString(R.string.congratulation), "${resources.getString(R.string.achievment_complete)} 15 ${resources.getString(R.string.missions)}", 0, false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_sixteen), resources.getString(R.string.congratulation), "${resources.getString(R.string.achievment_complete)} 16 ${resources.getString(R.string.missions)}", 0, false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_seventeen), resources.getString(R.string.congratulation), "${resources.getString(R.string.achievment_complete)} 17 ${resources.getString(R.string.missions)}", 0, false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_eighteen), resources.getString(R.string.congratulation), "${resources.getString(R.string.achievment_complete)} 18 ${resources.getString(R.string.missions)}", 0, false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_nineteen), resources.getString(R.string.congratulation), "${resources.getString(R.string.achievment_complete)} 19 ${resources.getString(R.string.missions)}", 0, false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_twenty), resources.getString(R.string.congratulation), "${resources.getString(R.string.achievment_complete)} 20 ${resources.getString(R.string.missions)}", 0, false))
+            Data.missionsAchievments.add(Achievment(resources.getDrawable(R.drawable.achievment_mission_twentyone), resources.getString(R.string.congratulation), "${resources.getString(R.string.achievment_complete)} 21 ${resources.getString(R.string.missions)}", 0, false))
         }
 
-
-
-
-        var achievmentAdapter = AchievmentAdapter(Data.achievmentList,this)
-        var moneyAchievmentAdapter = AchievmentAdapter(Data.missionsAchievments,this)
+        var achievmentAdapter = AchievmentAdapter(Data.achievmentList, this)
+        var moneyAchievmentAdapter = AchievmentAdapter(Data.missionsAchievments, this)
         achievmentRecyclerView.adapter = achievmentAdapter
         achievmentMoneyRecyclerView.adapter = moneyAchievmentAdapter
 
@@ -181,7 +192,6 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.navigation_dasboard -> {
                     this.achievmentDrawer.isMenuLocked = false
-                    // set tooblar
 
                     this.menu.findItem(R.id.settings).isVisible = true
                     this.menu.findItem(R.id.settings).isEnabled = true
@@ -230,7 +240,6 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.navigation_infoarea -> {
 
-
                     this.achievmentDrawer.isMenuLocked = true
 
                     if (this.achievmentDrawer.isMenuOpened) {
@@ -244,10 +253,9 @@ class MainActivity : AppCompatActivity() {
                     supportActionBar?.setDisplayHomeAsUpEnabled(false)
                     supportActionBar?.setDisplayShowHomeEnabled(false)
                     supportActionBar?.title = resources.getString(R.string.title_journal)
-                    fragmentManager.beginTransaction().replace(R.id.fragment_container,JournalFragment(),"journal").commit()
+                    fragmentManager.beginTransaction().replace(R.id.fragment_container, JournalFragment(), "journal").commit()
 
                     return@OnNavigationItemSelectedListener true
-
                 }
 
             }
@@ -276,14 +284,14 @@ class MainActivity : AppCompatActivity() {
                 }
                 var date = Date(dateConverter.getCurrentTimestamp() - dateConverter.convertDateToTimestamp(Data.date), Constants.timeConst.twentyOneDays)
                 if (i <= date.days) {
-                    var mission = Mission(UUID.randomUUID().toString(), "", dateConverter.getDate(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay), Date(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay + Constants.timeConst.oneDay - dateConverter.getCurrentTimestamp(), Constants.timeConst.oneDay), false, false, activities, 0,this)
+                    var mission = Mission(UUID.randomUUID().toString(), "", dateConverter.getDate(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay), Date(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay + Constants.timeConst.oneDay - dateConverter.getCurrentTimestamp(), Constants.timeConst.oneDay), false, false, activities, 0, this)
                     missionList.add(mission)
                 } else {
                     if (i == date.days.toInt() + 1) {
-                        var mission = Mission(UUID.randomUUID().toString(), "", dateConverter.getDate(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay), Date(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay + Constants.timeConst.oneDay - dateConverter.getCurrentTimestamp(), Constants.timeConst.oneDay), false, false, activities, 0,this)
+                        var mission = Mission(UUID.randomUUID().toString(), "", dateConverter.getDate(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay), Date(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay + Constants.timeConst.oneDay - dateConverter.getCurrentTimestamp(), Constants.timeConst.oneDay), false, false, activities, 0, this)
                         missionList.add(mission)
                     } else {
-                        var mission = Mission(UUID.randomUUID().toString(), "", dateConverter.getDate(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay), Date(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay + Constants.timeConst.oneDay - dateConverter.getCurrentTimestamp(), Constants.timeConst.oneDay), false, false, activities, 0,this)
+                        var mission = Mission(UUID.randomUUID().toString(), "", dateConverter.getDate(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay), Date(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay + Constants.timeConst.oneDay - dateConverter.getCurrentTimestamp(), Constants.timeConst.oneDay), false, false, activities, 0, this)
                         missionList.add(mission)
                     }
                 }
@@ -295,29 +303,105 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        var currentTimestamp = dateConverter.getCurrentTimestamp()
+        var dateTimestamp = dateConverter.convertDateToTimestamp(Data.date)
+        var result = decimalFormat.format(actualSaved(currentTimestamp - dateTimestamp, Data.MoneyDashboard.cigarretesPerDay, Data.MoneyDashboard.packagePrice, Data.MoneyDashboard.cigarretesInPackage))
+
+        result = result.replace(",", ".")
+
+
+        Data.MoneyDashboard.moneySaved = result.toFloat()
+        updateWishList()
+
+        var healthProgress = HealthProgressListViewModel(Data.healthProgressViewList, this)
+        var mainProgress = MainProgressViewModel(date, this, Data.timeList)
+        var wishesManager = WishListViewModel(Data.wishList, this)
+        var moneySaved = MoneySavedViewModel(Data.MoneyDashboard.moneySaved, Data.MoneyDashboard.moneySpend, Data.MoneyDashboard.currency)
+
+        if (Data.dashboardList.size == 0) {
+            Data.dashboardList.add(mainProgress as Object)
+            Data.dashboardList.add(healthProgress as Object)
+            Data.dashboardList.add(wishesManager as Object)
+            Data.dashboardList.add(moneySaved as Object)
+        }
+
+        wordList = ArrayList<String>()
+        wordList.add(resources.getString(R.string.days))
+        wordList.add(resources.getString(R.string.hours))
+        wordList.add(resources.getString(R.string.minutes))
+        wordList.add(resources.getString(R.string.seconds))
+
+
+        dashboardTimer.scheduleAtFixedRate(object : TimerTask() {
+            override fun run() {
+                if (this != null) {
+                    currentTimestamp = dateConverter.getCurrentTimestamp()
+                    dateTimestamp = dateConverter.convertDateToTimestamp(Data.date)
+                    date = Date(currentTimestamp - dateTimestamp, Constants.timeConst.twentyOneDays)
+
+                    progress = (dateConverter.getCurrentTimestamp() - dateConverter.convertDateToTimestamp(Data.date)).toFloat() / (Constants.timeConst.twentyOneDays).toFloat() * 100f
+
+                    (Data.dashboardList.get(Constants.viewTypes.MAIN_PROGRESS_VIEW_TYPE) as MainProgressViewModel).setProgress(date)
+
+                    Data.timeList.clear()
+                    Data.timeList.addAll(dateConverter.updateMainProgressDetail(currentTimestamp - dateTimestamp, wordList))
+
+                    (Data.dashboardList.get(Constants.viewTypes.MAIN_PROGRESS_VIEW_TYPE) as MainProgressViewModel).updateDetail(Data.timeList)
+
+                    updateHealthProgress(currentTimestamp, dateTimestamp)
+
+
+                    (Data.dashboardList.get(Constants.viewTypes.HEALTH_PROGRESS_VIEW_TYPE) as HealthProgressListViewModel).updateAll()
+                }
+            }
+        }, 0, 1000)
+
+        timer.scheduleAtFixedRate(object : TimerTask() {
+            override fun run() {
+                try {
+                    result = decimalFormat.format(actualSaved(currentTimestamp - dateTimestamp, Data.MoneyDashboard.cigarretesPerDay, Data.MoneyDashboard.packagePrice, Data.MoneyDashboard.cigarretesInPackage))
+                    result = result.replace(",", ".")
+                    Data.MoneyDashboard.moneySaved = result.toFloat()
+
+                    (Data.dashboardList.get(Constants.viewTypes.MONEY_SAVED_VIEW_TYPE) as MoneySavedViewModel).updateMoney(
+                        Data.MoneyDashboard.moneySaved, 0.0f, Data.MoneyDashboard.currency)
+
+                    updateWishList()
+
+                    val list = Data.wishList.sortedWith(compareBy(Wish::price))
+                    Data.wishList = ArrayList(list)
+
+                    (Data.dashboardList.get(Constants.viewTypes.WISHES_MANAGER_VIEW_TYPE) as WishListViewModel).updateWishList(Data.wishList)
+
+                    Data.MoneyDashboard.actualMoneyState = Data.MoneyDashboard.moneySaved - Data.MoneyDashboard.moneySpend
+                } catch (e: Exception) {
+
+                }
+            }
+        }, 0, 1000)
+
+
         missionTimer.scheduleAtFixedRate(object : TimerTask() {
             override fun run() {
                 for (i in 1..21) {
                     var date = Date(dateConverter.getCurrentTimestamp() - dateConverter.convertDateToTimestamp(Data.date), Constants.timeConst.twentyOneDays)
                     if (i <= date.days) {
-                        var mission = Mission(Data.missionList[i - 1].id, "${resources.getString(R.string.mission)} $i", dateConverter.getDate(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay), Date((dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay) + Constants.timeConst.oneDay - dateConverter.getCurrentTimestamp(), Constants.timeConst.oneDay), false, false, Data.missionList[i - 1].activities!!, Data.missionList[i - 1].done,this@MainActivity)
+                        var mission = Mission(Data.missionList[i - 1].id, "${resources.getString(R.string.mission)} $i", dateConverter.getDate(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay), Date((dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay) + Constants.timeConst.oneDay - dateConverter.getCurrentTimestamp(), Constants.timeConst.oneDay), false, false, Data.missionList[i - 1].activities!!, Data.missionList[i - 1].done, this@MainActivity)
                         Data.missionList[i - 1].setMission(mission)
                         Data.missionList[i - 1].getDone()
                     } else {
                         if (i == date.days.toInt() + 1) {
-                            var mission = Mission(Data.missionList[i - 1].id, "${resources.getString(R.string.mission)} $i", dateConverter.getDate(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay), Date(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay + Constants.timeConst.oneDay - dateConverter.getCurrentTimestamp(), Constants.timeConst.oneDay), false, true, Data.missionList[i - 1].activities!!, Data.missionList[i - 1].done,this@MainActivity)
+                            var mission = Mission(Data.missionList[i - 1].id, "${resources.getString(R.string.mission)} $i", dateConverter.getDate(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay), Date(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay + Constants.timeConst.oneDay - dateConverter.getCurrentTimestamp(), Constants.timeConst.oneDay), false, true, Data.missionList[i - 1].activities!!, Data.missionList[i - 1].done, this@MainActivity)
                             Data.missionList[i - 1].setMission(mission)
                             Data.missionList[i - 1].getDone()
-                            //Log.i(Data.missionList[i - 1].name ,  "${Data.missionList[i - 1].observableCompletionDate?.get()?.hours}  ${Data.missionList[i - 1].observableCompletionDate?.get()?.minutes} ${Data.missionList[i - 1].observableCompletionDate?.get()?.seconds}")
                             Log.i("MISSION", Data.missionList[i - 1].completionTime.get())
                         } else {
-                            var mission = Mission(Data.missionList[i - 1].id, "${resources.getString(R.string.mission)} $i", dateConverter.getDate(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay), Date(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay + Constants.timeConst.oneDay - dateConverter.getCurrentTimestamp(), Constants.timeConst.oneDay), true, false, Data.missionList[i - 1].activities!!, Data.missionList[i - 1].done,this@MainActivity)
+                            var mission = Mission(Data.missionList[i - 1].id, "${resources.getString(R.string.mission)} $i", dateConverter.getDate(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay), Date(dateConverter.convertDateToTimestamp(Data.date) + (i - 1) * Constants.timeConst.oneDay + Constants.timeConst.oneDay - dateConverter.getCurrentTimestamp(), Constants.timeConst.oneDay), true, false, Data.missionList[i - 1].activities!!, Data.missionList[i - 1].done, this@MainActivity)
                             Data.missionList[i - 1].setMission(mission)
                             Data.missionList[i - 1].getDone()
                         }
                     }
                 }
-                //Log.i("Missions","Updated")
             }
         }, 0, 1000)
 
@@ -339,7 +423,7 @@ class MainActivity : AppCompatActivity() {
 
                 var numberOfCompleteMissions = 0
                 for (item in Data.missionList) {
-                    if(item.done == Data.numberOfObjectivesInCravings) {
+                    if (item.done == Data.numberOfObjectivesInCravings) {
                         numberOfCompleteMissions++
                     }
                 }
@@ -362,14 +446,14 @@ class MainActivity : AppCompatActivity() {
             }
         }, 0, 1000)
 
-        journalTimer.scheduleAtFixedRate(object :TimerTask() {
+        journalTimer.scheduleAtFixedRate(object : TimerTask() {
             override fun run() {
                 var currentTimestamp = dateConverter.getCurrentTimestamp()
                 for (item in Data.journalCardSList) {
                     item.updateJournal(currentTimestamp)
                 }
             }
-        },0,1000)
+        }, 0, 1000)
     }
 
     override fun onBackPressed() {
@@ -408,7 +492,7 @@ class MainActivity : AppCompatActivity() {
                             var intent = Intent(this, JournalStoryActivity::class.java);
                             this.startActivity(intent)
                         } else {
-                            Toast.makeText(this,"You have not story elements :/", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "You have not story elements :/", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
@@ -447,12 +531,44 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
     }
+
     override fun onDestroy() {
         this.missionTimer.cancel()
         this.achievmentTimer.cancel()
         this.journalTimer.cancel()
+        this.dashboardTimer.cancel()
+        this.timer.cancel()
         super.onDestroy()
     }
 
+    fun actualSaved(actualTimestamp: Long, cigarretesPerDay: Int, packagePrice: Double, inPackage: Int): Float {
+        var result = 0.0f
+        var day = 86400
+        result = (((packagePrice.toFloat() / inPackage.toFloat()) * cigarretesPerDay) / day.toFloat()) * actualTimestamp
+        return result
+    }
 
+    fun updateWishList() {
+        for (i in Data.wishList) {
+            i.setWish(i.title.get()!!, i.desc.get()!!, i.price, i.image!!)
+        }
+    }
+
+    fun prepareHealthProgressList() {
+
+        when (resources.configuration.locale.country) {
+            "US" -> Data.healthProgressViewList.addAll(JSONParser.parseHealthData(JSONParser.loadJsonFromAssets("HealthDataEN", this), this))
+            "SK" -> Data.healthProgressViewList.addAll(JSONParser.parseHealthData(JSONParser.loadJsonFromAssets("HealthDataSK", this), this))
+            else -> Data.healthProgressViewList.addAll(JSONParser.parseHealthData(JSONParser.loadJsonFromAssets("HealthDataEN", this), this))
+        }
+    }
+
+    fun updateHealthProgress(currentTimestamp: Long, dateTimestamp: Long) {
+        var index = 0
+        for (item in Data.healthProgressTimes) {
+            date = Date(dateTimestamp + item - currentTimestamp, item)
+            Data.healthProgressViewList[index].date.set(date)
+            index++
+        }
+    }
 }
