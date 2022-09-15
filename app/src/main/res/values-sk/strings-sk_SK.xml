@@ -32,7 +32,7 @@
 
     // walkthrough
     <string name="welcome_title">Vitajte</string>
-    <string name="welcome_desc">Je úžasné, že ste sa rozhodli skoncovať s fajčením. Volám sa Juraj Macák a budem Vaším sprievodcom. Tak ako som to dokázal ja, dokážete to aj Vy. Verím, že moje skúsenosti, ktoré som premietol do tejto aplikácie pomôžu nad zlozvykom vyhrať a učinia Váš život zdravším a plnohodnotnejším</string>
+    <string name="welcome_desc">Je úžasné, že ste sa rozhodli skoncovať s fajčením. Volám sa Stanislav Čavajda a budem Vaším sprievodcom. Tak ako som to dokázal ja, dokážete to aj Vy. Verím, že moje skúsenosti, ktoré som premietol do tejto aplikácie pomôžu nad zlozvykom vyhrať a učinia Váš život zdravším a plnohodnotnejším</string>
     <string name="cigarettes_smoked">Koľko cigariet vyfajčíte denne?</string>
     <string name="cigarettes_in_package">Koľko cigariet má jedna krabička?</string>
     <string name="cost">Koľko stojí krabička cigariet?</string>
@@ -105,6 +105,9 @@
     //temy
     <string name="pastel_template">Pastelová téma</string>
     <string name="dark_green_color">Relaxačná téma</string>
+    <string name="blue_ocean_template">Téma modrý oceán</string>
+    <string name="wine_template">Vínová téma</string>
+    <string name="banana_template">Banánová téma</string>
 
     //error massages
     <string name="error_name">Zadaj názov </string>

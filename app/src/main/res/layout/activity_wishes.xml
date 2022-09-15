@@ -12,16 +12,16 @@
 
         <variable
             name="viewModel"
-            type="com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.WishListViewModel"></variable>
+            type="com.example.stanislavcavajda.bakalarkasmokingapp.dashboard.wishmanager.WishListViewModel"></variable>
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Dashboard.WishManager.WishesActivity"
+        tools:context=".dashboard.wishmanager.WishesActivity"
         android:background="?secondaryClr">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/wishes_list_toolbar"
             android:layout_width="0dp"
             android:layout_height="?attr/actionBarSize"
@@ -29,18 +29,19 @@
             app:layout_collapseMode="pin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:titleTextColor="@color/white"
             android:elevation="4dp">
-        </android.support.v7.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/wishes_recycler"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="?secondaryClr"
             android:nestedScrollingEnabled="false"
-            app:items="@{viewModel.wishList}"
-            app:itemBinding="@{viewModel.itemBinding}"
+            items="@{viewModel.wishList}"
+            itemBinding="@{viewModel.itemBinding}"
             adapter="@{viewModel.adapter}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,13 +50,12 @@
             app:layout_constraintTop_toBottomOf="@id/wishes_list_toolbar"
             app:layout_constraintVertical_bias="0.0" />
 
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_wish"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_marginBottom="16dp"
             android:layout_marginEnd="16dp"
-            android:src="@drawable/fab_add"
             app:backgroundTint="?colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -65,15 +65,16 @@
             app:layout_behavior="com.valdio.valdioveliu.floatingactionbuttonproject.Scrolling_Floating_Action_Button.FAB_Hide_on_Scroll"
             android:onClick="@{viewModel.addWish}" />
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:visibility="@{viewModel.visibilityEmptyScreen}"
             android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/wishes_list_toolbar">
+
+<!--            android:visibility="@{viewModel.visibilityEmptyScreen}"-->
 
             <ImageView
                 android:id="@+id/imageView12"
@@ -105,6 +106,6 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/imageView12"
                 app:layout_constraintTop_toBottomOf="@+id/imageView12" />
-        </android.support.constraint.ConstraintLayout>
-    </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

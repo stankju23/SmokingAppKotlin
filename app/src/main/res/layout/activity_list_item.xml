@@ -4,11 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <variable name="activity" type="com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Activity"></variable>
-        <variable name="activity_listener" type="com.example.stanislavcavajda.bakalarkasmokingapp.Helper.OnClick"></variable>
+        <variable name="activity" type="com.example.stanislavcavajda.bakalarkasmokingapp.missions.Activity"></variable>
+        <variable name="activity_listener" type="com.example.stanislavcavajda.bakalarkasmokingapp.helper.OnClick"></variable>
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="@{(v)-> activity_listener.OnItemClick(v)}">
@@ -35,11 +35,12 @@
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="8dp"
-            android:alpha="@{activity.isDone().get() ? 1.0f : 0.0f}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/check" />
+
+<!--        android:alpha="@{activity.isDone() ? 1.0f : 0.0f}"-->
 
         <View
             android:layout_width="0dp"
@@ -51,6 +52,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -5,12 +5,12 @@
     <data>
         <import type="com.example.stanislavcavajda.bakalarkasmokingapp.R" />
         <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
-        <variable name="viewModel" type="com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.DashboardListViewModel"></variable>
+        <variable name="viewModel" type="com.example.stanislavcavajda.bakalarkasmokingapp.dashboard.DashboardListViewModel"></variable>
 
-        <variable name="mainProgress" type="com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MainProgress.MainProgressViewModel"></variable>
-        <variable name="healthProgress" type="com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.HealthList.HealthProgressListViewModel"></variable>
-        <variable name="wishManager" type="com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.WishListViewModel"></variable>
-        <variable name="moneySaved" type="com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MoneySaved.MoneySavedViewModel"></variable>
+        <variable name="mainProgress" type="com.example.stanislavcavajda.bakalarkasmokingapp.dashboard.mainprogress.MainProgressViewModel"></variable>
+        <variable name="healthProgress" type="com.example.stanislavcavajda.bakalarkasmokingapp.dashboard.healthlist.HealthProgressListViewModel"></variable>
+        <variable name="wishManager" type="com.example.stanislavcavajda.bakalarkasmokingapp.dashboard.wishmanager.WishListViewModel"></variable>
+        <variable name="moneySaved" type="com.example.stanislavcavajda.bakalarkasmokingapp.dashboard.moneysaved.MoneySavedViewModel"></variable>
 
     </data>
 
@@ -24,10 +24,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include layout="@layout/main_progress" bind:viewModel="@{mainProgress}"></include>
-            <include layout="@layout/healthprogress_dashboard_item_new" bind:viewModel="@{healthProgress}" ></include>
-            <include layout="@layout/wish_manager_dashboard_item" bind:viewModel="@{wishManager}"></include>
-            <include layout="@layout/money_saved_dashboard_item" bind:viewModel="@{moneySaved}"></include>
+            <include layout="@layout/main_progress" viewModel="@{mainProgress}"></include>
+            <include layout="@layout/healthprogress_dashboard_item_new" viewModel="@{healthProgress}" ></include>
+            <include layout="@layout/wish_manager_dashboard_item" viewModel="@{wishManager}"></include>
+            <include layout="@layout/money_saved_dashboard_item" viewModel="@{moneySaved}"></include>
 
         </LinearLayout>
     </ScrollView>

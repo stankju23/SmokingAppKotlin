@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/SplashTheme">
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
@@ -25,64 +25,81 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
-        <activity android:name=".Main.SplashActivity">
+        <activity android:name=".main.SplashActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".Helper.NotificationReceiver" />
+        <receiver android:name=".helper.NotificationReceiver" />
 
         <activity
-            android:name=".Main.MainActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Main.SettingsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Dashboard.HealthList.HealthProgressListActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Dashboard.HealthList.HealthProgressDetailActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Dashboard.MainProgressDetailActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Dashboard.WishManager.WishesActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Dashboard.MoneySaved.MoneySavedActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Dashboard.MainProgress.MainProgressDetailActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Dashboard.WishManager.AddWishActivity"
+            android:name=".main.MainActivity"
             android:screenOrientation="portrait"
+            android:exported="false"/>
+        <activity
+            android:name=".main.SettingsActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"/>
+        <activity
+            android:name=".dashboard.healthlist.HealthProgressListActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"/>
+        <activity
+            android:name=".dashboard.healthlist.HealthProgressDetailActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"/>
+        <activity
+            android:name=".dashboard.MainProgressDetailActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"/>
+        <activity
+            android:name=".dashboard.wishmanager.WishesActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"/>
+        <activity
+            android:name=".dashboard.moneysaved.MoneySavedActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"/>
+        <activity
+            android:name=".dashboard.mainprogress.MainProgressDetailActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"/>
+        <activity
+            android:name=".dashboard.wishmanager.AddWishActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".Dashboard.WishManager.EditWishActivity"
+            android:name=".dashboard.wishmanager.EditWishActivity"
             android:screenOrientation="portrait"
+            android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".Missions.MissionInfoActivity"
-            android:screenOrientation="portrait" />
+            android:name=".missions.MissionInfoActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"/>
         <activity
-            android:name=".Missions.ObjectivesActivity"
-            android:screenOrientation="portrait" />
+            android:name=".missions.ObjectivesActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"/>
         <activity
-            android:name=".Main.ChangeColor"
-            android:screenOrientation="portrait" />
+            android:name=".main.ChangeColor"
+            android:screenOrientation="portrait"
+            android:exported="false"/>
         <activity
-            android:name=".Walkthrough.Walkthrough"
-            android:screenOrientation="portrait" />
+            android:name=".walkthrough.Walkthrough"
+            android:screenOrientation="portrait"
+            android:exported="false"/>
         <activity
-            android:name=".Cravings.AddCravingActivity"
-            android:screenOrientation="portrait" />
+            android:name=".cravings.AddCravingActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"/>
         <activity
-            android:name=".Cravings.ShowCravings"
-            android:screenOrientation="portrait" />
+            android:name=".cravings.ShowCravings"
+            android:screenOrientation="portrait"
+            android:exported="false"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -99,24 +116,31 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".Cravings.CravingMapActivity"
+            android:name=".cravings.CravingMapActivity"
             android:label="@string/title_activity_craving_map"
+            android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Main.AchievmentActivity"
+            android:name=".main.AchievmentActivity"
+            android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Main.SmokingPreferences"
+            android:name=".main.SmokingPreferences"
+            android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Cravings.AddCardActivity"
+            android:name=".cravings.AddCardActivity"
+            android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".Journal.EditJournal"
+            android:name=".journal.EditJournal"
             android:screenOrientation="portrait"
+            android:exported="false"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".Journal.JournalStoryActivity" />
-        <activity android:name=".Feedback.FeedbackActivity"></activity>
+        <activity android:name=".journal.JournalStoryActivity"
+            android:exported="false"/>
+        <activity android:name=".feedback.FeedbackActivity"
+            android:exported="false"></activity>
     </application>
 </manifest>

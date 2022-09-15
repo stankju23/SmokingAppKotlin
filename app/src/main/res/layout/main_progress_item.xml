@@ -5,10 +5,10 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.MainProgress.MainProgressItemViewModel"></variable>
+            type="com.example.stanislavcavajda.bakalarkasmokingapp.dashboard.mainprogress.MainProgressItemViewModel"></variable>
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -22,11 +22,12 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@{viewModel.full == true ? @drawable/main_progress_item_bg_full : @drawable/main_progress_item_bg}">
+            app:layout_constraintTop_toTopOf="parent">
+
+<!--            android:background="@{viewModel.full == true ? @drawable/main_progress_item_bg_full : @drawable/main_progress_item_bg}"-->
 
             <!--app:blink="@{viewModel.last.get()? true : false}"-->
 
         </FrameLayout>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

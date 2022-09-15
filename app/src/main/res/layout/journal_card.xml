@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <variable name="journal" type="com.example.stanislavcavajda.bakalarkasmokingapp.Journal.Journal"></variable>
-        <variable name="journalListener" type="com.example.stanislavcavajda.bakalarkasmokingapp.Helper.OnClick"></variable>
+        <variable name="journal" type="com.example.stanislavcavajda.bakalarkasmokingapp.journal.Journal"></variable>
+        <variable name="journalListener" type="com.example.stanislavcavajda.bakalarkasmokingapp.helper.OnClick"></variable>
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="160dp"
         android:onClick="@{(v)-> journalListener.OnItemClick(v)}">
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
@@ -20,15 +20,15 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             app:cardCornerRadius="28dp"
-            cardLockedColor="@{journal.locked.get()}"
-            writtenColor="@{journal.written.get()}"
+            cardLockedColor="@{journal.locked}"
+            writtenColor="@{journal.written}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio=".7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <android.support.constraint.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -36,10 +36,9 @@
                     android:id="@+id/view3"
                     android:layout_width="0dp"
                     android:layout_height="1dp"
-                    android:layout_marginStart="8dp"
                     android:layout_marginTop="32dp"
                     android:background="@color/white"
-                    app:layout_constraintStart_toEndOf="@+id/time"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
@@ -51,12 +50,12 @@
                     android:layout_marginStart="34dp"
                     android:layout_marginTop="8dp"
                     android:scaleType="fitCenter"
-                    android:src="@{journal.locked ? @drawable/ic_lock : @drawable/journal_unlocked}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     />
+<!--                android:src="@{journal.locked ? @drawable/ic_lock : @drawable/journal_unlocked}"-->
 
                 <TextView
                     android:id="@+id/textView"
@@ -106,7 +105,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     tools:text="Locked" />
 
-            </android.support.constraint.ConstraintLayout>
-        </android.support.v7.widget.CardView>
-    </android.support.constraint.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

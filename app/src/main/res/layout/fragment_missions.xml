@@ -2,7 +2,7 @@
     <data>
         <import type="com.example.stanislavcavajda.bakalarkasmokingapp.R" />
         <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
-        <variable name="viewModel" type="com.example.stanislavcavajda.bakalarkasmokingapp.Missions.MissionListViewModel"></variable>
+        <variable name="viewModel" type="com.example.stanislavcavajda.bakalarkasmokingapp.missions.MissionListViewModel"></variable>
 
     </data>
 
@@ -10,15 +10,15 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.stanislavcavajda.bakalarkasmokingapp.Missions.MissionsFragment"
+        tools:context="com.example.stanislavcavajda.bakalarkasmokingapp.missions.MissionsFragment"
         android:background="?secondaryClr">
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/missions_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:itemBinding="@{viewModel.itemBinding}"
-            app:items="@{viewModel.missionList}"
+            itemBinding="@{viewModel.itemBinding}"
+            items="@{viewModel.missionList}"
             app:layout_constraintBottom_toTopOf="@+id/navigation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

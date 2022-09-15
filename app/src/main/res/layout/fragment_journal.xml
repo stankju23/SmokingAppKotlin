@@ -5,29 +5,29 @@
     <data>
         <import type="com.example.stanislavcavajda.bakalarkasmokingapp.R" />
         <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
-        <variable name="journalViewModel" type="com.example.stanislavcavajda.bakalarkasmokingapp.Journal.JournalListViewModel"></variable>
+        <variable name="journalViewModel" type="com.example.stanislavcavajda.bakalarkasmokingapp.journal.JournalListViewModel"></variable>
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Journal.JournalFragment"
+        tools:context=".journal.JournalFragment"
         android:background="@color/white">
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/journal_recycler_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:nestedScrollingEnabled="false"
-            app:itemBinding="@{journalViewModel.itemBinding}"
-            app:items="@{journalViewModel.journalItemList}"
+            itemBinding="@{journalViewModel.itemBinding}"
+            items="@{journalViewModel.journalItemList}"
             app:layoutManager="@{LayoutManagers.grid(3)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></android.support.v7.widget.RecyclerView>
+            app:layout_constraintTop_toTopOf="parent"></androidx.recyclerview.widget.RecyclerView>
 
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

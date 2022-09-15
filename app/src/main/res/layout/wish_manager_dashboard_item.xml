@@ -6,27 +6,27 @@
 
         <variable
             name="viewModel"
-            type="com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.WishListViewModel">
+            type="com.example.stanislavcavajda.bakalarkasmokingapp.dashboard.wishmanager.WishListViewModel">
         </variable>
 
 
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?secondaryClr"
         android:paddingTop="4dp"
         android:paddingBottom="4dp">
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:cardBackgroundColor="@color/white"
             app:cardElevation="0dp"
             app:cardCornerRadius="0dp">
 
-            <android.support.constraint.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -44,7 +44,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <android.support.constraint.ConstraintLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -53,16 +53,16 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/wishes_manager_title">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/wish_dashboard_item_image"
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:alpha="@{viewModel.actualWish.get().canBuy ? 1f : 0.6f }"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        imageUri="@{viewModel.actualWish.get().image}"/>
+<!--                    <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                        android:id="@+id/wish_dashboard_item_image"-->
+<!--                        android:layout_width="90dp"-->
+<!--                        android:layout_height="90dp"-->
+<!--                        android:layout_marginStart="16dp"-->
+<!--                        android:layout_marginTop="16dp"-->
+<!--                        android:alpha="@{viewModel.actualWish.get().canBuy ? 1f : 0.6f }"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        imageUri="@{viewModel.actualWish.get().image}"/>-->
 
                     <TextView
                         android:id="@+id/textView9"
@@ -71,7 +71,7 @@
                         android:layout_marginEnd="16dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
-                        android:text="@{viewModel.actualWish.get().title}"
+                        android:text="@{viewModel.actualWish.title}"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="?colorAccent"
@@ -89,7 +89,7 @@
                         android:lines="2"
                         android:textColor="?colorAccent"
                         android:ellipsize="end"
-                        android:text="@{viewModel.actualWish.get().desc}"
+                        android:text="@{viewModel.actualWish.desc}"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toTopOf="@+id/imageView2"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -103,8 +103,8 @@
                         android:layout_marginStart="16dp"
                         app:layout_constraintBottom_toBottomOf="@+id/wish_dashboard_item_image"
                         app:layout_constraintStart_toEndOf="@+id/wish_dashboard_item_image"
-                        app:srcCompat="@drawable/calendar_icon"
-                        android:alpha="@{viewModel.actualWish.get() != null ? 1f:0f}"/>
+                        app:srcCompat="@drawable/calendar_icon" />
+<!--                    android:alpha="@{viewModel.actualWish != null ? 1f:0f}"-->
 
                     <TextView
                         android:id="@+id/textView18"
@@ -114,12 +114,12 @@
                         android:layout_marginStart="8dp"
                         android:gravity="left |center"
                         android:textColor="?colorAccent"
-                        android:text="@{@string/can_buy_it + ' ' + viewModel.actualWish.get().endDate}"
+                        android:text="@{@string/can_buy_it + ' ' + viewModel.actualWish.endDate}"
                         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/imageView2"
-                        app:layout_constraintTop_toTopOf="@+id/imageView2"
-                        android:alpha="@{viewModel.actualWish.get() != null ? 1f:0f}"/>
+                        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+<!--                    android:alpha="@{viewModel.actualWish != null ? 1f:0f}"-->
 
                     <Button
                         android:id="@+id/button2"
@@ -156,7 +156,6 @@
                         android:scaleType="fitCenter"
                         android:background="@color/white"
                         android:alpha="0.5"
-                        android:visibility="@{viewModel.visibility.get()}"
                         app:layout_constraintBottom_toTopOf="@+id/button2"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -164,11 +163,13 @@
                         app:srcCompat="@drawable/ic_empty_no_wish_img"
                         android:onClick="@{viewModel::addWish}"/>
 
-                </android.support.constraint.ConstraintLayout>
-            </android.support.constraint.ConstraintLayout>
+<!--                    android:visibility="@{viewModel.visibility}"-->
 
-        </android.support.v7.widget.CardView>
-    </android.support.constraint.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </layout>

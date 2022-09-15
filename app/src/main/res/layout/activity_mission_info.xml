@@ -9,20 +9,20 @@
 
         <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
 
-        <variable name="missionInfo" type="com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Mission"></variable>
+        <variable name="missionInfo" type="com.example.stanislavcavajda.bakalarkasmokingapp.missions.Mission"></variable>
 
-        <variable name="viewModel" type="com.example.stanislavcavajda.bakalarkasmokingapp.Missions.ActivityListViewModel"></variable>
+        <variable name="viewModel" type="com.example.stanislavcavajda.bakalarkasmokingapp.missions.ActivityListViewModel"></variable>
 
 
     </data>
 
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.stanislavcavajda.bakalarkasmokingapp.Missions.MissionInfoActivity"
+    tools:context="com.example.stanislavcavajda.bakalarkasmokingapp.missions.MissionInfoActivity"
     android:background="@color/white">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/mission_info_toolbar"
         android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
@@ -33,9 +33,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:titleTextColor="@color/white">
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mission_info_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -94,17 +94,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView4"
                 app:layout_constraintTop_toTopOf="@+id/imageView4" />
-        </android.support.constraint.ConstraintLayout>
-    </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/activity_recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="24dp"
-        app:itemBinding="@{viewModel.itemBinding}"
-        app:items="@{viewModel.activityList}"
+        itemBinding="@{viewModel.itemBinding}"
+        items="@{viewModel.activityList}"
         app:layout_constraintBottom_toTopOf="@+id/button5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -134,6 +134,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mission_info_layout" />
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

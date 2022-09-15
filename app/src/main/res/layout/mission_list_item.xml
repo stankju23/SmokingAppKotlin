@@ -7,32 +7,32 @@
 
         <variable
             name="mission"
-            type="com.example.stanislavcavajda.bakalarkasmokingapp.Missions.Mission"></variable>
-        <variable name="listener" type="com.example.stanislavcavajda.bakalarkasmokingapp.Dashboard.WishManager.OnWishClick"></variable>
+            type="com.example.stanislavcavajda.bakalarkasmokingapp.missions.Mission"></variable>
+        <variable name="listener" type="com.example.stanislavcavajda.bakalarkasmokingapp.dashboard.wishmanager.OnWishClick"></variable>
 
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="@{(v)-> listener.onWishClick(v)}"
         android:background="?secondaryClr">
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
-            android:background="@{mission.locked ? @drawable/mission_locked : mission.available ? @drawable/mission_locked : @drawable/mission_unlocked}"
             app:cardElevation="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+<!--            android:background="@{mission.locked ? @drawable/mission_locked : mission.available ? @drawable/mission_locked : @drawable/mission_unlocked}"-->
 
-            <android.support.constraint.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -48,8 +48,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:text="@{mission.name}"
-                    availableColor="@{mission.available.get()}"
-                    lockedColor="@{mission.locked.get()}"
+                    availableColor="@{mission.available}"
+                    lockedColor="@{mission.locked}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -59,10 +59,10 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginEnd="8dp"
-                    android:src="@{mission.locked? @drawable/ic_lock : mission.available ? @drawable/ic_mission_light : @drawable/ic_mission}"
                     app:layout_constraintBottom_toBottomOf="@+id/textView32"
                     app:layout_constraintEnd_toStartOf="@+id/textView32"
                     app:layout_constraintTop_toTopOf="@+id/textView32" />
+<!--                android:src="@{mission.locked? @drawable/ic_lock : mission.available ? @drawable/ic_mission_light : @drawable/ic_mission}"-->
 
                 <TextView
                     android:id="@+id/textView32"
@@ -70,13 +70,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:text="@{mission.locked ? @string/empty : mission.getDoneToString()}"
-                    availableColor="@{mission.available.get()}"
-                    lockedColor="@{mission.locked.get()}"
+                    availableColor="@{mission.available}"
+                    lockedColor="@{mission.locked}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <android.support.constraint.ConstraintLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -95,11 +95,11 @@
                         android:layout_marginBottom="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
-                        android:src="@{mission.locked ? @drawable/ic_mission_date_light: mission.available ? @drawable/ic_mission_date_light : @drawable/ic_mission_date}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.498" />
+<!--                    android:src="@{mission.locked ? @drawable/ic_mission_date_light: mission.available ? @drawable/ic_mission_date_light : @drawable/ic_mission_date}"-->
 
                     <TextView
                         android:id="@+id/textView31"
@@ -107,15 +107,15 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:text="@{mission.date}"
-                        availableColor="@{mission.available.get()}"
-                        lockedColor="@{mission.locked.get()}"
+                        availableColor="@{mission.available}"
+                        lockedColor="@{mission.locked}"
                         app:layout_constraintBottom_toBottomOf="@+id/imageView"
                         app:layout_constraintStart_toEndOf="@+id/imageView"
                         app:layout_constraintTop_toTopOf="@+id/imageView" />
-                </android.support.constraint.ConstraintLayout>
-            </android.support.constraint.ConstraintLayout>
-        </android.support.v7.widget.CardView>
-    </android.support.constraint.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
