@@ -28,6 +28,7 @@ import com.example.stanislavcavajda.bakalarkasmokingapp.helper.DataManager
 import com.example.stanislavcavajda.bakalarkasmokingapp.helper.ThemeManager
 import com.example.stanislavcavajda.bakalarkasmokingapp.ui.theme.SmokingAppTheme
 import com.example.stanislavcavajda.bakalarkasmokingapp.walkthrough.Walkthrough
+import com.example.stanislavcavajda.bakalarkasmokingapp.walkthrough.WalkthroughFirst
 import io.realm.Realm
 
 class SplashActivity : ComponentActivity() {
@@ -39,7 +40,9 @@ class SplashActivity : ComponentActivity() {
             SmokingAppTheme() {
                 val navController = rememberNavController()
                 NavHost(navController = navController, startDestination = walkthrough_1) {
-                    composable(walkthrough_1) {}
+                    composable(walkthrough_1) {
+                        WalkthroughFirst()
+                    }
                     composable(walkthrough_2) {}
                     composable(walkthrough_3) {}
                     composable(walkthrough_4) {}
