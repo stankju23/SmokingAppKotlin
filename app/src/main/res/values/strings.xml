@@ -28,8 +28,10 @@
     // walkthrough
     <string name="welcome_title">Vitajte</string>
     <string name="welcome_desc">Je úžasné, že ste sa rozhodli skoncovať s fajčením. Volám sa Juraj Macák a budem Vaším sprievodcom. Tak ako som to dokázal ja, dokážete to aj Vy. Verím, že moje skúsenosti, ktoré som premietol do tejto aplikácie pomôžu nad zlozvykom vyhrať a učinia Váš život zdravším a plnohodnotnejším</string>
-    <string name="cigarettes_smoked"> cigarettes smoked every day</string>
-    <string name="cigarettes_in_package"> cigarettes in packet</string>
+    <string name="cigarettes_in_package_desc">Začneme s počtom cigariet v balíku, ktorý si kupujete.</string>
+    <string name="cigarettes_smoked"> Cigarretes smoked per day</string>
+    <string name="cigarettes_smoked_desc">Začneme s počtom cigariet, ktoré vyfajčíte každý deň.</string>
+    <string name="cigarettes_in_package"> Cigarettes in packet</string>
     <string name="cost"> cost one packet</string>
     <string name="preffered_currency"> my preffered currency</string>
     <string name="stop">Stop smoking now !</string>
@@ -39,7 +41,7 @@
     <string name="change_color">Change color</string>
     <string name="settings_title">Settings</string>
     <string name="change_color_title">Change color</string>
-    <string name="cigarettes_smoked_every_day">Cigarettes smoked every day</string>
+    <string name="cigarettes_smoked_every_day">Cigarettes per day</string>
     <string name="cigarettes_in_packet">Cigarettes in packet</string>
     <string name="packet_cost">Packet cost</string>
     <string name="currency">Currency</string>

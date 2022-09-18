@@ -34,7 +34,9 @@
     <string name="welcome_title">Vitajte</string>
     <string name="welcome_desc">Je úžasné, že ste sa rozhodli skoncovať s fajčením. Volám sa Stanislav Čavajda a budem Vaším sprievodcom. Tak ako som to dokázal ja, dokážete to aj Vy. Verím, že moje skúsenosti, ktoré som premietol do tejto aplikácie pomôžu nad zlozvykom vyhrať a učinia Váš život zdravším a plnohodnotnejším</string>
     <string name="cigarettes_smoked">Koľko cigariet vyfajčíte denne?</string>
-    <string name="cigarettes_in_package">Koľko cigariet má jedna krabička?</string>
+    <string name="cigarettes_smoked_desc">Začneme s počtom cigariet, ktoré vyfajčíte každý deň.</string>
+    <string name="cigarettes_in_package">Veľkosť krabičky</string>
+    <string name="cigarettes_in_package_desc">Pokračujeme s počtom cigariet v jednom balíku..</string>
     <string name="cost">Koľko stojí krabička cigariet?</string>
     <string name="preffered_currency">Aká je Vaša preferovaná mena?</string>
     <string name="stop">Prestať fajčiť teraz !</string>

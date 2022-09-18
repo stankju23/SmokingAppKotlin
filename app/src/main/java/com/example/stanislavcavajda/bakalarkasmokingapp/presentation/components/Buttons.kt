@@ -1,5 +1,6 @@
 package com.example.stanislavcavajda.bakalarkasmokingapp.presentation.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonColors
@@ -23,7 +24,8 @@ fun ShadowButton(
     buttonModifier: Modifier,
     buttonBackgroundColor: Color = Color.White,
     onClick: () -> Unit,
-    text: @Composable () -> Unit
+    border: BorderStroke? = null,
+    text: @Composable () -> Unit,
 ) {
     Button(
         onClick = onClick,
@@ -31,7 +33,8 @@ fun ShadowButton(
         colors = ButtonDefaults.buttonColors(
             backgroundColor = buttonBackgroundColor
         ),
-        shape = buttonShape
+        shape = buttonShape,
+        border = border
     ) {
         text()
     }
